@@ -1,8 +1,8 @@
 
-# Making A Single Heatmap
+# Make a single heatmap
 
 A single heatmap is the most used way for visualizing the data. Although "the shining point" of the
-ComplexHeatmap package is it can visualize a list of heatmaps in parallel, as the basic unit of the
+**ComplexHeatmap** package is it can visualize a list of heatmaps in parallel, as the basic unit of the
 heatmap list, it is still very important to have the single heatmap nicely configured.
 
 First let's generate a random matrix where there are three groups by columns and three groups by
@@ -27,7 +27,7 @@ rownames(mat) = paste0("row", seq_len(nr))
 colnames(mat) = paste0("column", seq_len(nc))
 ```
 
-Folowing command contains the minimal argument for the `Heatmap()` function which just visualizes
+Following command contains the minimal argument for the `Heatmap()` function which just visualizes
 the matrix as a heatmap with default settings. Very similar as other heatmap tools, it draws the
 dendrograms, the row/column names and the heatmap legend. The default color schema is
 "blue-white-red" which is mapped to the minimal-mean-maximal values in the matrix and the title for
@@ -38,20 +38,22 @@ Heatmap(mat)
 ```
 
 The title for the legend is taken from the "name" of the heatmap by default. Each heatmap can have a
-name which is like a unique identifier for the heatmap. If it is not assigned, an internal name is
-assigned to the heatmap in a form of `matrix_%d`. In following examples, we give the name `mat` to
-the heatmap (for which you will see the changes of the legend in next example heatmap).
+name which is like a unique identifier for the heatmap, which is important when you have a list of heatmaps. 
+In later chapters, you will find the heatmap name is used for setting the "main heatmap" and is used
+for decoration of heatmaps. If the name is not assigned, an internal name is assigned to the 
+heatmap in a form of `matrix_%d`. In following examples in this chapter, we give the name `mat` to
+the heatmap (for which you will see the change of the legend in next example heatmap).
 
 ## Colors
 
-For heatmaps, colors are the major representation of the matrix which is feeded to the heatmap. In
+For heatmap visualization, colors are the major representation of the data matrix. In
 most cases, the heatmap visualizes a matrix with continuous numeric values. In this case, user
 should provide a color mapping function. A color mapping function should accept a vector of values
 and return a vector of corresponding colors. **Users should always use the `circlize::colorRamp2()`
 function to generate the color mapping function**. The two arguments for `colorRamp2()` is a vector
-of breaks values and corresponding colors. `colorRamp2()` linearly interpolates colors in every
+of breaks values and a vector of corresponding colors. `colorRamp2()` linearly interpolates colors in every
 interval through LAB color space. Also using `colorRamp2()` helps to generate a legend with proper
-scales for the heatmap.
+tick marks.
 
 In following example, values between -2 and 2 are linearly interpolated to get corresponding colors,
 values larger than 2 are all mapped to red and values less than -2 are all mapped to green.
@@ -63,7 +65,9 @@ col_fun(seq(-3, 3))
 Heatmap(mat, name = "mat", col = col_fun)
 ```
 
-With this color mapping function, it is not affected by outliers.
+As you can see, the color mapping function exactly maps negative values to green and positive values to red,
+even when the distribution of negative values and positive values are not centric to zero.
+Also this color mapping function is not affected by outliers.
 
 ```{r}
 mat2 = mat
@@ -72,9 +76,9 @@ Heatmap(mat2, name = "mat", col = col_fun)
 ```
 
 If the matrix is continuous, you can simply provide a vector of colors and colors will be linearly
-interpolated between these colors. But remember this method is not robust to outliers. Following
-color mapping setting is identical to `colorRamp2(seq(min(mat), max(mat), length = 10),
-rev(rainbow(10)))`.
+interpolated. But remember this method is not robust to outliers because the mapping starts from the minimal value
+in the matrix and ends with the maximal value. Following
+color mapping setting is identical to `colorRamp2(seq(min(mat), max(mat), length = 10), rev(rainbow(10)))`.
 
 ```{r}
 Heatmap(mat, name = "mat", col = rev(rainbow(10)))
@@ -82,10 +86,10 @@ Heatmap(mat, name = "mat", col = rev(rainbow(10)))
 
 If the matrix contains discrete values (either numeric or character), colors should be specified as
 a named vector to make it possible for the mapping from discrete values to colors. If there is no
-name for the color, the order of colors corresponds to the order of `unique(mat)`.
-
-A discrete numeric matrix (you don't need to convert it to a character matrix). Note the legend is
+name for the color, the order of colors corresponds to the order of `unique(mat)`. Note the legend is
 generated from the color mapping vector.
+
+Following sets colors for a discrete numeric matrix (you don't need to convert it to a character matrix). 
 
 ```{r}
 discrete_mat = matrix(sample(1:4, 100, replace = TRUE), 10, 10)
@@ -106,7 +110,7 @@ discrete mapping), by default clustering is applied on both dimensions while for
 clustering is turned off.
 
 ``NA`` is allowed in the heatmap. You can control the color of `NA` by `na_col` argument (by default
-it is grey for `NA`). The matrix which contains `NA` can also be clustered by `Heatmap()`.
+it is grey for `NA`). **The matrix which contains `NA` can also be clustered by `Heatmap()`.**
 
 Note the `NA` value is not represended in the legend.
 
@@ -129,7 +133,7 @@ Heatmap(mat, name = "mat2", col = f2, column_title = "RGB color space")
 
 In following figure, corresponding values change evenly on the folded axis, you can see how colors
 change under different color spaces (the plot is made by **HilbertCurve** package). Choosing a
-proper color space is a little bit subjective and it depends on specific data and color theme.
+proper color space is a little bit subjective and it depends on specific data and color schema.
 Sometimes you need to try several color spaces to determine on which can best reveal potential
 pattern of your data.
 
@@ -168,9 +172,9 @@ of the grids in the heatmap.
 The value of `border` can be logical (`TRUE` correspond to `black`) or a character representing
 color (e.g. `red`).
 
-`rect_gp` is a `gar` object which means you can only set it by `grid::gpar()`. Since the filled
-color is already controlled by the heatmap color mapping function, you can only set the `col`
-parameter for `gpar()` to control the border of heatmap grids.
+`rect_gp` is a `gpar` object which means you can only set it by `grid::gpar()`. Since the filled
+color is already controlled by the heatmap color mapping, you can only set the `col`
+parameter in `gpar()` to control the border of the heatmap grids.
 
 ```{r}
 Heatmap(mat, name = "mat", border = TRUE)
@@ -179,8 +183,8 @@ Heatmap(mat, name = "mat", rect_gp = gpar(col = "white", lwd = 2))
 
 ## Titles
 
-The title of the heatmap basically tells what the plot is about. In ComplexHeatmap package, you can
-set heatmap title either on the row or/and the column. Note at a same time you can only put e.g.
+The title of the heatmap basically tells what the plot is about. In **ComplexHeatmap** package, you can
+set heatmap title either on the row or/and on the column. Note at a same time you can only put e.g.
 column title either on the top or at the bottom of the heatmap (because it is somehow weird to have
 both a top column title and a bottom column title)
 
@@ -204,7 +208,12 @@ Heatmap(mat, name = "mat", row_title = "row title", row_title_rot = 0)
 ```
 
 Row or column title also supports as a template which is used when rows or columns are split in the
-heatmap. This functionality is introduced in ...
+heatmap. This functionality is introduced in ... A quick example would be:
+
+```{r, eval = FALSE}
+# code not run when building the vignette
+Heatmap(mat, name = "mat", row_km = 2, row_title = "cluster_%s") # row title would be cluster_1 and cluster_2
+```
 
 You can set `fill` parameter in `row_title_gp` and `column_title_gp`.
 
@@ -218,7 +227,7 @@ Heatmap(mat, name = "mat", column_title = "I am a column title",
 Clustering might be the key component of the heatmap visualization. In **ComplexHeatmap** package,
 clustering is supported with high flexibility. You can specify the clustering either by:
 
-- a pre-defined distance method (e.g. "eulidean" or "pearson"),
+- a pre-defined distance method (e.g. `eulidean` or `pearson`),
 - a distance function,
 - a object that already contains clustering (a `hclust` or `dendrogram` object or object that can be
   coerced to `hclust` or `dendrogram` class),
@@ -237,11 +246,13 @@ Heatmap(mat, name = "mat", row_dend_side = "right", column_dend_side = "bottom")
 Heatmap(mat, name = "mat", column_dend_height = unit(4, "cm"), row_dend_width = unit(4, "cm"))
 ```
 
+### Distance methods
+
 Hierarchical clustering is in two steps: calculate the distance matrix and apply clustering. There
 are three ways to specify distance metric for clustering:
 
 - specify distance as a pre-defined option. The valid values are the supported methods
-  in `dist()` function and within `pearson`, `spearman` and `kendall`. If there is any `NA`
+  in `dist()` function and in `pearson`, `spearman` and `kendall`. If there is any `NA`
   values in the matrix, `ComplexHeatmap::dist2()` is used instead which performs pairwise
   distance calculation by removing `NA` values. The correlation distance is defined as `1 - cor(x, y)`.
 - a self-defined function which calculates distance from a matrix. The function should
@@ -259,7 +270,7 @@ Heatmap(mat, name = "mat", clustering_distance_rows = function(x, y) 1 - cor(x, 
     column_title = "a function calculates pairwise distance")
 ```
 
-Based on this feature, we can apply clustering which is robust to outliers based on the pairwise
+Based on these features, we can apply clustering which is robust to outliers based on the pairwise
 distance.
 
 ```{r cluster_distance_advanced}
@@ -274,12 +285,11 @@ robust_dist = function(x, y) {
     sqrt(sum((x - y)^2))
 }
 Heatmap(mat_with_outliers, name = "mat", 
-    col = col_fun,
     clustering_distance_rows = robust_dist,
     clustering_distance_columns = robust_dist)
 ```
 
-If there are proper clustering methods, you can also cluster a character matrix.
+If there are proper distance methods, you can also cluster a character matrix.
 `cell_fun` argument will be explained in later section.
 
 ```{r cluster_character_matrix}
@@ -297,6 +307,8 @@ Heatmap(mat_letters, name = "letters", col = structure(2:5, names = letters[1:4]
     })
 ```
 
+## Clustering methods
+
 Method to perform hierarchical clustering can be specified by `clustering_method_rows` and
 `clustering_method_columns`. Possible methods are those supported in `hclust()` function.
 
@@ -307,18 +319,17 @@ Heatmap(mat, name = "mat", clustering_method_rows = "single")
 If you already have clustering objects or a function which directly returns a clustering object,
 you can ignore the distance settings and set `cluster_rows` or `cluster_columns` to the clustering
 objects or clustering functions. If it is a clustering function, the only argument should be the matrix
-and it returnes a `hclust` or `dendrogram` object or object that can be coerced to the two classes.
+and it should return a `hclust` or `dendrogram` object or a object that can be coerced to the two classes.
 
-In following example, we perform clustering with methods from **cluster** package wither by a pre-calculated
+In following example, we perform clustering with methods from **cluster** package either by a pre-calculated
 clustering object or a clustering function:
-
 
 ```{r cluster_object}
 library(cluster)
 Heatmap(mat, name = "mat", cluster_rows = as.dendrogram(diana(mat)),
-   cluster_columns = as.dendrogram(agnes(t(mat))), column_title = "clutering objects")
+   cluster_columns = as.dendrogram(agnes(t(mat))), column_title = "clustering objects")
 Heatmap(mat, name = "mat", cluster_rows = diana,
-   cluster_columns = agnes, column_title = "clutering functions")
+   cluster_columns = agnes, column_title = "clustering functions")
 ```
 
 The last command is as same as :
@@ -351,8 +362,10 @@ ht_global_opt(fast_hclust = TRUE)
 Heatmap(mat, name = "mat")
 ```
 
+### Render dendrograms
+
 You can render your `dendrogram` object by the **dendextend** package to make a more customized
-visualization of the dendrogram. Note ComplexHeatmap only allows rendering on the dendrogram lines.
+visualization of the dendrogram. Note **ComplexHeatmap** only allows rendering on the dendrogram edges.
 
 ```{r cluster_dendextend}
 library(dendextend)
@@ -361,17 +374,33 @@ row_dend = color_branches(row_dend, k = 2)
 Heatmap(mat, name = "mat", cluster_rows = row_dend)
 ```
 
-In the `heatmap()` function, dendrograms are reordered to make features with larger different
+### Reorder dendrograms
+
+In the `Heatmap()` function, dendrograms are reordered to make features with larger difference
 more separated from each others (please refer to the documentation of `reorder.dendrogram()`).
-The weight for `reorder.dendrogram()` is the row means or columns means depending on whether
-it is row dendrogram or column dendrogram.
+Here the difference is measured by the row means if it is a row dendrogram or by the column
+means if it is a column dendrogram. `row_dend_reorder` and `column_dend_reorder` control whether
+apply dendrogram reordering and the weight for the reordering (since `reorder.dendrogram()` needs a `wts` argument).
+The reordering can be turned off by setting e.g. `row_dend_reorder = FALSE`.
 
-Besides the default reordering method, you can first generate a dendrogram and apply other
-reordering method and then send the reordered dendrogram to `cluster_rows` argument.
+There are many other methods for reordering dendrograms, e.g. the **dendsort** package. 
+Basically, all these methods still return a dendrogram which has been reordered, thus,
+we can firstly generate the row or column dendrogram based on the data matrix, reorder it by some method, and assign it
+back to `cluster_rows` or `cluster_columns`.
 
-Compare following three plots:
+Compare following three heatmaps:
 
-```{r cluster_dendsort, fig.width = 14}
+```{r, eval = FALSE}
+Heatmap(mat, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering")
+Heatmap(mat, name = "mat", row_dend_reorder = TRUE, column_title = "applied reordering")
+
+library(dendsort)
+dend = dendsort(hclust(dist(mat)))
+draw(Heatmap(mat, name = "mat", cluster_rows = dend, row_dend_reorder = FALSE, 
+    column_title = "reordering by dendsort"))
+```
+
+```{r cluster_dendsort, fig.width = 14, echo = FALSE}
 pushViewport(viewport(layout = grid.layout(nr = 1, nc = 3)))
 pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 1))
 draw(Heatmap(mat, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering"), newpage = FALSE)
@@ -389,25 +418,79 @@ draw(Heatmap(mat, name = "mat", cluster_rows = dend, row_dend_reorder = FALSE,
 upViewport(2)
 ```
 
-Clustering is used to adjust row order or column order of the heatmap, but you can still set the
+## Row and column orders
+
+Clustering is used to adjust row orders and column orders of the heatmap, but you can still set the
 order manually by `row_order` and `column_order`. If e.g. `row_order` is set, row clustering is
 turned off.
 
 ```{r manual_order}
-Heatmap(mat, name = "mat", cluster_columns = FALSE, 
-    row_order = order(rownames(mat)), column_order = order(colnames(mat)))
+Heatmap(mat, name = "mat", row_order = order(rownames(mat)), column_order = order(colnames(mat)))
 ```
 
 Note `row_dend_reorder` and `row_order` are different. `row_dend_reorder` is applied on the
-dendrogram. For any node in the dendrogram, rotating its two leaves actually gives an identical
+dendrogram. For any node in the dendrogram, rotating its two branches actually gives an identical
 dendrogram, thus, reordering the dendrogram by automatically rotating sub-dendrogram at every node
 can help to separate elements further from each other which show more difference. As a comparison,
 `row_order` is simply applied on the matrix and normally dendrograms should be turned off.
 
+## Seriation
+
+Seriation is an interesting technique for ordering the matrix (see this interesting post: http://nicolas.kruchten.com/content/2018/02/seriation/). 
+The powerful [**seriation**](https://cran.r-project.org/web/packages/seriation/index.html) package implements quite a lot of methods for seriation. Since it is easy to extract row orders and column ordes from the object returned by the core function `seriate()` from **seriation** package. 
+They can be directly assigned to `row_order` and `column_order` to make the heatmap.
+
+The first example demonstrates to directly apply `seriate()` on the matrix. Since the "BEA_TSP" only allows a non-negative
+matrix, we change the matrix to `max(mat) - mat`.
+
+```{r}
+library(seriation)
+o = seriate(max(mat) - mat, method = "BEA_TSP")
+Heatmap(max(mat) - mat, row_order = get_order(o, 1), column_order = get_order(o, 2))
+```
+
+Or apply `seriate()` to the distance matrix. Now the order for rows and columns needs to be calcualted separatedly.
+
+```{r}
+o1 = seriate(dist(mat), method = "TSP")
+o2 = seriate(dist(t(mat)), method = "TSP")
+Heatmap(mat, row_order = get_order(o1), column_order = get_order(o2))
+```
+
+Some seriation methods also contain the hierarchical clustering information. Let's try:
+
+```{r}
+o1 = seriate(dist(mat), method = "GW")
+o2 = seriate(dist(t(mat)), method = "GW")
+```
+
+`o1` and `o2` are actually mainly composed of `hclust` objects:
+
+```{r}
+class(o1[[1]])
+```
+
+And the orders are the same by using `hclust$order` or `get_order()`.
+
+```{r}
+o1[[1]]$order
+get_order(o1)
+```
+
+And we can add the dendrograms to the heatmap (note here we turned off the default reordering because
+we exactly want the dendrogram order returned from seriation).
+
+```{r}
+Heatmap(mat, cluster_rows = as.dendrogram(o1[[1]]), row_dend_reorder = FALSE,
+  cluster_columns = as.dendrogram(o2[[1]]), column_dend_reorder = FALSE)
+```
+
+For more use of the `seriate()` function, please refer to the **seriation** package.
+
 ## Dimension names
 
-The row names and column names are dawn on the right and bottom of the heatmap. Side, visibility and
-graphic parameters for dimension names can be set as follows.
+The row names and column names are dawn on the right and bottom of the heatmap by default. Side, visibility and
+graphic parameters for dimension names can be set as follows:
 
 ```{r dimension_name}
 Heatmap(mat, name = "mat", row_names_side = "left", row_dend_side = "right", 
@@ -443,7 +526,7 @@ row names or column names are not allowed in the matrix.
 Following gives a simple example that we put letters as row labels and column labels:
 
 ```{r}
-# use named vector to correspond row names and row labels
+# use named vectors to correctly correspond row names and row labels
 row_labels = structure(paste0(letters[1:24], 1:24), names = paste0("row", 1:24))
 column_labels = structure(paste0(LETTERS[1:24], 1:24), names = paste0("column", 1:24))
 Heatmap(mat, name = "mat", row_labels = row_labels[rownames(mat)], 
