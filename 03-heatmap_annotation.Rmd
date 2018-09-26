@@ -1,33 +1,62 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{4. Heatmap Annotations}
--->
 
-Heatmap Annotations
-========================================
+# Heatmap Annotations
 
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
+Heatmap annotations are important components of a heatmap that it shows additional information
+that associates with rows or columns in the heatmap. ComplexHeatmap package provides very flexible
+supports for setting annotations or defining new annotation graphics. The annotations can be put
+on the four sides of the heatmap, by `top_annotation`, `bottom_annotation`, `left_annotation`
+and `right_annotation` arguments.
 
-**Date**: `r Sys.Date()`
+The value for the four arguments should be a `HeatmapAnnotation` class and should be constructed
+by `HeatmapAnnotation()` if it is a column annotation or by `rowAnnotation()` if it is row annotation.
 
--------------------------------------------------------------
+A simple usage of annotation is as follows.
 
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
+```{r}
+mat = matrix(rnorm(100), 10)
+column_ha = HeatmapAnnotation(foo1 = runif(10), bar1 = anno_barplot(runif(10)))
+row_ha = rowAnnotation(foo2 = runif(10), bar2 = anno_barplot(runif(10)))
+Heatmap(mat, name = "mat", top_annotation = column_ha, right_annotation = row_ha)
 ```
+
+In example, for `column_ha` and `row_ha`, both have two annotations where `foo1` and `foo2`
+are numeric vectors and `bar1` and `bar2` are barplots. The vector-like annotation is called
+"simple annotation" here and the barplot annotation is called "complex annotation".
+
+In following examples in this chapter, we will only show the plot for the annotations with no heatmap,
+unless it is necessary. The object generated can be directly assigned to ... 
+
+A heatmap annotation is composed by several annotations. We first introduce individal annotations, and we
+show how to put them toghether....
+
+## Simple annotation
+
+## Empty annotation
+
+## Image annotation
+
+## points annotation
+
+## lines annotation
+
+## barplot annotation
+
+## boxplot annotation
+
+## histogram annotation
+
+## density annotation
+
+## joyplot annotation
+
+## horizon chart annotation
+
+## text annotation
+
+## mark annotation
+
+## multiple annotations
+
 
 The annotation graphics actually are quite general. The only common characteristic for annotations
 is that they are aligned to the columns or rows of the heatmap. Here there is a `HeatmapAnnotation` class which is used to 
@@ -645,8 +674,3 @@ rowAnnotation(link = row_anno_link(at = subset, labels = labels),
 
 There are also two shortcut functions: `row_anno_link()` and `column_anno_link()`.
 
-## Session info
-
-```{r}
-sessionInfo()
-```
