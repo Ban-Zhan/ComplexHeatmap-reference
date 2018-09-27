@@ -1,5 +1,5 @@
 
-# Make a single heatmap
+# Make a Single Heatmap
 
 A single heatmap is the most used way for visualizing the data. Although "the shining point" of the
 **ComplexHeatmap** package is it can visualize a list of heatmaps in parallel, as the basic unit of the
