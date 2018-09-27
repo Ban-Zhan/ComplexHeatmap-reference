@@ -535,7 +535,7 @@ Heatmap(mat, name = "mat", row_labels = row_labels[rownames(mat)],
 
 ## Split heatmap
 
-One advantage of ComplexHeatmap package is it supports splitting the heatmap by rows or/and by columns
+One advantage of **ComplexHeatmap** package is it supports splitting the heatmap by rows or/and by columns
 to group the features and additionally highlight the patterns.
 
 Following arguments control the splitting: `row_km`, `row_split`, `column_km`, `column_split`. In
@@ -614,6 +614,17 @@ Heatmap(mat, name = "mat", row_split = 2, column_split = 3)
 dend = hclust(dist(mat))
 dend = color_branches(dend, k = 2)
 Heatmap(mat, name = "foo", cluster_rows = dend, row_split = 2)
+```
+
+row titles
+
+```{r}
+split = data.frame(rep(c("A", "B"), 12), rep(c("C", "D"), each = 12))
+Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s")
+map1 = c("A" = "aaa", "B" = "bbb")
+mat2 = c("C" = "333", "C" = "444")
+Heatmap(mat, name = "mat", row_split = split, row_title = "@{x[1]},@{x[2]}")
+Heatmap(mat, name = "mat", row_split = split, row_title = "{x[1]},{x[2]}")
 ```
 
 The space of gaps between row/column slices can be controlled by `row_gap`/`column_gap`. 
