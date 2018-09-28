@@ -1,33 +1,4 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{5. Heatmap and Annotation Legends}
--->
 
-Heatmap and Annotation Legends
-========================================
-
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
-
-**Date**: `r Sys.Date()`
-
--------------------------------------------------------------
-
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
-```
 
 The legends for heatmaps are composed with a color bar, labels and titles. **ComplexHeatmap** automatically generates legends
 according to the input matrix and annotations, while also provide flexibility to customize and add new legends.
