@@ -1,3 +1,110 @@
+# Legend
+
+The heatmaps and simple annotations automatically generate legends which are put one the right
+side of the plot. By default there is no legend for complex annotations, but they can be
+constructed and added manually. All legends are constructed by `Legend()` contructor. In later
+sections, we first introduce the settings for discrete legends and continuous legends.
+
+## Continuous legend
+
+Since most of heatmaps contain continuous values, we first introduct the settings for continous
+legend.
+
+###### vertical continous legend #######
+col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
+lgd = Legend(col_fun = col_fun, title = "foo")
+draw(lgd, test = "only col_fun")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.25, 0.5, 0.75, 1))
+draw(lgd, test = "with at")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.5, 1), labels = c("low", "median", "high"))
+draw(lgd, test = "with labels")
+
+lgd = Legend(col_fun = col_fun, title = "foo", legend_height = unit(6, "cm"))
+draw(lgd, test = "set legend_height")
+
+lgd = Legend(col_fun = col_fun, title = "foo", labels_gp = gpar(col = "red"))
+draw(lgd, test = "set label color")
+
+lgd = Legend(col_fun = col_fun, title = "foo", border = "red")
+draw(lgd, test = "legend border")
+
+lgd = Legend(col_fun = col_fun, title = "foooooooo", title_position = "lefttop-rot")
+draw(lgd, test = "lefttop rot title")
+
+lgd = Legend(col_fun = col_fun, title = "foooooooo", title_position = "leftcenter-rot")
+draw(lgd, test = "leftcenter top title")
+
+###### horizontal continous legend #######
+col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
+lgd = Legend(col_fun = col_fun, title = "foo", direction = "horizontal")
+draw(lgd, test = "only col_fun")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.25, 0.5, 0.75, 1), direction = "horizontal")
+draw(lgd, test = "with at")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.5, 1), labels = c("low", "median", "high"),
+    direction = "horizontal")
+draw(lgd, test = "with labels")
+
+lgd = Legend(col_fun = col_fun, title = "foo", legend_width = unit(6, "cm"), direction = "horizontal")
+draw(lgd, test = "set legend_width")
+
+lgd = Legend(col_fun = col_fun, title = "foo", labels_gp = gpar(col = "red"), direction = "horizontal")
+draw(lgd, test = "set label color")
+
+lgd = Legend(col_fun = col_fun, title = "foo", border = "red", direction = "horizontal")
+draw(lgd, test = "legend border")
+
+lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
+    title_position = "topcenter")
+draw(lgd, test = "topcenter title")
+
+lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
+    title_position = "lefttop")
+draw(lgd, test = "lefttop title")
+
+lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
+    title_position = "leftcenter")
+draw(lgd, test = "leftcenter title")
+
+
+####### unequal interval breaks
+col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1))
+draw(lgd, test = "unequal interval breaks")
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.3, 1), legend_height = unit(4, "cm"))
+draw(lgd, test = "unequal interval breaks but not label position adjustment")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
+    direction = "horizontal")
+draw(lgd, test = "unequal interval breaks")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
+    direction = "horizontal", title_position = "lefttop")
+draw(lgd, test = "unequal interval breaks")
+
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
+    direction = "horizontal", title_position = "lefttop", labels_rot = 90)
+draw(lgd, test = "unequal interval breaks, label rot 90")
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.5, 0.75, 1),
+    labels = c("mininal", "q10", "median", "q75", "maximal"),
+    direction = "horizontal", title_position = "lefttop")
+draw(lgd, test = "unequal interval breaks with labels")
+
+
+lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.5, 0.75, 1),
+    labels = c("mininal", "q10", "median", "q75", "maximal"),
+    direction = "horizontal")
+draw(lgd, test = "unequal interval breaks with labels")
+
+
+## Discrete legend
+
+## 
 
 lgd = Legend(at = 1:6, legend_gp = gpar(fill = 1:6))
 draw(lgd, test = "default discrete legends style")
@@ -84,67 +191,12 @@ lgd = Legend(labels = month.name[1:6], title = "foo", type = "lines",
     legend_gp = gpar(col = 1:6, lty = 1:6))
 draw(lgd, test = "lines as legends")
 
-###### vertical continous legend #######
-col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
-lgd = Legend(col_fun = col_fun, title = "foo")
-draw(lgd, test = "only col_fun")
 
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.25, 0.5, 0.75, 1))
-draw(lgd, test = "with at")
+## heatmap and annotation legend
 
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.5, 1), labels = c("low", "median", "high"))
-draw(lgd, test = "with labels")
-
-lgd = Legend(col_fun = col_fun, title = "foo", legend_height = unit(6, "cm"))
-draw(lgd, test = "set legend_height")
-
-lgd = Legend(col_fun = col_fun, title = "foo", labels_gp = gpar(col = "red"))
-draw(lgd, test = "set label color")
-
-lgd = Legend(col_fun = col_fun, title = "foo", border = "red")
-draw(lgd, test = "legend border")
-
-lgd = Legend(col_fun = col_fun, title = "foooooooo", title_position = "lefttop-rot")
-draw(lgd, test = "lefttop rot title")
-
-lgd = Legend(col_fun = col_fun, title = "foooooooo", title_position = "leftcenter-rot")
-draw(lgd, test = "leftcenter top title")
-
-###### horizontal continous legend #######
-col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
-lgd = Legend(col_fun = col_fun, title = "foo", direction = "horizontal")
-draw(lgd, test = "only col_fun")
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.25, 0.5, 0.75, 1), direction = "horizontal")
-draw(lgd, test = "with at")
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.5, 1), labels = c("low", "median", "high"),
-    direction = "horizontal")
-draw(lgd, test = "with labels")
-
-lgd = Legend(col_fun = col_fun, title = "foo", legend_width = unit(6, "cm"), direction = "horizontal")
-draw(lgd, test = "set legend_width")
-
-lgd = Legend(col_fun = col_fun, title = "foo", labels_gp = gpar(col = "red"), direction = "horizontal")
-draw(lgd, test = "set label color")
-
-lgd = Legend(col_fun = col_fun, title = "foo", border = "red", direction = "horizontal")
-draw(lgd, test = "legend border")
-
-lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
-    title_position = "topcenter")
-draw(lgd, test = "topcenter title")
-
-lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
-    title_position = "lefttop")
-draw(lgd, test = "lefttop title")
-
-lgd = Legend(col_fun = col_fun, title = "foooooooo", direction = "horizontal", 
-    title_position = "leftcenter")
-draw(lgd, test = "leftcenter title")
+## A list of legends
 
 
-###### pack legend
 lgd1 = Legend(at = 1:6, legend_gp = gpar(fill = 1:6), title = "legend1")
 lgd2 = Legend(col_fun = col_fun, title = "legend2", at = c(0, 0.25, 0.5, 0.75, 1))
 
@@ -177,6 +229,7 @@ draw(pd, test = "many legends")
 
 pd = packLegend(lgd1, lgd2, lgd1, lgd2, lgd1, lgd2, max_height = unit(1, "npc"))
 draw(pd, test = "many legends, max_height = unit(1, 'npc')")
+
 ## reduce the height of the interactive window and rerun draw()
 
 pd = packLegend(lgd1, lgd2, lgd1, lgd2, lgd1, lgd2, max_height = unit(10, "cm"))
@@ -200,36 +253,6 @@ pd = packLegend(lgd1, lgd2, lgd1, lgd2, lgd1, lgd2, max_width = unit(10, "cm"), 
 draw(pd, test = "many legends, max_width = unit(10, 'cm')")
 
 
-####### unequal interval breaks
-col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1))
-draw(lgd, test = "unequal interval breaks")
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.3, 1), legend_height = unit(4, "cm"))
-draw(lgd, test = "unequal interval breaks but not label position adjustment")
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
-    direction = "horizontal")
-draw(lgd, test = "unequal interval breaks")
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
-    direction = "horizontal", title_position = "lefttop")
-draw(lgd, test = "unequal interval breaks")
-
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.15, 0.5, 0.9, 0.95, 1),
-    direction = "horizontal", title_position = "lefttop", labels_rot = 90)
-draw(lgd, test = "unequal interval breaks, label rot 90")
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.5, 0.75, 1),
-    labels = c("mininal", "q10", "median", "q75", "maximal"),
-    direction = "horizontal", title_position = "lefttop")
-draw(lgd, test = "unequal interval breaks with labels")
-
-
-lgd = Legend(col_fun = col_fun, title = "foo", at = c(0, 0.1, 0.5, 0.75, 1),
-    labels = c("mininal", "q10", "median", "q75", "maximal"),
-    direction = "horizontal")
-draw(lgd, test = "unequal interval breaks with labels")
 
 
 The legends for heatmaps are composed with a color bar, labels and titles. **ComplexHeatmap** automatically generates legends
