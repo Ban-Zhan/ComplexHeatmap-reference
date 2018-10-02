@@ -1,35 +1,8 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{6. Heatmap Decoration}
--->
 
-Heatmap Decoration
-========================================
+## Heatmap decoration
 
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
 
-**Date**: `r Sys.Date()`
-
--------------------------------------------------------------
-
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
-```
-
-Each components of the heatmap/heatmap list has a name (unique id). You can go to any viewport 
+Each component of the heatmap/heatmap list has a name (unique id). You can go to any viewport 
 to add graphics in by specifying the heatmap/annotation name.
 
 First generate a figure that almost contains all types of heatmap components.
@@ -43,17 +16,16 @@ rownames(mat) = paste0("R", 1:12)
 colnames(mat) = paste0("C", 1:10)
 
 ha_column1 = HeatmapAnnotation(points = anno_points(rnorm(10)))
-ht1 = Heatmap(mat, name = "ht1", km = 2, row_title = "Heatmap 1", column_title = "Heatmap 1", 
+ht1 = Heatmap(mat, name = "ht1", km = 2, column_title = "Heatmap 1", 
     top_annotation = ha_column1)
 
-ha_column2 = HeatmapAnnotation(df = data.frame(type = c(rep("a", 5), rep("b", 5))),
+ha_column2 = HeatmapAnnotation(type = c(rep("a", 5), rep("b", 5)),
     col = list(type = c("a" = "red", "b" = "blue")))
 ht2 = Heatmap(mat, name = "ht2", row_title = "Heatmap 2", column_title = "Heatmap 2",
-    bottom_annotation = ha_column2)
+    bottom_annotation = ha_column2, column_km = 2)
 
-ht_list = ht1 + ht2 + rowAnnotation(bar = row_anno_barplot(rowMeans(mat)))
-draw(ht_list, row_title = "Heatmap list", column_title = "Heatmap list", 
-    heatmap_legend_side = "right", annotation_legend_side = "left")
+ht_list = ht1 + ht2 + rowAnnotation(bar = anno_barplot(rowMeans(mat), width = unit(2, "cm")))
+draw(ht_list, row_title = "Heatmap list", column_title = "Heatmap list")
 
 library(GetoptLong)
 seekViewport("global"); grid.rect(gp = gpar(fill = NA, col = "red"))
@@ -61,35 +33,37 @@ seekViewport("global_column_title"); grid.rect(gp = gpar(fill = NA, col = "red")
 seekViewport("global_row_title"); grid.rect(gp = gpar(fill = NA, col = "red"))
 seekViewport("main_heatmap_list"); grid.rect(gp = gpar(fill = NA, col = "red"))
 for(heatmap_name in c("ht1", "ht2")) {
-    seekViewport(qq("heatmap_@{heatmap_name}")); grid.rect(gp = gpar(fill = NA, col = "red"))
+    seekViewport(qq("heatmap_@{heatmap_name}"))
+    grid.rect(gp = gpar(fill = NA, col = "red"))
     for(i in 1:2) {
-        seekViewport(qq("@{heatmap_name}_heatmap_body_@{i}")); grid.rect(gp = gpar(fill = NA, col = "red"))
-        seekViewport(qq("@{heatmap_name}_row_names_@{i}")); grid.rect(gp = gpar(fill = NA, col = "red"))
+        seekViewport(qq("@{heatmap_name}_heatmap_body_@{i}_1"))
+        grid.rect(gp = gpar(fill = NA, col = "red"))
+        seekViewport(qq("@{heatmap_name}_row_names_@{i}"))
+        grid.rect(gp = gpar(fill = NA, col = "red"))
     }
         
-    seekViewport(qq("@{heatmap_name}_column_title")); grid.rect(gp = gpar(fill = NA, col = "red"))
-    seekViewport(qq("@{heatmap_name}_dend_column")); grid.rect(gp = gpar(fill = NA, col = "red"))
-    seekViewport(qq("@{heatmap_name}_column_names")); grid.rect(gp = gpar(fill = NA, col = "red"))
-    seekViewport(qq("legend_@{heatmap_name}")); grid.rect(gp = gpar(fill = NA, col = "red"))
+    seekViewport(qq("@{heatmap_name}_column_title_1"))
+    grid.rect(gp = gpar(fill = NA, col = "red"))
+    seekViewport(qq("@{heatmap_name}_dend_column_1"))
+    grid.rect(gp = gpar(fill = NA, col = "red"))
+    seekViewport(qq("@{heatmap_name}_column_names_1"))
+    grid.rect(gp = gpar(fill = NA, col = "red"))
 }
 seekViewport(qq("ht1_dend_row_2")); grid.rect(gp = gpar(fill = NA, col = "red"))
 seekViewport(qq("ht1_dend_row_1")); grid.rect(gp = gpar(fill = NA, col = "red"))
 seekViewport(qq("ht1_row_title_1")); grid.rect(gp = gpar(fill = NA, col = "red"))
 seekViewport(qq("ht1_row_title_2")); grid.rect(gp = gpar(fill = NA, col = "red"))
 
-
 for(annotation_name in c("points", "type")) {
-    seekViewport(qq("annotation_@{annotation_name}")); grid.rect(gp = gpar(fill = NA, col = "red"))
+    seekViewport(qq("annotation_@{annotation_name}_1"))
+    grid.rect(gp = gpar(fill = NA, col = "red"))
 }
 seekViewport(qq("annotation_bar_1")); grid.rect(gp = gpar(fill = NA, col = "red"))
 seekViewport(qq("annotation_bar_2")); grid.rect(gp = gpar(fill = NA, col = "red"))
+```
 
-seekViewport(qq("legend_type")); grid.rect(gp = gpar(fill = NA, col = "red"))
-seekViewport(qq("legend_ht1")); grid.rect(gp = gpar(fill = NA, col = "red"))
-seekViewport(qq("legend_ht2")); grid.rect(gp = gpar(fill = NA, col = "red"))
-
-seekViewport("heatmap_legend"); grid.rect(gp = gpar(fill = NA, col = "red"))
-seekViewport("annotation_legend"); grid.rect(gp = gpar(fill = NA, col = "red"))
+```{r}
+ComplexHeatmap:::list_component()
 ```
 
 The components (viewports) that have names are:
@@ -123,10 +97,6 @@ Following code add annotation names, mark one grid in the heatmap and seperate t
 ```{r components, fig.width = 10, fig.height = 7}
 ht_list = draw(ht_list, row_title = "Heatmap list", column_title = "Heatmap list", 
     heatmap_legend_side = "right", annotation_legend_side = "left")
-decorate_annotation("points", {
-    grid.text("points", unit(0, "npc") - unit(2, "mm"), 0.5, 
-        default.units = "npc", just = "right")
-})
 
 decorate_heatmap_body("ht1", {
     grid.text("outlier", 1.5/10, 2.5/4, default.units = "npc")
@@ -161,56 +131,58 @@ decorate_annotation("points", {
 For annotations which are created by `anno_points()`, `anno_barplot()` and `anno_boxplot()`, "native" unit
 can be used in the decoration code.
 
-## Add annotation names
+## Examples
 
-By default, annotation names are not plotted along with the heatmap annotations. The reason is
-if annotation names is plotted, they will located in the area of other heatmap components which
-would makes the adjustment of the heatmap layout difficult. `HeatmapAnnotation()` provides a 
-not-so-perfect [solution](s4.heatmap_annotation.html#toc_11) for adding annotation names, however, since you can go to any component 
-in the heatmap list by its name, actually it is not difficult to add annotation names manually.
-
-Following code add annotation names on the both sides of the column annotations. The drawback is
-since there is no specific component designed for annotation names, if the annotation name is too long,
-it will be exceeding the figure region (but this problem can be solved by some tricks, see the 
-[**Examples**](s9.examples.html) vignette).
-
-```{r annotation_title}
-df = data.frame(type1 = c(rep("a", 5), rep("b", 5)),
-                type2 = c(rep("A", 3), rep("B", 7)))
-ha = HeatmapAnnotation(df, col = list(type1 = c("a" = "red", "b" = "blue"),
-                                      type2 = c("A" = "green", "B" = "orange")))
-Heatmap(mat, name = "ht", top_annotation = ha)
-for(an in colnames(df)) {
-    decorate_annotation(an, {
-        # annotation names on the right
-        grid.text(an, unit(1, "npc") + unit(2, "mm"), 0.5, default.units = "npc", just = "left")
-        # annotation names on the left
-        grid.text(an, unit(0, "npc") - unit(2, "mm"), 0.5, default.units = "npc", just = "right")
-    })
-}
-```
-
-## Visualize distributions
-
-With heatmap decorations, actually you can design new graphics based on heatmaps. Following is an example:
-
-To visualize distribution of columns in a matrix or in a list, sometimes we use boxplot or beanplot.
-Here we can also use colors to map to the density values and visualize distribution of values
-in each column (or each list element) through a heatmap. Sometimes it can give you a more clear
-image of your data.
-
-Here the package has a `densityHeatmap()` function, the usage is quite straightforward:
-
-```{r, density}
-matrix = matrix(rnorm(100), 10); colnames(matrix) = letters[1:10]
-ha = HeatmapAnnotation(df = data.frame(anno = rep(c("A", "B"), each = 5)),
-    col = list(anno = c("A" = "green", "B" = "orange")),
-    points = anno_points(runif(10)))
-densityHeatmap(matrix, anno = ha)
-```
-
-## Session info
+### Barplot for single column heatmap
 
 ```{r}
-sessionInfo()
+le = c(sample(letters[1:3], 400, prob = c(7, 2, 1), replace = TRUE),
+      sample(letters[1:3], 600, prob = c(2, 3, 5), replace = TRUE))
+col = c("a" = "red", "b" = "green", "c" = "blue")
+split = c(rep("group1", 400), rep("group2", 600))
+ht = Heatmap(le, name = "letters", col = col, width = unit(3, "cm"),
+    top_annotation = HeatmapAnnotation(barplot = anno_empty(height = unit(4, "cm"))))
+ht = draw(ht, split = split)
+ro = row_order(ht)
+lt = lapply(ro, function(index) {
+    t = table(le[index])
+    t/sum(t)
+})
+decorate_annotation("barplot", {
+    pushViewport(viewport(xscale = c(0.5, 2.5), yscale = c(0, 1)))
+    grid.rect(x = 1, y = cumsum(lt[[1]]), width = 0.8, height = lt[[1]], just = "top",
+        gp = gpar(fill = col), default.units = "native")
+    grid.rect(x = 2, y = cumsum(lt[[2]]), width = 0.8, height = lt[[2]], just = "top",
+        gp = gpar(fill = col), default.units = "native")
+    grid.yaxis()
+    grid.text("Relative proportion", x = unit(-1.5, "cm"),rot = 90, just = "bottom")
+    popViewport()
+})
+```
+
+### add decoration for a customized heatmap
+
+```{r}
+customized_heatmap = function(m, ...) {
+    post_fun = function(ht) {
+        m = ht@matrix
+        co = column_order(ht)
+        cm = colMeans(m)[co]
+        nc = ncol(m)
+        ind = which(cm < 0)
+        if(length(ind)) {
+            decorate_heatmap_body(ht@name, {
+                grid.rect((ind - 1)/nc, 0.5, 1/nc, 1, gp = gpar(col = "black", lwd = 2, fill = NA),
+                    just = "left")
+            })
+        }
+    }
+    x = colMeans(m)
+    Heatmap(m, ...,
+        top_annotation = HeatmapAnnotation(mean = anno_barplot(x, gp = gpar(fill = ifelse(x > 0, "red", "green")), width = unit(4, "cm"))),
+        post_fun = post_fun)
+}
+m1 = matrix(rnorm(100), nr = 10)
+m2 = matrix(rnorm(100), nr = 10)
+customized_heatmap(m1) %v% customized_heatmap(m2)
 ```

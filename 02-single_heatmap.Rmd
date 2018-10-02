@@ -285,6 +285,7 @@ robust_dist = function(x, y) {
     sqrt(sum((x - y)^2))
 }
 Heatmap(mat_with_outliers, name = "mat", 
+    col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
     clustering_distance_rows = robust_dist,
     clustering_distance_columns = robust_dist)
 ```
@@ -497,7 +498,7 @@ Heatmap(mat, name = "mat", row_names_side = "left", row_dend_side = "right",
     column_names_side = "top", column_dend_side = "bottom")
 Heatmap(mat, name = "mat", show_row_names = FALSE)
 Heatmap(mat, name = "mat", row_names_gp = gpar(fontsize = 20))
-Heatmap(mat, name = "mat", row_names_gp = gpar(col = c(rep("red", 4), rep("blue", 8))))
+Heatmap(mat, name = "mat", row_names_gp = gpar(col = c(rep("red", 10), rep("blue", 8))))
 ```
 
 The rotation of column names can be set by `column_names_rot`:
@@ -555,9 +556,9 @@ each slice can be controlled by `levels` of each variable in `split` (in this ca
 should be a factor). If all variables are characters, the default order is `unique(row_split)` or `unique(column_split)`.
 
 ```{r split}
-Heatmap(mat, name = "mat", row_split = rep(c("A", "B"), 12), column_split = rep(c("C", "D"), 12))
-Heatmap(mat, name = "mat", row_split = data.frame(rep(c("A", "B"), 12), rep(c("C", "D"), each = 12)))
-Heatmap(mat, name = "mat", row_split = factor(rep(c("A", "B"), 12), levels = c("B", "A")),
+Heatmap(mat, name = "mat", row_split = rep(c("A", "B"), 9), column_split = rep(c("C", "D"), 12))
+Heatmap(mat, name = "mat", row_split = data.frame(rep(c("A", "B"), 9), rep(c("C", "D"), each = 9)))
+Heatmap(mat, name = "mat", row_split = factor(rep(c("A", "B"), 9), levels = c("B", "A")),
     column_split = factor(rep(c("C", "D"), 12), levels = c("D", "C")))
 ```
 
@@ -565,7 +566,7 @@ Actually, k-means clustering just generates a vector of cluster classes and appe
 or `column_split`. `row_km`/`column_km` and be used mixed with `row_split` and `column_split`.
 
 ```{r}
-Heatmap(mat, name = "mat", row_split = rep(c("A", "B"), 12), row_km = 2)
+Heatmap(mat, name = "mat", row_split = rep(c("A", "B"), 9), row_km = 2)
 ```
 
 which is the same as:
@@ -573,7 +574,7 @@ which is the same as:
 ```{r, eval = FALSE}
 # code not run when building the vignette
 cl = kmeans(mat, centers = 2)$cluster
-Heatmap(mat, name = "mat", row_split = cbind(rep(c("A", "B"), 12), cl))
+Heatmap(mat, name = "mat", row_split = cbind(rep(c("A", "B"), 9), cl))
 ```
 
 If you are not happy with the default k-means partition, it is easy to use other
@@ -588,14 +589,13 @@ If `row_order` or `column_order` is set, in each row/column slice, it is still o
 
 ```{r split_row_order}
 # remember when `row_order` is set, hierarchical clustering on rows is turned off
-Heatmap(mat, name = "mat", row_order = 24:1, row_km = 2)
+Heatmap(mat, name = "mat", row_order = 18:1, row_km = 2)
 ```
 
 Character matrix can only be split by `row_split`/`column_split` argument.
 
 ```{r split_discrete_matrix}
-Heatmap(discrete_mat, name = "mat", col = 1:4,
-    row_split = rep(letters[1:2], each = 5))
+Heatmap(discrete_mat, name = "mat", col = 1:4, row_split = rep(letters[1:2], each = 5))
 ```
 
 When split is applied on rows/columns, graphic parameters for row/column title and row/column names
@@ -637,7 +637,7 @@ In following example, since all combinations of `split` are `A,C`, `A,D`, `B,C` 
 will be `A|C`, `A|D`, `B|C`, `B|D`.
 
 ```{r}
-split = data.frame(rep(c("A", "B"), 12), rep(c("C", "D"), each = 12))
+split = data.frame(rep(c("A", "B"), 9), rep(c("C", "D"), each = 9))
 Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s")
 ```
 
@@ -653,7 +653,7 @@ package and the second one is from **glue** package which you need to install it
 There is an internal variable `x` you should use when you use the latter two templates. `x` is just a simple vector which contains
 current category levels (e.g. `c("A", "C")`).
 
-```{r}
+```{r, eval = FALSE}
 # code not run when building the vignette
 map1 = c("A" = "aaa", "B" = "bbb")
 map2 = c("C" = "333", "C" = "444")
@@ -664,8 +664,13 @@ Heatmap(mat, name = "mat", row_split = split, row_title = "{x[1]}|{x[2]}")
 The row title is rotated by default, you can set `row_title_rot = 0` to make it horizontal:
 
 ```{r}
-split = data.frame(rep(c("A", "B"), 12), rep(c("C", "D"), each = 12))
 Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s", row_title_rot = 0)
+```
+
+Or if you known the final number of row slices, you can directly set a vector of titles to `row_title`.
+
+```{r}
+Heatmap(mat, name = "mat", row_split = split, row_title = paste0("slice", 1:4))
 ```
 
 Since there are titles for every row/column slice, it is also possible to have a global row/column title
@@ -674,7 +679,6 @@ of the heatmap list, although in following example there is one heatmap. The `dr
 will be introduced in later chapters.
 
 ```{r}
-split = data.frame(rep(c("A", "B"), 12), rep(c("C", "D"), each = 12))
 ht = Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s")
 draw(ht, row_title = "I am a row title")
 ```
@@ -708,7 +712,7 @@ introduced in later chapters.
 ```{r}
 Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
     top_annotation = HeatmapAnnotation(foo1 = 1:24, bar1 = anno_points(runif(24))),
-    right_annotation = rowAnnotation(foo2 = 24:1, bar2 = anno_barplot(runif(24)))
+    right_annotation = rowAnnotation(foo2 = 18:1, bar2 = anno_barplot(runif(18)))
 )
 ```
 
@@ -768,17 +772,20 @@ The most common use is to add numeric values onto the heatmap:
 
 ```{r}
 small_mat = mat[1:9, 1:9]
-Heatmap(small_mat, name = "mat", cell_fun = function(j, i, x, y, width, height, fill) {
-    grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
+col_fun = colorRamp2(c(-2, 0, 2), c("green", "white", "red"))
+Heatmap(small_mat, name = "mat", col = col_fun,
+    cell_fun = function(j, i, x, y, width, height, fill) {
+        grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
 })
 ```
 
 and we can also choose only to add text for the cells with positive values:
 
 ```{r}
-Heatmap(small_mat, name = "mat", cell_fun = function(j, i, x, y, width, height, fill) {
-    if(small_mat[i, j] > 0)
-        grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
+Heatmap(small_mat, name = "mat",  col = col_fun,
+    cell_fun = function(j, i, x, y, width, height, fill) {
+        if(small_mat[i, j] > 0)
+            grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
 })
 ```
 
@@ -800,7 +807,7 @@ Heatmap(cor_mat, name = "correlation", col = col_fun, rect_gp = gpar(type = "non
             grid.circle(x = x, y = y, r = abs(cor_mat[i, j])/2 * min(unit.c(width, height)), 
                 gp = gpar(fill = col_fun(cor_mat[i, j]), col = NA))
         } else {
-            grid.text(sprintf("%.1f", cor_mat[i, j]), x, y, gp = gpar(fontsize = 8))
+            grid.text(sprintf("%.1f", cor_mat[i, j]), x, y, gp = gpar(fontsize = 10))
         }
     }, cluster_rows = FALSE, cluster_columns = FALSE,
     show_row_names = FALSE, show_column_names = FALSE)
@@ -820,7 +827,7 @@ Since `j` and `i` are vectors, to get corresponding values in the matrix, we can
 ```{r}
 mfoo = matrix(1:9, nr = 3)
 mfoo[1:2, 1:2]
-pindex(m, 1:2, 1:2)
+pindex(mfoo, 1:2, 1:2)
 ```
 
 Next example shows the
@@ -836,10 +843,11 @@ Heatmap(small_mat, name = "mat", layer_fun = function(j, i, x, y, width, height,
 And only add text to cells with positive values:
 
 ```{r}
-Heatmap(small_mat, name = "mat", layer_fun = function(j, i, x, y, width, height, fill) {
-    v = pindex(mat, i, j)
-    l = v > 0
-    grid.text(sprintf("%.1f", v[l]), x[l], y[l], gp = gpar(fontsize = 10))
+Heatmap(small_mat, name = "mat", col = col_fun, 
+    layer_fun = function(j, i, x, y, width, height, fill) {
+        v = pindex(mat, i, j)
+        l = v > 0
+        grid.text(sprintf("%.1f", v[l]), x[l], y[l], gp = gpar(fontsize = 10))
 })
 ```
 
@@ -1003,7 +1011,7 @@ which means, you might have different results from `row_order()` and the heatmap
 has been reordered, and apply `row_order()` on `ht2` just extract the row order, which makes sure the row order is exactly the same
 as the one shown in the heatmap. So following is the recommended way to extract row/column orders:
 
-```{r}
+```{r, eval = FALSE}
 # code only for demonstration
 ht = Heatmap(small_mat)
 ht = draw(ht)

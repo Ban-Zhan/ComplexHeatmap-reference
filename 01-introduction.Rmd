@@ -23,7 +23,9 @@ knitr::opts_chunk$set(
     message = FALSE,
     fig.align = "center",
     fig.width = 5,
-    fig.height = 5)
+    fig.height = 5,
+    dpi = 96
+)
 options(markdown.HTML.stylesheet = "custom.css")
 
 options(width = 100)
