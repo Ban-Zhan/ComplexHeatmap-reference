@@ -1041,3 +1041,4 @@ column_dend(ht)
 `row_order()`, `column_order()`, `row_dend()` and `column_dend()` also work for a list of heatmaps, it will
 be expalined in ...
 
+## subset a heatmap

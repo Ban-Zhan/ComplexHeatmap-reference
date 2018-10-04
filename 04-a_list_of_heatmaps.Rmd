@@ -1,33 +1,6 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{3. Making a list of Heatmaps}
--->
 
-Making A List of Heatmaps
-========================================
+# Making A List of Heatmaps
 
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
-
-**Date**: `r Sys.Date()`
-
--------------------------------------------------------------
-
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
-```
 
 A list of heatmaps can improve visualization of the correspondence between multiple data sources.
 In this vignette, we will discuss configurations for making a list of heatmaps and you can
@@ -45,22 +18,25 @@ are to be combined, users can append one heatmap to the other by `+` operator.
 ```{r heatmap_list_default, fig.width = 10}
 library(ComplexHeatmap)
 
+set.seed(123)
 mat1 = matrix(rnorm(80, 2), 8, 10)
 mat1 = rbind(mat1, matrix(rnorm(40, -2), 4, 10))
 rownames(mat1) = paste0("R", 1:12)
 colnames(mat1) = paste0("C", 1:10)
 
-mat2 = matrix(rnorm(60, 2), 6, 10)
-mat2 = rbind(mat2, matrix(rnorm(60, -2), 6, 10))
+mat2 = matrix(runif(60, max = 3, min = 1), 6, 10)
+mat2 = rbind(mat2, matrix(runif(60, max = 2, min = 0), 6, 10))
 rownames(mat2) = paste0("R", 1:12)
 colnames(mat2) = paste0("C", 1:10)
 
-ht1 = Heatmap(mat1, name = "ht1")
-ht2 = Heatmap(mat2, name = "ht2")
+le = sample(letters[1:3], 12, replace = TRUE)
+names(le) = paste0("R", 1:12)
+ht1 = Heatmap(mat1, name = "rnorm")
+ht2 = Heatmap(mat2, name = "runif")
+ht3 = Heatmap(le, name = "letters")
 class(ht1)
-class(ht2)
 
-ht1 + ht2
+ht1 + ht2 + ht3
 ```
 
 Under default mode, dendrograms from the second heatmap will be removed and row orders will be same as the first one.
@@ -97,21 +73,25 @@ for(s in sth) {
 A heatmap list also has titles which are independent to the heatmap titles.
 
 ```{r heatmap_list_title, fig.width = 10}
-ht1 = Heatmap(mat1, name = "ht1", row_title = "Heatmap 1", column_title = "Heatmap 1")
-ht2 = Heatmap(mat2, name = "ht2", row_title = "Heatmap 2", column_title = "Heatmap 2")
-ht_list = ht1 + ht2
+col_rnorm = colorRamp2(c(-3, 0, 3), c("green", "white", "red"))
+col_runif = colorRamp2(c(0, 3), c("white", "orange"))
+col_letters = c("a" = "pink", "b" = "purple", "c" = "blue")
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm,
+    row_title = "Heatmap 1", column_title = "Heatmap 1",
+    show_row_names = FALSE)
+ht2 = Heatmap(mat2, name = "runif", col = col_runif,
+    row_title = "Heatmap 2", column_title = "Heatmap 2",
+    show_row_names = FALSE)
+ht3 = Heatmap(le, name = "letters", col = col_letters)
+ht_list = ht1 + ht2 + ht3
 
-draw(ht_list, row_title = "Two heatmaps, row title", row_title_gp = gpar(col = "red"),
-    column_title = "Two heatmaps, column title", column_title_side = "bottom")
+draw(ht_list, row_title = "Three heatmaps, row title", row_title_gp = gpar(col = "red"),
+    column_title = "Three heatmaps, column title", column_title_side = "bottom")
 ```
 
-## Gaps between heatmaps
-
-The gaps between heatmaps can be set by `gap` argument with a `unit` object.
-
 ```{r heatmap_list_gap, fig.width = 10, fig.keep = "all"}
-draw(ht_list, gap = unit(1, "cm"))
-draw(ht_list + ht_list, gap = unit(c(3, 6, 9, 0), "mm"))
+draw(ht_list, ht_gap = unit(1, "cm"))
+draw(ht_list, ht_gap = unit(c(3, 6), "mm"))
 ```
 
 ## Size of heatmaps
@@ -119,9 +99,8 @@ draw(ht_list + ht_list, gap = unit(c(3, 6, 9, 0), "mm"))
 The width for some (not all) heatmaps can be set to a fixed width.
 
 ```{r heatmap_list_size, fig.width = 10, fig.keep = "all"}
-ht1 = Heatmap(mat1, name = "ht1", column_title = "Heatmap 1")
-ht2 = Heatmap(mat2, name = "ht2", column_title = "Heatmap 2", width = unit(5, "cm"))
-ht1 + ht2
+ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(5, "mm"))
+ht1 + ht2 + ht3
 ```
 
 or the width can be set as relative values. Please not in this case, `width` for all heatmaps
@@ -133,7 +112,7 @@ ht2 = Heatmap(mat2, name = "ht2", column_title = "Heatmap 2", width = 1)
 ht1 + ht2
 ```
 
-## Auto adjustment
+## Auto adjustment (this belong to the main heatmap)
 
 There are some automatic adjustment if more than one heatmaps are plotted. There should be a main heatmap
 which by default is the first one. Some settings for the remaining heatmaps will be modified to the settings
@@ -217,21 +196,12 @@ column_dend(ht_list)
 Row annotations can be added to the heatmap list, 
 please see [**Heatmap Annotation**](s4.heatmap_annotation.html) for more explanations.
 
-## Modify row orders/clustering in main heatmap
 
-From version 1.11.1, settings for row order/clustering for the main heatmap can be directly set
-in `draw()` method. This makes it convinient to switch main heatmaps without modifying settings in individual
-heatmaps. Actually settings specified in `draw()` will overwrite corresponding settings in the main heatmap.
+## the main heatmap
 
-```{r, fig.width = 8}
-split = rep(c("a", "b"), each = 6)
-ht_list = Heatmap(mat1, name = "mat1", cluster_rows = FALSE, column_title = "mat1") + 
-          Heatmap(mat2, name = "mat2", cluster_rows = FALSE, column_title = "mat2")
-draw(ht_list, main_heatmap = "mat1", split = split)
-draw(ht_list, main_heatmap = "mat2", km = 2, cluster_rows = TRUE)
-draw(ht_list, cluster_rows = TRUE, main_heatmap = "mat1", show_row_dend =TRUE)
-draw(ht_list, cluster_rows = TRUE, main_heatmap = "mat2", show_row_dend =TRUE)
-```
+## concatenate with annotations
+
+## vertical align
 
 ## Session info
 
