@@ -18,18 +18,17 @@ annotation_height = function(ha) {
 
 # Heatmap Annotations
 
-Heatmap annotations are important components of a heatmap that it shows
-additional information that associates with rows or columns in the heatmap.
-**ComplexHeatmap** package provides very flexible supports for setting
-annotations or defining new annotation graphics. The annotations can be put on
-the four sides of the heatmap, by `top_annotation`, `bottom_annotation`,
-`left_annotation` and `right_annotation` arguments.
+Heatmap annotations are important components of a heatmap that it shows additional information that
+associates with rows or columns in the heatmap. **ComplexHeatmap** package provides very flexible
+supports for setting annotations or defining new annotation graphics. The annotations can be put on
+the four sides of the heatmap, by `top_annotation`, `bottom_annotation`, `left_annotation` and
+`right_annotation` arguments.
 
-The value for the four arguments should be in the `HeatmapAnnotation` class and
-should be constructed by `HeatmapAnnotation()` or by `rowAnnotation()` if it is
-row annotation. (`rowAnnotation()` is just a helper function which is identical
-to `HeatmapAnnotation(..., which = "row")`) A simple usage of annotations is as
-follows.
+The value for the four arguments should be in the `HeatmapAnnotation` class and should be
+constructed by `HeatmapAnnotation()`, or by `rowAnnotation()` if it is row annotation.
+(`rowAnnotation()` is just a helper function which is identical to `HeatmapAnnotation(..., which =
+"row")`) A simple usage of annotations is as follows. Also you can how we set the legend and color mapping
+for p-values, we will discuss it in next chapters
 
 ```{r}
 set.seed(123)
@@ -45,17 +44,24 @@ Or assign as bottom annotation and left annotation.
 Heatmap(mat, name = "mat", bottom_annotation = column_ha, left_annotation = row_ha)
 ```
 
-In above examples, for `column_ha` and `row_ha`, both have two annotations where
-`foo1` and `foo2` are numeric vectors and `bar1` and `bar2` are barplots. The
-vector-like annotation is called _"simple annotation"_ here and the barplot
-annotation is called _"complex annotation"_. You can already see the annotations
-are defined as name-value pairs. Of course, the names used as arguments in
-`HeatmapAnnotation()` cannot be used as annotation names.
+In above examples, for `column_ha` and `row_ha`, both have two annotations where `foo1` and `foo2`
+are numeric vectors and `bar1` and `bar2` are barplots. The vector-like annotation is called
+_"simple annotation"_ here and the barplot annotation is called _"complex annotation"_. You can
+already see the annotations must be defined as name-value pairs (e.g. `foo = ...`).
 
-`HeatmapAnnotation()` returns a `HeatmapAnnotation` class object. The object is
-usually composed of several annotations. If following sections of this chapter,
-we first introduce settings for individal annotation, and later we show how to
-put them toghether.
+Heatmap annotations can also be independent of the heatmaps. They can be concatenated to the heatmap
+list by `+` if it is horizontal or `%v%` if it is vertical. Next chapter will discuss how to
+concatenate heatmaps/annotations.
+
+```{r, eval = FALSE}
+# code only for demonstration
+Heatmap(...) + rowAnnotation() + ...
+Heatmap(...) %v% HeatmapAnnotation(...) + ...
+```
+
+`HeatmapAnnotation()` returns a `HeatmapAnnotation` class object. The object is usually composed of
+several annotations. If following sections of this chapter, we first introduce settings for
+individal annotation, and later we show how to put them toghether.
 
 You can see the information of the `column_ha` and `row_ha` objects:
 
@@ -64,16 +70,13 @@ column_ha
 row_ha
 ```
 
-In following examples in this chapter, we will only show the plot for the
-annotations but with no heatmap, unless it is necessary. The `HeatmapAnnotation`
-object which we always name as `ha` can just be assigned to `top_annotation`,
-..., or as an independent component to be added to the heatmap list (which we
-will introduce in the next chapter).
+In following examples in this chapter, we will only show the plot for the annotations with no
+heatmap, unless it is necessary. The `HeatmapAnnotation` object which we always name as `ha` can
+just be assigned to `top_annotation`, ....
 
-Settings are basically the same for column annotations and row annotations. If
-there is nothing specicial, we only show the column annotation as examples. If
-you want to try row annotation, just add `which = "row"` to
-`HeatmapAnnotation()` or directly change to `rowAnnotation()`. 
+Settings are basically the same for column annotations and row annotations. If there is nothing
+specicial, we only show the column annotation as examples. If you want to try row annotation, just
+add `which = "row"` to `HeatmapAnnotation()` or directly change to `rowAnnotation()`.
 
 ## Simple annotation
 
@@ -166,6 +169,24 @@ ha = HeatmapAnnotation(
 ```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
 draw(ha, test = TRUE)
 ```
+
+`gp` mainly controls the graphic parameters for the borders of the grids.
+
+```{r}
+ha = HeatmapAnnotation(
+    foo = 1:10, 
+    bar = sample(letters[1:3], 10, replace = TRUE),
+    col = list(foo = col_fun,
+               bar = c("a" = "red", "b" = "green", "c" = "blue")
+    ),
+    gp = gpar(col = "black")
+)
+```
+
+```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
+draw(ha, test = TRUE)
+```
+
 
 The simple annotation can also be a matrix (numeric or character) that all the
 columns in the matrix share a same color mapping schema. **Note columns in the
@@ -335,6 +356,24 @@ ha = HeatmapAnnotation(foo = anno_simple(cbind(1:10, 10:1), pch = pch))
 draw(ha, test = TRUE)
 ```
 
+Till now, you might wonder how to set the legends of the symbols you've added to the simple annotations.
+Now We will show you a simple example and this functionality will be d.... In this example,
+we assume the simple annotations are kind of p-values and we add `*` for p-values less than 0.01.
+
+```{r}
+pvalue = 10^-runif(10, min = 0, max = 3)
+is_sig = pvalue < 0.01
+pch = rep("*", 10)
+pch[!is_sig] = NA
+pvalue_col_fun = colorRamp2(c(0, 2, 3), c("green", "white", "red"))
+ha = HeatmapAnnotation(pvalue = anno_simple(-log10(pvalue), col = pvalue_col_fun, pch = pch),
+    annotation_name_side = "left")
+ht = Heatmap(matrix(rnorm(100), 10), name = "mat", top_annotation = ha)
+lgd_pvalue = Legend(title = "p-value", col = pvalue_col_fun, at = c(0, 1, 2, 3), labels = c("1", "0.1", "0.01", "0.001"))
+lgd_sig = Legend(pch = "*", type = "points", labels = "< 0.01")
+draw(ht, annotation_legend_list = list(lgd_pvalue, lgd_sig))
+```
+
 The height of the annotation can be controled by `height` argument (or `width`
 if it is a row annotation) inside `anno_simple()`. By default it is `5mm` for
 one row annotation and `5mm * k` for a matrix with `k` columns.
@@ -356,6 +395,24 @@ ha = HeatmapAnnotation(foo = anno_empty(border = TRUE))
 
 ```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
 draw(ha, index = 1:10, test = TRUE)
+```
+
+```{r}
+random_text = function(n) {
+    sapply(1:n, function(i) {
+        paste0(sample(letters, sample(4:10, 1)), collapse = "")
+    })
+}
+text1 = random_text(4)
+text2 = random_text(5)
+ha = rowAnnotation(foo = anno_empty(border = FALSE, width = max_text_width(c(text1, text2))))
+Heatmap(matrix(rnorm(100), 10), row_km = 2, right_annotation = ha)
+decorate_annotation("foo", slice = 1, {
+    grid.text(paste(text1, collapse = "\n"), x = 0, just = "left")
+})
+decorate_annotation("foo", slice = 2, {
+    grid.text(paste(text2, collapse = "\n"), x = 0, just = "left")
+})
 ```
 
 The default height for column empty annotation is `1cm`.
@@ -932,7 +989,8 @@ draw(ha, test = TRUE)
 or width of the heatmap annotations. Normally you don't need to set it because
 all the single annotations have fixed height/width and the final height/width
 for the whole heatmap annotation is the sum of them plus the sum of gaps. ...
- 
+
+## Utility functions 
 
 ## Implement new annotation function
 

@@ -1051,19 +1051,18 @@ Heatmap(go_mat, name = "go", rect_gp = gpar(type = "none"),
 
 ## Size of the heatmap
 
-`width`, `heatmap_body_width`, `height` and `heatmap_body_height` control the size of the heatmap.
-By default, all heatmap components have fixed width or height, e.g. the width of row dendrogram is 1
-centimeter. The width or the height of the heatmap body fill the rest area of the final plotting
+`width`, `heatmap_width`, `height` and `heatmap_height` control the size of the heatmap.
+By default, all heatmap components have fixed width or height, e.g. the width of row dendrogram is `1cm`. The width or the height of the heatmap body fill the rest area of the final plotting
 page, which means, if you draw it in an interactive graphic window and you change the size of the
 window by draging it, the size of the heatmap body is automatically adjusted.
 
-`width` and `height` control the width/height of the complete heatmap while `heatmap_body_width`
-and `heatmap_body_height` only control the width/height of the heamtap body. All these four arguments
+`heatmap_body_width` and `heatmap_body_height` control the width/height of the complete heatmap while `width`
+and `height` only control the width/height of the heamtap body. All these four arguments
 can be set as absolute units.
 
 ```{r}
-Heatmap(mat, width = unit(10, "cm"), height = unit(10, "cm"))
-Heatmap(mat, heatmap_body_width = unit(10, "cm"), heatmap_body_height = unit(10, "cm"))
+Heatmap(mat, name = "mat", width = unit(10, "cm"), height = unit(10, "cm"))
+Heatmap(mat, name = "mat", heatmap_width = unit(10, "cm"), heatmap_height = unit(10, "cm"))
 ```
 
 There will be message showing the size of the whole plot.
@@ -1186,7 +1185,7 @@ it will be expalined in ...
 Since heatmap is a representation of a matrix, there is also subset methods for the `Heatmap` class.
 
 ```{r}
-ht = Heatmap(mat)
+ht = Heatmap(mat, name = "mat")
 ht[1:10, 1:10]
 ```
 

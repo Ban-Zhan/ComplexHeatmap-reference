@@ -475,42 +475,6 @@ it in the first place, then send it to the `cluster_rows` or `cluster_columns` a
 
 ```r
 library(dendextend)
-```
-
-```
-## 
-## ---------------------
-## Welcome to dendextend version 1.8.0
-## Type citation('dendextend') for how to cite the package.
-## 
-## Type browseVignettes(package = 'dendextend') for the package vignette.
-## The github page is: https://github.com/talgalili/dendextend/
-## 
-## Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues
-## Or contact: <tal.galili@gmail.com>
-## 
-## 	To suppress this message use:  suppressPackageStartupMessages(library(dendextend))
-## ---------------------
-```
-
-```
-## 
-## Attaching package: 'dendextend'
-```
-
-```
-## The following objects are masked _by_ '.GlobalEnv':
-## 
-##     get_branches_heights, order.dendrogram<-
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     cutree
-```
-
-```r
 row_dend = as.dendrogram(hclust(dist(mat)))
 row_dend = color_branches(row_dend, k = 2)
 Heatmap(mat, name = "mat", cluster_rows = row_dend)
@@ -548,10 +512,6 @@ draw(Heatmap(mat, name = "mat", cluster_rows = dend, row_dend_reorder = FALSE,
 
 ```
 ## Error in merge.dendrogram(sort_smallest(right), left, height = a$height): Number of children dendrograms should be same as leaves in parent.
-```
-
-```
-## Error in inherits(cluster_rows, "dendrogram"): object 'dend' not found
 ```
 
 <img src="figure/cluster_dendsort-1.png" title="plot of chunk cluster_dendsort" alt="plot of chunk cluster_dendsort" style="display: block; margin: auto;" />
@@ -1335,37 +1295,36 @@ Heatmap(go_mat, name = "go", rect_gp = gpar(type = "none"),
 
 ## Size of the heatmap
 
-`width`, `heatmap_body_width`, `height` and `heatmap_body_height` control the size of the heatmap.
-By default, all heatmap components have fixed width or height, e.g. the width of row dendrogram is 1
-centimeter. The width or the height of the heatmap body fill the rest area of the final plotting
+`width`, `heatmap_width`, `height` and `heatmap_height` control the size of the heatmap.
+By default, all heatmap components have fixed width or height, e.g. the width of row dendrogram is `1cm`. The width or the height of the heatmap body fill the rest area of the final plotting
 page, which means, if you draw it in an interactive graphic window and you change the size of the
 window by draging it, the size of the heatmap body is automatically adjusted.
 
-`width` and `height` control the width/height of the complete heatmap while `heatmap_body_width`
-and `heatmap_body_height` only control the width/height of the heamtap body. All these four arguments
+`heatmap_body_width` and `heatmap_body_height` control the width/height of the complete heatmap while `width`
+and `height` only control the width/height of the heamtap body. All these four arguments
 can be set as absolute units.
 
 
 ```r
-Heatmap(mat, width = unit(10, "cm"), height = unit(10, "cm"))
+Heatmap(mat, name = "mat", width = unit(10, "cm"), height = unit(10, "cm"))
 ```
 
 <img src="figure/unnamed-chunk-50-1.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" style="display: block; margin: auto;" />
 
 ```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 124mm
-## Since all heatmaps/annotations have absolute units, the total height of the plot is 104mm
+## Since all heatmaps/annotations have absolute units, the total width of the plot is 140mm
+## Since all heatmaps/annotations have absolute units, the total height of the plot is 135mm
 ```
 
 ```r
-Heatmap(mat, heatmap_body_width = unit(10, "cm"), heatmap_body_height = unit(10, "cm"))
+Heatmap(mat, name = "mat", heatmap_width = unit(10, "cm"), heatmap_height = unit(10, "cm"))
 ```
 
 <img src="figure/unnamed-chunk-50-2.png" title="plot of chunk unnamed-chunk-50" alt="plot of chunk unnamed-chunk-50" style="display: block; margin: auto;" />
 
 ```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 148mm
-## Since all heatmaps/annotations have absolute units, the total height of the plot is 136mm
+## Since all heatmaps/annotations have absolute units, the total width of the plot is 116mm
+## Since all heatmaps/annotations have absolute units, the total height of the plot is 104mm
 ```
 
 There will be message showing the size of the whole plot.
@@ -1482,10 +1441,10 @@ row_order(ht)
 
 ```
 ## $`1`
-## [1] 2 5 1
+## [1] 9 6 7 8 3 4
 ## 
 ## $`2`
-## [1] 9 6 7 8 3 4
+## [1] 2 5 1
 ```
 
 ```r
@@ -1494,10 +1453,10 @@ column_order(ht)
 
 ```
 ## $`1`
-## [1] 8 1 3 4
+## [1] 5 9
 ## 
 ## $`2`
-## [1] 5 9
+## [1] 8 1 3 4
 ## 
 ## $`3`
 ## [1] 2 7 6
@@ -1514,7 +1473,7 @@ row_dend(ht)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "row_dend"
+## Error in row_dend(ht): could not find function "row_dend"
 ```
 
 ```r
@@ -1550,13 +1509,11 @@ Since heatmap is a representation of a matrix, there is also subset methods for 
 
 
 ```r
-ht = Heatmap(mat)
+ht = Heatmap(mat, name = "mat")
 ht[1:10, 1:10]
 ```
 
-```
-## Error in subset_heatmap_by_row(x, i): no slot of name "row_names_param" for this object of class "HeatmapList"
-```
+<img src="figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" style="display: block; margin: auto;" />
 
 The subset method only do subsetting on the matrix and heatmap components, some of the arguments
 should not be set such as `cluster_rows` as a `dendrogram` object when you want to do subsetting.
@@ -1571,6 +1528,8 @@ ht = Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
 ht[1:9*2 - 1, 1:12*2] # odd rows, even columns
 ```
 
-```
-## Error in subset_heatmap_by_row(x, i): no slot of name "row_names_param" for this object of class "HeatmapList"
-```
+<img src="figure/unnamed-chunk-59-1.png" title="plot of chunk unnamed-chunk-59" alt="plot of chunk unnamed-chunk-59" style="display: block; margin: auto;" />
+
+The implementation of subsetting heatmaps is very experimental. If you have problems
+or comments, please let me know.
+
