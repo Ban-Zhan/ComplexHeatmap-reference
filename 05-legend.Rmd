@@ -581,9 +581,6 @@ draw(pd, test = TRUE)
 ## Heatmap and annotation legends
 
 
-
-
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
     dpi = 72
