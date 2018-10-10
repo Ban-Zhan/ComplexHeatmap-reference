@@ -63,7 +63,7 @@ column_ha
 
 ```
 ## A HeatmapAnnotation object with 2 annotations
-##   name: heatmap_annotation_80 
+##   name: heatmap_annotation_0 
 ##   position: column 
 ##   items: 10 
 ##   width: 1npc 
@@ -83,7 +83,7 @@ row_ha
 
 ```
 ## A HeatmapAnnotation object with 2 annotations
-##   name: heatmap_annotation_81 
+##   name: heatmap_annotation_1 
 ##   position: row 
 ##   items: 10 
 ##   width: 15mm 
@@ -425,18 +425,24 @@ draw(ht, annotation_legend_list = list(lgd_pvalue, lgd_sig))
 
 
 
-The height of the simple annotation can be controled by `height` argument (or `width`
-if it is a row annotation) inside `anno_simple()`. By default it is `5mm` for
-one-row annotation and `5mm * k` for a matrix with `k` columns.
+The height of the simple annotation can be controled by `height` argument or `anno_simple_size` (or
+`width` if it is a row annotation) inside `anno_simple()`. `anno_simple_size` controls the size for
+single-row annotation and `height`/`width` controls the total height/width of all simple annotations.
+If `height`/`width` is set, `anno_simple_size` is ignored.
 
 
 ```r
-ha = HeatmapAnnotation(foo = anno_simple(1:10, pch = 1, 
-    pt_gp = gpar(col = "red"), pt_size = unit(seq(1, 10), "mm"),
-    height = unit(2, "cm")))
+ha = HeatmapAnnotation(foo = anno_simple(1:10, height = unit(2, "cm")))
 ```
 
 ![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51-1.png)
+
+
+```r
+ha = HeatmapAnnotation(foo = anno_simple(cbind(1:10, 10:1), anno_simple_size = unit(2, "cm")))
+```
+
+![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53-1.png)
 
 For all the annotation functions we introduce later, the height or the width for individual
 annotations should all be set inside the `anno_*()` functions:
@@ -461,13 +467,16 @@ added by `decorate_annotation()` function.
 ha = HeatmapAnnotation(foo = anno_empty(border = TRUE))
 ```
 
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54-1.png)
+![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56-1.png)
 
-In Chapter, we will introduce the use of the decoration functions, but here we give a quick
-example. In gene expression expression analysis, we split the heatmaps into several groups and
-want to highlight some key genes in each group. In this case, we simply add the labels on the right
-side of the heatmap without aligning them to the their rows. (`anno_mark()` can alig the text to
-the correclty rows, but in this .., it is not necessray)
+In Chapter, we will introduce the use of the decoration functions, but here we give a quick example.
+In gene expression expression analysis, there are senarios that we split the heatmaps into several
+groups and we want to highlight some key genes in each group. In this case, we simply add the labels
+on the right side of the heatmap without aligning them to the their corresponding rows.
+(`anno_mark()` can align the labels correclty to their corresponding rows, but in the senario we
+show here, it is not necessray).
+
+In following example, basically what we do is in each empty annotation, we add a segment and text.
 
 
 
@@ -495,12 +504,17 @@ for(i in 1:4) {
 }
 ```
 
-![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56-1.png)
+![plot of chunk unnamed-chunk-58](figure/unnamed-chunk-58-1.png)
 
-A second use of the empty annotation is, you can assume it is a plotting region, and y...
+A second use of the empty annotation is to add complex annotation graphics where the empty
+annotation pretends to be a virtual plotting regions. You can construct an annotation function
+by `AnnotationFunction` class for complex annotation graphics, which allows subsetting and splitting,
+but still, it can be a secondary choice to directly draw inside the empty annotation, which is easier
+and faster for implementing rather graphics (but less flexible and does not allow splitting).
 
-next we add points as annotations...
-
+In following we show how to add a "complex version" of points annotation. The only thing that needs
+to be aware of is the location on x-axes (y-axes if it is a row annotation) should correspond to
+the column index after column reordering.
 
 
 ```r
@@ -523,11 +537,9 @@ decorate_annotation("foo", {
 })
 ```
 
-![plot of chunk unnamed-chunk-57](figure/unnamed-chunk-57-1.png)
+![plot of chunk unnamed-chunk-59](figure/unnamed-chunk-59-1.png)
 
 
-
-The default height for column empty annotation is `1cm`.
 
 ## Image annotation
 
@@ -554,7 +566,11 @@ image_pdf = sample(dir("~/Downloads/IcoMoon-Free-master/PDF/", full.names = TRUE
 ha = HeatmapAnnotation(foo = anno_image(image_png))
 ```
 
-![plot of chunk unnamed-chunk-60](figure/unnamed-chunk-60-1.png)
+```
+## Loading required namespace: png
+```
+
+![plot of chunk unnamed-chunk-62](figure/unnamed-chunk-62-1.png)
 
 Different image formats can be mixed in the input vector.
 
@@ -573,7 +589,7 @@ ha = HeatmapAnnotation(foo = anno_image(image_png,
     gp = gpar(fill = 1:10, col = "black")))
 ```
 
-![plot of chunk unnamed-chunk-63](figure/unnamed-chunk-63-1.png)
+![plot of chunk unnamed-chunk-65](figure/unnamed-chunk-65-1.png)
 
 `border` controls the border of the whole annotation.
 
@@ -590,7 +606,7 @@ Padding or space around the images is set by `space`.
 ha = HeatmapAnnotation(foo = anno_image(image_png, space = unit(3, "mm")))
 ```
 
-![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-66-1.png)
+![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68-1.png)
 
 If only some of the images need to be drawn, the other elements in the `image`
 vector can be set to `''` or `NA`.
@@ -601,7 +617,7 @@ image_png[1:2] = ""
 ha = HeatmapAnnotation(foo = anno_image(image_png))
 ```
 
-![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68-1.png)
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70-1.png)
 
 The default height for column image annotation is `1cm`.
 
@@ -616,7 +632,7 @@ settings such as `pch`, `size` and `gp` can correpspond to matrix columns.
 ha = HeatmapAnnotation(foo = anno_points(runif(10)))
 ```
 
-![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70-1.png)
+![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72-1.png)
 
 
 ```r
@@ -624,7 +640,7 @@ ha = HeatmapAnnotation(foo = anno_points(matrix(runif(20), nc = 2),
     pch = 1:2, gp = gpar(col = 2:3)))
 ```
 
-![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72-1.png)
+![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-74-1.png)
 
 `ylim` controls the range on "y-axis" or the "data axis" (if it is a row
 annotation, the data axis is horizontal), `extend` controls the extended space
@@ -671,7 +687,7 @@ ha = HeatmapAnnotation(foo = anno_points(runif(10),
 )
 ```
 
-![plot of chunk unnamed-chunk-75](figure/unnamed-chunk-75-1.png)
+![plot of chunk unnamed-chunk-77](figure/unnamed-chunk-77-1.png)
 
 The configuration of axis is same for other annotation functions which have axes.
 
@@ -687,7 +703,7 @@ the data variable can be a numeric vector:
 ha = HeatmapAnnotation(foo = anno_lines(runif(10)))
 ```
 
-![plot of chunk unnamed-chunk-77](figure/unnamed-chunk-77-1.png)
+![plot of chunk unnamed-chunk-79](figure/unnamed-chunk-79-1.png)
 
 Or a matrix:
 
@@ -697,7 +713,7 @@ ha = HeatmapAnnotation(foo = anno_lines(cbind(c(1:5, 1:5), c(5:1, 5:1)), gp = gp
   add_points = TRUE, pt_gp = gpar(col = 5:6), pch = c(1, 16)))
 ```
 
-![plot of chunk unnamed-chunk-79](figure/unnamed-chunk-79-1.png)
+![plot of chunk unnamed-chunk-81](figure/unnamed-chunk-81-1.png)
 
 Smoothed lines (by `loess()`) can be added instead of the original lines by
 setting `smooth = TRUE`, but it should be used with caution because the order of
@@ -712,7 +728,7 @@ is performed for each column separately.
 ha = HeatmapAnnotation(foo = anno_lines(runif(10), smooth = TRUE, add_points = TRUE))
 ```
 
-![plot of chunk unnamed-chunk-81](figure/unnamed-chunk-81-1.png)
+![plot of chunk unnamed-chunk-83](figure/unnamed-chunk-83-1.png)
 
 The default height for column lines annotation is `1cm`.
 
@@ -727,7 +743,7 @@ of `anno_barplot()`.
 ha = HeatmapAnnotation(foo = anno_barplot(1:10))
 ```
 
-![plot of chunk unnamed-chunk-83](figure/unnamed-chunk-83-1.png)
+![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85-1.png)
 
 The width of bars is controlled by `bar_width`. It is a relative value to the 
 width of the cell in the heatmap.
@@ -737,7 +753,7 @@ width of the cell in the heatmap.
 ha = HeatmapAnnotation(foo = anno_barplot(1:10, bar_width = 1))
 ```
 
-![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85-1.png)
+![plot of chunk unnamed-chunk-87](figure/unnamed-chunk-87-1.png)
 
 Graphic parameters are controlled by `gp`.
 
@@ -746,7 +762,7 @@ Graphic parameters are controlled by `gp`.
 ha = HeatmapAnnotation(foo = anno_barplot(1:10, gp = gpar(fill = 1:10)))
 ```
 
-![plot of chunk unnamed-chunk-87](figure/unnamed-chunk-87-1.png)
+![plot of chunk unnamed-chunk-89](figure/unnamed-chunk-89-1.png)
 
 You choose the baseline of bars by `baseline`.
 
@@ -755,7 +771,7 @@ You choose the baseline of bars by `baseline`.
 ha = HeatmapAnnotation(foo = anno_barplot(seq(-5, 5), baseline = "min"))
 ```
 
-![plot of chunk unnamed-chunk-89](figure/unnamed-chunk-89-1.png)
+![plot of chunk unnamed-chunk-91](figure/unnamed-chunk-91-1.png)
 
 If the input value is a matrix, it will be represented as stacked barplots.
 
@@ -764,7 +780,7 @@ If the input value is a matrix, it will be represented as stacked barplots.
 ha = HeatmapAnnotation(foo = anno_barplot(matrix(nc = 2, c(1:10, 10:1))))
 ```
 
-![plot of chunk unnamed-chunk-91](figure/unnamed-chunk-91-1.png)
+![plot of chunk unnamed-chunk-93](figure/unnamed-chunk-93-1.png)
 
 And length of parameters in `gp` can be the number of the columns in the matrix:
 
@@ -774,7 +790,7 @@ ha = HeatmapAnnotation(foo = anno_barplot(cbind(1:10, 10:1),
     gp = gpar(fill = 2:3, col = 2:3)))
 ```
 
-![plot of chunk unnamed-chunk-93](figure/unnamed-chunk-93-1.png)
+![plot of chunk unnamed-chunk-95](figure/unnamed-chunk-95-1.png)
 
 Following example shows a barplot annotation which visualizes a proportion
 matrix (for which row sums are 1).
@@ -787,7 +803,7 @@ ha = HeatmapAnnotation(foo = anno_barplot(m, gp = gpar(fill = 2:5),
     bar_width = 1, height = unit(6, "cm")))
 ```
 
-![plot of chunk unnamed-chunk-95](figure/unnamed-chunk-95-1.png)
+![plot of chunk unnamed-chunk-97](figure/unnamed-chunk-97-1.png)
 
 The default height for column barplot annotation is `1cm`.
 
@@ -808,7 +824,7 @@ m = matrix(rnorm(100), 10)
 ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm")))
 ```
 
-![plot of chunk unnamed-chunk-97](figure/unnamed-chunk-97-1.png)
+![plot of chunk unnamed-chunk-99](figure/unnamed-chunk-99-1.png)
 
 Graphic parameters are controlled by `gp`.
 
@@ -818,7 +834,7 @@ ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm"),
     gp = gpar(fill = 1:10)))
 ```
 
-![plot of chunk unnamed-chunk-99](figure/unnamed-chunk-99-1.png)
+![plot of chunk unnamed-chunk-101](figure/unnamed-chunk-101-1.png)
 
 Width of the boxes are controlled by `box_width`. `outline` controls whether to
 show outlier points.
@@ -829,7 +845,7 @@ ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm"),
     box_width = 0.9, outline = FALSE))
 ```
 
-![plot of chunk unnamed-chunk-101](figure/unnamed-chunk-101-1.png)
+![plot of chunk unnamed-chunk-103](figure/unnamed-chunk-103-1.png)
 
 The default height of column boxplot annotation is `2cm`.
 
@@ -845,7 +861,7 @@ m = matrix(rnorm(1000), nc = 100)
 ha = rowAnnotation(foo = anno_histogram(m)) # apply `m` on rows
 ```
 
-![plot of chunk unnamed-chunk-103](figure/unnamed-chunk-103-1.png)
+![plot of chunk unnamed-chunk-105](figure/unnamed-chunk-105-1.png)
 
 Number of breaks for histograms is controlled by `n_breaks`.
 
@@ -854,7 +870,7 @@ Number of breaks for histograms is controlled by `n_breaks`.
 ha = rowAnnotation(foo = anno_histogram(m, n_breaks = 20))
 ```
 
-![plot of chunk unnamed-chunk-105](figure/unnamed-chunk-105-1.png)
+![plot of chunk unnamed-chunk-107](figure/unnamed-chunk-107-1.png)
 
 Colors are controlled by `gp`.
 
@@ -863,7 +879,7 @@ Colors are controlled by `gp`.
 ha = rowAnnotation(foo = anno_histogram(m, gp = gpar(fill = 1:10)))
 ```
 
-![plot of chunk unnamed-chunk-107](figure/unnamed-chunk-107-1.png)
+![plot of chunk unnamed-chunk-109](figure/unnamed-chunk-109-1.png)
 
 The default for column histogram annotation is `4cm`.
 
@@ -877,7 +893,7 @@ as a fitted curve.
 ha = rowAnnotation(foo = anno_density(m))
 ```
 
-![plot of chunk unnamed-chunk-109](figure/unnamed-chunk-109-1.png)
+![plot of chunk unnamed-chunk-111](figure/unnamed-chunk-111-1.png)
 
 The height of the density lines can be controlled to make the distribution
 look like a "joyplot".
@@ -888,7 +904,7 @@ ha = rowAnnotation(foo = anno_density(m, joyplot_scale = 2,
     gp = gpar(fill = "#CCCCCC80")))
 ```
 
-![plot of chunk unnamed-chunk-111](figure/unnamed-chunk-111-1.png)
+![plot of chunk unnamed-chunk-113](figure/unnamed-chunk-113-1.png)
 
 Or visualize the distribution as violin plot.
 
@@ -898,7 +914,7 @@ ha = rowAnnotation(foo = anno_density(m, type = "violin",
     gp = gpar(fill = 1:10)))
 ```
 
-![plot of chunk unnamed-chunk-113](figure/unnamed-chunk-113-1.png)
+![plot of chunk unnamed-chunk-115](figure/unnamed-chunk-115-1.png)
 
 When there are too many rows, the space for normal density peaks might be too small.
 In this case, we can visualize the distribution by heatmaps. 
@@ -908,7 +924,7 @@ In this case, we can visualize the distribution by heatmaps.
 ha = rowAnnotation(foo = anno_density(m, type = "heatmap", width = unit(6, "cm")))
 ```
 
-![plot of chunk unnamed-chunk-115](figure/unnamed-chunk-115-1.png)
+![plot of chunk unnamed-chunk-117](figure/unnamed-chunk-117-1.png)
 
 THe color schema for heatmap distribution is controlled by `heatmap_colors`.
 
@@ -918,7 +934,7 @@ ha = rowAnnotation(foo = anno_density(m, type = "heatmap", width = unit(6, "cm")
     heatmap_colors = c("white", "orange")))
 ```
 
-![plot of chunk unnamed-chunk-117](figure/unnamed-chunk-117-1.png)
+![plot of chunk unnamed-chunk-119](figure/unnamed-chunk-119-1.png)
 
 In **ComplexHeatmap** package, there is a `densityHeatmap()` function which visualizes
 distribution as a heatmap (not an annotation).
@@ -935,7 +951,7 @@ ha = rowAnnotation(foo = anno_joyplot(lt, width = unit(4, "cm"),
     gp = gpar(fill = 1:10), transparency = 0.75))
 ```
 
-![plot of chunk unnamed-chunk-119](figure/unnamed-chunk-119-1.png)
+![plot of chunk unnamed-chunk-121](figure/unnamed-chunk-121-1.png)
 
 Or only show the lines.
 
@@ -946,7 +962,7 @@ lt = apply(m, 2, function(x) data.frame(density(x)[c("x", "y")]))
 ha = rowAnnotation(foo = anno_joyplot(lt, width = unit(4, "cm"), gp = gpar(fill = NA), scale = 4))
 ```
 
-![plot of chunk unnamed-chunk-121](figure/unnamed-chunk-121-1.png)
+![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.png)
 
 ## Horizon chart annotation
 
@@ -962,7 +978,7 @@ lt = lapply(1:20, function(x) cumprod(1 + runif(1000, -x/100, x/100)) - 1)
 ha = rowAnnotation(foo = anno_horizon(lt))
 ```
 
-![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.png)
+![plot of chunk unnamed-chunk-125](figure/unnamed-chunk-125-1.png)
 
 Colors for positive values and negative values are controlled by `pos_fill` and
 `neg_fill` in `gar()`.
@@ -973,7 +989,7 @@ ha = rowAnnotation(foo = anno_horizon(lt,
     gp = gpar(pos_fill = "orange", neg_fill = "darkgreen")))
 ```
 
-![plot of chunk unnamed-chunk-125](figure/unnamed-chunk-125-1.png)
+![plot of chunk unnamed-chunk-127](figure/unnamed-chunk-127-1.png)
 
 `pos_fill` and `neg_fill` can be assigned as a vector.
 
@@ -984,7 +1000,7 @@ ha = rowAnnotation(foo = anno_horizon(lt,
               neg_fill = rep(c("darkgreen", "blue"), each = 10))))
 ```
 
-![plot of chunk unnamed-chunk-127](figure/unnamed-chunk-127-1.png)
+![plot of chunk unnamed-chunk-129](figure/unnamed-chunk-129-1.png)
 
 Whether the peaks for negative values start from the bottom or the top?
 
@@ -993,7 +1009,7 @@ Whether the peaks for negative values start from the bottom or the top?
 ha = rowAnnotation(foo = anno_horizon(lt, negative_from_top = TRUE))
 ```
 
-![plot of chunk unnamed-chunk-129](figure/unnamed-chunk-129-1.png)
+![plot of chunk unnamed-chunk-131](figure/unnamed-chunk-131-1.png)
 
 The space between every two neighbouring charts.
 
@@ -1002,7 +1018,7 @@ The space between every two neighbouring charts.
 ha = rowAnnotation(foo = anno_horizon(lt, gap = unit(1, "mm")))
 ```
 
-![plot of chunk unnamed-chunk-131](figure/unnamed-chunk-131-1.png)
+![plot of chunk unnamed-chunk-133](figure/unnamed-chunk-133-1.png)
 
 ## Text annotation
 
@@ -1014,7 +1030,7 @@ by `gp`.
 ha = rowAnnotation(foo = anno_text(month.name, gp = gpar(fontsize = 1:12+4)))
 ```
 
-![plot of chunk unnamed-chunk-133](figure/unnamed-chunk-133-1.png)
+![plot of chunk unnamed-chunk-135](figure/unnamed-chunk-135-1.png)
 
 Locationsn are controlled by `location` and `just`. Rotation is controlled by `rot`.
 
@@ -1024,7 +1040,7 @@ ha = rowAnnotation(foo = anno_text(month.name, location = 1, rot = 45,
     just = "right", gp = gpar(fontsize = 1:12+4)))
 ```
 
-![plot of chunk unnamed-chunk-135](figure/unnamed-chunk-135-1.png)
+![plot of chunk unnamed-chunk-137](figure/unnamed-chunk-137-1.png)
 
 ## Mark annotation
 
@@ -1039,7 +1055,7 @@ ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.n
 Heatmap(m, cluster_rows = FALSE, right_annotation = ha)
 ```
 
-![plot of chunk unnamed-chunk-136](figure/unnamed-chunk-136-1.png)
+![plot of chunk unnamed-chunk-138](figure/unnamed-chunk-138-1.png)
 
 ## Multiple annotations
 
@@ -1074,7 +1090,7 @@ ha = HeatmapAnnotation(foo = 1:10,
     gap = unit(2, "mm"))
 ```
 
-![plot of chunk unnamed-chunk-138](figure/unnamed-chunk-138-1.png)
+![plot of chunk unnamed-chunk-140](figure/unnamed-chunk-140-1.png)
 
 
 ```r
@@ -1084,7 +1100,7 @@ ha = HeatmapAnnotation(foo = 1:10,
     gap = unit(c(2, 10), "mm"))
 ```
 
-![plot of chunk unnamed-chunk-140](figure/unnamed-chunk-140-1.png)
+![plot of chunk unnamed-chunk-142](figure/unnamed-chunk-142-1.png)
 
 `height`, `width`, `annotation_height` and `annotation_width` control the height
 or width of the heatmap annotations. Normally you don't need to set it because
