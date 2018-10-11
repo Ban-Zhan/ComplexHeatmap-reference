@@ -10,25 +10,26 @@ biblio-style: apalike
 link-citations: yes
 github-repo: jokergoo/ComplexHeatmap_book
 cover-image: complexheatmap-cover.jpg
-url: 'https\://bookdown.org/jokergoo/circlize-book/'
-description: "This book provides a comprehensive overview of implementing circular visualization in R by cirlize package,
-	espeically focusing on visualizaing high dimentional genomic data and revealing complex relationships by Chord diagram."
+url: 'https\://jokergoo.github.io/ComplexHeatmap-book/'
+description: "This book is a complete reference to ComplexHeatmap pacakge."
 ---
 
 # About {-}
 
 This is the documentation of the
-[**circlize**](https://cran.r-project.org/package=circlize) package. Examples
-in the book are generated under version `r installed.packages()["circlize", "Version"]`.
+[**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples
+in the book are generated under version `r installed.packages()["ComplexHeatmap", "Version"]`.
 
-If you use **circlize** in your publications, I would be appreciated if you can cite:
+**Please note, this documentation is not completely compatible with lower
+versions (< 2.0.0, before Oct, 2018).**
 
-Gu, Z. (2014) circlize implements and enhances circular visualization in R.
-Bioinformatics. DOI:
-[10.1093/bioinformatics/btu393](https://doi.org/10.1093/bioinformatics/btu393)
+If you use **ComplexHeatmap** in your publications, I would be appreciated if you can cite:
+
+Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. DOI:
+[10.1093/bioinformatics/btw313](https://doi.org/10.1093/bioinformatics/btw313)
 
 
 ```{r, echo = FALSE}
-knitr::include_graphics("images/circlize_cover.jpg")
+knitr::include_graphics("complexheatmap-cover.jpg")
 ```
 

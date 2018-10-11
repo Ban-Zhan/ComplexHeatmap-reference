@@ -8,8 +8,6 @@ to add graphics in by specifying the heatmap/annotation name.
 First generate a figure that almost contains all types of heatmap components.
 
 ```{r access_components, fig.width = 10, fig.height = 7, echo = 1:13}
-library(ComplexHeatmap)
-
 mat = matrix(rnorm(80, 2), 8, 10)
 mat = rbind(mat, matrix(rnorm(40, -2), 4, 10))
 rownames(mat) = paste0("R", 1:12)

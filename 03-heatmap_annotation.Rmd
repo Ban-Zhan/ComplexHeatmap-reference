@@ -1117,6 +1117,8 @@ or width of the heatmap annotations. Normally you don't need to set it because
 all the single annotations have fixed height/width and the final height/width
 for the whole heatmap annotation is the sum of them plus the sum of gaps. ...
 
+## Summary annotation 
+
 ## Utility functions 
 
 ## Implement new annotation function
