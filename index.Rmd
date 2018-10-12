@@ -33,3 +33,6 @@ Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensio
 knitr::include_graphics("complexheatmap-cover.jpg")
 ```
 
+```{r, echo = FALSE}
+library(ComplexHeatmap)
+```

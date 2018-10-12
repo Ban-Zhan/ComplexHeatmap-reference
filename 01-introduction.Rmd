@@ -1,35 +1,3 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{1. Introduction to ComplexHeatmap package}
--->
-
-Introduction to ComplexHeatmap package
-========================================
-
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
-
-**Date**: `r Sys.Date()`
-
--------------------------------------------------------------
-
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5,
-    dpi = 96
-)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
-```
 
 Complex heatmaps are efficient to visualize associations 
 between different sources of data sets and reveal potential structures. 
