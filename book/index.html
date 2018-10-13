@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ComplexHeatmap Complete Reference</title>
+  <meta name="description" content="This book is a complete reference to ComplexHeatmap pacakge.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="ComplexHeatmap Complete Reference" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-book/" />
+  <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+  <meta property="og:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="github-repo" content="jokergoo/ComplexHeatmap_book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
+  
+  <meta name="twitter:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+
+<meta name="author" content="Zuguang Gu">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="single-heatmap.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Circular Visualization in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#general-design"><i class="fa fa-check"></i><b>0.1</b> General design</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#vignettes"><i class="fa fa-check"></i><b>0.2</b> Vignettes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="single-heatmap.html"><a href="single-heatmap.html"><i class="fa fa-check"></i><b>1</b> Single Heatmap</a><ul>
+<li class="chapter" data-level="1.1" data-path="single-heatmap.html"><a href="single-heatmap.html#colors"><i class="fa fa-check"></i><b>1.1</b> Colors</a></li>
+<li class="chapter" data-level="1.2" data-path="single-heatmap.html"><a href="single-heatmap.html#titles"><i class="fa fa-check"></i><b>1.2</b> Titles</a></li>
+<li class="chapter" data-level="1.3" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering"><i class="fa fa-check"></i><b>1.3</b> Clustering</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="single-heatmap.html"><a href="single-heatmap.html#distance-methods"><i class="fa fa-check"></i><b>1.3.1</b> Distance methods</a></li>
+<li class="chapter" data-level="1.3.2" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering-methods"><i class="fa fa-check"></i><b>1.3.2</b> Clustering methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="single-heatmap.html"><a href="single-heatmap.html#render-dendrograms"><i class="fa fa-check"></i><b>1.3.3</b> Render dendrograms</a></li>
+<li class="chapter" data-level="1.3.4" data-path="single-heatmap.html"><a href="single-heatmap.html#reorder-dendrograms"><i class="fa fa-check"></i><b>1.3.4</b> Reorder dendrograms</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="single-heatmap.html"><a href="single-heatmap.html#row-and-column-orders"><i class="fa fa-check"></i><b>1.4</b> Row and column orders</a></li>
+<li class="chapter" data-level="1.5" data-path="single-heatmap.html"><a href="single-heatmap.html#seriation"><i class="fa fa-check"></i><b>1.5</b> Seriation</a></li>
+<li class="chapter" data-level="1.6" data-path="single-heatmap.html"><a href="single-heatmap.html#dimension-names"><i class="fa fa-check"></i><b>1.6</b> Dimension names</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-k-means-clustering"><i class="fa fa-check"></i><b>1.6.1</b> Split by k-means clustering</a></li>
+<li class="chapter" data-level="1.6.2" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-categorical-variables"><i class="fa fa-check"></i><b>1.6.2</b> Split by categorical variables</a></li>
+<li class="chapter" data-level="1.6.3" data-path="single-heatmap.html"><a href="single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>1.6.3</b> Graphic parameters for splitting</a></li>
+<li class="chapter" data-level="1.6.4" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-dendrogram"><i class="fa fa-check"></i><b>1.6.4</b> Split by dendrogram</a></li>
+<li class="chapter" data-level="1.6.5" data-path="single-heatmap.html"><a href="single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>1.6.5</b> Titles for splitting</a></li>
+<li class="chapter" data-level="1.6.6" data-path="single-heatmap.html"><a href="single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>1.6.6</b> Gaps between slices</a></li>
+<li class="chapter" data-level="1.6.7" data-path="single-heatmap.html"><a href="single-heatmap.html#split-the-heatmap-annotations"><i class="fa fa-check"></i><b>1.6.7</b> Split the heatmap annotations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="single-heatmap.html"><a href="single-heatmap.html#heatmap-as-raster-image"><i class="fa fa-check"></i><b>1.7</b> Heatmap as raster image</a></li>
+<li class="chapter" data-level="1.8" data-path="single-heatmap.html"><a href="single-heatmap.html#customize-the-heatmap-body"><i class="fa fa-check"></i><b>1.8</b> Customize the heatmap body</a></li>
+<li class="chapter" data-level="1.9" data-path="single-heatmap.html"><a href="single-heatmap.html#size-of-the-heatmap"><i class="fa fa-check"></i><b>1.9</b> Size of the heatmap</a></li>
+<li class="chapter" data-level="1.10" data-path="single-heatmap.html"><a href="single-heatmap.html#plot-the-heatmap"><i class="fa fa-check"></i><b>1.10</b> Plot the heatmap</a></li>
+<li class="chapter" data-level="1.11" data-path="single-heatmap.html"><a href="single-heatmap.html#get-orders-and-dendrograms"><i class="fa fa-check"></i><b>1.11</b> Get orders and dendrograms</a></li>
+<li class="chapter" data-level="1.12" data-path="single-heatmap.html"><a href="single-heatmap.html#subset-a-heatmap"><i class="fa fa-check"></i><b>1.12</b> Subset a heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html"><i class="fa fa-check"></i><b>2</b> Heatmap Annotations</a><ul>
+<li class="chapter" data-level="2.1" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation"><i class="fa fa-check"></i><b>2.1</b> Simple annotation</a></li>
+<li class="chapter" data-level="2.2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation-as-an-annotation-function"><i class="fa fa-check"></i><b>2.2</b> Simple annotation as an annotation function</a></li>
+<li class="chapter" data-level="2.3" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#empty-annotation"><i class="fa fa-check"></i><b>2.3</b> Empty annotation</a></li>
+<li class="chapter" data-level="2.4" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#image-annotation"><i class="fa fa-check"></i><b>2.4</b> Image annotation</a></li>
+<li class="chapter" data-level="2.5" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#points-annotation"><i class="fa fa-check"></i><b>2.5</b> Points annotation</a></li>
+<li class="chapter" data-level="2.6" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#lines-annotation"><i class="fa fa-check"></i><b>2.6</b> Lines annotation</a></li>
+<li class="chapter" data-level="2.7" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#barplot-annotation"><i class="fa fa-check"></i><b>2.7</b> Barplot annotation</a></li>
+<li class="chapter" data-level="2.8" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#boxplot-annotation"><i class="fa fa-check"></i><b>2.8</b> Boxplot annotation</a></li>
+<li class="chapter" data-level="2.9" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#histogram-annotation"><i class="fa fa-check"></i><b>2.9</b> histogram annotation</a></li>
+<li class="chapter" data-level="2.10" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#density-annotation"><i class="fa fa-check"></i><b>2.10</b> Density annotation</a></li>
+<li class="chapter" data-level="2.11" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#joyplot-annotation"><i class="fa fa-check"></i><b>2.11</b> Joyplot annotation</a></li>
+<li class="chapter" data-level="2.12" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#horizon-chart-annotation"><i class="fa fa-check"></i><b>2.12</b> Horizon chart annotation</a></li>
+<li class="chapter" data-level="2.13" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#text-annotation"><i class="fa fa-check"></i><b>2.13</b> Text annotation</a></li>
+<li class="chapter" data-level="2.14" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#mark-annotation"><i class="fa fa-check"></i><b>2.14</b> Mark annotation</a></li>
+<li class="chapter" data-level="2.15" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#multiple-annotations"><i class="fa fa-check"></i><b>2.15</b> Multiple annotations</a></li>
+<li class="chapter" data-level="2.16" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#summary-annotation"><i class="fa fa-check"></i><b>2.16</b> Summary annotation</a></li>
+<li class="chapter" data-level="2.17" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#utility-functions"><i class="fa fa-check"></i><b>2.17</b> Utility functions</a></li>
+<li class="chapter" data-level="2.18" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#implement-new-annotation-function"><i class="fa fa-check"></i><b>2.18</b> Implement new annotation function</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html"><i class="fa fa-check"></i><b>3</b> Making A List of Heatmaps</a><ul>
+<li class="chapter" data-level="3.1" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#titles-1"><i class="fa fa-check"></i><b>3.1</b> Titles</a></li>
+<li class="chapter" data-level="3.2" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#size-of-heatmaps"><i class="fa fa-check"></i><b>3.2</b> Size of heatmaps</a></li>
+<li class="chapter" data-level="3.3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#gap-between-heatmaps"><i class="fa fa-check"></i><b>3.3</b> Gap between heatmaps</a></li>
+<li class="chapter" data-level="3.4" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#auto-adjustment-to-the-main-heatmap"><i class="fa fa-check"></i><b>3.4</b> Auto adjustment to the main heatmap</a></li>
+<li class="chapter" data-level="3.5" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#control-row-in-draw-function"><i class="fa fa-check"></i><b>3.5</b> control row … in draw() function</a></li>
+<li class="chapter" data-level="3.6" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#annotation-as-components-are-adjusted"><i class="fa fa-check"></i><b>3.6</b> Annotation as components are adjusted</a></li>
+<li class="chapter" data-level="3.7" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#concatenate-with-annotations"><i class="fa fa-check"></i><b>3.7</b> concatenate with annotations</a></li>
+<li class="chapter" data-level="3.8" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#only-annotations"><i class="fa fa-check"></i><b>3.8</b> Only annotations</a></li>
+<li class="chapter" data-level="3.9" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#vertical-align"><i class="fa fa-check"></i><b>3.9</b> vertical align</a></li>
+<li class="chapter" data-level="3.10" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#retrieve-orders-and-dendrograms"><i class="fa fa-check"></i><b>3.10</b> Retrieve orders and dendrograms</a></li>
+<li class="chapter" data-level="3.11" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#change-graphic-parameters-simultaneously"><i class="fa fa-check"></i><b>3.11</b> Change graphic parameters simultaneously</a></li>
+<li class="chapter" data-level="3.12" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#session-info"><i class="fa fa-check"></i><b>3.12</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="legend.html"><a href="legend.html"><i class="fa fa-check"></i><b>4</b> Legend</a><ul>
+<li class="chapter" data-level="4.1" data-path="legend.html"><a href="legend.html#continuous-legend"><i class="fa fa-check"></i><b>4.1</b> Continuous legend</a></li>
+<li class="chapter" data-level="4.2" data-path="legend.html"><a href="legend.html#discrete-legend"><i class="fa fa-check"></i><b>4.2</b> Discrete legend</a></li>
+<li class="chapter" data-level="4.3" data-path="legend.html"><a href="legend.html#a-list-of-legends"><i class="fa fa-check"></i><b>4.3</b> A list of legends</a></li>
+<li class="chapter" data-level="4.4" data-path="legend.html"><a href="legend.html#heatmap-and-annotation-legends"><i class="fa fa-check"></i><b>4.4</b> Heatmap and annotation legends</a></li>
+<li class="chapter" data-level="4.5" data-path="legend.html"><a href="legend.html#to-add-customized-legend."><i class="fa fa-check"></i><b>4.5</b> To add customized legend.</a></li>
+<li class="chapter" data-level="4.6" data-path="legend.html"><a href="legend.html#legends-setting-for-the-heatmaps"><i class="fa fa-check"></i><b>4.6</b> legends setting for the heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html"><i class="fa fa-check"></i><b>5</b> Heatmap decoration</a><ul>
+<li class="chapter" data-level="5.1" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#decorate_-functions"><i class="fa fa-check"></i><b>5.1</b> decorate_* functions</a></li>
+<li class="chapter" data-level="5.2" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#examples"><i class="fa fa-check"></i><b>5.2</b> Examples</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#barplot-for-single-column-heatmap"><i class="fa fa-check"></i><b>5.2.1</b> Barplot for single column heatmap</a></li>
+<li class="chapter" data-level="5.2.2" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#add-decoration-for-a-customized-heatmap"><i class="fa fa-check"></i><b>5.2.2</b> add decoration for a customized heatmap</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="oncoprint.html"><a href="oncoprint.html"><i class="fa fa-check"></i><b>6</b> OncoPrint</a><ul>
+<li class="chapter" data-level="6.1" data-path="oncoprint.html"><a href="oncoprint.html#general-settings"><i class="fa fa-check"></i><b>6.1</b> General settings</a></li>
+<li class="chapter" data-level="6.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>6.2</b> Apply to cBioPortal dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="oncoprint.html"><a href="oncoprint.html#session-info-1"><i class="fa fa-check"></i><b>6.3</b> Session info</a></li>
+<li class="chapter" data-level="6.4" data-path="oncoprint.html"><a href="oncoprint.html#density-heatmap"><i class="fa fa-check"></i><b>6.4</b> density heatmap</a></li>
+<li class="chapter" data-level="6.5" data-path="oncoprint.html"><a href="oncoprint.html#stacked-plot"><i class="fa fa-check"></i><b>6.5</b> stacked plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>7</b> More Examples of Making Complex Heatmaps</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>7.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="7.0.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-genomic-regions-and-other-correspondance"><i class="fa fa-check"></i><b>7.0.2</b> Visualize genomic regions and other correspondance</a></li>
+<li class="chapter" data-level="7.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#combine-pvclust-and-heatmap"><i class="fa fa-check"></i><b>7.1</b> Combine pvclust and heatmap</a></li>
+<li class="chapter" data-level="7.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#make-a-same-plot-as-heatmap"><i class="fa fa-check"></i><b>7.2</b> Make a same plot as heatmap()</a></li>
+<li class="chapter" data-level="7.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>7.3</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="7.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#session-info-2"><i class="fa fa-check"></i><b>7.4</b> Session info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ComplexHeatmap Complete Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">ComplexHeatmap Complete Reference</h1>
+<h4 class="author"><em>Zuguang Gu</em></h4>
+<h4 class="date"><em>last revised on 2018-10-13</em></h4>
+</div>
+<div id="about" class="section level1 unnumbered">
+<h1>About</h1>
+<p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.0.</p>
+<p><strong>Please note, this documentation is not completely compatible with lower versions (&lt; 2.0.0, before Oct, 2018).</strong></p>
+<p>If you use <strong>ComplexHeatmap</strong> in your publications, I would be appreciated if you can cite:</p>
+<p>Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. DOI: <a href="https://doi.org/10.1093/bioinformatics/btw313">10.1093/bioinformatics/btw313</a></p>
+<p><img src="complexheatmap-cover.jpg" width="1240" /></p>
+
+<p>Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the <strong>ComplexHeatmap</strong> package provides a highly flexible way to arrange multiple heatmaps and supports self-defined annotation graphics.</p>
+<div id="general-design" class="section level2">
+<h2><span class="header-section-number">0.1</span> General design</h2>
+<p>Generally, a heatmap list contains several heatmaps and row annotations.</p>
+<p><img src="01-introduction_files/figure-html/design-1.png" width="960" /></p>
+<p>Surrounding the heatmap list, there are legends for heatmaps and annotations, also there are titles which are placed on the four sides of the heatmap list. And for each heatmap, there are also different components surrounding the heatmap body.</p>
+<p>The <strong>ComplexHeatmap</strong> package is implemented in an object-oriented way. To describe a heatmap list, there are following classes:</p>
+<ul>
+<li><code>Heatmap</code> class: a single heatmap containing heatmap body, row/column names, titles, dendrograms and column annotations.</li>
+<li><code>HeatmapList</code> class: a list of heatmaps and row annotations.</li>
+<li><code>HeatmapAnnotation</code> class: defines a list of row annotations and column annotations.</li>
+</ul>
+<p>There are also several internal classes:</p>
+<ul>
+<li><code>SingleAnnotation</code> class: defines a single row annotation or column annotation.</li>
+<li><code>ColorMapping</code> class: mapping from values to colors.</li>
+</ul>
+<p><strong>ComplexHeatmap</strong> is implemented under <strong>grid</strong> system, so users should know basic <strong>grid</strong> functionality to get full use of the package.</p>
+</div>
+<div id="vignettes" class="section level2">
+<h2><span class="header-section-number">0.2</span> Vignettes</h2>
+<p>There are several vignettes in the package. Each vignette focuses on one specific topic. Following lists the general topics discussed in these vignettes:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="s2.single_heatmap.html"><strong>Making a Single Heatmap</strong></a></p>
+This vignette introduces the basic configuration for making a single heatmap. Similar as other R functions/packages, the basic usage is quite similar, but there are several unique features for <strong>ComplexHeamtap</strong> package.
+<ul>
+<li>Works both for numeric matrix and character matrix.</li>
+<li>For numeric matrix which contains continuous values, the package allows a color mapping function which can give more accurate colors and be robust to outliers.</li>
+<li>Highly flexible for clustering. You can define the distance method for clustering by:
+<ul>
+<li>a pre-defined distance such as “euclidean” or “pearson”,</li>
+<li>a self-defined function which calculates distance from a matrix,</li>
+<li>a self-defined function which calculates distance from two vectors.</li>
+</ul>
+You can define the clustering method by:
+<ul>
+<li>a clustering function such as <code>diana()</code> from <strong>cluster</strong> package</li>
+<li>a <code>hclust</code> or <code>dendrogram</code> object.</li>
+</ul></li>
+<li><code>NA</code> is allowed for clustering and heatmap visualization.</li>
+<li>Dendrogram and dimension names can be put on any side of the heatmap.</li>
+<li>Rows on the heatmap can be split by <code>cutree</code>, by <code>kmeans</code> or by a data frame which contains different levels that split the heatmap.</li>
+<li>The heatmap body itself can be completely self-defined.</li>
+</ul></li>
+<li><p><a href="s3.a_list_of_heatmaps.html"><strong>Making a List of Heatmaps</strong></a></p>
+<p>This vignette introduces how to concatenate a list of heatmaps and how adjustment is applied to keep the correspondence of the heatmaps.</p></li>
+<li><p><a href="s4.heatmap_annotation.html"><strong>Heatmap Annotations</strong></a></p>
+<p>This vignette introduces the concept of the heatmap annotation and demonstrates how to make simple annotations as well as complex annotations. Also, the vignette explains the difference between column annotations and row annotations.</p></li>
+<li><p><a href="s5.legend.html"><strong>Heatmap and Annotation Legends</strong></a></p>
+<p>This vignette introduces how to configurate the heatmap legend and annotation legend, also how to add self-defined legends.</p></li>
+<li><p><a href="s6.heatmap_decoration.html"><strong>Heatmap Decoration</strong></a></p>
+<p>This vignette introduces methods to add more self-defined graphics to the heatmaps after the heatmaps are generated.</p></li>
+<li><p><a href="s7.interactive.html"><strong>Interactive with Heatmaps</strong></a></p>
+<p>How to select a region in the heatmap to retrieve the sub-matrix.</p></li>
+<li><p><a href="s8.oncoprint.html"><strong>OncoPrint</strong></a></p>
+<p>How to make an oncoPrint.</p></li>
+<li><p><a href="s9.examples.html"><strong>Examples</strong></a></p>
+<p>More simulated and real-world examples are shown in this vignette.</p></li>
+</ol>
+<p>In the supplementaries of <a href="http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract">the ComplexHeatmap paper</a>, there are four comprehensive examples which are applied on real-world high-throughput datasets. <a href="http://jokergoo.github.io/supplementary/ComplexHeatmap-supplementary1-4/index.html">The examples can be found here.</a></p>
+<p>Also <a href="http://jokergoo.github.io/blog.html">my blog</a> has some examples and tips for making better complex heatmaps.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="single-heatmap.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jokergoo/circlize_book/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": ["ComplexHeatmap-book.pdf", "ComplexHeatmap-book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

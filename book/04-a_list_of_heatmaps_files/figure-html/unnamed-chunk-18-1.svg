@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<rect x='195.31' y='11.05' width='9.00' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='37.93' width='18.00' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='64.82' width='27.00' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='91.71' width='36.00' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='118.60' width='44.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='145.48' width='53.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='172.37' width='62.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='199.26' width='71.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='226.14' width='80.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='253.03' width='89.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='279.92' width='98.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<rect x='195.31' y='306.81' width='107.99' height='16.13' style='stroke-width: 0.75; fill: #808080;' />
+<polyline points='195.31,328.31 308.69,328.31 ' style='stroke-width: 0.75;' />
+<line x1='195.31' y1='331.15' x2='195.31' y2='328.31' style='stroke-width: 0.75;' />
+<line x1='240.30' y1='331.15' x2='240.30' y2='328.31' style='stroke-width: 0.75;' />
+<line x1='285.30' y1='331.15' x2='285.30' y2='328.31' style='stroke-width: 0.75;' />
+<text transform='translate(198.17,338.43) rotate(-90)' style='font-size: 8.00px; font-family: Arial;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text transform='translate(243.17,338.43) rotate(-90)' style='font-size: 8.00px; font-family: Arial;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text transform='translate(288.16,342.88) rotate(-90)' style='font-size: 8.00px; font-family: Arial;' textLength='8.90px' lengthAdjust='spacingAndGlyphs'>10</text>
+<rect x='195.31' y='5.67' width='113.39' height='322.65' style='stroke-width: 0.75;' />
+<text x='243.33' y='354.31' style='font-size: 12.00px; font-family: Arial;' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>bar</text>
+</svg>

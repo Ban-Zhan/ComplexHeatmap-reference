@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 432.00 25.51'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<rect x='42.52' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #FFFFFF;' />
+<rect x='77.22' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #FDEBFB;' />
+<rect x='111.91' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #FBD7F8;' />
+<rect x='146.61' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #F8C3F4;' />
+<rect x='181.30' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #F4AEF0;' />
+<rect x='216.00' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #F09AEC;' />
+<rect x='250.70' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #EB84E8;' />
+<rect x='285.39' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #E56DE4;' />
+<rect x='320.09' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #DF53DF;' />
+<rect x='354.78' y='5.67' width='34.70' height='14.17' style='stroke-width: 0.75; stroke: none; fill: #D931DB;' />
+<text x='56.53' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>a</text>
+<text x='91.56' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.00px' lengthAdjust='spacingAndGlyphs'>c</text>
+<text x='125.92' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>a</text>
+<text x='160.62' y='16.98' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>b</text>
+<text x='195.32' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>a</text>
+<text x='230.01' y='16.98' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>b</text>
+<text x='264.71' y='16.98' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>b</text>
+<text x='299.40' y='16.98' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>b</text>
+<text x='334.10' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>a</text>
+<text x='369.13' y='15.87' style='font-size: 12.00px; font-family: Arial;' textLength='6.00px' lengthAdjust='spacingAndGlyphs'>c</text>
+<text x='392.31' y='17.05' style='font-size: 12.00px; font-family: Arial;' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>foo</text>
+</svg>

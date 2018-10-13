@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 432.00 39.69'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<polyline points='59.87,32.73 94.56,26.28 129.26,19.84 163.96,13.40 198.65,6.96 233.35,32.73 268.04,26.28 302.74,19.84 337.44,13.40 372.13,6.96 ' style='stroke-width: 0.75; stroke: #FF0000;' />
+<circle cx='59.87' cy='32.73' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='94.56' cy='26.28' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='129.26' cy='19.84' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='163.96' cy='13.40' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='198.65' cy='6.96' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='233.35' cy='32.73' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='268.04' cy='26.28' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='302.74' cy='19.84' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='337.44' cy='13.40' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<circle cx='372.13' cy='6.96' r='2.13pt' style='stroke-width: 0.75; stroke: #00FFFF;' />
+<polyline points='59.87,6.96 94.56,13.40 129.26,19.84 163.96,26.28 198.65,32.73 233.35,6.96 268.04,13.40 302.74,19.84 337.44,26.28 372.13,32.73 ' style='stroke-width: 0.75; stroke: #00CD00;' />
+<circle cx='59.87' cy='6.96' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='94.56' cy='13.40' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='129.26' cy='19.84' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='163.96' cy='26.28' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='198.65' cy='32.73' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='233.35' cy='6.96' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='268.04' cy='13.40' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='302.74' cy='19.84' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='337.44' cy='26.28' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<circle cx='372.13' cy='32.73' r='2.13pt' style='stroke-width: 0.75; stroke: none; fill: #FF00FF;' />
+<polyline points='42.52,34.02 42.52,5.67 ' style='stroke-width: 0.75;' />
+<line x1='39.69' y1='26.28' x2='42.52' y2='26.28' style='stroke-width: 0.75;' />
+<line x1='39.69' y1='13.40' x2='42.52' y2='13.40' style='stroke-width: 0.75;' />
+<text x='32.40' y='29.15' style='font-size: 8.00px; font-family: Arial;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='32.40' y='16.27' style='font-size: 8.00px; font-family: Arial;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
+<rect x='42.52' y='5.67' width='346.96' height='28.35' style='stroke-width: 0.75;' />
+<text x='392.31' y='24.14' style='font-size: 12.00px; font-family: Arial;' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>foo</text>
+</svg>
