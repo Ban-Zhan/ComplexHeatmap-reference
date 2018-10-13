@@ -1,34 +1,6 @@
 
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{8. OncoPrint}
--->
 
-OncoPrint
-========================================
-
-**Author**: Zuguang Gu ( z.gu@dkfz.de )
-
-**Date**: `r Sys.Date()`
-
--------------------------------------------------------------
-
-```{r global_settings, echo = FALSE, message = FALSE}
-library(markdown)
-options(markdown.HTML.options = c(options('markdown.HTML.options')[[1]], "toc"))
-
-library(knitr)
-knitr::opts_chunk$set(
-    error = FALSE,
-    tidy  = FALSE,
-    message = FALSE,
-    fig.align = "center",
-    fig.width = 5,
-    fig.height = 5)
-options(markdown.HTML.stylesheet = "custom.css")
-
-options(width = 100)
-```
+# OncoPrint
 
 <a href="http://www.cbioportal.org/faq.jsp#what-are-oncoprints">OncoPrint</a> is a way to visualize 
 multiple genomic alteration events by heatmap. Here the **ComplexHeatmap** package provides a `oncoPrint()` function.

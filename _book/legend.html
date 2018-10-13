@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ComplexHeatmap Complete Reference</title>
+  <meta name="description" content="This book is a complete reference to ComplexHeatmap pacakge.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="ComplexHeatmap Complete Reference" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-book/" />
+  <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+  <meta property="og:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="github-repo" content="jokergoo/ComplexHeatmap_book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
+  
+  <meta name="twitter:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+
+<meta name="author" content="Zuguang Gu">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="making-a-list-of-heatmaps.html">
+<link rel="next" href="oncoprint.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#general-design"><i class="fa fa-check"></i><b>0.1</b> General design</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#vignettes"><i class="fa fa-check"></i><b>0.2</b> Vignettes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="single-heatmap.html"><a href="single-heatmap.html"><i class="fa fa-check"></i><b>1</b> Single Heatmap</a><ul>
+<li class="chapter" data-level="1.1" data-path="single-heatmap.html"><a href="single-heatmap.html#colors"><i class="fa fa-check"></i><b>1.1</b> Colors</a></li>
+<li class="chapter" data-level="1.2" data-path="single-heatmap.html"><a href="single-heatmap.html#titles"><i class="fa fa-check"></i><b>1.2</b> Titles</a></li>
+<li class="chapter" data-level="1.3" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering"><i class="fa fa-check"></i><b>1.3</b> Clustering</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="single-heatmap.html"><a href="single-heatmap.html#distance-methods"><i class="fa fa-check"></i><b>1.3.1</b> Distance methods</a></li>
+<li class="chapter" data-level="1.3.2" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering-methods"><i class="fa fa-check"></i><b>1.3.2</b> Clustering methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="single-heatmap.html"><a href="single-heatmap.html#render-dendrograms"><i class="fa fa-check"></i><b>1.3.3</b> Render dendrograms</a></li>
+<li class="chapter" data-level="1.3.4" data-path="single-heatmap.html"><a href="single-heatmap.html#reorder-dendrograms"><i class="fa fa-check"></i><b>1.3.4</b> Reorder dendrograms</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="single-heatmap.html"><a href="single-heatmap.html#row-and-column-orders"><i class="fa fa-check"></i><b>1.4</b> Row and column orders</a></li>
+<li class="chapter" data-level="1.5" data-path="single-heatmap.html"><a href="single-heatmap.html#seriation"><i class="fa fa-check"></i><b>1.5</b> Seriation</a></li>
+<li class="chapter" data-level="1.6" data-path="single-heatmap.html"><a href="single-heatmap.html#dimension-names"><i class="fa fa-check"></i><b>1.6</b> Dimension names</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-k-means-clustering"><i class="fa fa-check"></i><b>1.6.1</b> Split by k-means clustering</a></li>
+<li class="chapter" data-level="1.6.2" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-categorical-variables"><i class="fa fa-check"></i><b>1.6.2</b> Split by categorical variables</a></li>
+<li class="chapter" data-level="1.6.3" data-path="single-heatmap.html"><a href="single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>1.6.3</b> Graphic parameters for splitting</a></li>
+<li class="chapter" data-level="1.6.4" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-dendrogram"><i class="fa fa-check"></i><b>1.6.4</b> Split by dendrogram</a></li>
+<li class="chapter" data-level="1.6.5" data-path="single-heatmap.html"><a href="single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>1.6.5</b> Titles for splitting</a></li>
+<li class="chapter" data-level="1.6.6" data-path="single-heatmap.html"><a href="single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>1.6.6</b> Gaps between slices</a></li>
+<li class="chapter" data-level="1.6.7" data-path="single-heatmap.html"><a href="single-heatmap.html#split-the-heatmap-annotations"><i class="fa fa-check"></i><b>1.6.7</b> Split the heatmap annotations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="single-heatmap.html"><a href="single-heatmap.html#heatmap-as-raster-image"><i class="fa fa-check"></i><b>1.7</b> Heatmap as raster image</a></li>
+<li class="chapter" data-level="1.8" data-path="single-heatmap.html"><a href="single-heatmap.html#customize-the-heatmap-body"><i class="fa fa-check"></i><b>1.8</b> Customize the heatmap body</a></li>
+<li class="chapter" data-level="1.9" data-path="single-heatmap.html"><a href="single-heatmap.html#size-of-the-heatmap"><i class="fa fa-check"></i><b>1.9</b> Size of the heatmap</a></li>
+<li class="chapter" data-level="1.10" data-path="single-heatmap.html"><a href="single-heatmap.html#plot-the-heatmap"><i class="fa fa-check"></i><b>1.10</b> Plot the heatmap</a></li>
+<li class="chapter" data-level="1.11" data-path="single-heatmap.html"><a href="single-heatmap.html#get-orders-and-dendrograms"><i class="fa fa-check"></i><b>1.11</b> Get orders and dendrograms</a></li>
+<li class="chapter" data-level="1.12" data-path="single-heatmap.html"><a href="single-heatmap.html#subset-a-heatmap"><i class="fa fa-check"></i><b>1.12</b> Subset a heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html"><i class="fa fa-check"></i><b>2</b> Heatmap Annotations</a><ul>
+<li class="chapter" data-level="2.1" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation"><i class="fa fa-check"></i><b>2.1</b> Simple annotation</a></li>
+<li class="chapter" data-level="2.2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation-as-an-annotation-function"><i class="fa fa-check"></i><b>2.2</b> Simple annotation as an annotation function</a></li>
+<li class="chapter" data-level="2.3" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#empty-annotation"><i class="fa fa-check"></i><b>2.3</b> Empty annotation</a></li>
+<li class="chapter" data-level="2.4" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#image-annotation"><i class="fa fa-check"></i><b>2.4</b> Image annotation</a></li>
+<li class="chapter" data-level="2.5" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#points-annotation"><i class="fa fa-check"></i><b>2.5</b> Points annotation</a></li>
+<li class="chapter" data-level="2.6" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#lines-annotation"><i class="fa fa-check"></i><b>2.6</b> Lines annotation</a></li>
+<li class="chapter" data-level="2.7" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#barplot-annotation"><i class="fa fa-check"></i><b>2.7</b> Barplot annotation</a></li>
+<li class="chapter" data-level="2.8" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#boxplot-annotation"><i class="fa fa-check"></i><b>2.8</b> Boxplot annotation</a></li>
+<li class="chapter" data-level="2.9" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#histogram-annotation"><i class="fa fa-check"></i><b>2.9</b> histogram annotation</a></li>
+<li class="chapter" data-level="2.10" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#density-annotation"><i class="fa fa-check"></i><b>2.10</b> Density annotation</a></li>
+<li class="chapter" data-level="2.11" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#joyplot-annotation"><i class="fa fa-check"></i><b>2.11</b> Joyplot annotation</a></li>
+<li class="chapter" data-level="2.12" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#horizon-chart-annotation"><i class="fa fa-check"></i><b>2.12</b> Horizon chart annotation</a></li>
+<li class="chapter" data-level="2.13" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#text-annotation"><i class="fa fa-check"></i><b>2.13</b> Text annotation</a></li>
+<li class="chapter" data-level="2.14" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#mark-annotation"><i class="fa fa-check"></i><b>2.14</b> Mark annotation</a></li>
+<li class="chapter" data-level="2.15" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#multiple-annotations"><i class="fa fa-check"></i><b>2.15</b> Multiple annotations</a></li>
+<li class="chapter" data-level="2.16" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#summary-annotation"><i class="fa fa-check"></i><b>2.16</b> Summary annotation</a></li>
+<li class="chapter" data-level="2.17" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#utility-functions"><i class="fa fa-check"></i><b>2.17</b> Utility functions</a></li>
+<li class="chapter" data-level="2.18" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#implement-new-annotation-function"><i class="fa fa-check"></i><b>2.18</b> Implement new annotation function</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html"><i class="fa fa-check"></i><b>3</b> Making A List of Heatmaps</a><ul>
+<li class="chapter" data-level="3.1" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#titles-1"><i class="fa fa-check"></i><b>3.1</b> Titles</a></li>
+<li class="chapter" data-level="3.2" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#size-of-heatmaps"><i class="fa fa-check"></i><b>3.2</b> Size of heatmaps</a></li>
+<li class="chapter" data-level="3.3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#gap-between-heatmaps"><i class="fa fa-check"></i><b>3.3</b> Gap between heatmaps</a></li>
+<li class="chapter" data-level="3.4" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#auto-adjustment-to-the-main-heatmap"><i class="fa fa-check"></i><b>3.4</b> Auto adjustment to the main heatmap</a></li>
+<li class="chapter" data-level="3.5" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#control-row-in-draw-function"><i class="fa fa-check"></i><b>3.5</b> control row … in draw() function</a></li>
+<li class="chapter" data-level="3.6" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#annotation-as-components-are-adjusted"><i class="fa fa-check"></i><b>3.6</b> Annotation as components are adjusted</a></li>
+<li class="chapter" data-level="3.7" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#concatenate-with-annotations"><i class="fa fa-check"></i><b>3.7</b> concatenate with annotations</a></li>
+<li class="chapter" data-level="3.8" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#only-annotations"><i class="fa fa-check"></i><b>3.8</b> Only annotations</a></li>
+<li class="chapter" data-level="3.9" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#vertical-align"><i class="fa fa-check"></i><b>3.9</b> vertical align</a></li>
+<li class="chapter" data-level="3.10" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#retrieve-orders-and-dendrograms"><i class="fa fa-check"></i><b>3.10</b> Retrieve orders and dendrograms</a></li>
+<li class="chapter" data-level="3.11" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#change-graphic-parameters-simultaneously"><i class="fa fa-check"></i><b>3.11</b> Change graphic parameters simultaneously</a></li>
+<li class="chapter" data-level="3.12" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#session-info"><i class="fa fa-check"></i><b>3.12</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="legend.html"><a href="legend.html"><i class="fa fa-check"></i><b>4</b> Legend</a><ul>
+<li class="chapter" data-level="4.1" data-path="legend.html"><a href="legend.html#continuous-legend"><i class="fa fa-check"></i><b>4.1</b> Continuous legend</a></li>
+<li class="chapter" data-level="4.2" data-path="legend.html"><a href="legend.html#discrete-legend"><i class="fa fa-check"></i><b>4.2</b> Discrete legend</a></li>
+<li class="chapter" data-level="4.3" data-path="legend.html"><a href="legend.html#a-list-of-legends"><i class="fa fa-check"></i><b>4.3</b> A list of legends</a></li>
+<li class="chapter" data-level="4.4" data-path="legend.html"><a href="legend.html#heatmap-and-annotation-legends"><i class="fa fa-check"></i><b>4.4</b> Heatmap and annotation legends</a></li>
+<li class="chapter" data-level="4.5" data-path="legend.html"><a href="legend.html#to-add-customized-legend."><i class="fa fa-check"></i><b>4.5</b> To add customized legend.</a></li>
+<li class="chapter" data-level="4.6" data-path="legend.html"><a href="legend.html#legends-setting-for-the-heatmaps"><i class="fa fa-check"></i><b>4.6</b> legends setting for the heatmaps</a></li>
+<li class="chapter" data-level="4.7" data-path="legend.html"><a href="legend.html#heatmap-decoration"><i class="fa fa-check"></i><b>4.7</b> Heatmap decoration</a></li>
+<li class="chapter" data-level="4.8" data-path="legend.html"><a href="legend.html#decorate_-functions"><i class="fa fa-check"></i><b>4.8</b> decorate_* functions</a></li>
+<li class="chapter" data-level="4.9" data-path="legend.html"><a href="legend.html#examples"><i class="fa fa-check"></i><b>4.9</b> Examples</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="legend.html"><a href="legend.html#barplot-for-single-column-heatmap"><i class="fa fa-check"></i><b>4.9.1</b> Barplot for single column heatmap</a></li>
+<li class="chapter" data-level="4.9.2" data-path="legend.html"><a href="legend.html#add-decoration-for-a-customized-heatmap"><i class="fa fa-check"></i><b>4.9.2</b> add decoration for a customized heatmap</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="oncoprint.html"><a href="oncoprint.html"><i class="fa fa-check"></i><b>5</b> OncoPrint</a><ul>
+<li class="chapter" data-level="5.1" data-path="oncoprint.html"><a href="oncoprint.html#general-settings"><i class="fa fa-check"></i><b>5.1</b> General settings</a></li>
+<li class="chapter" data-level="5.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>5.2</b> Apply to cBioPortal dataset</a></li>
+<li class="chapter" data-level="5.3" data-path="oncoprint.html"><a href="oncoprint.html#session-info-1"><i class="fa fa-check"></i><b>5.3</b> Session info</a></li>
+<li class="chapter" data-level="5.4" data-path="oncoprint.html"><a href="oncoprint.html#density-heatmap"><i class="fa fa-check"></i><b>5.4</b> density heatmap</a></li>
+<li class="chapter" data-level="5.5" data-path="oncoprint.html"><a href="oncoprint.html#stacked-plot"><i class="fa fa-check"></i><b>5.5</b> stacked plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>6</b> More Examples of Making Complex Heatmaps</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>6.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="6.0.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-genomic-regions-and-other-correspondance"><i class="fa fa-check"></i><b>6.0.2</b> Visualize genomic regions and other correspondance</a></li>
+<li class="chapter" data-level="6.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#combine-pvclust-and-heatmap"><i class="fa fa-check"></i><b>6.1</b> Combine pvclust and heatmap</a></li>
+<li class="chapter" data-level="6.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#make-a-same-plot-as-heatmap"><i class="fa fa-check"></i><b>6.2</b> Make a same plot as heatmap()</a></li>
+<li class="chapter" data-level="6.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>6.3</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="6.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#session-info-2"><i class="fa fa-check"></i><b>6.4</b> Session info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ComplexHeatmap Complete Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="legend" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Legend</h1>
+<p>The heatmaps and simple annotations automatically generate legends which are put one the right side of the heatmap. By default there is no legend for complex annotations, but they can be constructed and added manually. All legends are constructed by <code>Legend()</code> contructor. In later sections, we first introduce the settings for continuous legends and discrete legends, then we will discuss how to configure the legends associated with the heatmaps and annotations, and how to add new legends to the plot.</p>
+<p>All the legends (no matter a single legend or a pack of legends) all belong to the <code>Legends</code> class. The class only has one slot <code>grob</code> which is the real <code>grid::grob</code> object or the <code>grid::gTree</code> object that records how to draw the graphics. The wrapping of the <code>Legends</code> class and the methods designed for the class make legends as single compacted objects and can be draw like points with specifying the positions of the legends.</p>
+<div id="continuous-legend" class="section level2">
+<h2><span class="header-section-number">4.1</span> Continuous legend</h2>
+<p>Since most of heatmaps contain continuous values, we first introduce the settings for continuous legend. Continuous legend needs a color mapping function which should be generated by <code>circlize::colorRamp2()</code>. In the heatmap legends and annotation legends that are automatically generated, the color mapping functions are passed by the <code>col</code> argument from <code>Heatmap()</code> or <code>HeatmapAnnotation()</code> function, while if you construct a separated legend, you need to provide the color mapping function.</p>
+<p>The break values provides in the color mapping function (e.g. <code>c(0, 0.5, 1)</code>) will not exactly be the same as the break values in the legends). The finally break values presented in the legend are internally adjusted to make the numbers close to 5 or 6.</p>
+<p>First we show the default style of a vertical continuous legend:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(circlize)
+col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))
+lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-231-1.png" width="52.5509042814961" style="display: block; margin: auto;" /></p>
+<p><code>lgd</code> is a <code>Legends</code> class object. The size of the legend can be obtained by <code>width()</code> and <code>height()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">width</span>(lgd)</code></pre></div>
+<pre><code>## [1] 9.90409342447917mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the three values are the height of the title, the gap between title and legend, </span>
+<span class="co"># and the height of the legend. </span>
+<span class="kw">height</span>(lgd)</code></pre></div>
+<pre><code>## [1] 2.52525499131945mm+1.5mm+24mm</code></pre>
+<p>The legend which is actually a packed graphic objects composed of rectangles, lines, text can be added by <code>draw()</code> function. In <strong>ComplexHeatmap</strong> pacakge, you don’t need to use <code>draw()</code> directly on legend objects, but it might be useful if you use the legend objects in other places.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code only for demonstration</span>
+<span class="kw">draw</span>(lgd, <span class="dt">x =</span> , <span class="dt">y =</span> , <span class="dt">just =</span> )</code></pre></div>
+<p>If you only want to configure the legends generated by heatmaps or annotations, you don’t need to construct the <code>Legends</code> object by your own, but the parameters introduced later can be used to customize the legends by <code>heatmap_legend_param</code> argument in <code>Heatmap()</code> and <code>annotation_legend_param</code> argument in <code>HeatmapAnnotation()</code>. It is still nice to see how these parameters change the styles of the legend in following examples.</p>
+<p>In following examples, we only show how to construct the legend object, while not show the code which draws the legends. Only remember you can use <code>draw()</code> function on the <code>Legends</code> object to draw the single legend on the plot.</p>
+<p>For continuous legend, you can manually adjust the break values in the legend by setting <code>at</code>. Note the height is automatically adjusted.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-235-1.png" width="59.9662688648294" style="display: block; margin: auto;" /></p>
+<p>The labels corresponding to the break values are set by <code>labels</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;high&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-237-1.png" width="77.7462167814961" style="display: block; margin: auto;" /></p>
+<p>The height of the vertical continous legend is set by <code>legend_height</code>. <code>legend_height</code> can only be set for the veritcal continous legend and the value is the height of the legend body (exluding the legend title).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-239-1.png" width="52.5509042814961" style="display: block; margin: auto;" /></p>
+<p>If it is a vertical legend, <code>grid_width</code> controls the widths of the legend body. <code>grid_width</code> is originally designed for the discrete legends where the each level in the legend is a grid, but here we use the same name for the parameter that controls the width of the legend.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">grid_width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-241-1.png" width="75.2280696358268" style="display: block; margin: auto;" /></p>
+<p>The graphic parameters for the labels are controlled by <code>labels_gp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">labels_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">font =</span> <span class="dv">3</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-243-1.png" width="52.5509042814961" style="display: block; margin: auto;" /></p>
+<p>The border of the legend as well as the ticks for the break values are controlled by <code>border</code>. The value of <code>border</code> can be logical or a string of color.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-245-1.png" width="52.5509042814961" style="display: block; margin: auto;" /></p>
+<p><code>title_position</code> controls the position of titles. For vertical legends, the value should be one of <code>topleft</code>, <code>topcenter</code>, <code>lefttop-rot</code> and <code>leftcenter-rot</code>. Following two shows the effect of <code>lefttop-rot</code> title and <code>leftcenter-rot</code> title.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foooooooo&quot;</span>, <span class="dt">title_position =</span> <span class="st">&quot;lefttop-rot&quot;</span>,
+    <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-247-1.png" width="67.7644664534121" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foooooooo&quot;</span>, <span class="dt">title_position =</span> <span class="st">&quot;leftcenter-rot&quot;</span>,
+    <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-249-1.png" width="67.7644664534121" style="display: block; margin: auto;" /></p>
+<p>Settings for horizontal continuous legends are almost the same as vertical legends, except that now <code>legend_width</code> controls the width of the legend, and the title position can only be one of <code>topcenter</code>, <code>topleft</code>, <code>lefttop</code> and <code>leftcenter</code>.</p>
+<p>The default style for horizontal legend:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-251-1.png" width="148.575141486221" style="display: block; margin: auto;" /></p>
+<p>Manually set <code>at</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>), 
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-253-1.png" width="143.018500861221" style="display: block; margin: auto;" /></p>
+<p>Manually set <code>labels</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), 
+    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;high&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-255-1.png" width="148.53607898622" style="display: block; margin: auto;" /></p>
+<p>Set <code>legend_width</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_width =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-257-1.png" width="241.889763779528" style="display: block; margin: auto;" /></p>
+<p>Set graphic parameters for labels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">labels_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">font =</span> <span class="dv">3</span>), 
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-259-1.png" width="148.575141486221" style="display: block; margin: auto;" /></p>
+<p>Title can be set as <code>topleft</code>, <code>topcenter</code> or <code>lefttop</code> and <code>leftcenter</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foooooooo&quot;</span>, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, 
+    <span class="dt">title_position =</span> <span class="st">&quot;topcenter&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-261-1.png" width="148.575141486221" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foooooooo&quot;</span>, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, 
+    <span class="dt">title_position =</span> <span class="st">&quot;lefttop&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-263-1.png" width="223.84078699147" style="display: block; margin: auto;" /></p>
+<p>In examples we showed above, the intervals between every two break values are equal. Actually <code>at</code> can also be set as break values with uneuqal intervals. In this scenario, the ticks on the legend are still at the original places while the corresponding texts are shifted to get rid of overlapping. Then, there is lines linking the ticks and the texts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="dv">1</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-265-1.png" width="71.3048515419948" style="display: block; margin: auto;" /></p>
+<p>If the labels do not need to be adjusted, they are still at the original places and there will be no links.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.3</span>, <span class="dv">1</span>), <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-267-1.png" width="52.5509042814961" style="display: block; margin: auto;" /></p>
+<p>It is similar for the horizontal legends:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="dv">1</span>),
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-269-1.png" width="198.623969611221" style="display: block; margin: auto;" /></p>
+<p>Set rotations of labels to 90 degree.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="dv">1</span>),
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, <span class="dt">title_position =</span> <span class="st">&quot;lefttop&quot;</span>, <span class="dt">labels_rot =</span> <span class="dv">90</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-271-1.png" width="141.73141199147" style="display: block; margin: auto;" /></p>
+<p>When the position of title is set to <code>lefttop</code>, the area below the title will also be taken into account of calculating the adjusted positions of labels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>),
+    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;mininal&quot;</span>, <span class="st">&quot;q10&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;q75&quot;</span>, <span class="st">&quot;maximal&quot;</span>),
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, <span class="dt">title_position =</span> <span class="st">&quot;lefttop&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-273-1.png" width="311.66305261647" style="display: block; margin: auto;" /></p>
+</div>
+<div id="discrete-legend" class="section level2">
+<h2><span class="header-section-number">4.2</span> Discrete legend</h2>
+<p>Discrete legends are used for discrete color mapping. The continuous color mapping can be degenerated as discrete color mapping by only providing the colors corresponding to the break values.</p>
+<p>You can either specify <code>at</code> or <code>labels</code>, but most probably you specify <code>labels</code>. The colors should be specified by <code>legend_gp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-275-1.png" width="41.4311126148294" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-277-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<p>The position of title:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>),
+    <span class="dt">title_position =</span> <span class="st">&quot;lefttop&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-279-1.png" width="113.767070620079" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>),
+    <span class="dt">title_position =</span> <span class="st">&quot;leftcenter-rot&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-281-1.png" width="102.582174786745" style="display: block; margin: auto;" /></p>
+<p>The size of grids are controlled by <code>grid_width</code> and <code>grid_height</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">grid_height =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">grid_width =</span> <span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-283-1.png" width="45.2106401738845" style="display: block; margin: auto;" /></p>
+<p>The graphic parameters of labels are controlled by <code>labels_gp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">labels_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">fontsize =</span> <span class="dv">14</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-285-1.png" width="108.709758448163" style="display: block; margin: auto;" /></p>
+<p>The graphic parameters of the title are controlled by <code>title_gp</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">title_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">fontsize =</span> <span class="dv">14</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-287-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<p>Borders of grids are controlled by <code>border</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">border =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-289-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<p>One important thing for the discrete legend is you can arrange the grids into multiple rows or/and columns. If <code>ncol</code> is set to a number, the grids are arranged into <code>ncol</code> columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-291-1.png" width="247.013769274934" style="display: block; margin: auto;" /></p>
+<p>Still the title position is calculated based on the multiplt-column legend.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">title_position =</span> <span class="st">&quot;topcenter&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-293-1.png" width="247.013769274934" style="display: block; margin: auto;" /></p>
+<p>You can choose to list the legend levels by rows by setting <code>by_row = TRUE</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">by_row =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-295-1.png" width="252.938248441601" style="display: block; margin: auto;" /></p>
+<p>The gap between two columns are controlled by <code>gap</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, 
+    <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-297-1.png" width="307.486210219816" style="display: block; margin: auto;" /></p>
+<p>Instead of <code>ncol</code>, you can also specify the layout by <code>nrow</code>. Note you cannot use <code>ncol</code> and <code>nrow</code> at a same time.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-299-1.png" width="308.301191354987" style="display: block; margin: auto;" /></p>
+<p>One extreme case is when all levels are put in one row and the title are rotated by 90 degree. The height of the legend will be the height of the rotated title.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foooooo&quot;</span>, 
+    <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">title_position =</span> <span class="st">&quot;lefttop-rot&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-301-1.png" width="400.119545603674" style="display: block; margin: auto;" /></p>
+<p>Following style a lot of people might like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;foooooo&quot;</span>, 
+    <span class="dt">nrow =</span> <span class="dv">1</span>, <span class="dt">title_position =</span> <span class="st">&quot;leftcenter&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-303-1.png" width="443.882566437008" style="display: block; margin: auto;" /></p>
+<p><code>Legend()</code> also supports to use simple graphics (e.g. points, lines) as legends. <code>type</code> argument can be specified as <code>points</code> that you can use number for <code>pch</code> or single-letter for <code>pch</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;points&quot;</span>, 
+    <span class="dt">pch =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">background =</span> <span class="st">&quot;#FF8080&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-305-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;points&quot;</span>, 
+    <span class="dt">pch =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">background =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-307-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<p>Or set <code>type = &quot;lines&quot;</code> to use lines as legend:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;lines&quot;</span>, 
+    <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">grid_width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-309-1.png" width="110.04577796916" style="display: block; margin: auto;" /></p>
+</div>
+<div id="a-list-of-legends" class="section level2">
+<h2><span class="header-section-number">4.3</span> A list of legends</h2>
+<p>A list of legends can also be constructed or packed as a <code>Legends</code> object where the individual legends are arranged in a certain layout. The legend list can be sent to <code>packLegend()</code> separatedly or as a list. The legend can be arranged either vertically or horizontally.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd1 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;legend1&quot;</span>)
+lgd2 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;legend2&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>))
+lgd3 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">7</span><span class="op">:</span><span class="dv">9</span>), <span class="dt">title =</span> <span class="st">&quot;legend3&quot;</span>)
+
+pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3)
+<span class="co"># which is same as </span>
+pd =<span class="st"> </span><span class="kw">packLegend</span>(<span class="dt">list =</span> <span class="kw">list</span>(lgd1, lgd2, lgd3))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-311-1.png" width="87.3686126148294" style="display: block; margin: auto;" /></p>
+<p>Simillar as single legend, you can draw the packed legends by <code>draw()</code> function. Also you can get the size of <code>pd</code> by <code>width()</code> and <code>height()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">width</span>(pd)</code></pre></div>
+<pre><code>## [1] 19.1162787543403mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">height</span>(pd)</code></pre></div>
+<pre><code>## [1] 72.0757649739583mm</code></pre>
+<p>Horizontally arranging the legends simply by setting <code>direction = &quot;horizontal&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-314-1.png" width="203.254952017717" style="display: block; margin: auto;" /></p>
+<p>One feature of <code>packLegend()</code> is, e.g. if the packing is vertically and the sum of the packed legends exceeds the height specified by <code>max_height</code>, it will be rearragned as mutliple column layout. In following example, the maximum height is <code>10cm</code>.</p>
+<p>When all the legends are put into multiple columns, <code>column_gap</code> controls the space between two columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd3, lgd2, lgd3, lgd2, lgd1, <span class="dt">max_height =</span> <span class="kw">unit</span>(<span class="dv">10</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">column_gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-316-1.png" width="197.41439058399" style="display: block; margin: auto;" /></p>
+<p>Similar for horizontal packing:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd1 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;legend1&quot;</span>,
+    <span class="dt">nr =</span> <span class="dv">1</span>)
+lgd2 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">col_fun =</span> col_fun, <span class="dt">title =</span> <span class="st">&quot;legend2&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>),
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
+
+pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3, lgd1, lgd2, lgd3, <span class="dt">max_width =</span> <span class="kw">unit</span>(<span class="dv">10</span>, <span class="st">&quot;cm&quot;</span>), 
+    <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, <span class="dt">column_gap =</span> <span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">row_gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-318-1.png" width="357.589428518701" style="display: block; margin: auto;" /></p>
+</div>
+<div id="heatmap-and-annotation-legends" class="section level2">
+<h2><span class="header-section-number">4.4</span> Heatmap and annotation legends</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>)
+<span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(
+    <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>),
+    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;zero&quot;</span>, <span class="st">&quot;high&quot;</span>),
+    <span class="dt">title =</span> <span class="st">&quot;Some values&quot;</span>,
+    <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>),
+    <span class="dt">title_position =</span> <span class="st">&quot;lefttop-rot&quot;</span>
+))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-320-1.png" width="432" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+    <span class="dt">annotation_legend_param =</span> <span class="kw">list</span>(
+        <span class="dt">foo =</span> <span class="kw">list</span>(
+                <span class="dt">title =</span> <span class="st">&quot;Fooooooo&quot;</span>,
+                <span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">1</span>),
+                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;zero&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;one&quot;</span>)
+            ),
+        <span class="dt">bar =</span> <span class="kw">list</span>(
+                <span class="dt">title =</span> <span class="st">&quot;Baaaaaaar&quot;</span>,
+                <span class="dt">at =</span> <span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>),
+                <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)
+            )
+))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+<span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha) <span class="op">+</span>
+<span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha)</code></pre></div>
+<pre><code>## Warning in .local(object, ...): Heatmap/annotation names are duplicated:
+## mat1</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-322-1.png" width="432" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
+    <span class="dt">bar =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+    <span class="dt">show_legend =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>),
+    <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
+<span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha) <span class="op">+</span>
+<span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">show_heatmap_legend =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-323-1.png" width="432" style="display: block; margin: auto;" /></p>
+<p>If heatmaps / annotations are added horizontally, heatmap legends and row annotations are put in one viewport and column annotations are put in another viewport</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
+    <span class="dt">bar1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+ha2 =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">foo2 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
+    <span class="dt">bar2 =</span> <span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+ha3 =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">foo3 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
+    <span class="dt">bar3 =</span> <span class="kw">sample</span>(month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha1) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">left_annotation =</span> ha2) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span>ha3
+<span class="kw">draw</span>(ht_list, <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;bottom&quot;</span>, <span class="dt">annotation_legend_side =</span> <span class="st">&quot;left&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-324-1.png" width="432" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">merge_legend =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-325-1.png" width="432" style="display: block; margin: auto;" /></p>
+</div>
+<div id="to-add-customized-legend." class="section level2">
+<h2><span class="header-section-number">4.5</span> To add customized legend.</h2>
+</div>
+<div id="legends-setting-for-the-heatmaps" class="section level2">
+<h2><span class="header-section-number">4.6</span> legends setting for the heatmaps</h2>
+
+</div>
+<div id="heatmap-decoration" class="section level2">
+<h2><span class="header-section-number">4.7</span> Heatmap decoration</h2>
+<p>Each component of the heatmap/heatmap list has a name (unique id). You can go to any viewport to add graphics in by specifying the heatmap/annotation name.</p>
+<p>First generate a figure that almost contains all types of heatmap components.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">80</span>, <span class="dv">2</span>), <span class="dv">8</span>, <span class="dv">10</span>)
+mat =<span class="st"> </span><span class="kw">rbind</span>(mat, <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">40</span>, <span class="op">-</span><span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">10</span>))
+<span class="kw">rownames</span>(mat) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)
+<span class="kw">colnames</span>(mat) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+
+ha_column1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">points =</span> <span class="kw">anno_points</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat, <span class="dt">name =</span> <span class="st">&quot;ht1&quot;</span>, <span class="dt">km =</span> <span class="dv">2</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 1&quot;</span>, 
+    <span class="dt">top_annotation =</span> ha_column1, <span class="dt">row_names_side =</span> <span class="st">&quot;left&quot;</span>)
+
+ha_column2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">type =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">5</span>)),
+    <span class="dt">col =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> &quot;red&quot;</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> &quot;blue&quot;</span>)))
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat, <span class="dt">name =</span> <span class="st">&quot;ht2&quot;</span>, <span class="dt">row_title =</span> <span class="st">&quot;Heatmap 2&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 2&quot;</span>,
+    <span class="dt">bottom_annotation =</span> ha_column2, <span class="dt">column_km =</span> <span class="dv">2</span>)
+
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="kw">rowMeans</span>(mat), <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)))
+<span class="kw">draw</span>(ht_list, <span class="dt">row_title =</span> <span class="st">&quot;Heatmap list&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap list&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/access_components-1.png" width="720" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ComplexHeatmap<span class="op">:::</span><span class="kw">list_component</span>()</code></pre></div>
+<pre><code>## [1] &quot;ROOT&quot;</code></pre>
+<p>The components (viewports) that have names are:</p>
+<ul>
+<li><code>global</code>: the viewport which contains the whole figure.</li>
+<li><code>global_column_title</code>: the viewport which contains column title for the heatmap list.</li>
+<li><code>global_row_title</code>: the viewport which contains row title for the heatmap list.</li>
+<li><code>main_heatmap_list</code>: the viewport which contains a list of heatmaps and row annotations.</li>
+<li><code>heatmap_@{heatmap_name}</code>: the viewport which contains a single heatmap</li>
+<li><code>annotation_@{annotation_name}</code>: the viewport which contains an annotation on columns.</li>
+<li><code>annotation_@{annotation_name}_@{i}</code>: for row annotations</li>
+<li><code>@{heatmap_name}_heatmap_body_@{i}</code>: the heatmap body.</li>
+<li><code>@{heatmap_name}_column_title</code>: column title for a single heatmap.</li>
+<li><code>@{heatmap_name}_row_title_@{i}</code>: since a heatmap body may be splitted into several parts. <code>@{i}</code> is the index of the row slice.</li>
+<li><code>@{heatmap_name}_dend_row_@{i}</code>: dendrogram for ith row slice.</li>
+<li><code>@{heatmap_name}_dend_column</code>: dendrogram on columns</li>
+<li><code>@{heatmap_name}_row_names_@{i}</code>: the viewport which contains row names.</li>
+<li><code>@{heatmap_name}_column_names</code>: the viewport which contains column names.</li>
+<li><code>heatmap_legend</code>: the viewport which contains all heatmap legends.</li>
+<li><code>legend_@{heatmap_name}</code>: the viewport which contains a single heatmap legend.</li>
+<li><code>annotation_legend</code>: the viewport which contains all annotation legends.</li>
+<li><code>legend_@{annotation_name}</code>: the viewport which contains a single annotation legend.</li>
+</ul>
+</div>
+<div id="decorate_-functions" class="section level2">
+<h2><span class="header-section-number">4.8</span> decorate_* functions</h2>
+<p>Basically, you can go to these components by <code>seekViewport()</code>, but to hide the details that is too low-level, <strong>ComplexHeatmap</strong> package provides <code>decorate_*</code> family functions which makes it easy to add graphics into different components.</p>
+<p>Following code add annotation names, mark one grid in the heatmap and seperate the first column clusters with two rectangles.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list, <span class="dt">row_title =</span> <span class="st">&quot;Heatmap list&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap list&quot;</span>, 
+    <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">annotation_legend_side =</span> <span class="st">&quot;left&quot;</span>)
+
+<span class="kw">decorate_heatmap_body</span>(<span class="st">&quot;ht1&quot;</span>, {
+    <span class="kw">grid.text</span>(<span class="st">&quot;outlier&quot;</span>, <span class="fl">1.5</span><span class="op">/</span><span class="dv">10</span>, <span class="fl">2.5</span><span class="op">/</span><span class="dv">4</span>, <span class="dt">default.units =</span> <span class="st">&quot;npc&quot;</span>)
+    <span class="kw">grid.lines</span>(<span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">lwd =</span> <span class="dv">2</span>))
+}, <span class="dt">slice =</span> <span class="dv">2</span>)
+
+<span class="kw">decorate_column_dend</span>(<span class="st">&quot;ht1&quot;</span>, {
+    tree =<span class="st"> </span><span class="kw">column_dend</span>(ht_list)<span class="op">$</span>ht1[[<span class="dv">1</span>]]
+    ind =<span class="st"> </span><span class="kw">cutree</span>(<span class="kw">as.hclust</span>(tree), <span class="dt">k =</span> <span class="dv">2</span>)[<span class="kw">order.dendrogram</span>(tree)]
+
+    first_index =<span class="st"> </span><span class="cf">function</span>(l) <span class="kw">which</span>(l)[<span class="dv">1</span>]
+    last_index =<span class="st"> </span><span class="cf">function</span>(l) { x =<span class="st"> </span><span class="kw">which</span>(l); x[<span class="kw">length</span>(x)] }
+    x1 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">first_index</span>(ind <span class="op">==</span><span class="st"> </span><span class="dv">1</span>), <span class="kw">first_index</span>(ind <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>
+    x2 =<span class="st"> </span><span class="kw">c</span>(<span class="kw">last_index</span>(ind <span class="op">==</span><span class="st"> </span><span class="dv">1</span>), <span class="kw">last_index</span>(ind <span class="op">==</span><span class="st"> </span><span class="dv">2</span>))
+    <span class="kw">grid.rect</span>(<span class="dt">x =</span> x1<span class="op">/</span><span class="kw">length</span>(ind), <span class="dt">width =</span> (x2 <span class="op">-</span><span class="st"> </span>x1)<span class="op">/</span><span class="kw">length</span>(ind), <span class="dt">just =</span> <span class="st">&quot;left&quot;</span>,
+        <span class="dt">default.units =</span> <span class="st">&quot;npc&quot;</span>, <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;#FF000040&quot;</span>, <span class="st">&quot;#00FF0040&quot;</span>), <span class="dt">col =</span> <span class="ot">NA</span>))
+})
+
+<span class="kw">decorate_row_names</span>(<span class="st">&quot;ht1&quot;</span>, {
+    <span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;#FF000040&quot;</span>))
+}, <span class="dt">slice =</span> <span class="dv">2</span>)
+
+<span class="kw">decorate_row_title</span>(<span class="st">&quot;ht1&quot;</span>, {
+    <span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;#00FF0040&quot;</span>))
+}, <span class="dt">slice =</span> <span class="dv">1</span>)
+
+<span class="kw">decorate_annotation</span>(<span class="st">&quot;points&quot;</span>, {
+    <span class="kw">grid.lines</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="st">&quot;native&quot;</span>), <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>))
+})</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/components-1.png" width="720" style="display: block; margin: auto;" /></p>
+<p>For annotations which are created by <code>anno_points()</code>, <code>anno_barplot()</code> and <code>anno_boxplot()</code>, “native” unit can be used in the decoration code.</p>
+</div>
+<div id="examples" class="section level2">
+<h2><span class="header-section-number">4.9</span> Examples</h2>
+<div id="barplot-for-single-column-heatmap" class="section level3">
+<h3><span class="header-section-number">4.9.1</span> Barplot for single column heatmap</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">le =<span class="st"> </span><span class="kw">c</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">400</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+      <span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">600</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>))
+col =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> &quot;red&quot;</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> &quot;green&quot;</span>, <span class="st">&quot;c&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+split =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;group1&quot;</span>, <span class="dv">400</span>), <span class="kw">rep</span>(<span class="st">&quot;group2&quot;</span>, <span class="dv">600</span>))
+ht =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>),
+    <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">barplot =</span> <span class="kw">anno_empty</span>(<span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))))
+ht =<span class="st"> </span><span class="kw">draw</span>(ht, <span class="dt">split =</span> split)</code></pre></div>
+<pre><code>## Since all heatmaps/annotations have absolute units, the total width of the plot is 56mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ro =<span class="st"> </span><span class="kw">row_order</span>(ht)
+lt =<span class="st"> </span><span class="kw">lapply</span>(ro, <span class="cf">function</span>(index) {
+    t =<span class="st"> </span><span class="kw">table</span>(le[index])
+    t<span class="op">/</span><span class="kw">sum</span>(t)
+})
+<span class="kw">decorate_annotation</span>(<span class="st">&quot;barplot&quot;</span>, {
+    <span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">xscale =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>), <span class="dt">yscale =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))
+    <span class="kw">grid.rect</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="kw">cumsum</span>(lt[[<span class="dv">1</span>]]), <span class="dt">width =</span> <span class="fl">0.8</span>, <span class="dt">height =</span> lt[[<span class="dv">1</span>]], <span class="dt">just =</span> <span class="st">&quot;top&quot;</span>,
+        <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> col), <span class="dt">default.units =</span> <span class="st">&quot;native&quot;</span>)
+    <span class="kw">grid.rect</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="kw">cumsum</span>(lt[[<span class="dv">2</span>]]), <span class="dt">width =</span> <span class="fl">0.8</span>, <span class="dt">height =</span> lt[[<span class="dv">2</span>]], <span class="dt">just =</span> <span class="st">&quot;top&quot;</span>,
+        <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> col), <span class="dt">default.units =</span> <span class="st">&quot;native&quot;</span>)
+    <span class="kw">grid.yaxis</span>()
+    <span class="kw">grid.text</span>(<span class="st">&quot;Relative proportion&quot;</span>, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="st">&quot;cm&quot;</span>),<span class="dt">rot =</span> <span class="dv">90</span>, <span class="dt">just =</span> <span class="st">&quot;bottom&quot;</span>)
+    <span class="kw">popViewport</span>()
+})</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-327-1.png" width="432" style="display: block; margin: auto;" /></p>
+</div>
+<div id="add-decoration-for-a-customized-heatmap" class="section level3">
+<h3><span class="header-section-number">4.9.2</span> add decoration for a customized heatmap</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">customized_heatmap =<span class="st"> </span><span class="cf">function</span>(m, ...) {
+    post_fun =<span class="st"> </span><span class="cf">function</span>(ht) {
+        m =<span class="st"> </span>ht<span class="op">@</span>matrix
+        co =<span class="st"> </span><span class="kw">column_order</span>(ht)
+        cm =<span class="st"> </span><span class="kw">colMeans</span>(m)[co]
+        nc =<span class="st"> </span><span class="kw">ncol</span>(m)
+        ind =<span class="st"> </span><span class="kw">which</span>(cm <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)
+        <span class="cf">if</span>(<span class="kw">length</span>(ind)) {
+            <span class="kw">decorate_heatmap_body</span>(ht<span class="op">@</span>name, {
+                <span class="kw">grid.rect</span>((ind <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span>nc, <span class="fl">0.5</span>, <span class="dv">1</span><span class="op">/</span>nc, <span class="dv">1</span>, <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">fill =</span> <span class="ot">NA</span>),
+                    <span class="dt">just =</span> <span class="st">&quot;left&quot;</span>)
+            })
+        }
+    }
+    x =<span class="st"> </span><span class="kw">colMeans</span>(m)
+    <span class="kw">Heatmap</span>(m, ...,
+        <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">mean =</span> <span class="kw">anno_barplot</span>(x, <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">ifelse</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)), <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))),
+        <span class="dt">post_fun =</span> post_fun)
+}
+m1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">nr =</span> <span class="dv">10</span>)
+m2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">nr =</span> <span class="dv">10</span>)
+<span class="kw">customized_heatmap</span>(m1) <span class="op">%v%</span><span class="st"> </span><span class="kw">customized_heatmap</span>(m2)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-328-1.png" width="432" style="display: block; margin: auto;" /></p>
+
+<blockquote>
+
+</blockquote>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="making-a-list-of-heatmaps.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="oncoprint.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-legend.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

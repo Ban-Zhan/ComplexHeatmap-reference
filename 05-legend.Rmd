@@ -650,9 +650,6 @@ draw(ht_list, heatmap_legend_side = "bottom", annotation_legend_side = "left")
 draw(ht_list, merge_legend = TRUE)
 ```
 
-```{r}
-draw(ht_list, annotation_offset = "anno_top")
-```
 
 ## To add customized legend.
 

@@ -1,5 +1,5 @@
 
-## Heatmap decoration
+# Heatmap decoration
 
 
 Each component of the heatmap/heatmap list has a name (unique id). You can go to any viewport 
@@ -15,7 +15,7 @@ colnames(mat) = paste0("C", 1:10)
 
 ha_column1 = HeatmapAnnotation(points = anno_points(rnorm(10)))
 ht1 = Heatmap(mat, name = "ht1", km = 2, column_title = "Heatmap 1", 
-    top_annotation = ha_column1)
+    top_annotation = ha_column1, row_names_side = "left")
 
 ha_column2 = HeatmapAnnotation(type = c(rep("a", 5), rep("b", 5)),
     col = list(type = c("a" = "red", "b" = "blue")))
@@ -36,8 +36,10 @@ for(heatmap_name in c("ht1", "ht2")) {
     for(i in 1:2) {
         seekViewport(qq("@{heatmap_name}_heatmap_body_@{i}_1"))
         grid.rect(gp = gpar(fill = NA, col = "red"))
-        seekViewport(qq("@{heatmap_name}_row_names_@{i}"))
-        grid.rect(gp = gpar(fill = NA, col = "red"))
+        if(heatmap_name == "ht1") {
+            seekViewport(qq("@{heatmap_name}_row_names_@{i}"))
+            grid.rect(gp = gpar(fill = NA, col = "red"))
+        }
     }
         
     seekViewport(qq("@{heatmap_name}_column_title_1"))
@@ -102,7 +104,7 @@ decorate_heatmap_body("ht1", {
 }, slice = 2)
 
 decorate_column_dend("ht1", {
-    tree = column_dend(ht_list)$ht1
+    tree = column_dend(ht_list)$ht1[[1]]
     ind = cutree(as.hclust(tree), k = 2)[order.dendrogram(tree)]
 
     first_index = function(l) which(l)[1]
@@ -113,7 +115,7 @@ decorate_column_dend("ht1", {
         default.units = "npc", gp = gpar(fill = c("#FF000040", "#00FF0040"), col = NA))
 })
 
-decorate_row_names("ht2", {
+decorate_row_names("ht1", {
     grid.rect(gp = gpar(fill = "#FF000040"))
 }, slice = 2)
 

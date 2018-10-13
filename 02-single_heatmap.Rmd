@@ -148,16 +148,15 @@ change under different color spaces (the plot is made by [**HilbertCurve**
 package](https://bioconductor.org/packages/release/bioc/html/HilbertCurve.html)).
 
 ```{r, fig.width = 14, fig.height = 14/5, echo = FALSE, message = FALSE}
-suppressPackageStartupMessages(library(HilbertCurve))
 space = c("RGB", "LAB", "XYZ", "sRGB", "LUV")
 pushViewport(viewport(layout = grid.layout(nr = 1, nc = length(space))))
 for(i in seq_along(space)) {
     pushViewport(viewport(layout.pos.row = 1, layout.pos.col = i))
-    hc = HilbertCurve(1, 100, level = 4, newpage = FALSE, title = space[i])
-    ir = IRanges(start = 1:99, end = 2:100)
+    hc = HilbertCurve::HilbertCurve(1, 100, level = 4, newpage = FALSE, title = space[i])
+    ir = IRanges::IRanges(start = 1:99, end = 2:100)
     f = colorRamp2(c(-1, 0, 1), c("green", "black", "red"), space = space[i])
     col = f(seq(-1, 1, length = 100))
-    hc_points(hc, ir, np = 3, gp = gpar(col = col, fill = col))
+    HilbertCurve::hc_points(hc, ir, np = 3, gp = gpar(col = col, fill = col))
     upViewport()
 }
 upViewport()
@@ -165,11 +164,11 @@ grid.newpage()
 pushViewport(viewport(layout = grid.layout(nr = 1, nc = length(space))))
 for(i in seq_along(space)) {
     pushViewport(viewport(layout.pos.row = 1, layout.pos.col = i))
-    hc = HilbertCurve(1, 100, level = 4, newpage = FALSE, title = space[i])
-    ir = IRanges(start = 1:99, end = 2:100)
+    hc = HilbertCurve::HilbertCurve(1, 100, level = 4, newpage = FALSE, title = space[i])
+    ir = IRanges::IRanges(start = 1:99, end = 2:100)
     f = colorRamp2(c(-1, 0, 1), c("blue", "white", "red"), space = space[i])
     col = f(seq(-1, 1, length = 100))
-    hc_points(hc, ir, np = 3, gp = gpar(col = col, fill = col))
+    HilbertCurve::hc_points(hc, ir, np = 3, gp = gpar(col = col, fill = col))
     upViewport()
 }
 upViewport()

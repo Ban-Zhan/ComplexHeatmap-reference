@@ -31,7 +31,7 @@ type = gsub("s\\d+_", "", colnames(mat))
 ha = HeatmapAnnotation(df = data.frame(type = type))
 
 Heatmap(mat_scaled, name = "expression", km = 5, col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
-    top_annotation = ha, top_annotation_height = unit(4, "mm"), 
+    top_annotation = ha, 
     show_row_names = FALSE, show_column_names = FALSE) +
 Heatmap(base_mean, name = "base_mean", show_row_names = FALSE, width = unit(5, "mm")) +
 Heatmap(expr$length, name = "length", col = colorRamp2(c(0, 1000000), c("white", "orange")),
@@ -93,8 +93,8 @@ ht_list =
         cluster_columns = FALSE, column_names_gp = gpar(fontsize = 8), column_title = "Enhancer", 
         column_title_gp = gpar(fontsize = 10))
 
-ht_global_opt(heatmap_legend_title_gp = gpar(fontsize = 8, fontface = "bold"), 
-              heatmap_legend_labels_gp = gpar(fontsize = 8))
+ht_global_opt(legend_title_gp = gpar(fontsize = 8, fontface = "bold"), 
+              legend_labels_gp = gpar(fontsize = 8))
 draw(ht_list, newpage = FALSE, column_title = "Correspondence between methylation, expression and other genomic features", 
     column_title_gp = gpar(fontsize = 12, fontface = "bold"), heatmap_legend_side = "bottom")
 invisible(ht_global_opt(RESET = TRUE))
@@ -162,8 +162,8 @@ Heatmap(mat, name = "cases", col = colorRamp2(c(0, 800, 1000, 127000), c("white"
     cluster_columns = FALSE, show_row_dend = FALSE, rect_gp = gpar(col= "white"), show_column_names = FALSE,
     row_names_side = "left", row_names_gp = gpar(fontsize = 10),
     column_title = 'Measles cases in US states 1930-2001\nVaccine introduced 1961',
-    top_annotation = ha1, top_annotation_height = unit(1, "cm"),
-    bottom_annotation = ha_column, bottom_annotation_height = grobHeight(textGrob("1900"))) + ha2
+    top_annotation = ha1,
+    bottom_annotation = ha_column) + ha2
 
 decorate_heatmap_body("cases", {
     i = which(colnames(mat) == "1961")
@@ -172,25 +172,6 @@ decorate_heatmap_body("cases", {
     grid.text("Vaccine introduced", x, unit(1, "npc") + unit(5, "mm"))
 })
 ```
-
-## What if my annotation name is too long?
-
-There is no space allocated for annotation name, but when the annotation name is too long,
-you can add paddings of the whole plot to give empty spaces for the annotation names.
-
-```{r, fig.width = 7}
-ha = HeatmapAnnotation(df = data.frame(a_long_long_long_annotation_name = runif(10)),
-    show_legend = FALSE)
-ht = Heatmap(matrix(rnorm(100), 10), name = "foo", top_annotation = ha)
-# because the default width for row cluster is 1cm
-padding = unit.c(unit(2, "mm"), grobWidth(textGrob("a_long_long_long_annotation_name")) - unit(1, "cm"),
-    unit(c(2, 2), "mm"))
-draw(ht, padding = padding)
-decorate_annotation("a_long_long_long_annotation_name", {
-    grid.text("a_long_long_long_annotation_name", 0, 0.5, just = "right")
-})
-```
-
 
 ## Session info
 

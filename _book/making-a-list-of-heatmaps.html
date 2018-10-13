@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ComplexHeatmap Complete Reference</title>
+  <meta name="description" content="This book is a complete reference to ComplexHeatmap pacakge.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="ComplexHeatmap Complete Reference" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-book/" />
+  <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+  <meta property="og:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="github-repo" content="jokergoo/ComplexHeatmap_book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
+  
+  <meta name="twitter:description" content="This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-book/complexheatmap-cover.jpg" />
+
+<meta name="author" content="Zuguang Gu">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="heatmap-annotations.html">
+<link rel="next" href="legend.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#general-design"><i class="fa fa-check"></i><b>0.1</b> General design</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#vignettes"><i class="fa fa-check"></i><b>0.2</b> Vignettes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="single-heatmap.html"><a href="single-heatmap.html"><i class="fa fa-check"></i><b>1</b> Single Heatmap</a><ul>
+<li class="chapter" data-level="1.1" data-path="single-heatmap.html"><a href="single-heatmap.html#colors"><i class="fa fa-check"></i><b>1.1</b> Colors</a></li>
+<li class="chapter" data-level="1.2" data-path="single-heatmap.html"><a href="single-heatmap.html#titles"><i class="fa fa-check"></i><b>1.2</b> Titles</a></li>
+<li class="chapter" data-level="1.3" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering"><i class="fa fa-check"></i><b>1.3</b> Clustering</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="single-heatmap.html"><a href="single-heatmap.html#distance-methods"><i class="fa fa-check"></i><b>1.3.1</b> Distance methods</a></li>
+<li class="chapter" data-level="1.3.2" data-path="single-heatmap.html"><a href="single-heatmap.html#clustering-methods"><i class="fa fa-check"></i><b>1.3.2</b> Clustering methods</a></li>
+<li class="chapter" data-level="1.3.3" data-path="single-heatmap.html"><a href="single-heatmap.html#render-dendrograms"><i class="fa fa-check"></i><b>1.3.3</b> Render dendrograms</a></li>
+<li class="chapter" data-level="1.3.4" data-path="single-heatmap.html"><a href="single-heatmap.html#reorder-dendrograms"><i class="fa fa-check"></i><b>1.3.4</b> Reorder dendrograms</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="single-heatmap.html"><a href="single-heatmap.html#row-and-column-orders"><i class="fa fa-check"></i><b>1.4</b> Row and column orders</a></li>
+<li class="chapter" data-level="1.5" data-path="single-heatmap.html"><a href="single-heatmap.html#seriation"><i class="fa fa-check"></i><b>1.5</b> Seriation</a></li>
+<li class="chapter" data-level="1.6" data-path="single-heatmap.html"><a href="single-heatmap.html#dimension-names"><i class="fa fa-check"></i><b>1.6</b> Dimension names</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-k-means-clustering"><i class="fa fa-check"></i><b>1.6.1</b> Split by k-means clustering</a></li>
+<li class="chapter" data-level="1.6.2" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-categorical-variables"><i class="fa fa-check"></i><b>1.6.2</b> Split by categorical variables</a></li>
+<li class="chapter" data-level="1.6.3" data-path="single-heatmap.html"><a href="single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>1.6.3</b> Graphic parameters for splitting</a></li>
+<li class="chapter" data-level="1.6.4" data-path="single-heatmap.html"><a href="single-heatmap.html#split-by-dendrogram"><i class="fa fa-check"></i><b>1.6.4</b> Split by dendrogram</a></li>
+<li class="chapter" data-level="1.6.5" data-path="single-heatmap.html"><a href="single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>1.6.5</b> Titles for splitting</a></li>
+<li class="chapter" data-level="1.6.6" data-path="single-heatmap.html"><a href="single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>1.6.6</b> Gaps between slices</a></li>
+<li class="chapter" data-level="1.6.7" data-path="single-heatmap.html"><a href="single-heatmap.html#split-the-heatmap-annotations"><i class="fa fa-check"></i><b>1.6.7</b> Split the heatmap annotations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="single-heatmap.html"><a href="single-heatmap.html#heatmap-as-raster-image"><i class="fa fa-check"></i><b>1.7</b> Heatmap as raster image</a></li>
+<li class="chapter" data-level="1.8" data-path="single-heatmap.html"><a href="single-heatmap.html#customize-the-heatmap-body"><i class="fa fa-check"></i><b>1.8</b> Customize the heatmap body</a></li>
+<li class="chapter" data-level="1.9" data-path="single-heatmap.html"><a href="single-heatmap.html#size-of-the-heatmap"><i class="fa fa-check"></i><b>1.9</b> Size of the heatmap</a></li>
+<li class="chapter" data-level="1.10" data-path="single-heatmap.html"><a href="single-heatmap.html#plot-the-heatmap"><i class="fa fa-check"></i><b>1.10</b> Plot the heatmap</a></li>
+<li class="chapter" data-level="1.11" data-path="single-heatmap.html"><a href="single-heatmap.html#get-orders-and-dendrograms"><i class="fa fa-check"></i><b>1.11</b> Get orders and dendrograms</a></li>
+<li class="chapter" data-level="1.12" data-path="single-heatmap.html"><a href="single-heatmap.html#subset-a-heatmap"><i class="fa fa-check"></i><b>1.12</b> Subset a heatmap</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html"><i class="fa fa-check"></i><b>2</b> Heatmap Annotations</a><ul>
+<li class="chapter" data-level="2.1" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation"><i class="fa fa-check"></i><b>2.1</b> Simple annotation</a></li>
+<li class="chapter" data-level="2.2" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#simple-annotation-as-an-annotation-function"><i class="fa fa-check"></i><b>2.2</b> Simple annotation as an annotation function</a></li>
+<li class="chapter" data-level="2.3" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#empty-annotation"><i class="fa fa-check"></i><b>2.3</b> Empty annotation</a></li>
+<li class="chapter" data-level="2.4" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#image-annotation"><i class="fa fa-check"></i><b>2.4</b> Image annotation</a></li>
+<li class="chapter" data-level="2.5" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#points-annotation"><i class="fa fa-check"></i><b>2.5</b> Points annotation</a></li>
+<li class="chapter" data-level="2.6" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#lines-annotation"><i class="fa fa-check"></i><b>2.6</b> Lines annotation</a></li>
+<li class="chapter" data-level="2.7" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#barplot-annotation"><i class="fa fa-check"></i><b>2.7</b> Barplot annotation</a></li>
+<li class="chapter" data-level="2.8" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#boxplot-annotation"><i class="fa fa-check"></i><b>2.8</b> Boxplot annotation</a></li>
+<li class="chapter" data-level="2.9" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#histogram-annotation"><i class="fa fa-check"></i><b>2.9</b> histogram annotation</a></li>
+<li class="chapter" data-level="2.10" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#density-annotation"><i class="fa fa-check"></i><b>2.10</b> Density annotation</a></li>
+<li class="chapter" data-level="2.11" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#joyplot-annotation"><i class="fa fa-check"></i><b>2.11</b> Joyplot annotation</a></li>
+<li class="chapter" data-level="2.12" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#horizon-chart-annotation"><i class="fa fa-check"></i><b>2.12</b> Horizon chart annotation</a></li>
+<li class="chapter" data-level="2.13" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#text-annotation"><i class="fa fa-check"></i><b>2.13</b> Text annotation</a></li>
+<li class="chapter" data-level="2.14" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#mark-annotation"><i class="fa fa-check"></i><b>2.14</b> Mark annotation</a></li>
+<li class="chapter" data-level="2.15" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#multiple-annotations"><i class="fa fa-check"></i><b>2.15</b> Multiple annotations</a></li>
+<li class="chapter" data-level="2.16" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#summary-annotation"><i class="fa fa-check"></i><b>2.16</b> Summary annotation</a></li>
+<li class="chapter" data-level="2.17" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#utility-functions"><i class="fa fa-check"></i><b>2.17</b> Utility functions</a></li>
+<li class="chapter" data-level="2.18" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#implement-new-annotation-function"><i class="fa fa-check"></i><b>2.18</b> Implement new annotation function</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html"><i class="fa fa-check"></i><b>3</b> Making A List of Heatmaps</a><ul>
+<li class="chapter" data-level="3.1" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#titles-1"><i class="fa fa-check"></i><b>3.1</b> Titles</a></li>
+<li class="chapter" data-level="3.2" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#size-of-heatmaps"><i class="fa fa-check"></i><b>3.2</b> Size of heatmaps</a></li>
+<li class="chapter" data-level="3.3" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#gap-between-heatmaps"><i class="fa fa-check"></i><b>3.3</b> Gap between heatmaps</a></li>
+<li class="chapter" data-level="3.4" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#auto-adjustment-to-the-main-heatmap"><i class="fa fa-check"></i><b>3.4</b> Auto adjustment to the main heatmap</a></li>
+<li class="chapter" data-level="3.5" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#control-row-in-draw-function"><i class="fa fa-check"></i><b>3.5</b> control row … in draw() function</a></li>
+<li class="chapter" data-level="3.6" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#annotation-as-components-are-adjusted"><i class="fa fa-check"></i><b>3.6</b> Annotation as components are adjusted</a></li>
+<li class="chapter" data-level="3.7" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#concatenate-with-annotations"><i class="fa fa-check"></i><b>3.7</b> concatenate with annotations</a></li>
+<li class="chapter" data-level="3.8" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#only-annotations"><i class="fa fa-check"></i><b>3.8</b> Only annotations</a></li>
+<li class="chapter" data-level="3.9" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#vertical-align"><i class="fa fa-check"></i><b>3.9</b> vertical align</a></li>
+<li class="chapter" data-level="3.10" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#retrieve-orders-and-dendrograms"><i class="fa fa-check"></i><b>3.10</b> Retrieve orders and dendrograms</a></li>
+<li class="chapter" data-level="3.11" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#change-graphic-parameters-simultaneously"><i class="fa fa-check"></i><b>3.11</b> Change graphic parameters simultaneously</a></li>
+<li class="chapter" data-level="3.12" data-path="making-a-list-of-heatmaps.html"><a href="making-a-list-of-heatmaps.html#session-info"><i class="fa fa-check"></i><b>3.12</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="legend.html"><a href="legend.html"><i class="fa fa-check"></i><b>4</b> Legend</a><ul>
+<li class="chapter" data-level="4.1" data-path="legend.html"><a href="legend.html#continuous-legend"><i class="fa fa-check"></i><b>4.1</b> Continuous legend</a></li>
+<li class="chapter" data-level="4.2" data-path="legend.html"><a href="legend.html#discrete-legend"><i class="fa fa-check"></i><b>4.2</b> Discrete legend</a></li>
+<li class="chapter" data-level="4.3" data-path="legend.html"><a href="legend.html#a-list-of-legends"><i class="fa fa-check"></i><b>4.3</b> A list of legends</a></li>
+<li class="chapter" data-level="4.4" data-path="legend.html"><a href="legend.html#heatmap-and-annotation-legends"><i class="fa fa-check"></i><b>4.4</b> Heatmap and annotation legends</a></li>
+<li class="chapter" data-level="4.5" data-path="legend.html"><a href="legend.html#to-add-customized-legend."><i class="fa fa-check"></i><b>4.5</b> To add customized legend.</a></li>
+<li class="chapter" data-level="4.6" data-path="legend.html"><a href="legend.html#legends-setting-for-the-heatmaps"><i class="fa fa-check"></i><b>4.6</b> legends setting for the heatmaps</a></li>
+<li class="chapter" data-level="4.7" data-path="legend.html"><a href="legend.html#heatmap-decoration"><i class="fa fa-check"></i><b>4.7</b> Heatmap decoration</a></li>
+<li class="chapter" data-level="4.8" data-path="legend.html"><a href="legend.html#decorate_-functions"><i class="fa fa-check"></i><b>4.8</b> decorate_* functions</a></li>
+<li class="chapter" data-level="4.9" data-path="legend.html"><a href="legend.html#examples"><i class="fa fa-check"></i><b>4.9</b> Examples</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="legend.html"><a href="legend.html#barplot-for-single-column-heatmap"><i class="fa fa-check"></i><b>4.9.1</b> Barplot for single column heatmap</a></li>
+<li class="chapter" data-level="4.9.2" data-path="legend.html"><a href="legend.html#add-decoration-for-a-customized-heatmap"><i class="fa fa-check"></i><b>4.9.2</b> add decoration for a customized heatmap</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="oncoprint.html"><a href="oncoprint.html"><i class="fa fa-check"></i><b>5</b> OncoPrint</a><ul>
+<li class="chapter" data-level="5.1" data-path="oncoprint.html"><a href="oncoprint.html#general-settings"><i class="fa fa-check"></i><b>5.1</b> General settings</a></li>
+<li class="chapter" data-level="5.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>5.2</b> Apply to cBioPortal dataset</a></li>
+<li class="chapter" data-level="5.3" data-path="oncoprint.html"><a href="oncoprint.html#session-info-1"><i class="fa fa-check"></i><b>5.3</b> Session info</a></li>
+<li class="chapter" data-level="5.4" data-path="oncoprint.html"><a href="oncoprint.html#density-heatmap"><i class="fa fa-check"></i><b>5.4</b> density heatmap</a></li>
+<li class="chapter" data-level="5.5" data-path="oncoprint.html"><a href="oncoprint.html#stacked-plot"><i class="fa fa-check"></i><b>5.5</b> stacked plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>6</b> More Examples of Making Complex Heatmaps</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>6.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="6.0.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-genomic-regions-and-other-correspondance"><i class="fa fa-check"></i><b>6.0.2</b> Visualize genomic regions and other correspondance</a></li>
+<li class="chapter" data-level="6.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#combine-pvclust-and-heatmap"><i class="fa fa-check"></i><b>6.1</b> Combine pvclust and heatmap</a></li>
+<li class="chapter" data-level="6.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#make-a-same-plot-as-heatmap"><i class="fa fa-check"></i><b>6.2</b> Make a same plot as heatmap()</a></li>
+<li class="chapter" data-level="6.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>6.3</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="6.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#session-info-2"><i class="fa fa-check"></i><b>6.4</b> Session info</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ComplexHeatmap Complete Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="making-a-list-of-heatmaps" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Making A List of Heatmaps</h1>
+<p>The main feature of <strong>ComplexHeatmap</strong> package is it supports to concatenate a list of heatmaps/annotations horizontally or vertically so that it makes it possible to visualize the associations from various sources of information. In this chapter, we mainly introduce the horizontal concatenation because this is the major case we will use in the analysis. In the end we show some examples of vertical concatenation. The concept behind basically is similar.</p>
+<p>For the horizontal concatenation, the number of rows for all heatmaps/annotations should be the same. In following we first introduce the concatenation of heatmaps and later we will show how to concatenate heatmaps with annotations.</p>
+<p>In following example, there are three matrices where the third heatmap is a vector and it will be transformed as a one-column matrix. The one-column heatmap is sometimes useful when you concatenate a list of heatmaps that it can show e.g. annotations for each row or some scores of each row. e.g. if rows are genes, the the whether genes are protein coding gene can be represented …, or p-values or foldchange from differnetial…</p>
+<p>To concatenate heatmaps, simply use <code>+</code> operator.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+mat1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">80</span>, <span class="dv">2</span>), <span class="dv">8</span>, <span class="dv">10</span>)
+mat1 =<span class="st"> </span><span class="kw">rbind</span>(mat1, <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">40</span>, <span class="op">-</span><span class="dv">2</span>), <span class="dv">4</span>, <span class="dv">10</span>))
+<span class="kw">rownames</span>(mat1) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)
+<span class="kw">colnames</span>(mat1) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+
+mat2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">60</span>, <span class="dt">max =</span> <span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">1</span>), <span class="dv">6</span>, <span class="dv">10</span>)
+mat2 =<span class="st"> </span><span class="kw">rbind</span>(mat2, <span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dv">60</span>, <span class="dt">max =</span> <span class="dv">2</span>, <span class="dt">min =</span> <span class="dv">0</span>), <span class="dv">6</span>, <span class="dv">10</span>))
+<span class="kw">rownames</span>(mat2) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)
+<span class="kw">colnames</span>(mat2) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+
+le =<span class="st"> </span><span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">12</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+<span class="kw">names</span>(le) =<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)
+
+ind =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">12</span>, <span class="dv">12</span>)
+mat1 =<span class="st"> </span>mat1[ind, ]
+mat2 =<span class="st"> </span>mat2[ind, ]
+le =<span class="st"> </span>le[ind]
+
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>)
+
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_default-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>Under default mode, dendrograms from the second heatmap will be removed and row orders will be same as the first one. also row names which are put on the right side of the heatmap for hte first two heatmaps are removed as well.</p>
+<p>The returned value of addition of two heatmaps is a <code>HeatmapList</code> object. Directly calling <code>ht_list</code> object will call <code>draw()</code> method with default settings. With explicitly calling <code>draw()</code> method, you can have more controls e.g. on the legend and titles.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">class</span>(ht_list)</code></pre></div>
+<pre><code>## [1] &quot;HeatmapList&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;ComplexHeatmap&quot;</code></pre>
+<p>You can append any number of heatmaps to the heatmap list. Also you can append a heatmap list to a heatmap list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 <span class="op">+</span><span class="st"> </span>ht_list
+ht_list <span class="op">+</span><span class="st"> </span>ht1
+ht_list <span class="op">+</span><span class="st"> </span>ht_list</code></pre></div>
+<p><code>NULL</code> can be added to the heatmap list. It would be convinient when users want to construct a heatmap list through a <code>for</code> loop.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="ot">NULL</span>  ## Heatmap(...) + NULL gives you a HeatmapList object
+<span class="cf">for</span>(s <span class="cf">in</span> sth) {
+    ht_list =<span class="st"> </span>ht_list <span class="op">+</span><span class="st"> </span><span class="kw">Heatmap</span>(...)
+}</code></pre></div>
+<div id="titles-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Titles</h2>
+<p>A heatmap list also has titles which are independent to the heatmap titles.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">col_rnorm =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))
+col_runif =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;orange&quot;</span>))
+col_letters =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span> =<span class="st"> &quot;pink&quot;</span>, <span class="st">&quot;b&quot;</span> =<span class="st"> &quot;purple&quot;</span>, <span class="st">&quot;c&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm,
+    <span class="dt">row_title =</span> <span class="st">&quot;Heatmap 1&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 1&quot;</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif,
+    <span class="dt">row_title =</span> <span class="st">&quot;Heatmap 2&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 2&quot;</span>)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+
+<span class="kw">draw</span>(ht_list, <span class="dt">row_title =</span> <span class="st">&quot;Three heatmaps, row title&quot;</span>, <span class="dt">row_title_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>),
+    <span class="dt">column_title =</span> <span class="st">&quot;Three heatmaps, column title&quot;</span>, <span class="dt">column_title_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">16</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_title-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="size-of-heatmaps" class="section level2">
+<h2><span class="header-section-number">3.2</span> Size of heatmaps</h2>
+<p>The width for some (not all) heatmaps can be set to a fixed width.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>))
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_size-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>or the width can be set as relative values. Please not in this case, <code>width</code> for all heatmaps should be set (relative width and fixed width can be mixed).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>))
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_relative_size-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre><code>## Since all heatmaps/annotations have absolute units, the total width of the plot is 151mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm,
+    <span class="dt">show_row_names =</span> <span class="ot">FALSE</span>, <span class="dt">width =</span> <span class="dv">6</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif,
+    <span class="dt">show_row_names =</span> <span class="ot">FALSE</span>, <span class="dt">width =</span> <span class="dv">4</span>)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters, <span class="dt">width =</span> <span class="dv">1</span>)
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-207-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="gap-between-heatmaps" class="section level2">
+<h2><span class="header-section-number">3.3</span> Gap between heatmaps</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+<span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_gap-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">10</span>), <span class="st">&quot;mm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_gap-2.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="auto-adjustment-to-the-main-heatmap" class="section level2">
+<h2><span class="header-section-number">3.4</span> Auto adjustment to the main heatmap</h2>
+<p>There are some automatic adjustment if more than one heatmaps are plotted. There should be a main heatmap which by default is the first one. Some settings for the remaining heatmaps will be modified to the settings in the main heatmap. The adjustment are:</p>
+<ul>
+<li>row clusters are removed.</li>
+<li>row titles are removed.</li>
+<li>if the main heatmap is split by rows, all remaining heatmaps will also be split by same levels as the main one.</li>
+</ul>
+<p>The main heatmap can be specified by <code>main_heatmap</code> argument. The value can be a numeric index or the name of the heatmap (of course, you need to set the heatmap name when you create the <code>Heatmap</code> object).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">km =</span> <span class="dv">2</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht2 <span class="op">+</span><span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-208-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>here although <code>ht1</code> is the second heatmap, we specify <code>ht1</code> to be the main heatmap by explicitely setting <code>main_heatmap</code> argument</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">main_heatmap =</span> <span class="st">&quot;rnorm&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-209-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">main_heatmap =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">row_dend_side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">row_sub_title_side =</span> <span class="st">&quot;left&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-210-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>If there is no row clustering in the main heatmap, all other heatmaps have no row clustering neither.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">cluster_rows =</span> <span class="ot">FALSE</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/heatmap_list_auto_adjust_no_row_cluster-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="control-row-in-draw-function" class="section level2">
+<h2><span class="header-section-number">3.5</span> control row … in draw() function</h2>
+<p>Since the main heamtap controls the row order of all heatmaps, the parameters which co…</p>
+<ul>
+<li>cluster_rows</li>
+<li>clustering_distance_rows</li>
+<li>clustering_method_rows</li>
+<li>row_dend_width</li>
+<li>show_row_dend</li>
+<li>row_dend_reorder</li>
+<li>row_dend_gp</li>
+<li>row_order</li>
+</ul>
+<p>And for splitting rows</p>
+<ul>
+<li>row_gap</li>
+<li>row_km</li>
+<li>row_split</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">row_km =</span> <span class="dv">2</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">row_km =</span> <span class="dv">1</span>, <span class="dt">row_split =</span> le, <span class="dt">cluster_rows =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-211-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="annotation-as-components-are-adjusted" class="section level2">
+<h2><span class="header-section-number">3.6</span> Annotation as components are adjusted</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">top_annotation =</span> ha1)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-212-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">bar1 =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
+ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">bar2 =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">top_annotation =</span> ha1)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">top_annotation =</span> ha2)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-213-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
+ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">bar2 =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">top_annotation =</span> ha1)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">top_annotation =</span> ha2)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-214-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">bar1 =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">bottom_annotation =</span> ha1)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(le, <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2 <span class="op">+</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-215-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="concatenate-with-annotations" class="section level2">
+<h2><span class="header-section-number">3.7</span> concatenate with annotations</h2>
+<p>For horizontal concatenation with the annotaions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>)))
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">row_km =</span> <span class="dv">2</span>)
+ht1 <span class="op">+</span><span class="st"> </span>ha1</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-216-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">row_km =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>)))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-217-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">row_km =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
+<span class="st">    </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-218-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="only-annotations" class="section level2">
+<h2><span class="header-section-number">3.8</span> Only annotations</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rowAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>)))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-219-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre><code>## Since all heatmaps/annotations have absolute units, the total width of the plot is 62mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rowAnnotation</span>(<span class="dt">bar =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-220-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre><code>## Since all heatmaps/annotations have absolute units, the total width of the plot is 44mm</code></pre>
+</div>
+<div id="vertical-align" class="section level2">
+<h2><span class="header-section-number">3.9</span> vertical align</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat1t =<span class="st"> </span><span class="kw">t</span>(mat1)
+mat2t =<span class="st"> </span><span class="kw">t</span>(mat2)
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1t, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2t, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(<span class="kw">rbind</span>(<span class="dt">letters =</span> le), <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ht_list =<span class="st"> </span>ht1 <span class="op">%v%</span><span class="st"> </span>ht2 <span class="op">%v%</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-221-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">column_km =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-221-2.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1t, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2t, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(<span class="kw">rbind</span>(<span class="dt">letters =</span> le), <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)))
+ht_list =<span class="st"> </span>ht1 <span class="op">%v%</span><span class="st"> </span>ha <span class="op">%v%</span><span class="st"> </span>ht2 <span class="op">%v%</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">column_km =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-222-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1t, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm, <span class="dt">row_km =</span> <span class="dv">2</span>)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2t, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">row_km =</span> <span class="dv">2</span>)
+ht3 =<span class="st"> </span><span class="kw">Heatmap</span>(<span class="kw">rbind</span>(<span class="dt">letters =</span> le), <span class="dt">name =</span> <span class="st">&quot;letters&quot;</span>, <span class="dt">col =</span> col_letters)
+ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">anno_barplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)))
+ht_list =<span class="st"> </span>ht1 <span class="op">%v%</span><span class="st"> </span>ha <span class="op">%v%</span><span class="st"> </span>ht2 <span class="op">%v%</span><span class="st"> </span>ht3
+<span class="kw">draw</span>(ht_list, <span class="dt">column_km =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-223-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="retrieve-orders-and-dendrograms" class="section level2">
+<h2><span class="header-section-number">3.10</span> Retrieve orders and dendrograms</h2>
+<p><code>row_order</code>, <code>column_order</code>, <code>row_dend</code> and <code>column_dend</code> can be used to retrieve corresponding information from the heatmaps. The usage is straightforward by following example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2
+ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-224-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">row_order</span>(ht_list)</code></pre></div>
+<pre><code>##  [1]  8  6 10 11  5  7  9  2 12  4  1  3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">column_order</span>(ht_list)</code></pre></div>
+<pre><code>## $rnorm
+##  [1]  2  7  5  6 10  1  9  8  4  3
+## 
+## $runif
+##  [1]  1  3  8  7  6  9  4 10  2  5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;rnorm&quot;</span>, <span class="dt">col =</span> col_rnorm)
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;runif&quot;</span>, <span class="dt">col =</span> col_runif, <span class="dt">column_km =</span> <span class="dv">2</span>)
+ht_list =<span class="st"> </span>ht1 <span class="op">+</span><span class="st"> </span>ht2
+ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list, <span class="dt">row_km =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-225-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">row_order</span>(ht_list)</code></pre></div>
+<pre><code>## $`1`
+## [1] 12  4  1  3
+## 
+## $`2`
+## [1]  8  6 10 11  5  7  9  2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">column_order</span>(ht_list)</code></pre></div>
+<pre><code>## $rnorm
+## $rnorm[[1]]
+##  [1]  2  7  5  6 10  1  9  8  4  3
+## 
+## 
+## $runif
+## $runif$`1`
+## [1] 1 3 8 7 6 9
+## 
+## $runif$`2`
+## [1]  4 10  2  5</code></pre>
+<p>Same logic for vertical … which we will not show here</p>
+</div>
+<div id="change-graphic-parameters-simultaneously" class="section level2">
+<h2><span class="header-section-number">3.11</span> Change graphic parameters simultaneously</h2>
+<p><code>ht_opt()</code> can set graphic parameters for dimension names and titles as global settings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_opt</code></pre></div>
+<pre><code>##                   Option Value
+##     heatmap_row_names_gp  NULL
+##  heatmap_column_names_gp  NULL
+##     heatmap_row_title_gp  NULL
+##  heatmap_column_title_gp  NULL
+##          legend_title_gp  NULL
+##    legend_title_position  NULL
+##         legend_labels_gp  NULL
+##       legend_grid_height  NULL
+##        legend_grid_width  NULL
+##            legend_border  NULL
+##           heatmap_border  NULL
+##        annotation_border  NULL
+##              fast_hclust FALSE
+##                  verbose FALSE
+##                  show_vp FALSE
+##         anno_simple_size   5mm
+##       DENDROGRAM_PADDING 0.5mm
+##          DIMNAME_PADDING   1mm
+##            TITLE_PADDING 2.5mm
+##      COLUMN_ANNO_PADDING   1mm
+##         ROW_ANNO_PADDING   1mm</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ht_opt</span>(<span class="dt">heatmap_column_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontface =</span> <span class="st">&quot;italic&quot;</span>), 
+    <span class="dt">heatmap_column_title_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">10</span>),
+    <span class="dt">legend_border =</span> <span class="st">&quot;black&quot;</span>,
+    <span class="dt">heatmap_border =</span> <span class="ot">TRUE</span>,
+    <span class="dt">annotation_border =</span> <span class="ot">TRUE</span>
+)
+ht1 =<span class="st"> </span><span class="kw">Heatmap</span>(mat1, <span class="dt">name =</span> <span class="st">&quot;ht1&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 1&quot;</span>,
+    <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))
+ht2 =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span class="dt">name =</span> <span class="st">&quot;ht2&quot;</span>, <span class="dt">column_title =</span> <span class="st">&quot;Heatmap 2&quot;</span>,
+    <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">bar =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))
+ht1 <span class="op">+</span><span class="st"> </span>ht2</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-227-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ht_opt</span>(<span class="dt">RESET =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Following are global settings supported by <code>ht_global_opt()</code>. By this function, you can also control settings for the legends.</p>
+</div>
+<div id="session-info" class="section level2">
+<h2><span class="header-section-number">3.12</span> Session info</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
+<pre><code>## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS High Sierra 10.13.2
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+## 
+## attached base packages:
+## [1] grid      methods   stats     graphics  grDevices utils     datasets 
+## [8] base     
+## 
+## other attached packages:
+## [1] seriation_1.2-3       dendsort_0.3.3        dendextend_1.8.0     
+## [4] cluster_2.0.7-1       circlize_0.4.5        knitr_1.20           
+## [7] ComplexHeatmap_1.99.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] viridis_0.5.1          foreach_1.4.4          viridisLite_0.3.0     
+##  [4] gtools_3.8.1           assertthat_0.2.0       highr_0.7             
+##  [7] stats4_3.4.4           GenomeInfoDbData_1.0.0 yaml_2.2.0            
+## [10] robustbase_0.93-2      pillar_1.3.0           backports_1.1.2       
+## [13] lattice_0.20-35        glue_1.3.0             digest_0.6.17         
+## [16] GenomicRanges_1.30.3   RColorBrewer_1.1-2     XVector_0.18.0        
+## [19] colorspace_1.3-2       htmltools_0.3.6        plyr_1.8.4            
+## [22] pkgconfig_2.0.2        GetoptLong_0.1.7       HilbertCurve_1.11.1   
+## [25] bookdown_0.7           zlibbioc_1.24.0        purrr_0.2.5           
+## [28] mvtnorm_1.0-8          scales_1.0.0           gdata_2.18.0          
+## [31] whisker_0.3-2          jpeg_0.1-8             tibble_1.4.2          
+## [34] IRanges_2.12.0         ggplot2_3.0.0          nnet_7.3-12           
+## [37] BiocGenerics_0.24.0    lazyeval_0.2.1         magrittr_1.5          
+## [40] crayon_1.3.4           mclust_5.4.1           evaluate_0.11         
+## [43] gplots_3.0.1           MASS_7.3-50            class_7.3-14          
+## [46] registry_0.5           tools_3.4.4            HilbertVis_1.36.0     
+## [49] GlobalOptions_0.1.1    trimcluster_0.1-2.1    stringr_1.3.1         
+## [52] kernlab_0.9-27         S4Vectors_0.16.0       munsell_0.5.0         
+## [55] fpc_2.1-11.1           bindrcpp_0.2.2         compiler_3.4.4        
+## [58] GenomeInfoDb_1.14.0    caTools_1.17.1.1       rlang_0.2.2           
+## [61] RCurl_1.95-4.11        iterators_1.0.10       rstudioapi_0.7        
+## [64] rjson_0.2.20           bitops_1.0-6           rmarkdown_1.10        
+## [67] codetools_0.2-15       gtable_0.2.0           flexmix_2.3-14        
+## [70] TSP_1.1-6              R6_2.2.2               gridExtra_2.3         
+## [73] prabclus_2.2-6         dplyr_0.7.6            bindr_0.1.1           
+## [76] rprojroot_1.3-2        KernSmooth_2.23-15     shape_1.4.4           
+## [79] modeltools_0.2-22      stringi_1.2.4          parallel_3.4.4        
+## [82] Rcpp_0.12.18           png_0.1-7              gclus_1.3.1           
+## [85] DEoptimR_1.0-8         tidyselect_0.2.4       xfun_0.3              
+## [88] diptest_0.75-7</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="heatmap-annotations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="legend.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-a_list_of_heatmaps.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
