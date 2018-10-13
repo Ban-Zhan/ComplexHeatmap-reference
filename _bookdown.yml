@@ -1,5 +1,9 @@
-book_filename: "bookdown-demo"
+new_session: yes
+
+book_filename: "ComplexHeatmap-book"
 language:
   ui:
     chapter_name: "Chapter "
-delete_merged_file: true
+    
+before_chapter_script: "_common.R"
+output_dir: "book"
