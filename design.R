@@ -137,7 +137,7 @@ for(i in 1:3) {
 		popViewport()
 		popViewport()
 	} else {
-		name = c("heatmap1", "heatmap2", "column annotation")
+		name = rev(c("heatmap1", "heatmap2", "column annotation"))
 
 		pushViewport(viewport(y = i/3, height = 1/3, just = "top"))
 		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
