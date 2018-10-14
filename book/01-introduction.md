@@ -13,10 +13,10 @@ Generally, a heatmap list contains several heatmaps and row annotations.
 
 
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;" />
 
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="768" style="display: block; margin: auto;" /><img src="01-introduction_files/figure-html/unnamed-chunk-4-2.png" width="768" style="display: block; margin: auto;" />
 
 Surrounding the heatmap list,
 there are legends for heatmaps and annotations, also there are titles which are placed
