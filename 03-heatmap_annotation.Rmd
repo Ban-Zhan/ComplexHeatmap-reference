@@ -191,6 +191,23 @@ draw(ha, test = TRUE)
 ```
 
 
+`border`
+
+```{r}
+ha = HeatmapAnnotation(
+    foo = cbind(1:10, 10:1),
+    bar = sample(letters[1:3], 10, replace = TRUE),
+    col = list(foo = col_fun,
+               bar = c("a" = "red", "b" = "green", "c" = "blue")
+    ),
+    border = TRUE
+)
+```
+
+```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
+draw(ha, test = TRUE)
+```
+
 The simple annotation can also be a matrix (numeric or character) that all the
 columns in the matrix share a same color mapping schema. **Note columns in the
 matrix correspond to the rows in the column annotation.** Also the column names
