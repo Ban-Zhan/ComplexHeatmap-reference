@@ -7,7 +7,9 @@ th = convertHeight(grobHeight(textGrob("a")) * 3, "mm")
 pushViewport(viewport(layout = grid.layout(nr = 3, nc = 3,
 	width = unit.c(th*4, unit(1, "null"), th*4),
 	height = unit.c(th*4, unit(1, "null"), th*4)),
-	gp = gpar(fontsize = 14)))
+	gp = gpar(fontsize = 12), 
+	width = unit(1, "npc") - unit(4, "mm")),
+	height = unit(1, "npc") - unit(4, "mm"))
 pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
 name = c("column annotations", "column names", "dendrogram", "title")
 for(i in 1:4) {
@@ -78,7 +80,9 @@ th = convertHeight(grobHeight(textGrob("a")) * 3, "mm")
 pushViewport(viewport(layout = grid.layout(nr = 3, nc = 3,
 	width = unit.c(th*2, unit(1, "null"), th*2),
 	height = unit.c(th*2, unit(1, "null"), th*2)),
-	gp = gpar(fontsize = 14)))
+	gp = gpar(fontsize = 12),
+	width = unit(1, "npc") - unit(4, "mm"),
+	height = unit(1, "npc") - unit(4, "mm")))
 pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
 name = c("title", "legends")
 for(i in 1:2) {

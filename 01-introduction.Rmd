@@ -14,12 +14,12 @@ Generally, a heatmap list contains several heatmaps and row annotations.
 source("design.R")
 ```
 
-```{r, echo = FALSE, fig.width = 8, height = 6}
+```{r, echo = FALSE, fig.width = 8, fig.height = 6}
 single_heatmap_layout()
 ```
 
 
-```{r, echo = FALSE, fig.width = 8, height = 6}
+```{r, echo = FALSE, fig.width = 8, fig.height = 6}
 heatmap_list_layout(direction = "horizontal")
 heatmap_list_layout(direction = "vertical")
 ```
