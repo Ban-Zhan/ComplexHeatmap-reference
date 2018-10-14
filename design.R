@@ -8,8 +8,8 @@ pushViewport(viewport(layout = grid.layout(nr = 3, nc = 3,
 	width = unit.c(th*4, unit(1, "null"), th*4),
 	height = unit.c(th*4, unit(1, "null"), th*4)),
 	gp = gpar(fontsize = 12), 
-	width = unit(1, "npc") - unit(4, "mm")),
-	height = unit(1, "npc") - unit(4, "mm"))
+	width = unit(1, "npc") - unit(4, "mm"),
+	height = unit(1, "npc") - unit(4, "mm")))
 pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
 name = c("column annotations", "column names", "dendrogram", "title")
 for(i in 1:4) {
@@ -127,6 +127,8 @@ pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 2))
 name = c("heatmap1", "heatmap2", "row annotation")
 for(i in 1:3) {
 	if(direction == "horizontal") {
+		name = c("heatmap1", "heatmap2", "row annotation")
+
 		pushViewport(viewport(x = i/3, width = 1/3, just = "right"))
 		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
 			height = unit(1, "npc") - unit(4, "mm")))
@@ -135,6 +137,8 @@ for(i in 1:3) {
 		popViewport()
 		popViewport()
 	} else {
+		name = c("heatmap1", "heatmap2", "column annotation")
+
 		pushViewport(viewport(y = i/3, height = 1/3, just = "top"))
 		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
 			height = unit(1, "npc") - unit(4, "mm")))
