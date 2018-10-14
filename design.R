@@ -1,67 +1,152 @@
 
 
-par(mfrow = c(1, 2))
+single_heatmap_layout = function() {
+grid.newpage()
 
-par(mar = c(1, 1, 1, 1))
-plot(NULL, xlim = c(0, 1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
+th = convertHeight(grobHeight(textGrob("a")) * 3, "mm")
+pushViewport(viewport(layout = grid.layout(nr = 3, nc = 3,
+	width = unit.c(th*4, unit(1, "null"), th*4),
+	height = unit.c(th*4, unit(1, "null"), th*4))))
+pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
+name = c("column annotations", "column names", "dendrogram", "title")
+for(i in 1:4) {
+	pushViewport(viewport(y = i/4, height = 1/4, just = "top"))
+	grid.rect()
+	grid.text(name[i])
+	popViewport()
+}
+popViewport()
 
-text = c("annotation legend", "heatmap legend", "title", "title", "heatmap legend", "annotation legend")
-offset = c(0, 0.1, 0.2, 0.7, 0.8, 0.9)
-for(i in seq_along(offset)) {
-	rect(0 + offset[i], 0.3, 0.1 + offset[i], 0.7)
-	text(0.05 + offset[i], 0.5, text[i], srt = 90)
+pushViewport(viewport(layout.pos.row = 3, layout.pos.col = 2))
+name = rev(c("column annotations", "column names", "dendrogram", "title"))
+for(i in 1:4) {
+	pushViewport(viewport(y = i/4, height = 1/4, just = "top"))
+	grid.rect()
+	grid.text(name[i])
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
+name = rev(c("row annotations", "row names", "dendrogram", "title"))
+for(i in 1:4) {
+	pushViewport(viewport(x = i/4, width = 1/4, just = "right"))
+	grid.rect()
+	grid.text(name[i], rot = 90)
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 3))
+name = c("row annotations", "row names", "dendrogram", "title")
+for(i in 1:4) {
+	pushViewport(viewport(x = i/4, width = 1/4, just = "right"))
+	grid.rect()
+	grid.text(name[i], rot = 90)
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 2))
+name = rbind(c("matrix, row slice 1\ncolumn slice1", "matrix, row slice 1\ncolumn slice2"), 
+	         c("matrix, row slice 2\ncolumn slice1", "matrix, row slice 2\ncolumn slice2"))
+for(i in 1:2) {
+	for(j in 1:2) {
+		pushViewport(viewport(x = i/2, y = j/2, width = 1/2, height = 1/2, just = c("right", "top")))
+		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
+			height = unit(1, "npc") - unit(4, "mm")))
+		grid.rect(gp = gpar(col = "red", fill = "#FF000020"))
+		grid.text(name[i, j])
+		popViewport()
+		popViewport()
+	}
+}
+popViewport()
+
+popViewport()
+
 }
 
-text = c("annotation legend", "heatmap legend", "title", "title", "heatmap legend", "annotation legend")
-offset = c(0, 0.1, 0.2, 0.7, 0.8, 0.9)
-for(i in seq_along(offset)) {
-	rect(0.3, 0 + offset[i], 0.7, 0.1 + offset[i])
-	text(0.5, 0.05 + offset[i], text[i])
+
+
+
+heatmap_list_layout = function(direction = "horizontal") {
+grid.newpage()
+
+th = convertHeight(grobHeight(textGrob("a")) * 3, "mm")
+pushViewport(viewport(layout = grid.layout(nr = 3, nc = 3,
+	width = unit.c(th*2, unit(1, "null"), th*2),
+	height = unit.c(th*2, unit(1, "null"), th*2))))
+pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
+name = c("title", "legends")
+for(i in 1:2) {
+	pushViewport(viewport(y = i/2, height = 1/2, just = "top"))
+	grid.rect()
+	grid.text(name[i])
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 3, layout.pos.col = 2))
+name = rev(c("title", "legends"))
+for(i in 1:2) {
+	pushViewport(viewport(y = i/2, height = 1/2, just = "top"))
+	grid.rect()
+	grid.text(name[i])
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
+name = rev(c("title", "legends"))
+for(i in 1:2) {
+	pushViewport(viewport(x = i/2, width = 1/2, just = "right"))
+	grid.rect()
+	grid.text(name[i], rot = 90)
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 3))
+name = c("title", "legends")
+for(i in 1:2) {
+	pushViewport(viewport(x = i/2, width = 1/2, just = "right"))
+	grid.rect()
+	grid.text(name[i], rot = 90)
+	popViewport()
+}
+popViewport()
+
+pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 2))
+name = c("heatmap1", "heatmap2", "row annotation")
+for(i in 1:3) {
+	if(direction == "horizontal") {
+		pushViewport(viewport(x = i/3, width = 1/3, just = "right"))
+		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
+			height = unit(1, "npc") - unit(4, "mm")))
+		grid.rect(gp = gpar(col = "green", fill = "#00FF0020"))
+		grid.text(name[i], rot = 90)
+		popViewport()
+		popViewport()
+	} else {
+		pushViewport(viewport(y = i/3, height = 1/3, just = "top"))
+		pushViewport(viewport(width = unit(1, "npc") - unit(4, "mm"),
+			height = unit(1, "npc") - unit(4, "mm")))
+		grid.rect(gp = gpar(col = "red", fill = "#FF000020"))
+		grid.text(name[i])
+		popViewport()
+		popViewport()
+	}
+}
+popViewport()
+
+popViewport()
+
 }
 
-rect(0.31, 0.31, 0.31+0.4/3, 0.69)
-text(0.3+0.2/3, (0.31+0.69)/2, "heatmap 1", srt = 90)
-rect(0.31+0.4/3, 0.31, 0.31+0.8/3, 0.69)
-text(0.5, (0.31+0.69)/2, "heatmap 2", srt = 90)
-rect(0.31+0.8/3, 0.31, 0.69, 0.69)
-text(0.31+1/3, (0.31+0.69)/2, "row annotation", srt = 90)
-
-mtext("heatmap list", side = 3, font = 2)
 
 
-par(mar = c(1, 1, 1, 1))
-plot(NULL, xlim = c(0, 1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
 
-rect(0, 0.2, 0.3, 0.8)
-text = c("title", "dendrogram", "row names", "row names", "dendrogram", "title")
-offset = c(0, 0.1, 0.2, 0.7, 0.8, 0.9)
-for(i in seq_along(offset)) {
-	rect(0 + offset[i] + 0.005, 0.5+0.01, 0.1 + offset[i]-0.005, 0.8-0.01)
-	text(0.05 + offset[i], 0.65, text[i], srt = 90)
-}
-rect(0.7, 0.2, 1, 0.8)
-for(i in seq_along(offset)) {
-	rect(0 + offset[i]+0.005, 0.2+0.01, 0.1 + offset[i]-0.005, 0.5-0.01)
-	text(0.05 + offset[i], 0.35, text[i], srt = 90)
-}
 
-text = c("title", "dendrogram", "annotation", "column names", "column names", "annotation", "dendrogram", "title")
-offset = c(0, 0.05, 0.1, 0.15, 0.8, 0.85, 0.9, 0.95)
-for(i in seq_along(offset)) {
-	rect(0.3, 0 + offset[i], 0.7, 0.05 + offset[i])
-	text(0.5, 0.025 + offset[i], text[i])
-}
 
-rect(0.31, 0.505, 0.69, 0.79)
-text(0.5, (0.505+0.79)/2, "matrix\nrow slice 1")
-
-rect(0.31, 0.495, 0.69, 0.21)
-text(0.5, (0.505+0.31)/2, "matrix\nrow slice 2")
-
-mtext("single heatmap", side = 3, font = 2)
-
-par(xpd = NA)
-
-# arrows(-0.75, 0.65, -0.05, 0.65, angle = 15)
-# arrows(-0.55, 0.35, -0.05, 0.35, angle = 15)
 

@@ -10,8 +10,17 @@ multiple heatmaps and supports self-defined annotation graphics.
 
 Generally, a heatmap list contains several heatmaps and row annotations.
 
-```{r design, echo = FALSE, fig.width = 10, fig.height = 5}
+```{r, echo = FALSE}
 source("design.R")
+```
+
+```{r, echo = FALSE, fig.width = 12, height = 6}
+single_heatmap_layout()
+```
+
+
+```{r, echo = FALSE, fig.width = 12, height = 6}
+heatmap_list_layout()
 ```
 
 Surrounding the heatmap list,
