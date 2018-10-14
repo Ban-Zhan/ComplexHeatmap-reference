@@ -14,7 +14,7 @@ url: 'https\://jokergoo.github.io/ComplexHeatmap-reference/book'
 description: " Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge."
 ---
 
-# About
+# About {-}
 
 This is the documentation of the
 [**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
