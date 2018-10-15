@@ -8,3 +8,5 @@ knitr::opts_chunk$set(
   message = FALSE
 )
 
+library(dendextend)
+library(dendsort)
