@@ -1042,7 +1042,7 @@ Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
 ### Split heatmap annotations {#split-heatmap-annotations}
 
 When the heatmap is split, all the heatmap components are split accordingly. Following gives you a
-simple example and the heatmap annotation will be introduced in Chapter \@ref(heatmap-annotation).
+simple example and the heatmap annotation will be introduced in Chapter \@ref(heatmap-annotations).
 
 
 ```r

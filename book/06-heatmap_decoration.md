@@ -1,7 +1,6 @@
 
 
-# Heatmap decoration
-
+# Heatmap Decoration {#heatmap-decoration}
 
 Each component of the heatmap/heatmap list has a name (unique id). You can go to any viewport 
 to add graphics in by specifying the heatmap/annotation name.
@@ -15,7 +14,8 @@ mat = rbind(mat, matrix(rnorm(40, -2), 4, 10))
 rownames(mat) = paste0("R", 1:12)
 colnames(mat) = paste0("C", 1:10)
 
-ha_column1 = HeatmapAnnotation(points = anno_points(rnorm(10)))
+ha_column1 = HeatmapAnnotation(points = anno_points(rnorm(10)), 
+    annotation_name_side = "left")
 ht1 = Heatmap(mat, name = "ht1", km = 2, column_title = "Heatmap 1", 
     top_annotation = ha_column1, row_names_side = "left")
 
@@ -26,44 +26,51 @@ ht2 = Heatmap(mat, name = "ht2", row_title = "Heatmap 2", column_title = "Heatma
 
 ht_list = ht1 + ht2 + rowAnnotation(bar = anno_barplot(rowMeans(mat), width = unit(2, "cm")))
 draw(ht_list, row_title = "Heatmap list", column_title = "Heatmap list")
+list_components()
+```
+
+```
+##  [1] "ROOT"                         "global"                      
+##  [3] "global_layout"                "main_heatmap_list"           
+##  [5] "heatmap_ht1"                  "ht1_heatmap_body_wrap"       
+##  [7] "ht1_heatmap_body_1_1"         "ht1_heatmap_body_2_1"        
+##  [9] "ht1_column_title_1"           "ht1_row_title_1"             
+## [11] "ht1_row_title_2"              "ht1_dend_row_1"              
+## [13] "ht1_dend_row_2"               "ht1_dend_column_1"           
+## [15] "ht1_row_names_1"              "ht1_row_names_2"             
+## [17] "ht1_column_names_1"           "annotation_points_1"         
+## [19] "heatmap_ht2"                  "ht2_heatmap_body_wrap"       
+## [21] "ht2_heatmap_body_1_1"         "ht2_heatmap_body_1_2"        
+## [23] "ht2_heatmap_body_2_1"         "ht2_heatmap_body_2_2"        
+## [25] "ht2_column_title_1"           "ht2_dend_column_1"           
+## [27] "ht2_dend_column_2"            "ht2_column_names_1"          
+## [29] "ht2_column_names_2"           "annotation_type_1"           
+## [31] "annotation_type_2"            "heatmap_heatmap_annotation_2"
+## [33] "annotation_bar_1"             "annotation_bar_2"            
+## [35] "global_column_title"          "global_row_title"            
+## [37] "heatmap_legend"               "annotation_legend"
 ```
 
 <img src="06-heatmap_decoration_files/figure-html/access_components-1.png" width="960" style="display: block; margin: auto;" />
 
-
-```r
-ComplexHeatmap:::list_component()
-```
-
-```
-## [1] "ROOT"
-```
-
 The components (viewports) that have names are:
 
-- `global`: the viewport which contains the whole figure.
-- `global_column_title`: the viewport which contains column title for the heatmap list.
-- `global_row_title`: the viewport which contains row title for the heatmap list.
-- `main_heatmap_list`: the viewport which contains a list of heatmaps and row annotations.
-- `heatmap_@{heatmap_name}`: the viewport which contains a single heatmap
-- `annotation_@{annotation_name}`: the viewport which contains an annotation on columns.
+- `heatmap_@{heatmap_name}_@{i}_@{j}`: the viewport which contains a single heatmap
 - `annotation_@{annotation_name}_@{i}`: for row annotations
 - `@{heatmap_name}_heatmap_body_@{i}`: the heatmap body.
-- `@{heatmap_name}_column_title`: column title for a single heatmap.
+- `@{heatmap_name}_column_title_@{i}`: column title for a single heatmap.
 - `@{heatmap_name}_row_title_@{i}`: since a heatmap body may be splitted into several parts. `@{i}` is the index of the row slice.
 - `@{heatmap_name}_dend_row_@{i}`: dendrogram for ith row slice.
-- `@{heatmap_name}_dend_column`: dendrogram on columns
+- `@{heatmap_name}_dend_column_@{i}`: dendrogram on columns
 - `@{heatmap_name}_row_names_@{i}`: the viewport which contains row names.
-- `@{heatmap_name}_column_names`: the viewport which contains column names.
-- `heatmap_legend`: the viewport which contains all heatmap legends.
-- `legend_@{heatmap_name}`: the viewport which contains a single heatmap legend.
-- `annotation_legend`: the viewport which contains all annotation legends.
-- `legend_@{annotation_name}`: the viewport which contains a single annotation legend.
+- `@{heatmap_name}_column_names_@{i}`: the viewport which contains column names.
 
-## decorate_* functions
+## decorate_*() functions
 
-Basically, you can go to these components by `seekViewport()`, but to hide the details that is too low-level,
-**ComplexHeatmap** package provides `decorate_*` family functions which makes it easy to add graphics into different components.
+Basically, you can go to these components by `seekViewport()`, but to hide the
+details that is too low-level, **ComplexHeatmap** package provides
+`decorate_*` family functions which makes it easy to add graphics into
+different components.
 
 Following code add annotation names, mark one grid in the heatmap and seperate the first column clusters with two rectangles.
 
@@ -113,13 +120,14 @@ can be used in the decoration code.
 
 
 ```r
-le = c(sample(letters[1:3], 400, prob = c(7, 2, 1), replace = TRUE),
-      sample(letters[1:3], 600, prob = c(2, 3, 5), replace = TRUE))
-col = c("a" = "red", "b" = "green", "c" = "blue")
-split = c(rep("group1", 400), rep("group2", 600))
-ht = Heatmap(le, name = "letters", col = col, width = unit(3, "cm"),
+library(circlize)
+bed = generateRandomBed(nr = 1000)
+prop = runif(nrow(bed))
+col_fun = colorRamp2(c(0, 1), c("white", "orange"))
+split = c(rep("group1", 400), rep("group2", nrow(bed) - 400))
+ht = Heatmap(prop, name = "prop", col = col_fun, width = unit(2, "cm"),
     top_annotation = HeatmapAnnotation(barplot = anno_empty(height = unit(4, "cm"))))
-ht = draw(ht, split = split)
+ht = draw(ht, row_split = split)
 ```
 
 ```
@@ -128,23 +136,23 @@ ht = draw(ht, split = split)
 
 ```r
 ro = row_order(ht)
-lt = lapply(ro, function(index) {
-    t = table(le[index])
-    t/sum(t)
+w = bed[, 3] - bed[, 2]
+p = sapply(ro, function(index) {
+    sum(w[index]*prop[index])/sum(w[index])
 })
 decorate_annotation("barplot", {
-    pushViewport(viewport(xscale = c(0.5, 2.5), yscale = c(0, 1)))
-    grid.rect(x = 1, y = cumsum(lt[[1]]), width = 0.8, height = lt[[1]], just = "top",
-        gp = gpar(fill = col), default.units = "native")
-    grid.rect(x = 2, y = cumsum(lt[[2]]), width = 0.8, height = lt[[2]], just = "top",
-        gp = gpar(fill = col), default.units = "native")
+    pushViewport(viewport(xscale = c(0.5, 2.5), yscale = c(0, max(p)*1.1)))
+    grid.rect(x = 1, y = 0, width = 0.8, height = p[1], just = "bottom",
+        gp = gpar(fill = "orange"), default.units = "native")
+    grid.rect(x = 2, y = 0, width = 0.8, height = p[2], just = "bottom",
+        gp = gpar(fill = "orange"), default.units = "native")
     grid.yaxis()
-    grid.text("Relative proportion", x = unit(-1.5, "cm"),rot = 90, just = "bottom")
+    grid.text("mean proprotion", x = unit(-1.5, "cm"),rot = 90, just = "bottom")
     popViewport()
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" />
 
 ### add decoration for a customized heatmap
 
@@ -174,4 +182,7 @@ m2 = matrix(rnorm(100), nr = 10)
 customized_heatmap(m1) %v% customized_heatmap(m2)
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+
+### Other probably usage of decoration
+

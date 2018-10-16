@@ -635,7 +635,7 @@ ha = HeatmapAnnotation(foo = runif(10), bar = sample(c("f", "m"), 10, replace = 
                 labels = c("Female", "Male")
             )
 ))
-Heatmap(m, )
+Heatmap(m, top_annotation = ha)
 ```
 
 All heatmap/row annotation legends are grouped and all column annotation legends ae grouped.

@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="heatmap-decoration.html">
-<link rel="next" href="more-examples-of-making-complex-heatmaps.html">
+<link rel="next" href="other-high-level-plots.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -142,9 +142,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.4" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#image-annotation"><i class="fa fa-check"></i><b>3.4</b> Image annotation</a></li>
 <li class="chapter" data-level="3.5" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#points-annotation"><i class="fa fa-check"></i><b>3.5</b> Points annotation</a></li>
 <li class="chapter" data-level="3.6" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#lines-annotation"><i class="fa fa-check"></i><b>3.6</b> Lines annotation</a></li>
-<li class="chapter" data-level="3.7" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#barplot-annotation"><i class="fa fa-check"></i><b>3.7</b> Barplot annotation</a></li>
-<li class="chapter" data-level="3.8" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#boxplot-annotation"><i class="fa fa-check"></i><b>3.8</b> Boxplot annotation</a></li>
-<li class="chapter" data-level="3.9" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#histogram-annotation"><i class="fa fa-check"></i><b>3.9</b> histogram annotation</a></li>
+<li class="chapter" data-level="3.7" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#barplot_annotation"><i class="fa fa-check"></i><b>3.7</b> Barplot annotation</a></li>
+<li class="chapter" data-level="3.8" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#box-annotation"><i class="fa fa-check"></i><b>3.8</b> Boxplot annotation</a></li>
+<li class="chapter" data-level="3.9" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#histogram-annotation"><i class="fa fa-check"></i><b>3.9</b> Histogram annotation</a></li>
 <li class="chapter" data-level="3.10" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#density-annotation"><i class="fa fa-check"></i><b>3.10</b> Density annotation</a></li>
 <li class="chapter" data-level="3.11" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#joyplot-annotation"><i class="fa fa-check"></i><b>3.11</b> Joyplot annotation</a></li>
 <li class="chapter" data-level="3.12" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#horizon-chart-annotation"><i class="fa fa-check"></i><b>3.12</b> Horizon chart annotation</a></li>
@@ -152,8 +152,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.14" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#mark-annotation"><i class="fa fa-check"></i><b>3.14</b> Mark annotation</a></li>
 <li class="chapter" data-level="3.15" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#multiple-annotations"><i class="fa fa-check"></i><b>3.15</b> Multiple annotations</a></li>
 <li class="chapter" data-level="3.16" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#summary-annotation"><i class="fa fa-check"></i><b>3.16</b> Summary annotation</a></li>
-<li class="chapter" data-level="3.17" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#utility-functions"><i class="fa fa-check"></i><b>3.17</b> Utility functions</a></li>
-<li class="chapter" data-level="3.18" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#implement-new-annotation-function"><i class="fa fa-check"></i><b>3.18</b> Implement new annotation function</a></li>
+<li class="chapter" data-level="3.17" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#heatmap-annotation-utility-function"><i class="fa fa-check"></i><b>3.17</b> Utility functions</a></li>
+<li class="chapter" data-level="3.18" data-path="heatmap-annotations.html"><a href="heatmap-annotations.html#implement-new-annotation-functions"><i class="fa fa-check"></i><b>3.18</b> Implement new annotation functions</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html"><i class="fa fa-check"></i><b>4</b> A List of Heatmaps</a><ul>
 <li class="chapter" data-level="4.1" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#titles"><i class="fa fa-check"></i><b>4.1</b> Titles</a></li>
@@ -170,34 +170,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.12" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#session-info"><i class="fa fa-check"></i><b>4.12</b> Session info</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="legends.html"><a href="legends.html"><i class="fa fa-check"></i><b>5</b> Legends</a><ul>
-<li class="chapter" data-level="5.1" data-path="legends.html"><a href="legends.html#continuous-legend"><i class="fa fa-check"></i><b>5.1</b> Continuous legend</a></li>
-<li class="chapter" data-level="5.2" data-path="legends.html"><a href="legends.html#discrete-legend"><i class="fa fa-check"></i><b>5.2</b> Discrete legend</a></li>
+<li class="chapter" data-level="5.1" data-path="legends.html"><a href="legends.html#continuous-legends"><i class="fa fa-check"></i><b>5.1</b> Continuous legend</a></li>
+<li class="chapter" data-level="5.2" data-path="legends.html"><a href="legends.html#discrete-legends"><i class="fa fa-check"></i><b>5.2</b> Discrete legends</a></li>
 <li class="chapter" data-level="5.3" data-path="legends.html"><a href="legends.html#a-list-of-legends"><i class="fa fa-check"></i><b>5.3</b> A list of legends</a></li>
 <li class="chapter" data-level="5.4" data-path="legends.html"><a href="legends.html#heatmap-and-annotation-legends"><i class="fa fa-check"></i><b>5.4</b> Heatmap and annotation legends</a></li>
-<li class="chapter" data-level="5.5" data-path="legends.html"><a href="legends.html#to-add-customized-legend."><i class="fa fa-check"></i><b>5.5</b> To add customized legend.</a></li>
-<li class="chapter" data-level="5.6" data-path="legends.html"><a href="legends.html#legends-setting-for-the-heatmaps"><i class="fa fa-check"></i><b>5.6</b> legends setting for the heatmaps</a></li>
+<li class="chapter" data-level="5.5" data-path="legends.html"><a href="legends.html#add-customized-legends"><i class="fa fa-check"></i><b>5.5</b> Add customized legends</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html"><i class="fa fa-check"></i><b>6</b> Heatmap decoration</a><ul>
-<li class="chapter" data-level="6.1" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#decorate_-functions"><i class="fa fa-check"></i><b>6.1</b> decorate_* functions</a></li>
+<li class="chapter" data-level="6" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html"><i class="fa fa-check"></i><b>6</b> Heatmap Decoration</a><ul>
+<li class="chapter" data-level="6.1" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#decorate_-functions"><i class="fa fa-check"></i><b>6.1</b> decorate_*() functions</a></li>
 <li class="chapter" data-level="6.2" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#barplot-for-single-column-heatmap"><i class="fa fa-check"></i><b>6.2.1</b> Barplot for single column heatmap</a></li>
 <li class="chapter" data-level="6.2.2" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#add-decoration-for-a-customized-heatmap"><i class="fa fa-check"></i><b>6.2.2</b> add decoration for a customized heatmap</a></li>
+<li class="chapter" data-level="6.2.3" data-path="heatmap-decoration.html"><a href="heatmap-decoration.html#other-probably-usage-of-decoration"><i class="fa fa-check"></i><b>6.2.3</b> Other probably usage of decoration</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="oncoprint.html"><a href="oncoprint.html"><i class="fa fa-check"></i><b>7</b> OncoPrint</a><ul>
 <li class="chapter" data-level="7.1" data-path="oncoprint.html"><a href="oncoprint.html#general-settings"><i class="fa fa-check"></i><b>7.1</b> General settings</a></li>
 <li class="chapter" data-level="7.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>7.2</b> Apply to cBioPortal dataset</a></li>
-<li class="chapter" data-level="7.3" data-path="oncoprint.html"><a href="oncoprint.html#session-info-1"><i class="fa fa-check"></i><b>7.3</b> Session info</a></li>
-<li class="chapter" data-level="7.4" data-path="oncoprint.html"><a href="oncoprint.html#density-heatmap"><i class="fa fa-check"></i><b>7.4</b> density heatmap</a></li>
-<li class="chapter" data-level="7.5" data-path="oncoprint.html"><a href="oncoprint.html#stacked-plot"><i class="fa fa-check"></i><b>7.5</b> stacked plot</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>8</b> More Examples of Making Complex Heatmaps</a><ul>
-<li class="chapter" data-level="8.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>8.0.1</b> Add more information for gene expression matrix</a></li>
-<li class="chapter" data-level="8.0.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-genomic-regions-and-other-correspondance"><i class="fa fa-check"></i><b>8.0.2</b> Visualize genomic regions and other correspondance</a></li>
-<li class="chapter" data-level="8.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#combine-pvclust-and-heatmap"><i class="fa fa-check"></i><b>8.1</b> Combine pvclust and heatmap</a></li>
-<li class="chapter" data-level="8.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#make-a-same-plot-as-heatmap"><i class="fa fa-check"></i><b>8.2</b> Make a same plot as heatmap()</a></li>
-<li class="chapter" data-level="8.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>8.3</b> The measles vaccine heatmap</a></li>
-<li class="chapter" data-level="8.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#session-info-2"><i class="fa fa-check"></i><b>8.4</b> Session info</a></li>
+<li class="chapter" data-level="8" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html"><i class="fa fa-check"></i><b>8</b> Other High-level Plots</a><ul>
+<li class="chapter" data-level="8.1" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#density-heatmap"><i class="fa fa-check"></i><b>8.1</b> density heatmap</a></li>
+<li class="chapter" data-level="8.2" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#stacked-plot"><i class="fa fa-check"></i><b>8.2</b> stacked plot</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>9</b> More Examples of Making Complex Heatmaps</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="9.0.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-genomic-regions-and-other-correspondance"><i class="fa fa-check"></i><b>9.0.2</b> Visualize genomic regions and other correspondance</a></li>
+<li class="chapter" data-level="9.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#combine-pvclust-and-heatmap"><i class="fa fa-check"></i><b>9.1</b> Combine pvclust and heatmap</a></li>
+<li class="chapter" data-level="9.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#make-a-same-plot-as-heatmap"><i class="fa fa-check"></i><b>9.2</b> Make a same plot as heatmap()</a></li>
+<li class="chapter" data-level="9.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.3</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="9.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#session-info-1"><i class="fa fa-check"></i><b>9.4</b> Session info</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -450,7 +451,7 @@ mat[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,
 <p>By default, if one sample has no alteration, it will still remain in the heatmap, but you can set <code>remove_empty_columns</code> to <code>TRUE</code> to remove it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> <span class="cf">function</span>(x) <span class="kw">strsplit</span>(x, <span class="st">&quot;;&quot;</span>)[[<span class="dv">1</span>]],
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
-    <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>,
+    <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
     <span class="dt">column_title =</span> <span class="st">&quot;OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling&quot;</span>,
     <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(<span class="dt">title =</span> <span class="st">&quot;Alternations&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="st">&quot;AMP&quot;</span>, <span class="st">&quot;HOMDEL&quot;</span>, <span class="st">&quot;MUT&quot;</span>), 
         <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Amplification&quot;</span>, <span class="st">&quot;Deep deletion&quot;</span>, <span class="st">&quot;Mutation&quot;</span>)))</code></pre></div>
@@ -484,59 +485,6 @@ ht =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class=
 <pre><code>## All mutation types: MUT, AMP, HOMDEL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">row_sub_title_side =</span> <span class="st">&quot;left&quot;</span>)</code></pre></div>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>If you make the plot in an interactive device (e.g. <code>X11</code> or Rstudio IDE), the generation of the plot may be very slow. In this case, we suggest users to directly save the plot to a separate file (e.g. using <code>png()</code> or <code>pdf()</code>) and then visualize the plot afterwards.</p>
-</div>
-<div id="session-info-1" class="section level2">
-<h2><span class="header-section-number">7.3</span> Session info</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.4.4 (2018-03-15)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.2
-## 
-## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
-## 
-## attached base packages:
-## [1] grid      methods   stats     graphics  grDevices utils     datasets 
-## [8] base     
-## 
-## other attached packages:
-## [1] dendsort_0.3.3        dendextend_1.8.0      circlize_0.4.5       
-## [4] ComplexHeatmap_1.99.0
-## 
-## loaded via a namespace (and not attached):
-##  [1] shape_1.4.4         modeltools_0.2-22   GetoptLong_0.1.7   
-##  [4] tidyselect_0.2.4    xfun_0.3            kernlab_0.9-27     
-##  [7] purrr_0.2.5         lattice_0.20-35     colorspace_1.3-2   
-## [10] viridisLite_0.3.0   htmltools_0.3.6     stats4_3.4.4       
-## [13] yaml_2.2.0          rlang_0.2.2         pillar_1.3.0       
-## [16] glue_1.3.0          prabclus_2.2-6      RColorBrewer_1.1-2 
-## [19] fpc_2.1-11.1        bindrcpp_0.2.2      plyr_1.8.4         
-## [22] bindr_0.1.1         robustbase_0.93-2   stringr_1.3.1      
-## [25] munsell_0.5.0       gtable_0.2.0        mvtnorm_1.0-8      
-## [28] GlobalOptions_0.1.1 evaluate_0.11       knitr_1.20         
-## [31] flexmix_2.3-14      class_7.3-14        DEoptimR_1.0-8     
-## [34] trimcluster_0.1-2.1 Rcpp_0.12.18        scales_1.0.0       
-## [37] backports_1.1.2     diptest_0.75-7      gridExtra_2.3      
-## [40] rjson_0.2.20        ggplot2_3.0.0       digest_0.6.17      
-## [43] stringi_1.2.4       bookdown_0.7        dplyr_0.7.6        
-## [46] rprojroot_1.3-2     tools_3.4.4         magrittr_1.5       
-## [49] lazyeval_0.2.1      tibble_1.4.2        cluster_2.0.7-1    
-## [52] crayon_1.3.4        whisker_0.3-2       pkgconfig_2.0.2    
-## [55] MASS_7.3-50         viridis_0.5.1       assertthat_0.2.0   
-## [58] rmarkdown_1.10      R6_2.2.2            mclust_5.4.1       
-## [61] nnet_7.3-12         compiler_3.4.4</code></pre>
-
-</div>
-<div id="density-heatmap" class="section level2">
-<h2><span class="header-section-number">7.4</span> density heatmap</h2>
-</div>
-<div id="stacked-plot" class="section level2">
-<h2><span class="header-section-number">7.5</span> stacked plot</h2>
 
 </div>
 </div>
@@ -546,7 +494,7 @@ ht =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class=
         </div>
       </div>
 <a href="heatmap-decoration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="more-examples-of-making-complex-heatmaps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="other-high-level-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

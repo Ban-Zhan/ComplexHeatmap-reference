@@ -1,6 +1,6 @@
 
 
-# A List of Heatmaps
+# A List of Heatmaps {#a-list-of-heatmaps}
 
 The main feature of **ComplexHeatmap** package is it supports to concatenate a list of 
 heatmaps/annotations horizontally or vertically so that it makes it possible to visualize
