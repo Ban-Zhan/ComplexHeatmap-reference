@@ -2,106 +2,89 @@
 
 # Introduction {#introduction}
 
-Complex heatmaps are efficient to visualize associations 
-between different sources of data sets and reveal potential structures. 
-Here the **ComplexHeatmap** package provides a highly flexible way to arrange 
-multiple heatmaps and supports self-defined annotation graphics.
+Complex heatmaps are efficient to visualize associations between different sources of data sets and
+reveal potential structures. Here the **ComplexHeatmap** package provides a highly flexible way to
+arrange multiple heatmaps and supports self-defined annotation graphics.
 
-## General design
-
-Generally, a heatmap list contains several heatmaps and row annotations.
+## General design {#general-design}
 
 
+
+A single heatmap is composed of the heatmap body and the heatmap components. The heatmap body can
+be split by rows and columns. The heatmap components are titles, dendrograms, matrix names and 
+annotations, which are put on the four sides of the heamap body.
 
 <img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
 
+A heatmap list is concatenation of a list of heatmaps and heatmap annotations. Surrounding the
+heatmap list, there are global-level titles and legends.
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" /><img src="01-introduction_files/figure-html/unnamed-chunk-4-2.png" width="384" style="display: block; margin: auto;" />
+One of the important things for the heatmap list is that rows for all heatmaps and annotations (it
+is row annotation if the heatmap list is horizontal.) are all adusted so that the same row in all
+heatmaps and annotations corresponds to a same feature.
 
-Surrounding the heatmap list,
-there are legends for heatmaps and annotations, also there are titles which are placed
-on the four sides of the heatmap list. And for each heatmap, there are also different components
-surrounding the heatmap body.
+<img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" />
 
-The **ComplexHeatmap** package is implemented in an object-oriented way. To describe a heatmap list, 
+The heatmaps and annotations can also be arranged vertically.
+
+<img src="01-introduction_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" />
+
+The **ComplexHeatmap** package is implemented in an object-oriented way. To describe a heatmap list,
 there are following classes:
 
-- `Heatmap` class: a single heatmap containing heatmap body, row/column names, titles, dendrograms and column annotations.
-- `HeatmapList` class: a list of heatmaps and row annotations.
-- `HeatmapAnnotation` class: defines a list of row annotations and column annotations.
+- `Heatmap` class: a single heatmap containing heatmap body, row/column names, titles, dendrograms
+  and column annotations.
+- `HeatmapList` class: a list of heatmaps and heatmap annotations.
+- `HeatmapAnnotation` class: defines a list of row annotations and column annotations. The heatmap
+  annotations can be components of heatmap, also they can be independent as heatmaps.
 
 There are also several internal classes:
 
 - `SingleAnnotation` class: defines a single row annotation or column annotation.
 - `ColorMapping` class: mapping from values to colors.
+- `AnnotationFunction` class: construct user-defined annotations.
 
-**ComplexHeatmap** is implemented under **grid** system, so users should know basic **grid** functionality
-to get full use of the package.
-
-## Vignettes
-
-There are several vignettes in the package. Each vignette focuses on one specific topic. Following
-lists the general topics discussed in these vignettes:
-
-  1. [**Making a Single Heatmap**](s2.single_heatmap.html)
-
-    This vignette introduces the basic configuration for making a single heatmap. Similar as other
-    R functions/packages, the basic usage is quite similar, but there are several unique features
-    for **ComplexHeamtap** package.
-    - Works both for numeric matrix and character matrix.
-    - For numeric matrix which contains continuous values, the package allows a color mapping function
-      which can give more accurate colors and be robust to outliers.
-    - Highly flexible for clustering. You can define the distance method for clustering by:
-          * a pre-defined distance such as "euclidean" or "pearson",
-          * a self-defined function which calculates distance from a matrix,
-          * a self-defined function which calculates distance from two vectors.
-        
-        You can define the clustering method by:
-          * a clustering function such as `diana()` from **cluster** package
-          * a `hclust` or `dendrogram` object.
-    - `NA` is allowed for clustering and heatmap visualization.
-    - Dendrogram and dimension names can be put on any side of the heatmap.
-    - Rows on the heatmap can be split by `cutree`, by `kmeans` or by a data frame which contains 
-      different levels that split the heatmap.
-    - The heatmap body itself can be completely self-defined.
-
-  2. [**Making a List of Heatmaps**](s3.a_list_of_heatmaps.html)
-
-    This vignette introduces how to concatenate a list of heatmaps and how adjustment is applied to keep
-    the correspondence of the heatmaps.
-
-  3. [**Heatmap Annotations**](s4.heatmap_annotation.html)
-
-    This vignette introduces the concept of the heatmap annotation and demonstrates how to make simple annotations
-    as well as complex annotations. Also, the vignette explains the difference between column annotations
-    and row annotations.
-
-  4. [**Heatmap and Annotation Legends**](s5.legend.html)
-
-    This vignette introduces how to configurate the heatmap legend and annotation legend, also
-    how to add self-defined legends.
-
-  5. [**Heatmap Decoration**](s6.heatmap_decoration.html)
-
-    This vignette introduces methods to add more self-defined graphics to the heatmaps after the heatmaps
-    are generated.
-
-  6. [**Interactive with Heatmaps**](s7.interactive.html)
-
-    How to select a region in the heatmap to retrieve the sub-matrix.
-  
-  7. [**OncoPrint**](s8.oncoprint.html)
-
-    How to make an oncoPrint.
-
-  8. [**Examples**](s9.examples.html)
-
-    More simulated and real-world examples are shown in this vignette.
-
-In the supplementaries of [the ComplexHeatmap paper](http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract), there are four comprehensive examples which are applied
-on real-world high-throughput datasets. [The examples can be found here.](http://jokergoo.github.io/supplementary/ComplexHeatmap-supplementary1-4/index.html)
-
-Also [my blog](http://jokergoo.github.io/blog.html) has some examples and tips for making better complex heatmaps.
+**ComplexHeatmap** is implemented under **grid** system, so users need to know basic **grid**
+functionality to get full use of the package.
 
 
-    
+## A brief description of following chapters {#a-brief-description-of-following-chapters}
+
+1. [**A Single Heatmap**](a-single-heatmap.html)
+
+This chapter describes the configurations of a single heatmap. 
+
+2. [**Heatmap Annotations**](#heatmap-annotations.html)
+
+This chapter describes the concept of the heatmap annotation and demonstrates how to make simple
+annotations as well as complex annotations. Also, the chapter explains the difference between column
+annotations and row annotations.
+
+3. [**A List of Heatmaps**](a-list-of-heatmaps.html)
+
+This chapter describes how to concatenate a list of heatmaps and annotations and how adjustment is
+applied to keep the correspondence of the heatmaps.
+
+4. [**Legends**](legends.html)
+
+This chapter describes how to configurate the heatmap legends and annotation legends, also how to
+create self-defined legends.
+
+5. [**Heatmap Decoration**](heatmap-decoration.html)
+
+This chapter describes methods to add more self-defined graphics to the heatmaps after the heatmaps
+are generated.
+
+6. [**OncoPrint**](oncoprint.html)
+
+This chapter describes how to make oncoPrints and how to integrate other functionalities from
+**ComplexHeatmap** to oncoPrints.
+
+7. [**Other High-level Plots**](other-high-level-plots.html)
+
+This chapter describes functions implemented in **ComplexHeatmap** for specific use, e.g.
+visualizing distributions.
+
+8. [**More Examples**](more-examples.html)
+
+More simulated and real-world examples are shown in this chapter.

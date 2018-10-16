@@ -1,6 +1,6 @@
 
 
-# Making A List of Heatmaps
+# A List of Heatmaps
 
 The main feature of **ComplexHeatmap** package is it supports to concatenate a list of 
 heatmaps/annotations horizontally or vertically so that it makes it possible to visualize
@@ -583,15 +583,29 @@ sessionInfo()
 ## [8] base     
 ## 
 ## other attached packages:
-## [1] circlize_0.4.5        ComplexHeatmap_1.99.0
+## [1] dendsort_0.3.3        dendextend_1.8.0      circlize_0.4.5       
+## [4] ComplexHeatmap_1.99.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.18        bookdown_0.7        digest_0.6.17      
-##  [4] rprojroot_1.3-2     backports_1.1.2     magrittr_1.5       
-##  [7] evaluate_0.11       GlobalOptions_0.1.1 stringi_1.2.4      
-## [10] GetoptLong_0.1.7    rmarkdown_1.10      RColorBrewer_1.1-2 
-## [13] rjson_0.2.20        tools_3.4.4         stringr_1.3.1      
-## [16] xfun_0.3            yaml_2.2.0          compiler_3.4.4     
-## [19] colorspace_1.3-2    shape_1.4.4         htmltools_0.3.6    
-## [22] knitr_1.20
+##  [1] shape_1.4.4         modeltools_0.2-22   GetoptLong_0.1.7   
+##  [4] tidyselect_0.2.4    xfun_0.3            kernlab_0.9-27     
+##  [7] purrr_0.2.5         lattice_0.20-35     colorspace_1.3-2   
+## [10] viridisLite_0.3.0   htmltools_0.3.6     stats4_3.4.4       
+## [13] yaml_2.2.0          rlang_0.2.2         pillar_1.3.0       
+## [16] glue_1.3.0          prabclus_2.2-6      RColorBrewer_1.1-2 
+## [19] fpc_2.1-11.1        bindrcpp_0.2.2      plyr_1.8.4         
+## [22] bindr_0.1.1         robustbase_0.93-2   stringr_1.3.1      
+## [25] munsell_0.5.0       gtable_0.2.0        mvtnorm_1.0-8      
+## [28] GlobalOptions_0.1.1 evaluate_0.11       knitr_1.20         
+## [31] flexmix_2.3-14      class_7.3-14        DEoptimR_1.0-8     
+## [34] trimcluster_0.1-2.1 Rcpp_0.12.18        scales_1.0.0       
+## [37] backports_1.1.2     diptest_0.75-7      gridExtra_2.3      
+## [40] rjson_0.2.20        ggplot2_3.0.0       digest_0.6.17      
+## [43] stringi_1.2.4       bookdown_0.7        dplyr_0.7.6        
+## [46] rprojroot_1.3-2     tools_3.4.4         magrittr_1.5       
+## [49] lazyeval_0.2.1      tibble_1.4.2        cluster_2.0.7-1    
+## [52] crayon_1.3.4        whisker_0.3-2       pkgconfig_2.0.2    
+## [55] MASS_7.3-50         viridis_0.5.1       assertthat_0.2.0   
+## [58] rmarkdown_1.10      R6_2.2.2            mclust_5.4.1       
+## [61] nnet_7.3-12         compiler_3.4.4
 ```

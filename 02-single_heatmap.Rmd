@@ -143,10 +143,10 @@ f1 = colorRamp2(seq(min(mat), max(mat), length = 3), c("blue", "#EEEEEE", "red")
 f2 = colorRamp2(seq(min(mat), max(mat), length = 3), c("blue", "#EEEEEE", "red"), 
     space = "RGB")
 pushViewport(viewport(x = 0, width = 0.5, just = "left"))
-Heatmap(mat, name = "mat1", col = f1, column_title = "LAB color space", newpage = FALSE)
+draw(Heatmap(mat, name = "mat1", col = f1, column_title = "LAB color space"), newpage = FALSE)
 upViewport()
 pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
-Heatmap(mat, name = "mat2", col = f2, column_title = "RGB color space", newpage = FALSE)
+draw(Heatmap(mat, name = "mat2", col = f2, column_title = "RGB color space"), newpage = FALSE)
 upViewport()
 ```
 
@@ -569,13 +569,13 @@ Heatmap(mat, name = "mat", column_names_rot = 45, column_names_side = "top",
     column_dend_side = "bottom")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.width = 14}
 pushViewport(viewport(x = 0, width = 0.5, just = "left"))
-Heatmap(mat, name = "mat", column_names_rot = 45, newpage = FALSE)
+draw(Heatmap(mat, name = "mat", column_names_rot = 45), newpage = FALSE)
 upViewport()
 pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
-Heatmap(mat, name = "mat", column_names_rot = 45, column_names_side = "top",
-    column_dend_side = "bottom", newpage = FALSE)
+draw(Heatmap(mat, name = "mat", column_names_rot = 45, column_names_side = "top",
+    column_dend_side = "bottom"), newpage = FALSE)
 upViewport()
 ```
 
@@ -991,9 +991,11 @@ Next example shows the `layer_fun` version of adding text on heatmap. It's basic
 `cell_fun` version.
 
 ```{r}
-Heatmap(small_mat, name = "mat", layer_fun = function(j, i, x, y, width, height, fill) {
-    # since grid.text can also be vectorized
-    grid.text(sprintf("%.1f", pindex(mat, i, j)), x, y, gp = gpar(fontsize = 10))
+col_fun = colorRamp2(c(-2, 0, 2), c("green", "white", "red"))
+Heatmap(small_mat, name = "mat", col = col_fun,
+    layer_fun = function(j, i, x, y, width, height, fill) {
+        # since grid.text can also be vectorized
+        grid.text(sprintf("%.1f", pindex(mat, i, j)), x, y, gp = gpar(fontsize = 10))
 })
 ```
 
@@ -1100,7 +1102,7 @@ Heatmap(go_mat, name = "go", rect_gp = gpar(type = "none"),
 )
 ```
 
-## Size of the heatmap {size-of-the-heatmap}
+## Size of the heatmap {#size-of-the-heatmap}
 
 `width`, `heatmap_width`, `height` and `heatmap_height` control the size of the heatmap. By default,
 all heatmap components have fixed width or height, e.g. the width of row dendrogram is `1cm`. The

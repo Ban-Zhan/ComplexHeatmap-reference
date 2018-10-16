@@ -1,5 +1,5 @@
 
-# Legend
+# Legends
 
 The heatmaps and simple annotations automatically generate legends which are put one the right side
 of the heatmap. By default there is no legend for complex annotations, but they can be constructed

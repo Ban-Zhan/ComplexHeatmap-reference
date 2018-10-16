@@ -196,14 +196,28 @@ sessionInfo()
 ## 
 ## other attached packages:
 ## [1] pvclust_2.0-0         MASS_7.3-50           RColorBrewer_1.1-2   
-## [4] circlize_0.4.5        ComplexHeatmap_1.99.0
+## [4] dendsort_0.3.3        dendextend_1.8.0      circlize_0.4.5       
+## [7] ComplexHeatmap_1.99.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.18        bookdown_0.7        digest_0.6.17      
-##  [4] rprojroot_1.3-2     backports_1.1.2     magrittr_1.5       
-##  [7] evaluate_0.11       GlobalOptions_0.1.1 stringi_1.2.4      
-## [10] GetoptLong_0.1.7    rmarkdown_1.10      rjson_0.2.20       
-## [13] tools_3.4.4         stringr_1.3.1       xfun_0.3           
-## [16] yaml_2.2.0          compiler_3.4.4      colorspace_1.3-2   
-## [19] shape_1.4.4         htmltools_0.3.6     knitr_1.20
+##  [1] shape_1.4.4         modeltools_0.2-22   GetoptLong_0.1.7   
+##  [4] tidyselect_0.2.4    xfun_0.3            kernlab_0.9-27     
+##  [7] purrr_0.2.5         lattice_0.20-35     colorspace_1.3-2   
+## [10] viridisLite_0.3.0   htmltools_0.3.6     stats4_3.4.4       
+## [13] yaml_2.2.0          rlang_0.2.2         pillar_1.3.0       
+## [16] glue_1.3.0          prabclus_2.2-6      fpc_2.1-11.1       
+## [19] bindrcpp_0.2.2      plyr_1.8.4          bindr_0.1.1        
+## [22] robustbase_0.93-2   stringr_1.3.1       munsell_0.5.0      
+## [25] gtable_0.2.0        mvtnorm_1.0-8       GlobalOptions_0.1.1
+## [28] evaluate_0.11       knitr_1.20          flexmix_2.3-14     
+## [31] class_7.3-14        DEoptimR_1.0-8      trimcluster_0.1-2.1
+## [34] Rcpp_0.12.18        scales_1.0.0        backports_1.1.2    
+## [37] diptest_0.75-7      gridExtra_2.3       rjson_0.2.20       
+## [40] ggplot2_3.0.0       digest_0.6.17       stringi_1.2.4      
+## [43] bookdown_0.7        dplyr_0.7.6         rprojroot_1.3-2    
+## [46] tools_3.4.4         magrittr_1.5        lazyeval_0.2.1     
+## [49] tibble_1.4.2        cluster_2.0.7-1     crayon_1.3.4       
+## [52] whisker_0.3-2       pkgconfig_2.0.2     viridis_0.5.1      
+## [55] assertthat_0.2.0    rmarkdown_1.10      R6_2.2.2           
+## [58] mclust_5.4.1        nnet_7.3-12         compiler_3.4.4
 ```
