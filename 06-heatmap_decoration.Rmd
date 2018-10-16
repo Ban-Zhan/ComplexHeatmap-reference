@@ -1,5 +1,5 @@
 
-# Heatmap decoration
+# Heatmap Decoration {#heatmap-decoration}
 
 
 Each component of the heatmap/heatmap list has a name (unique id). You can go to any viewport 
