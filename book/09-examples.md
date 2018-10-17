@@ -43,7 +43,9 @@ Heatmap(expr$length, name = "length", col = colorRamp2(c(0, 1000000), c("white",
 Heatmap(expr$type, name = "type", width = unit(5, "mm"))
 ```
 
-<img src="09-examples_files/figure-html/expression_example-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/expression_example-1} \end{center}
 
 ### Visualize genomic regions and other correspondance
 
@@ -65,7 +67,9 @@ From left to right, heatmaps are:
 ## Warning: The input is a data frame, convert it to the matrix.
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 
 ## Combine pvclust and heatmap
@@ -101,7 +105,9 @@ boston.pv <- pvclust(Boston, nboot=100)
 plot(boston.pv)
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 Since by default `pvclust` clusters columns by 'correlation' method, we scale columns for
 `Boston` data set to see the relative trend.
@@ -112,7 +118,9 @@ Boston_scaled = apply(Boston, 2, scale)
 Heatmap(Boston_scaled, cluster_columns = boston.pv$hclust, heatmap_legend_param = list(title = "Boston"))
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 ## Make a same plot as heatmap()
 
@@ -123,7 +131,9 @@ mat = matrix(rnorm(100), 10)
 heatmap(mat, col = topo.colors(50))
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 Compare to the native `heatmap()`, `Heatmap()` can give more accurate interpolation
 for colors for continous values.
@@ -136,7 +146,9 @@ Heatmap(mat, col = topo.colors(50), color_space = "sRGB",
     column_dend_reorder = TRUE)
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 ## The measles vaccine heatmap
 
@@ -169,7 +181,9 @@ decorate_heatmap_body("cases", {
 })
 ```
 
-<img src="09-examples_files/figure-html/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{09-examples_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
 ## Session info
 

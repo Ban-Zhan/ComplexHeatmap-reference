@@ -14,7 +14,8 @@ A single heatmap is composed of the heatmap body and the heatmap components. The
 be split by rows and columns. The heatmap components are titles, dendrograms, matrix names and 
 annotations, which are put on the four sides of the heamap body.
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{01-introduction_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 A heatmap list is concatenation of a list of heatmaps and heatmap annotations. Surrounding the
 heatmap list, there are global-level titles and legends.
@@ -23,11 +24,13 @@ One of the important things for the heatmap list is that rows for all heatmaps a
 is row annotation if the heatmap list is horizontal.) are all adusted so that the same row in all
 heatmaps and annotations corresponds to a same feature.
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{01-introduction_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 The heatmaps and annotations can also be arranged vertically.
 
-<img src="01-introduction_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{01-introduction_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 The **ComplexHeatmap** package is implemented in an object-oriented way. To describe a heatmap list,
 there are following classes:

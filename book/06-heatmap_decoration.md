@@ -51,7 +51,9 @@ list_components()
 ## [37] "heatmap_legend"               "annotation_legend"
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/access_components-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-heatmap_decoration_files/figure-latex/access_components-1} \end{center}
 
 The components (viewports) that have names are:
 
@@ -109,7 +111,9 @@ decorate_annotation("points", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/components-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-heatmap_decoration_files/figure-latex/components-1} \end{center}
 
 For annotations which are created by `anno_points()`, `anno_barplot()` and `anno_boxplot()`, "native" unit
 can be used in the decoration code.
@@ -152,7 +156,9 @@ decorate_annotation("barplot", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-heatmap_decoration_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 ### add decoration for a customized heatmap
 
@@ -182,7 +188,9 @@ m2 = matrix(rnorm(100), nr = 10)
 customized_heatmap(m1) %v% customized_heatmap(m2)
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{06-heatmap_decoration_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 ### Other probably usage of decoration
 

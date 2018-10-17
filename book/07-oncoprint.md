@@ -66,7 +66,9 @@ oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 In above example, form of the string (e.g. `snv;indel`) correlates to how you define `get_type`. If the string
 has the form of `snv|indel|amp`, `get_type` should be defined as `function(x) strsplit(x, "|")[[1]]`.
@@ -155,7 +157,9 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 In above examples, `alter_fun` is a list of functons which add graphics layer by layer. Graphics
 can also be added in a grid-by-grid style by specifying `alter_fun` as a single function. The difference
@@ -183,7 +187,9 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 If `alter_fun` is set as a single function, customization can be more flexible. In following example,
 rectangles always fill the whole grid evenly.
@@ -204,7 +210,9 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 With a single function for `alter_fun`, you can define different graphics for different alterations.
 In following plot, you need to adjust the height of the whole plot to make sure the height for each cell
@@ -244,7 +252,9 @@ oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 If `alter_fun` is specified as a list, the order of the elements controls the order of adding graphics. 
 There is a special element named `background` which defines how to draw background and it should be always put
@@ -264,7 +274,9 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 Or just remove the background:
 
@@ -282,7 +294,9 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 You can customize the oncoprot by self-defining `alter_fun`. But be careful you must
 convert `w` and `h` to absolute units.
@@ -310,7 +324,9 @@ oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 ## Apply to cBioPortal dataset
 
@@ -395,7 +411,9 @@ oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-17-1.png" width="1152" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 As you see, the genes and samples are sorted automatically. Rows are sorted based on the frequency
 of the alterations in all samples and columns are sorted to visualize the mutual exclusivity across genes
@@ -421,7 +439,9 @@ oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-18-1.png" width="1152" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 As the normal `Heatmap()` function, `row_order` or `column_order` can be assigned with a vector of 
 orders (either numeric or character). Following the order of samples are gathered from cBio as well.
@@ -451,7 +471,9 @@ ht = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 draw(ht, heatmap_legend_side = "bottom")
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-19-1.png" width="1152" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 `oncoPrint()` actually returns a `HeatmapList` object, so you can add more Heatmaps or row annotations
 to it to visualize more complicated information.
@@ -478,4 +500,6 @@ Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", show_column_dend 
 draw(ht_list, row_sub_title_side = "left")
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-oncoprint_files/figure-latex/unnamed-chunk-20-1} \end{center}
