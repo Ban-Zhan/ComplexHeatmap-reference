@@ -1,5 +1,115 @@
 # Other High-level Plots {#other-high-level-plots}
 
-## density heatmap
+## Density heatmap {#density-heatmap}
 
-## stacked plot
+
+```{r}
+set.seed(123)
+m = cbind(matrix(rnorm(10*100), ncol = 10),
+	      matrix(runif(10*100, min = -2, max = 2) + 0.5, ncol = 10))
+colnames(m) = paste0("C", 1:ncol(m))
+densityHeatmap(m)
+```
+
+```{r}
+densityHeatmap(m, ylim = c(-2, 2), title = "Distribution as heatmap", ylab = "some values")
+```
+
+```{r}
+densityHeatmap(m, column_order = sample(20, 20))
+```
+
+
+```{r}
+densityHeatmap(m, col = topo.colors(10))
+```
+
+
+```{r}
+ha1 = HeatmapAnnotation(dist = c(rep("rnorm", 10), rep("runif", 10)))
+ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
+densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
+```
+
+```{r}
+ha1 = HeatmapAnnotation(dist = c(rep("rnorm", 10), rep("runif", 10)))
+ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
+densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2,
+	column_split = c(rep("rnorm", 10), rep("runif", 10)))
+```
+
+```{r}
+densityHeatmap(m) %v%
+Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
+```
+
+## Stacked summary plot {#stacked-summary-plot}
+
+```{r}
+lt = readRDS(system.file("extdata", package = "ComplexHeatmap", "dmr_summary.rds"))
+names(lt)
+attach(lt)
+```
+
+```{r}
+library(circlize)
+meth_col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
+corr_col = c("green", "red")
+dist_tss_col = c("#FF0000", "#FF7352", "#FFB299", "#FFD9CB")
+gene_anno_col = c("green", "blue")
+cgi_anno_col = c("#FFA500", "#FFD191")
+z_score_col_fun = colorRamp2(c(-200, 0, 200), c("green", "white", "red"))
+state_col = c("#FF0000", "#008000", "#C2E105", "#8A91D0", "#CD5C5C", "#808080", "#000000")
+```
+
+
+```{r}
+anno_width = unit(4, "cm")
+ht_list = rowAnnotation(text = anno_text(label, location = unit(1, "npc"), gp = gpar(fontsize = 12)))
+
+ht_list = ht_list + Heatmap(mean_meth, name = "mean_meth", col = meth_col_fun, 
+	cluster_rows = FALSE, column_title = "", cluster_columns = FALSE, show_row_names = FALSE,
+	heatmap_legend_param = list(title = "Methylation"), width = ncol(mean_meth)*unit(6, "mm")) +
+rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width)) +
+rowAnnotation("n_corr" = anno_barplot(n_corr, bar_width = 1, gp = gpar(fill = corr_col), width = anno_width)) +
+rowAnnotation("dist_tss" = anno_barplot(dist_tss, bar_width = 1, gp = gpar(fill = dist_tss_col), width = anno_width)) +
+rowAnnotation("gene_anno" = anno_barplot(gene_anno, bar_width = 1, gp = gpar(fill = gene_anno_col), width = anno_width)) +
+rowAnnotation("cgi_anno" = anno_barplot(cgi_anno, bar_width = 1, gp = gpar(fill = cgi_anno_col), width = anno_width)) +
+Heatmap(mat_enrich_gf, name = "enrich_gf", col = z_score_col_fun, cluster_columns = FALSE,
+	width = unit(ncol(mat_enrich_gf)*6, "mm"), column_title = "",
+	heatmap_legend_param = list(title = "Z-score")) +
+rowAnnotation("pct_st" = anno_barplot(mat_pct_st, bar_width = 1, gp = gpar(fill = state_col), width = anno_width)) +
+Heatmap(mat_enrich_st, name = "enrich_st", col = z_score_col_fun, cluster_columns = FALSE, 
+	width = unit(ncol(mat_enrich_st)*6, "mm"), column_title = "", show_heatmap_legend = FALSE,
+	column_names_gp = gpar(col = state_col))
+```
+
+```{r}
+lgd_list = list(
+	Legend(labels = c("gene", "intergenic"), title = "Gene annotation", legend_gp = gpar(fill = gene_anno_col)),
+	Legend(labels = c("<1kb", "1kb~5kb", "5kb~10kb", ">10kb"), title = "Distance to TSS", legend_gp = gpar(fill = dist_tss_col)),
+	Legend(labels = c("CGI", "CGI shore"), title = "CGI annotation", legend_gp = gpar(fill = cgi_anno_col)),
+	Legend(labels = colnames(mat_enrich_st), title = "Chromatin states", legend_gp = gpar(fill = state_col))
+)
+```
+
+```{r, fig.width = 14, fig.height = 6}
+draw(ht_list, padding = unit(c(1, 1, 1, 1), "cm"), row_split = gsub("\\d+$", "", label)), row_sub_titles = NULL,
+	annotation_legend_list = lgd_list)
+anno_title = c("n_gr" = "Number of\nDMRs", "n_corr" = "Significantly\ncorrelated genes",
+	"gene_anno" = "Gene annotation", "dist_tss" = "Distance to TSS",
+	"cgi_anno" = "CGI annotation", "pct_st" = "Overlap to\nChromatin states")
+for(an in names(anno_title)) {
+    decorate_annotation(an, {
+        grid.text(anno_title[an], y = unit(1, "npc") + unit(3, "mm"), just = "bottom")
+    })
+}
+ht_title = c("mean_meth" = "Mean\nmethylation", "enrich_gf" = "Enrichment to\ngenomic features",
+	"enrich_st" = "Enrichment to\nchromatin states")
+for(an in names(ht_title)) {
+    decorate_heatmap_body(an, {
+        grid.text(ht_title[an], y = unit(1, "npc") + unit(3, "mm"), just = "bottom")
+    })
+}
+```
+
