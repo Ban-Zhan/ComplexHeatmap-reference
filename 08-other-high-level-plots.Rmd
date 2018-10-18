@@ -70,15 +70,21 @@ ht_list = rowAnnotation(text = anno_text(label, location = unit(1, "npc"), gp = 
 ht_list = ht_list + Heatmap(mean_meth, name = "mean_meth", col = meth_col_fun, 
 	cluster_rows = FALSE, column_title = "", cluster_columns = FALSE, show_row_names = FALSE,
 	heatmap_legend_param = list(title = "Methylation"), width = ncol(mean_meth)*unit(6, "mm")) +
-rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width)) +
-rowAnnotation("n_corr" = anno_barplot(n_corr, bar_width = 1, gp = gpar(fill = corr_col), width = anno_width)) +
-rowAnnotation("dist_tss" = anno_barplot(dist_tss, bar_width = 1, gp = gpar(fill = dist_tss_col), width = anno_width)) +
-rowAnnotation("gene_anno" = anno_barplot(gene_anno, bar_width = 1, gp = gpar(fill = gene_anno_col), width = anno_width)) +
-rowAnnotation("cgi_anno" = anno_barplot(cgi_anno, bar_width = 1, gp = gpar(fill = cgi_anno_col), width = anno_width)) +
+rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width)， 
+	show_row_name = FALSE) +
+rowAnnotation("n_corr" = anno_barplot(n_corr, bar_width = 1, gp = gpar(fill = corr_col), 
+	width = anno_width), show_annotation_name = FALSE) +
+rowAnnotation("dist_tss" = anno_barplot(dist_tss, bar_width = 1, gp = gpar(fill = dist_tss_col), 
+	width = anno_width), show_annotation_name = FALSE) +
+rowAnnotation("gene_anno" = anno_barplot(gene_anno, bar_width = 1, gp = gpar(fill = gene_anno_col), 
+	width = anno_width), show_annotation_name = FALSE) +
+rowAnnotation("cgi_anno" = anno_barplot(cgi_anno, bar_width = 1, gp = gpar(fill = cgi_anno_col), 
+	width = anno_width), show_annotation_name = FALSE) +
 Heatmap(mat_enrich_gf, name = "enrich_gf", col = z_score_col_fun, cluster_columns = FALSE,
 	width = unit(ncol(mat_enrich_gf)*6, "mm"), column_title = "",
 	heatmap_legend_param = list(title = "Z-score")) +
-rowAnnotation("pct_st" = anno_barplot(mat_pct_st, bar_width = 1, gp = gpar(fill = state_col), width = anno_width)) +
+rowAnnotation("pct_st" = anno_barplot(mat_pct_st, bar_width = 1, gp = gpar(fill = state_col), 
+	width = anno_width), show_annotation_name = FALSE) +
 Heatmap(mat_enrich_st, name = "enrich_st", col = z_score_col_fun, cluster_columns = FALSE, 
 	width = unit(ncol(mat_enrich_st)*6, "mm"), column_title = "", show_heatmap_legend = FALSE,
 	column_names_gp = gpar(col = state_col))
@@ -94,7 +100,7 @@ lgd_list = list(
 ```
 
 ```{r, fig.width = 14, fig.height = 6}
-draw(ht_list, padding = unit(c(1, 1, 1, 1), "cm"), row_split = gsub("\\d+$", "", label)), row_sub_titles = NULL,
+draw(ht_list, padding = unit(c(1, 1, 2, 1), "cm"), row_split = gsub("\\d+$", "", label), 
 	annotation_legend_list = lgd_list)
 anno_title = c("n_gr" = "Number of\nDMRs", "n_corr" = "Significantly\ncorrelated genes",
 	"gene_anno" = "Gene annotation", "dist_tss" = "Distance to TSS",

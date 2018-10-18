@@ -101,48 +101,6 @@ invisible(ht_global_opt(RESET = TRUE))
 ```
 
 
-## Combine pvclust and heatmap
-
-**pvclust** package provides a robust way to test the stability of the clustering
-by random sampling from original data. Here you can organize the heatmap by the clustering
-returned from `pvclust()`.
-
-```{r}
-library(ComplexHeatmap)
-
-library(MASS)
-library(pvclust)
-data(Boston)
-boston.pv <- pvclust(Boston, nboot=100)
-plot(boston.pv)
-```
-
-Since by default `pvclust` clusters columns by 'correlation' method, we scale columns for
-`Boston` data set to see the relative trend.
-
-```{r}
-Boston_scaled = apply(Boston, 2, scale)
-Heatmap(Boston_scaled, cluster_columns = boston.pv$hclust, heatmap_legend_param = list(title = "Boston"))
-```
-
-## Make a same plot as heatmap()
-
-```{r}
-set.seed(123)
-mat = matrix(rnorm(100), 10)
-heatmap(mat, col = topo.colors(50))
-```
-
-Compare to the native `heatmap()`, `Heatmap()` can give more accurate interpolation
-for colors for continous values.
-
-```{r}
-Heatmap(mat, col = topo.colors(50), color_space = "sRGB",
-    row_dend_width = unit(2, "cm"), 
-    column_dend_height = unit(2, "cm"), row_dend_reorder = TRUE,
-    column_dend_reorder = TRUE)
-```
-
 ## The measles vaccine heatmap
 
 Following code reproduces the heatmap introduced [here](https://biomickwatson.wordpress.com/2015/04/09/recreating-a-famous-visualisation/) and [here](https://benjaminlmoore.wordpress.com/2015/04/09/recreating-the-vaccination-heatmaps-in-r/).
