@@ -32,13 +32,6 @@ densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 ```
 
 ```{r}
-ha1 = HeatmapAnnotation(dist = c(rep("rnorm", 10), rep("runif", 10)))
-ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
-densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2,
-	column_split = c(rep("rnorm", 10), rep("runif", 10)))
-```
-
-```{r}
 densityHeatmap(m) %v%
 Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
 ```

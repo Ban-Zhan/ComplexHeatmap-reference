@@ -545,6 +545,31 @@ decorate_annotation("foo", {
 })
 ```
 
+## Block annotation {#block-annotation}
+
+The block annotation is more like a color block which identifies groups when the rows or columns
+of the heatmap is split.
+
+```{r}
+Heatmap(matrix(rnorm(100), 10), 
+    top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = 2:4))),
+    column_km = 3)
+```
+
+Labels can be added to each block.
+
+```{r}
+Heatmap(matrix(rnorm(100), 10), 
+    top_annotation = HeatmapAnnotation(foo = anno_block(gp = gpar(fill = 2:4),
+        labels = c("group1", "group2", "group3"), labels_gp = gpar(col = "white"))),
+    column_km = 3,
+    left_annotation = rowAnnotation(foo = anno_block(gp = gpar(fill = 2:4),
+        labels = c("group1", "group2", "group3"), labels_gp = gpar(col = "white"))),
+    row_km = 3)
+```
+
+Note the length of `labels` or graphic parameters should have same length as number of slices.
+
 ## Image annotation {#image-annotation}
 
 Images can be added as annotations. `anno_image()` supports image in `png`, `svg`, `pdf`, `eps`,

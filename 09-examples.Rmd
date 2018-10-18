@@ -28,17 +28,26 @@ base_mean = rowMeans(mat)
 mat_scaled = t(apply(mat, 1, scale))
 
 type = gsub("s\\d+_", "", colnames(mat))
-ha = HeatmapAnnotation(df = data.frame(type = type))
+ha = HeatmapAnnotation(type = type, annotation_name_side = "left")
 
-Heatmap(mat_scaled, name = "expression", km = 5, col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
+ht_list = Heatmap(mat_scaled, name = "expression", row_km = 5, 
+    col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
     top_annotation = ha, 
-    show_row_names = FALSE, show_column_names = FALSE) +
-Heatmap(base_mean, name = "base_mean", show_row_names = FALSE, width = unit(5, "mm")) +
-Heatmap(expr$length, name = "length", col = colorRamp2(c(0, 1000000), c("white", "orange")),
-    heatmap_legend_param = list(at = c(0, 200000, 400000, 60000, 800000, 1000000), 
-                                labels = c("0kb", "200kb", "400kb", "600kb", "800kb", "1mb")),
-    width = unit(5, "mm")) +
-Heatmap(expr$type, name = "type", width = unit(5, "mm"))
+    show_column_names = FALSE, row_title = NULL, show_row_dend = FALSE) +
+Heatmap(base_mean, name = "base_mean", 
+    top_annotation = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:6), 
+        height = unit(2, "cm"))),
+    width = unit(15, "mm")) +
+rowAnnotation(length = anno_points(expr$length, pch = 16, size = unit(1, "mm"), 
+    axis_param = list(at = c(0, 2e5, 4e5, 6e5), labels = c("0kb", "200kb", "400kb", "600kb")),
+    width = unit(2, "cm"))) +
+Heatmap(expr$type, name = "gene type", 
+    top_annotation = HeatmapAnnotation(summary = anno_summary(height = unit(2, "cm"))),
+    width = unit(15, "mm"))
+
+ht_list = rowAnnotation(block = anno_block(gp = gpar(fill = 2:6, col = NA)), width = unit(2, "mm")) + ht_list
+
+draw(ht_list, ht_gap = unit(5, "mm"))
 ```
 
 ### Visualize genomic regions and other correspondance
@@ -57,16 +66,15 @@ From left to right, heatmaps are:
 
 
 ```{r, fig.width = 10, fig.height = 8, echo = FALSE, results = "hide"}
-library(circlize)
 library(RColorBrewer)
 
 lt = readRDS(paste0(system.file(package = "ComplexHeatmap"), "/extdata/meth.rds"))
 list2env(lt, envir = environment())
 
 ha = HeatmapAnnotation(df = data.frame(type = c(rep("Tumor", 10), rep("Control", 10))), 
-    col = list(type = c("Tumor" = "red", "Control" = "blue")))
+    col = list(type = c("Tumor" = "pink", "Control" = "purple")), show_annotation_name = FALSE)
 ha2 = HeatmapAnnotation(df = data.frame(type = c(rep("Tumor", 10), rep("Control", 10))), 
-    col = list(type = c("Tumor" = "red", "Control" = "blue")), show_legend = FALSE)
+    col = list(type = c("Tumor" = "pink", "Control" = "purple")), show_legend = FALSE)
 
 # column order of the methylation matrix which will be assigned to the expressio matrix
 column_tree = hclust(dist(t(meth)))
@@ -81,23 +89,19 @@ ht_list =
     Heatmap(expr[, column_tree$order], name = "expression", col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
         cluster_columns = FALSE, top_annotation = ha2, column_names_gp = gpar(fontsize = 8), 
         column_title = "Expression", column_title_gp = gpar(fontsize = 10)) +
-    Heatmap(cor_pvalue, name = "-log10(cor_p)", col = colorRamp2(c(0, 2, 4), c("white", "white", "red")), 
-        column_names_gp = gpar(fontsize = 8)) +
-    Heatmap(gene_type, name = "gene type", col = brewer.pal(length(unique(gene_type)), "Set1"), 
-        column_names_gp = gpar(fontsize = 8)) +
-    Heatmap(anno, name = "anno_gene", col = brewer.pal(length(unique(anno)), "Set2"), 
-        column_names_gp = gpar(fontsize = 8)) +
-    Heatmap(dist, name = "dist_tss", col = colorRamp2(c(0, 10000), c("black", "white")), 
-        column_names_gp = gpar(fontsize = 8)) +
+    Heatmap(cor_pvalue, name = "-log10(cor_p)", col = colorRamp2(c(0, 2, 4), c("white", "white", "red"))) +
+    Heatmap(gene_type, name = "gene type", col = brewer.pal(length(unique(gene_type)), "Set1")) +
+    Heatmap(anno, name = "anno_gene", col = brewer.pal(length(unique(anno)), "Set2")) +
+    Heatmap(dist, name = "dist_tss", col = colorRamp2(c(0, 10000), c("black", "white"))) +
     Heatmap(enhancer, name = "anno_enhancer", col = colorRamp2(c(0, 1), c("white", "orange")), 
-        cluster_columns = FALSE, column_names_gp = gpar(fontsize = 8), column_title = "Enhancer", 
+        cluster_columns = FALSE, column_title = "Enhancer", 
         column_title_gp = gpar(fontsize = 10))
 
 ht_global_opt(legend_title_gp = gpar(fontsize = 8, fontface = "bold"), 
               legend_labels_gp = gpar(fontsize = 8))
 draw(ht_list, newpage = FALSE, column_title = "Correspondence between methylation, expression and other genomic features", 
     column_title_gp = gpar(fontsize = 12, fontface = "bold"), heatmap_legend_side = "bottom")
-invisible(ht_global_opt(RESET = TRUE))
+invisible(ht_opt(RESET = TRUE))
 ```
 
 
@@ -105,28 +109,42 @@ invisible(ht_global_opt(RESET = TRUE))
 
 Following code reproduces the heatmap introduced [here](https://biomickwatson.wordpress.com/2015/04/09/recreating-a-famous-visualisation/) and [here](https://benjaminlmoore.wordpress.com/2015/04/09/recreating-the-vaccination-heatmaps-in-r/).
 
-```{r, fig.width = 10, fig.height = 8}
+```{r, fig.width = 10, fig.height = 12}
 mat = readRDS(paste0(system.file("extdata", package = "ComplexHeatmap"), "/measles.rds"))
-ha1 = HeatmapAnnotation(dist1 = anno_barplot(colSums(mat), bar_width = 1, gp = gpar(col = NA, fill = "#FFE200"), 
-    border = FALSE, axis = TRUE))
-ha2 = rowAnnotation(dist2 = anno_barplot(rowSums(mat), bar_width = 1, gp = gpar(col = NA, fill = "#FFE200"), 
-    border = FALSE, which = "row", axis = TRUE), width = unit(1, "cm"))
-ha_column = HeatmapAnnotation(cn = function(index) {
-    year = as.numeric(colnames(mat))
-    which_decade = which(year %% 10 == 0)
-    grid.text(year[which_decade], which_decade/length(year), 1, just = c("center", "top"))
-})
-Heatmap(mat, name = "cases", col = colorRamp2(c(0, 800, 1000, 127000), c("white", "cornflowerblue", "yellow", "red")),
+ha1 = HeatmapAnnotation(
+    dist1 = anno_barplot(
+        colSums(mat), 
+        bar_width = 1, 
+        gp = gpar(col = "white", fill = "#FFE200"), 
+        border = FALSE,
+        height = unit(2, "cm")
+    ), show_annotation_name = FALSE)
+ha2 = rowAnnotation(
+    dist2 = anno_barplot(
+        rowSums(mat), 
+        bar_width = 1, 
+        gp = gpar(col = "white", fill = "#FFE200"), 
+        border = FALSE, 
+        width = unit(2, "cm")
+    ), show_annotation_name = FALSE)
+year_text = as.numeric(colnames(mat))
+year_text[year_text %% 10 != 0] = ""
+ha_column = HeatmapAnnotation(
+    year = anno_text(year_text, rot = 0, location = unit(1, "npc"), just = "top")
+)
+col_fun = colorRamp2(c(0, 800, 1000, 127000), c("white", "cornflowerblue", "yellow", "red"))
+Heatmap(mat, name = "cases", col = col_fun,
     cluster_columns = FALSE, show_row_dend = FALSE, rect_gp = gpar(col= "white"), show_column_names = FALSE,
     row_names_side = "left", row_names_gp = gpar(fontsize = 10),
     column_title = 'Measles cases in US states 1930-2001\nVaccine introduced 1961',
     top_annotation = ha1,
-    bottom_annotation = ha_column) + ha2
+    bottom_annotation = ha_column,
+    right_annotation = ha2)
 
 decorate_heatmap_body("cases", {
     i = which(colnames(mat) == "1961")
     x = i/ncol(mat)
-    grid.lines(c(x, x), c(0, 1), gp = gpar(lwd = 2))
+    grid.lines(c(x, x), c(0, 1), gp = gpar(lwd = 2, lty = 2))
     grid.text("Vaccine introduced", x, unit(1, "npc") + unit(5, "mm"))
 })
 ```
