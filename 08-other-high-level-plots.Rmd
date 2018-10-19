@@ -63,8 +63,8 @@ ht_list = rowAnnotation(text = anno_text(label, location = unit(1, "npc"), gp = 
 ht_list = ht_list + Heatmap(mean_meth, name = "mean_meth", col = meth_col_fun, 
 	cluster_rows = FALSE, column_title = "", cluster_columns = FALSE, show_row_names = FALSE,
 	heatmap_legend_param = list(title = "Methylation"), width = ncol(mean_meth)*unit(6, "mm")) +
-rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width)， 
-	show_row_name = FALSE) +
+rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width), 
+	show_annotation_name = FALSE) +
 rowAnnotation("n_corr" = anno_barplot(n_corr, bar_width = 1, gp = gpar(fill = corr_col), 
 	width = anno_width), show_annotation_name = FALSE) +
 rowAnnotation("dist_tss" = anno_barplot(dist_tss, bar_width = 1, gp = gpar(fill = dist_tss_col), 

@@ -48,9 +48,7 @@ ht3 = Heatmap(le, name = "letters")
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_default-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_default-1.png" width="960" style="display: block; margin: auto;" />
 
 Under default mode, dendrograms from the second heatmap will be removed and
 row orders will be same as the first one. also row names which are put on the right
@@ -112,9 +110,7 @@ draw(ht_list, row_title = "Three heatmaps, row title", row_title_gp = gpar(col =
     column_title = "Three heatmaps, column title", column_title_gp = gpar(fontsize = 16))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_title-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_title-1.png" width="960" style="display: block; margin: auto;" />
 
 
 ## Size of heatmaps
@@ -128,9 +124,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(5, "mm"))
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_size-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_size-1.png" width="960" style="display: block; margin: auto;" />
 
 or the width can be set as relative values. Please not in this case, `width` for all heatmaps
 should be set (relative width and fixed width can be mixed).
@@ -143,9 +137,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(1, "cm"))
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_relative_size-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_relative_size-1.png" width="960" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 151mm
@@ -161,9 +153,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = 1)
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-5-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" />
 
 ## Gap between heatmaps
 
@@ -176,17 +166,13 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 draw(ht_list, ht_gap = unit(1, "cm"))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_gap-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_gap-1.png" width="960" style="display: block; margin: auto;" />
 
 ```r
 draw(ht_list, ht_gap = unit(c(3, 10), "mm"))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_gap-2} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_gap-2.png" width="960" style="display: block; margin: auto;" />
 
 ## Auto adjustment to the main heatmap
 
@@ -216,9 +202,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht2 + ht1 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-6-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
 
 here although `ht1` is the second heatmap, we specify `ht1` to be
 the main heatmap by explicitely setting `main_heatmap` argument
@@ -229,9 +213,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm")
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-7-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -239,9 +221,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm", row_dend_side = "right", row_sub_title_side = "left")
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-8-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" />
 
 If there is no row clustering in the main heatmap, all other heatmaps have no row clustering neither.
 
@@ -253,9 +233,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/heatmap_list_auto_adjust_no_row_cluster-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_auto_adjust_no_row_cluster-1.png" width="960" style="display: block; margin: auto;" />
 
 ## control row ... in draw() function
 
@@ -287,9 +265,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, row_km = 1, row_split = le, cluster_rows = FALSE)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-9-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Annotation as components are adjusted
 
@@ -302,9 +278,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-10-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -317,9 +291,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-11-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -332,9 +304,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-12-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -346,9 +316,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-13-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ## concatenate with annotations
@@ -363,9 +331,7 @@ ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2)
 ht1 + ha1
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-14-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -374,9 +340,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-15-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -386,9 +350,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     Heatmap(mat2, name = "runif", col = col_runif)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-16-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ## Only annotations
@@ -399,9 +361,7 @@ rowAnnotation(foo = 1:12) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-17-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 62mm
@@ -412,9 +372,7 @@ rowAnnotation(foo = 1:12) +
 rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) + NULL
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-18-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 44mm
@@ -433,17 +391,13 @@ ht_list = ht1 %v% ht2 %v% ht3
 draw(ht_list)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-19-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" />
 
 ```r
 draw(ht_list, column_km = 2)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-19-2} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-2.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -455,9 +409,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-20-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" />
 
 
 
@@ -470,9 +422,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-21-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-21-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Retrieve orders and dendrograms
 
@@ -487,9 +437,7 @@ ht_list = ht1 + ht2
 ht_list = draw(ht_list)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-22-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;" />
 
 ```r
 row_order(ht_list)
@@ -519,9 +467,7 @@ ht_list = ht1 + ht2
 ht_list = draw(ht_list, row_km = 2)
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-23-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;" />
 
 ```r
 row_order(ht_list)
@@ -604,9 +550,7 @@ ht2 = Heatmap(mat2, name = "ht2", column_title = "Heatmap 2",
 ht1 + ht2
 ```
 
-
-
-\begin{center}\includegraphics{04-a_list_of_heatmaps_files/figure-latex/unnamed-chunk-25-1} \end{center}
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-25-1.png" width="960" style="display: block; margin: auto;" />
 
 ```r
 ht_opt(RESET = TRUE)
@@ -644,24 +588,24 @@ sessionInfo()
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] shape_1.4.4         modeltools_0.2-22   GetoptLong_0.1.7   
-##  [4] tidyselect_0.2.4    xfun_0.3            kernlab_0.9-27     
+##  [4] tidyselect_0.2.5    xfun_0.3            kernlab_0.9-27     
 ##  [7] purrr_0.2.5         lattice_0.20-35     colorspace_1.3-2   
 ## [10] viridisLite_0.3.0   htmltools_0.3.6     stats4_3.4.4       
 ## [13] yaml_2.2.0          rlang_0.2.2         pillar_1.3.0       
 ## [16] glue_1.3.0          prabclus_2.2-6      RColorBrewer_1.1-2 
 ## [19] fpc_2.1-11.1        bindrcpp_0.2.2      plyr_1.8.4         
-## [22] bindr_0.1.1         robustbase_0.93-2   stringr_1.3.1      
+## [22] bindr_0.1.1         robustbase_0.93-3   stringr_1.3.1      
 ## [25] munsell_0.5.0       gtable_0.2.0        mvtnorm_1.0-8      
-## [28] GlobalOptions_0.1.1 evaluate_0.11       knitr_1.20         
+## [28] GlobalOptions_0.1.1 evaluate_0.12       knitr_1.20         
 ## [31] flexmix_2.3-14      class_7.3-14        DEoptimR_1.0-8     
-## [34] trimcluster_0.1-2.1 Rcpp_0.12.18        scales_1.0.0       
+## [34] trimcluster_0.1-2.1 Rcpp_0.12.19        scales_1.0.0       
 ## [37] backports_1.1.2     diptest_0.75-7      gridExtra_2.3      
-## [40] rjson_0.2.20        ggplot2_3.0.0       digest_0.6.17      
-## [43] stringi_1.2.4       bookdown_0.7        dplyr_0.7.6        
+## [40] rjson_0.2.20        ggplot2_3.0.0       digest_0.6.18      
+## [43] stringi_1.2.4       bookdown_0.7        dplyr_0.7.7        
 ## [46] rprojroot_1.3-2     tools_3.4.4         magrittr_1.5       
 ## [49] lazyeval_0.2.1      tibble_1.4.2        cluster_2.0.7-1    
 ## [52] crayon_1.3.4        whisker_0.3-2       pkgconfig_2.0.2    
-## [55] MASS_7.3-50         viridis_0.5.1       assertthat_0.2.0   
-## [58] rmarkdown_1.10      R6_2.2.2            mclust_5.4.1       
+## [55] MASS_7.3-51         viridis_0.5.1       assertthat_0.2.0   
+## [58] rmarkdown_1.10      R6_2.3.0            mclust_5.4.1       
 ## [61] nnet_7.3-12         compiler_3.4.4
 ```
