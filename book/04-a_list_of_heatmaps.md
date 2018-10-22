@@ -202,7 +202,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht2 + ht1 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
 here although `ht1` is the second heatmap, we specify `ht1` to be
 the main heatmap by explicitely setting `main_heatmap` argument
@@ -213,7 +213,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -221,7 +221,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm", row_dend_side = "right", row_sub_title_side = "left")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
 
 If there is no row clustering in the main heatmap, all other heatmaps have no row clustering neither.
 
@@ -265,7 +265,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, row_km = 1, row_split = le, cluster_rows = FALSE)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-9-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Annotation as components are adjusted
 
@@ -278,7 +278,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-10-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -291,7 +291,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-11-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -304,7 +304,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -316,7 +316,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ## concatenate with annotations
@@ -331,7 +331,7 @@ ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2)
 ht1 + ha1
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -340,7 +340,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -350,7 +350,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     Heatmap(mat2, name = "runif", col = col_runif)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ## Only annotations
@@ -361,7 +361,7 @@ rowAnnotation(foo = 1:12) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 62mm
@@ -372,7 +372,7 @@ rowAnnotation(foo = 1:12) +
 rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) + NULL
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 44mm
@@ -391,13 +391,13 @@ ht_list = ht1 %v% ht2 %v% ht3
 draw(ht_list)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" />
 
 ```r
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-2.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-2.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -409,7 +409,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" />
 
 
 
@@ -422,7 +422,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-21-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Retrieve orders and dendrograms
 
@@ -437,7 +437,7 @@ ht_list = ht1 + ht2
 ht_list = draw(ht_list)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
 
 ```r
 row_order(ht_list)
@@ -467,7 +467,7 @@ ht_list = ht1 + ht2
 ht_list = draw(ht_list, row_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" />
 
 ```r
 row_order(ht_list)

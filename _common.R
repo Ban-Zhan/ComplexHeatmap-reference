@@ -3,8 +3,8 @@ library(circlize)
 
 knitr::opts_chunk$set(
   fig.align = 'center',
-  fig.width = 6,
-  fig.height = 6,
+  fig.width = 5,
+  fig.height = 5,
   message = FALSE
 )
 

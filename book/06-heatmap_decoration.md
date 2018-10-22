@@ -173,7 +173,7 @@ decorate_annotation("barplot", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" />
 
 ### Add decoration for a customized heatmap {#add-decoration-for-a-customized-heatmap}
 
@@ -216,7 +216,7 @@ m2 = matrix(runif(100), nr = 10)
 customized_heatmap(m1) %v% customized_heatmap(m2)
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" />
 
 ### Other possible use of decorations {#other-possible-use-of-decorations}
 

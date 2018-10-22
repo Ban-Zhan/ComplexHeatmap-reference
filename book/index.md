@@ -2,7 +2,7 @@
 --- 
 title: "ComplexHeatmap Complete Reference"
 author: "Zuguang Gu"
-date: "last revised on 2018-10-19"
+date: "last revised on 2018-10-20"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

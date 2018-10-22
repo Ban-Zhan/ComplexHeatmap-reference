@@ -407,11 +407,6 @@ annotations. Here we will only show you a simple example and this functionality 
 Chapter \@ref(legends). In following example, we assume the simple annotations are kind of p-values and we
 add `*` for p-values less than 0.01.
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-    dpi = 72
-)
-```
 
 ```{r}
 set.seed(123)
@@ -684,6 +679,23 @@ ha = HeatmapAnnotation(foo = anno_points(runif(10),
         side = "right",
         at = c(0, 0.5, 1), 
         labels = c("zero", "half", "one")
+    ))
+)
+```
+
+```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
+draw(ha, test = TRUE)
+```
+
+One thing that might be useful is you can control the rotation of the axis labels.
+
+```{r}
+ha = rowAnnotation(foo = anno_points(runif(10), 
+    axis_param = list(
+        side = "right",
+        at = c(0, 0.5, 1), 
+        labels = c("zero", "half", "one"),
+        labels_rot = 45
     ))
 )
 ```

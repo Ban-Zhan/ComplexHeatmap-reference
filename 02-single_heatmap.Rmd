@@ -271,9 +271,8 @@ Hierarchical clustering is performed in two steps: calculate the distance matrix
 are three ways to specify distance metric for clustering:
 
 - specify distance as a pre-defined option. The valid values are the supported methods
-  in `dist()` function and in `"pearson"`, `"spearman"` and `"kendall"`. If there is any `NA`
-  values in the matrix, `ComplexHeatmap::dist2()` is used instead which performs pairwise
-  distance calculation by removing `NA` values. The correlation distance is defined as `1 - cor(x, y, method)`.
+  in `dist()` function and in `"pearson"`, `"spearman"` and `"kendall"`. The correlation distance 
+  is defined as `1 - cor(x, y, method)`.
 - a self-defined function which calculates distance from a matrix. The function should
   only contain one argument. Please note for clustering on columns, the matrix will be transposed
   automatically.

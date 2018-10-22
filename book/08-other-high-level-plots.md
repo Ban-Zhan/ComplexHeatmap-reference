@@ -13,21 +13,21 @@ colnames(m) = paste0("C", 1:ncol(m))
 densityHeatmap(m)
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
 densityHeatmap(m, ylim = c(-2, 2), title = "Distribution as heatmap", ylab = "some values")
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
 densityHeatmap(m, column_order = sample(20, 20))
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" />
 
 
 
@@ -35,7 +35,7 @@ densityHeatmap(m, column_order = sample(20, 20))
 densityHeatmap(m, col = topo.colors(10))
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" />
 
 
 
@@ -50,7 +50,7 @@ densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 ## 1 and only the first element will be used
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -58,7 +58,7 @@ densityHeatmap(m) %v%
 Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Stacked summary plot {#stacked-summary-plot}
 
@@ -136,7 +136,7 @@ draw(ht_list, padding = unit(c(1, 1, 2, 1), "cm"), row_split = gsub("\\d+$", "",
 ```
 
 ```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 478mm
+## Since all heatmaps/annotations have absolute units, the total width of the plot is 477mm
 ```
 
 ```r
