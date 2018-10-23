@@ -9,6 +9,7 @@ heatmap/annotation components (or the name of the viewport).
 
 
 ```r
+set.seed(123)
 mat = matrix(rnorm(80, 2), 8, 10)
 mat = rbind(mat, matrix(rnorm(40, -2), 4, 10))
 rownames(mat) = paste0("R", 1:12)
@@ -27,7 +28,6 @@ ht2 = Heatmap(mat, name = "ht2", row_title = "Heatmap 2", column_title = "Heatma
 ht_list = ht1 + ht2 + 
     rowAnnotation(bar = anno_barplot(rowMeans(mat), width = unit(2, "cm")))
 draw(ht_list, row_title = "Heatmap list", column_title = "Heatmap list")
-list_components()
 ```
 
 ```

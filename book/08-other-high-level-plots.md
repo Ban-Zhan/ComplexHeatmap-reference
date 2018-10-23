@@ -45,11 +45,6 @@ ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
 densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 ```
 
-```
-## Warning in if (grepl("row", names(arg_list))) {: the condition has length >
-## 1 and only the first element will be used
-```
-
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
 

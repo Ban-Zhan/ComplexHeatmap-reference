@@ -1123,7 +1123,7 @@ There will be message showing the size of the whole plot.
 These four arguments are more important when adjust the size in a list of heatmaps (see Section
 \@ref(size-of-heatmaps)).
 
-## Plot the heatmap {plot-the-heatmap}
+## Plot the heatmap {#plot-the-heatmap}
 
 `Heatmap()` function actually is only a constructor, which means it only puts all the data and
 configurations into the object in the `Heatmap` class. The clustering will only be performed when

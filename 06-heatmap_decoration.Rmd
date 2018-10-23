@@ -7,6 +7,7 @@ that almost contains all types of heatmap components. `list_components()` lists 
 heatmap/annotation components (or the name of the viewport).
 
 ```{r access_components, fig.width = 10, fig.height = 7, echo = 1:14}
+set.seed(123)
 mat = matrix(rnorm(80, 2), 8, 10)
 mat = rbind(mat, matrix(rnorm(40, -2), 4, 10))
 rownames(mat) = paste0("R", 1:12)
