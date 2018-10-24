@@ -373,8 +373,39 @@ ht_opt(RESET = TRUE)
 Following are global settings supported by `ht_global_opt()`. By this function, you can also control settings
 for the legends.
 
-## Session info
+## Adjust white space caused by annotations
 
-```{r}
-sessionInfo()
+
+```{r, eval = FALSE}
+m = matrix(rnorm(100), 10)
+ht = Heatmap(m,
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
+    show_row_dend = FALSE)
+draw(ht, row_title = "fooooooooooo", column_title = "adjust_annotation_extension = FALSE")
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+    column_title = "adjust_annotation_extension = TRUE")
 ```
+
+```{r, echo = FALSE}
+m = matrix(rnorm(100), 10)
+ht = Heatmap(m, 
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
+    show_row_dend = FALSE)
+pushViewport(viewport(x = 0, width = 0.5, just = "left"))
+draw(ht, row_title = "fooooooooooo", column_title = "adjust_annotation_extension = FALSE", newpage = FALSE)
+popViewport()
+pushViewport(viewport(x = 0, width = 0.5, just = "left"))
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+    column_title = "adjust_annotation_extension = TRUE", newpage = FALSE)
+popViewport()
+```
+
+```{r, fig.height = 2}
+ht = Heatmap(m, 
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
+    show_row_dend = FALSE)
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+    column_title = "adjust_annotation_extension = TRUE")
+```
+
+

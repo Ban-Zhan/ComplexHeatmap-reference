@@ -559,53 +559,31 @@ ht_opt(RESET = TRUE)
 Following are global settings supported by `ht_global_opt()`. By this function, you can also control settings
 for the legends.
 
-## Session info
+## Adjust white space caused by annotations
+
 
 
 ```r
-sessionInfo()
+m = matrix(rnorm(100), 10)
+ht = Heatmap(m,
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
+    show_row_dend = FALSE)
+draw(ht, row_title = "fooooooooooo", column_title = "adjust_annotation_extension = FALSE")
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+    column_title = "adjust_annotation_extension = TRUE")
 ```
 
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
+
+
+```r
+ht = Heatmap(m, 
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
+    show_row_dend = FALSE)
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+    column_title = "adjust_annotation_extension = TRUE")
 ```
-## R version 3.4.4 (2018-03-15)
-## Platform: x86_64-apple-darwin15.6.0 (64-bit)
-## Running under: macOS High Sierra 10.13.2
-## 
-## Matrix products: default
-## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
-## 
-## locale:
-## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
-## 
-## attached base packages:
-## [1] grid      methods   stats     graphics  grDevices utils     datasets 
-## [8] base     
-## 
-## other attached packages:
-## [1] dendsort_0.3.3        dendextend_1.8.0      circlize_0.4.5       
-## [4] ComplexHeatmap_1.99.0
-## 
-## loaded via a namespace (and not attached):
-##  [1] shape_1.4.4         modeltools_0.2-22   GetoptLong_0.1.7   
-##  [4] tidyselect_0.2.5    xfun_0.3            kernlab_0.9-27     
-##  [7] purrr_0.2.5         lattice_0.20-35     colorspace_1.3-2   
-## [10] viridisLite_0.3.0   htmltools_0.3.6     stats4_3.4.4       
-## [13] yaml_2.2.0          rlang_0.2.2         pillar_1.3.0       
-## [16] glue_1.3.0          prabclus_2.2-6      RColorBrewer_1.1-2 
-## [19] fpc_2.1-11.1        bindrcpp_0.2.2      plyr_1.8.4         
-## [22] bindr_0.1.1         robustbase_0.93-3   stringr_1.3.1      
-## [25] munsell_0.5.0       gtable_0.2.0        mvtnorm_1.0-8      
-## [28] GlobalOptions_0.1.1 evaluate_0.12       knitr_1.20         
-## [31] flexmix_2.3-14      class_7.3-14        DEoptimR_1.0-8     
-## [34] trimcluster_0.1-2.1 Rcpp_0.12.19        scales_1.0.0       
-## [37] backports_1.1.2     diptest_0.75-7      gridExtra_2.3      
-## [40] rjson_0.2.20        ggplot2_3.0.0       digest_0.6.18      
-## [43] stringi_1.2.4       bookdown_0.7        dplyr_0.7.7        
-## [46] rprojroot_1.3-2     tools_3.4.4         magrittr_1.5       
-## [49] lazyeval_0.2.1      tibble_1.4.2        cluster_2.0.7-1    
-## [52] crayon_1.3.4        whisker_0.3-2       pkgconfig_2.0.2    
-## [55] MASS_7.3-51         viridis_0.5.1       assertthat_0.2.0   
-## [58] rmarkdown_1.10      R6_2.3.0            mclust_5.4.1       
-## [61] nnet_7.3-12         compiler_3.4.4
-```
+
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-28-1.png" width="480" style="display: block; margin: auto;" />
+
+

@@ -2,7 +2,7 @@
 --- 
 title: "ComplexHeatmap Complete Reference"
 author: "Zuguang Gu"
-date: "last revised on 2018-10-23"
+date: "last revised on 2018-10-24"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -30,4 +30,4 @@ Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensio
 DOI: [10.1093/bioinformatics/btw313](https://doi.org/10.1093/bioinformatics/btw313)
 
 
-<img src="complexheatmap-cover.jpg" style="width:500px;border-style:solid;" />
+<img src="complexheatmap-cover.jpg" style="width:500px;border:2px solid black;" />
