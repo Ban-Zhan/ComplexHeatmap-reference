@@ -24,6 +24,11 @@ densityHeatmap(m, column_order = sample(20, 20))
 densityHeatmap(m, col = topo.colors(10))
 ```
 
+```{r}
+densityHeatmap(m, cluster_columns = TRUE, clustering_distance_columns = "ks", 
+	show_column_dend = FALSE)
+```
+
 
 ```{r}
 ha1 = HeatmapAnnotation(dist = c(rep("rnorm", 10), rep("runif", 10)))

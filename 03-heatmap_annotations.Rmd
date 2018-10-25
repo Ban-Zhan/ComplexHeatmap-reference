@@ -1282,7 +1282,7 @@ the annotation graphics according to the split of the main heatmap.
 
 As expected, the main part of the `AnnotationFunction` class is a function which defines how to draw
 at specific positions which correspond to rows or columns in the heatmap. The function should have
-three arguments: `index`, `k` and `n` (the names of the arguments can be arbitory) where `k` and `n`
+three arguments: `index`, `k` and `n` (the names of the arguments can be arbitrary) where `k` and `n`
 are optional. `index` corresponds to the indices of rows or columns of the heatmap. The value of
 `index` is not necessarily to be the whole row indices or column indices in the heatmap. It can also
 be a subset of the indices if the annotation is split into slices according to the split of the
