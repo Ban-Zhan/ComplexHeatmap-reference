@@ -11,7 +11,7 @@ link-citations: yes
 github-repo: jokergoo/ComplexHeatmap-reference
 cover-image: complexheatmap-cover.jpg
 url: 'https\://jokergoo.github.io/ComplexHeatmap-reference/book'
-description: " Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge."
+description: "Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge."
 ---
 
 # About {-}
@@ -21,7 +21,7 @@ This is the documentation of the
 are generated under version `r installed.packages()["ComplexHeatmap", "Version"]`.
 
 **Please note, this documentation is not completely compatible with older versions (< 1.99.0, before
-Oct, 2018), the major functionality keeps the same.**
+Oct, 2018), but the major functionality keeps the same.**
 
 If you use **ComplexHeatmap** in your publications, I am appreciated if you can cite:
 

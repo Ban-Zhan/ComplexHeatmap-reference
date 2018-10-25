@@ -76,10 +76,29 @@ mat2[1, 1] = 100000
 Heatmap(mat2, name = "mat", col = col_fun)
 ```
 
-More importantly, `colorRamp2()` makes colors in multiple heatmaps comparible if they are set with
-a same color mapping function.
+More importantly, `colorRamp2()` makes colors in multiple heatmaps comparible if they are set with a
+same color mapping function. In following three heatmaps, a same color always corresponds to a same
+value.
 
-If the matrix is continuous, you can simply provide a vector of colors and colors will be linearly
+```{r, eval = FALSE}
+Heatmap(mat, name = "mat", col = col_fun)
+Heatmap(mat/4, name = "mat", col = col_fun)
+Heatmap(abs(mat), name = "mat", col = col_fun)
+```
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 10/3}
+pushViewport(viewport(x = 0, width = 1/3))
+Heatmap(mat, name = "mat", col = col_fun, column_title = "mat", newpage = FALSE)
+popViewport()
+pushViewport(viewport(x = 1/3, width = 1/3))
+Heatmap(mat/4, name = "mat", col = col_fun, column_title = "mat/4", newpage = FALSE)
+popViewport()
+pushViewport(viewport(x = 2/3, width = 1/3))
+eatmap(abs(mat), name = "mat", col = col_fun, column_title = "abs(mat)", newpage = FALSE)
+popViewport()
+```
+
+If the matrix is continuous, you can also simply provide a vector of colors and colors will be linearly
 interpolated. But remember this method is not robust to outliers because the mapping starts from the
 minimal value in the matrix and ends with the maximal value. Following color mapping setting is
 identical to `colorRamp2(seq(min(mat), max(mat), length = 10), rev(rainbow(10)))`.
@@ -109,15 +128,16 @@ colors = structure(1:4, names = letters[1:4])
 Heatmap(discrete_mat, name = "mat", col = colors)
 ```
 
-As you see in the two above examples, for the numeric matrix (no matter the color is continuous mapping or
-discrete mapping), by default clustering is applied on both dimensions while for character matrix,
-clustering is turned off (but you can still clustering a character matrix if you provide a proper
-distance metric for two character vectors, see example in Section \@ref(distance-methods)).
+As you see in the two examples above, for the numeric matrix (no matter the color is continuous
+mapping or discrete mapping), by default clustering is applied on both dimensions while for
+character matrix, clustering is turned off (but you can still clustering a character matrix if you
+provide a proper distance metric for two character vectors, see example in Section
+\@ref(distance-methods)).
 
 ``NA`` is allowed in the matrix. You can control the color of `NA` by `na_col` argument (by default
-it is grey for `NA`). **The matrix that contains `NA` can also be clustered by `Heatmap()`.**
+it is grey for `NA`). **The matrix that contains `NA` can be clustered by `Heatmap()`.**
 
-Note the `NA` value is not presended in the legend.
+Note the `NA` value is not presented in the legend.
 
 ```{r}
 mat_with_na = mat
@@ -150,9 +170,9 @@ draw(Heatmap(mat, name = "mat2", col = f2, column_title = "RGB color space"), ne
 upViewport()
 ```
 
-In following figures, corresponding values change evenly on the folded lines, you can see how colors
-change under different color spaces (the plot is made by [**HilbertCurve**
-package](https://bioconductor.org/packages/release/bioc/html/HilbertCurve.html)).
+In following plots, corresponding values change evenly on the folded lines, you can see how colors
+change under different color spaces (top plots: green-black-red, bottom plots: blue-white-red. The
+plot is made by [**HilbertCurve** package](https://bioconductor.org/packages/release/bioc/html/HilbertCurve.html)).
 
 ```{r, fig.width = 14, fig.height = 14/5, echo = FALSE, message = FALSE}
 space = c("RGB", "LAB", "XYZ", "sRGB", "LUV")
@@ -240,6 +260,13 @@ Heatmap(mat, name = "mat", column_title = "I am a column title",
     column_title_gp = gpar(fill = "red", col = "white"))
 ```
 
+If the graphic elements are texts, they can be set as mathematical formulas.
+
+```{r}
+Heatmap(mat, name = "mat", column_title = expression(hat(beta) == (X^t * X)^{-1} * X^t * y)) 
+```
+
+
 ## Clustering {#clustering}
 
 Clustering might be the key component of the heatmap visualization. In **ComplexHeatmap** package,
@@ -272,7 +299,7 @@ are three ways to specify distance metric for clustering:
 
 - specify distance as a pre-defined option. The valid values are the supported methods
   in `dist()` function and in `"pearson"`, `"spearman"` and `"kendall"`. The correlation distance 
-  is defined as `1 - cor(x, y, method)`.
+  is defined as `1 - cor(x, y, method)`. All these built-in distance methods allow `NA` values.
 - a self-defined function which calculates distance from a matrix. The function should
   only contain one argument. Please note for clustering on columns, the matrix will be transposed
   automatically.
@@ -305,7 +332,7 @@ robust_dist = function(x, y) {
 }
 ```
 
-and we compare the two heatmaps with or without the robust distance method:
+We can compare the two heatmaps with or without the robust distance method:
 
 ```{r, eval = FALSE}
 Heatmap(mat_with_outliers, name = "mat", 
@@ -318,7 +345,7 @@ Heatmap(mat_with_outliers, name = "mat",
     column_title = "robust_dist")
 ```
 
-```{r, echo = FALSE, fig.width = 12}
+```{r, echo = FALSE, fig.width = 10, fig.height = 5}
 pushViewport(viewport(x = 0, width = 0.5, just = "left"))
 ht1 = Heatmap(mat_with_outliers, name = "mat", 
     col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
@@ -336,7 +363,7 @@ popViewport()
 ```
 
 If there are proper distance methods (like methods in [**stringdist**
-package](https://cran.r-project.org/web/packages/stringdist/), you can also cluster a character
+package](https://cran.r-project.org/web/packages/stringdist/)), you can also cluster a character
 matrix. `cell_fun` argument will be introduced in Section \@ref(customize-the-heatmap-body).
 
 ```{r cluster_character_matrix}
@@ -363,7 +390,7 @@ Method to perform hierarchical clustering can be specified by `clustering_method
 Heatmap(mat, name = "mat", clustering_method_rows = "single")
 ```
 
-If you already have clustering objects or a function which directly returns a clustering object,
+If you already have a clustering object or a function which directly returns a clustering object,
 you can ignore the distance settings and set `cluster_rows` or `cluster_columns` to the clustering
 objects or clustering functions. If it is a clustering function, the only argument should be the matrix
 and it should return a `hclust` or `dendrogram` object or a object that can be coerced to the two classes.
@@ -373,8 +400,8 @@ clustering object or a clustering function:
 
 ```{r cluster_object}
 library(cluster)
-Heatmap(mat, name = "mat", cluster_rows = as.dendrogram(diana(mat)),
-   cluster_columns = as.dendrogram(agnes(t(mat))), column_title = "clustering objects")
+Heatmap(mat, name = "mat", cluster_rows = diana(mat),
+   cluster_columns = agnes(t(mat)), column_title = "clustering objects")
 Heatmap(mat, name = "mat", cluster_rows = diana,
    cluster_columns = agnes, column_title = "clustering functions")
 ```
@@ -384,7 +411,8 @@ The last command is as same as :
 ```{r, eval = FALSE}
 # code only for demonstration
 Heatmap(mat, name = "mat", cluster_rows = function(m) as.dendrogram(diana(m)),
-    cluster_columns = function(m) as.dendrogram(agnes(m)), column_title = "clutering functions")
+    cluster_columns = function(m) as.dendrogram(agnes(m)), 
+    column_title = "clutering functions")
 ```
 
 Please note, when `cluster_rows` is set as a function, the argument `m` is the input `mat` itself, 
@@ -404,7 +432,7 @@ to construct), it can be set as a global option. The usage of `ht_opt` is introd
 \@ref(change-graphic-parameters-simultaneously).
 
 ```{r, eval = FALSE}
-# code not run when building the vignette
+# code only for demonstration
 ht_opt$fast_hclust = TRUE
 # now fastcluster::hclust is used in all heatmaps
 ```
@@ -416,7 +444,7 @@ it in the first place, then send it to the `cluster_rows` or `cluster_columns` a
 
 You can render your `dendrogram` object by the **dendextend** package to make a more customized
 visualization of the dendrogram. Note **ComplexHeatmap** only allows rendering on the dendrogram
-edges.
+segments.
 
 ```{r cluster_dendextend}
 library(dendextend)
@@ -425,52 +453,76 @@ row_dend = color_branches(row_dend, k = 2) # `color_branches()` returns a dendro
 Heatmap(mat, name = "mat", cluster_rows = row_dend)
 ```
 
+Note graphic settings `row_dend` will be overwritten by `row_dend_param`.
+
+```{r}
+Heatmap(mat, name = "mat", cluster_rows = row_dend, row_dend_param = gpar(col = "red"))
+```
+
 ### Reorder dendrograms {#reorder-dendrograms}
 
 In the `Heatmap()` function, dendrograms are reordered to make features with larger difference more
 separated from each others (please refer to the documentation of `reorder.dendrogram()`). Here the
 difference (or it is called the weight) is measured by the row means if it is a row dendrogram or by
 the column means if it is a column dendrogram. `row_dend_reorder` and `column_dend_reorder` control
-whether to apply dendrogram reordering If they are set to `TRUE` or `FALSE`, ot they control the
+whether to apply dendrogram reordering If they are set to `TRUE` or `FALSE`, or they control the
 weight for the reordering if they are set to numeric vectors (send to the `wts` argument of
 `reorder.dendrogram()`). The reordering can be turned off by setting e.g. `row_dend_reorder = FALSE`.
+
+By default, dendrogram reordering is turned on if `cluster_rows`/`cluster_columns` is set as logical
+value or a clustering function. It is turned off if `cluster_rows`/`cluster_columns` is set as
+clustering object.
+
+Compare following two heatmaps:
+
+```{r, eval = FALSE}
+m2 = matrix(1:100, nr = 10, byrow = TRUE)
+Heatmap(m2, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering")
+Heatmap(m2, name = "mat", row_dend_reorder = TRUE, column_title = "applied reordering")
+```
+
+```{r cluster_dendsort, fig.width = 10, fig.height = 5, echo = FALSE}
+m2 = matrix(1:100, nr = 10, byrow = TRUE)
+pushViewport(viewport(x = 0, width = 0.5, just = "left"))
+draw(Heatmap(m2, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering"), 
+    newpage = FALSE)
+upViewport()
+
+pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
+draw(Heatmap(m2, name = "mat", row_dend_reorder = TRUE, column_title = "applied reordering"), 
+    newpage = FALSE)
+upViewport()
+```
 
 There are many other methods for reordering dendrograms, e.g. the **dendsort** package. Basically,
 all these methods still return a dendrogram that has been reordered, thus, we can firstly generate
 the row or column dendrogram based on the data matrix, reorder it by some method, and assign it back
 to `cluster_rows` or `cluster_columns`.
 
-Compare following three heatmaps:
+Compare following two reorderings. Can you see which is better?
 
 ```{r, eval = FALSE}
-Heatmap(mat, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering")
-Heatmap(mat, name = "mat", row_dend_reorder = TRUE, column_title = "applied reordering")
-
-library(dendsort)
-dend = dendsort(as.dendrogram(hclust(dist(mat))))
-Heatmap(mat, name = "mat", cluster_rows = dend, row_dend_reorder = FALSE, 
-    column_title = "reordering by dendsort")
-```
-
-```{r cluster_dendsort, fig.width = 14, echo = FALSE}
-pushViewport(viewport(layout = grid.layout(nr = 1, nc = 3)))
-pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 1))
-draw(Heatmap(mat, name = "mat", row_dend_reorder = FALSE, column_title = "no reordering"), newpage = FALSE)
-upViewport()
-
-pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 2))
-draw(Heatmap(mat, name = "mat", row_dend_reorder = TRUE, column_title = "applied reordering"), newpage = FALSE)
-upViewport()
+Heatmap(mat, name = "mat", column_title = "default reordering")
 
 library(dendsort)
 dend = dendsort(hclust(dist(mat)))
-pushViewport(viewport(layout.pos.row = 1, layout.pos.col = 3))
-draw(Heatmap(mat, name = "mat", cluster_rows = dend, row_dend_reorder = FALSE, 
+Heatmap(mat, name = "mat", cluster_rows = dend, column_title = "reordering by dendsort")
+```
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 5}
+pushViewport(viewport(x = 0, width = 0.5, just = "left"))
+draw(Heatmap(mat, name = "mat", column_title = "default reordering"), newpage = FALSE)
+popViewport()
+
+library(dendsort)
+dend = dendsort(hclust(dist(mat)))
+pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
+draw(Heatmap(mat, name = "mat", cluster_rows = dend, 
     column_title = "reordering by dendsort"), newpage = FALSE)
 upViewport(2)
 ```
 
-## Row and column orders {#row-and_column_orders}
+## Set row and column orders {#row-and_column_orders}
 
 Clustering is used to adjust row orders and column orders of the heatmap, but you can still set the
 order manually by `row_order` and `column_order`. If e.g. `row_order` is set, row clustering is
@@ -493,7 +545,7 @@ off.
 Seriation is an interesting technique for ordering the matrix (see this interesting post:
 http://nicolas.kruchten.com/content/2018/02/seriation/). The powerful
 [**seriation** package](https://cran.r-project.org/web/packages/seriation/index.html) implements
-quite a lot of methods for seriation. Since it is easy to extract row orders and column ordes from
+quite a lot of methods for seriation. Since it is easy to extract row orders and column orders from
 the object returned by the core function `seriate()` from **seriation** package. They can be
 directly assigned to `row_order` and `column_order` to make the heatmap.
 
@@ -507,8 +559,9 @@ Heatmap(max(mat) - mat, name = "mat",
     row_order = get_order(o, 1), column_order = get_order(o, 2))
 ```
 
-Or apply `seriate()` to the distance matrix. Now the order for rows and columns needs to be
-calcualted separatedly (because the distance matrix needs to be calculated separatedly).
+Or you can apply `seriate()` to the distance matrix. Now the order for rows and columns needs to be
+calcualted separatedly because the distance matrix needs to be calculated separatedly for columns
+and rows.
 
 ```{r}
 o1 = seriate(dist(mat), method = "TSP")
@@ -541,8 +594,8 @@ And we can add the dendrograms to the heatmap (note here we turned off the defau
 we exactly want the dendrogram order returned from seriation).
 
 ```{r}
-Heatmap(mat, cluster_rows = as.dendrogram(o1[[1]]), row_dend_reorder = FALSE,
-    cluster_columns = as.dendrogram(o2[[1]]), column_dend_reorder = FALSE)
+Heatmap(mat, name = "mat", cluster_rows = as.dendrogram(o1[[1]]), 
+    cluster_columns = as.dendrogram(o2[[1]]))
 ```
 
 For more use of the `seriate()` function, please refer to the [**seriation** package](https://cran.r-project.org/web/packages/seriation/index.html).
@@ -568,7 +621,7 @@ Heatmap(mat, name = "mat", column_names_rot = 45, column_names_side = "top",
     column_dend_side = "bottom")
 ```
 
-```{r, echo = FALSE, fig.width = 14}
+```{r, echo = FALSE, fig.width = 10, fig.height = 5}
 pushViewport(viewport(x = 0, width = 0.5, just = "left"))
 draw(Heatmap(mat, name = "mat", column_names_rot = 45), newpage = FALSE)
 upViewport()
@@ -586,25 +639,33 @@ character vector which corresponds to the rows or columns and set it by `row_lab
 `column_labels`. This is useful because you don't need to change the dimension names of the matrix
 to change the labels on the heatmap while you can directly provide the new labels.
 
-There is one typical scenario that `row_labels` and `column_labels` are useful. For the gene expression
-analysis, we might use Ensembl ID as the gene ID which is used as row names of the gene expression
-matrix. However, the Ensembl ID is for the indexing of the Ensembl database but not for the human
-reading. Instead, we would prefer to put gene symbol on the heatmap as the row names which is easier
-to read. To do this, we only need to assign the corresponding gene symbols to `row_labels` without modifying
-the original matrix.
+There is one typical scenario that `row_labels` and `column_labels` are useful. For the gene
+expression analysis, we might use Ensembl ID as the gene ID which is used as row names of the gene
+expression matrix. However, the Ensembl ID is for the indexing of the Ensembl database but not for
+the human reading. Instead, we would prefer to put gene symbol on the heatmap as the row names which
+is easier to read. To do this, we only need to assign the corresponding gene symbols to `row_labels`
+without modifying the original matrix.
 
-Another advantage is `row_labels` or `column_labels` allows duplicated labels, while duplicated
+The second advantage is `row_labels` or `column_labels` allows duplicated labels, while duplicated
 row names or column names are not allowed in the matrix.
 
 Following gives a simple example that we put letters as row labels and column labels:
 
 ```{r}
-# use named vectors to make sure the correspondance between row names and row labels is correct
+# use a named vector to make sure the correspondance between 
+# row names and row labels is correct
 row_labels = structure(paste0(letters[1:24], 1:24), names = paste0("row", 1:24))
 column_labels = structure(paste0(LETTERS[1:24], 1:24), names = paste0("column", 1:24))
 row_labels
 Heatmap(mat, name = "mat", row_labels = row_labels[rownames(mat)], 
     column_labels = column_labels[colnames(mat)])
+```
+
+The third advantage is mathematical expression can be used as row names in the heatmap.
+
+```{r}
+Heatmap(mat, name = "mat", row_labels = expression(alpha, beta, gamma, delta, epsilon, 
+    zeta, eta, theta, iota, kappa, lambda, mu, nu, xi, omicron, pi, rho, sigma))
 ```
 
 ## Heatmap split {#heatmap-split}
@@ -639,10 +700,13 @@ be a factor). If all variables are characters, the default order is `unique(row_
 `unique(column_split)`.
 
 ```{r split}
+# split by a vector
 Heatmap(mat, name = "mat", 
     row_split = rep(c("A", "B"), 9), column_split = rep(c("C", "D"), 12))
+# split by a data frame
 Heatmap(mat, name = "mat", 
     row_split = data.frame(rep(c("A", "B"), 9), rep(c("C", "D"), each = 9)))
+# split on both dimension
 Heatmap(mat, name = "mat", row_split = factor(rep(c("A", "B"), 9), levels = c("B", "A")),
     column_split = factor(rep(c("C", "D"), 12), levels = c("D", "C")))
 ```
@@ -674,7 +738,7 @@ Heatmap(mat, name = "mat", row_split = paste0("pam", pa$clustering))
 If `row_order` or `column_order` is set, in each row/column slice, it is still ordered.
 
 ```{r split_row_order}
-# remember when `row_order` is set, hierarchical clustering on rows is turned off
+# remember when `row_order` is set, row clustering is turned off
 Heatmap(mat, name = "mat", row_order = 18:1, row_km = 2)
 ```
 
@@ -692,16 +756,20 @@ is set as a vector or a data frame, hierarchical clustering is first applied to 
 generates `k` dendrograms, then a parent dendrogram is generated based on the mean value of each
 slice. **The height of the parent dendrogram is adjusted by adding the maximal height of the
 dendrograms in all children slices and the parent dendrogram is added on top of the children
-dendrograms to form a single global dendrogram.**
+dendrograms to form a single global dendrogram.** This is why you see dashed lines in the
+dendrograms in previous heatmaps. They are used to mark the parent dendrogram and the children
+dendrograms, and alert people they are calculated in different ways. These dashed lines can be turned
+off by setting `show_parent_dend_line = FALSE` in `Heatmap()`, or set it as a global option: `ht_opt$show_parent_dend_line = FALSE`.
 
-A second scenario for splitting is that users may still want to keep the global dendrogram which is
-generated from the complete matrix while not split it in the first place. In this case,
+A second scenario for splitting is that users may still want to keep the global dendrogram **which is
+generated from the complete matrix** while not split it in the first place. In this case,
 `row_split`/`column_split` can be set to a single number which will apply `cutree()` on the
 row/column dendrogram. This works when `cluster_rows`/`cluster_columns` is set to `TRUE` or is
 assigned with a `hclust`/`dendrogram` object.
 
 For this case, the dendrogram is still as same as the original one, expect the positions of
-dendrogram leaves are slightly adjusted by the gaps between slices.
+dendrogram leaves are slightly adjusted by the gaps between slices. (There is no dashed lines, because
+here the dendrogram is calcualted as a complete one and there is no parent dendrogram or children dendrograms.)
 
 ```{r split_dendrogram}
 Heatmap(mat, name = "mat", row_split = 2, column_split = 3)
@@ -724,7 +792,7 @@ Heatmap(mat, name = "mat", row_split = split)
 
 When `row_split`/`column_split` is set as a single number, there is only one categorical variable,
 while when `row_km`/`column_km` is set and/or `row_split`/`column_split` is set as categorical
-variables, there will be multiple categorical variables. By default, the titlea are in a form of
+variables, there will be multiple categorical variables. By default, the titles are in a form of
 `"level1,level2,..."` which corresponds to every combination of levels in all categorical variables.
 The titles for splitting can be controlled by "a title template".
 
@@ -754,7 +822,7 @@ There is an internal variable `x` you should use when you use the latter two tem
 a simple vector which contains current category levels (e.g. `c("A", "C")`).
 
 ```{r, eval = FALSE}
-# code only for demonstration
+# We only run the code for the first heatmap
 map = c("A" = "aaa", "B" = "bbb", "C" = "333", "D" = "444")
 Heatmap(mat, name = "mat", row_split = split, row_title = "@{map[ x[1] ]}|@{map[ x[2] ]}")
 Heatmap(mat, name = "mat", row_split = split, row_title = "{map[ x[1] ]}|{map[ x[2] ]}")
@@ -787,7 +855,8 @@ Heatmap(mat, name = "mat", row_split = split,
     row_title_rot = 0)
 ```
 
-If the length of `row_title` is specified as a single string, it will be like a title for all slices.
+If the length of `row_title` is specified as a single string, it will be like a single title for all
+slices.
 
 
 ```{r}
@@ -805,7 +874,7 @@ Actually the `row_title` used in `draw()` function is the row title of the heatm
 the example there is only one heatmap. The `draw()` function and the heatmap list will be
 introduced in Chapter \@ref(a-list-of-heatmaps).
 
-If `row_title` is set to `NULL` or `""`, no row title will be drawn.
+If `row_title` is set to `NULL`, no row title will be drawn.
 
 ```{r}
 Heatmap(mat, name = "mat", row_split = split, row_title = NULL)
@@ -854,7 +923,7 @@ Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
 When the heatmap is split, all the heatmap components are split accordingly. Following gives you a
 simple example and the heatmap annotation will be introduced in Chapter \@ref(heatmap-annotations).
 
-```{r}
+```{r, fig.width = 6}
 Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
     top_annotation = HeatmapAnnotation(foo1 = 1:24, bar1 = anno_points(runif(24))),
     right_annotation = rowAnnotation(foo2 = 18:1, bar2 = anno_barplot(runif(18)))
@@ -892,14 +961,14 @@ Heatmap(mat, use_raster = TRUE, raster_quality = 2)
 ## Customize the heatmap body {#customize-the-heatmap-body}
 
 The heatmap body can be self-defined to add more types of graphics. By default the heatmap body is
-composed by an array of rectangles (it might be called grids in other parts of this documentation,
-but it is called "_cells_" here) with different filled colors. However, it is also possible to add
+composed by a matrix of rectangles (it might be called grids in other parts of this documentation,
+but let's call it "_cells_" here) with different filled colors. However, it is also possible to add
 more graphics or symbols as additional layers on the heatmap. There are two arguments `cell_fun` and
 `layer_fun` which both should be user-defined functions.
 
 `cell_fun` draws in each cell repeatedly, which is internally executed in two nested `for` loops,
 while `layer_fun` is the vectorized version of `cell_fun`. `cell_fun` is easier to understand but
-`layer_fun` is faster to execute.
+`layer_fun` is much faster to execute.
 
 `cell_fun` expects a function with 7 arguments (the argument names can be different from following,
 but the order must be the same), which are:
@@ -911,8 +980,8 @@ but the order must be the same), which are:
   body.
 - `y`: y coordinate of middle point of the cell which is measured in the viewport of the heatmap
   body.
-- `width`: width of the cell. The value is `unit(1/ncol(mat), "npc")`.
-- `height`: height of the cell. The value is `unit(1/nrow(mat), "npc")`.
+- `width`: width of the cell. The value is `unit(1/ncol(sub_mat), "npc")` where `sub_mat` correspond to the sub-matrix by row splitting and column splitting.
+- `height`: height of the cell. The value is `unit(1/nrow(sub_mat), "npc")`.
 - `fill`: color of the cell.
 
 The values for the seven arguments are automatically sent to the function when executed in each
@@ -936,6 +1005,16 @@ Heatmap(small_mat, name = "mat",  col = col_fun,
     cell_fun = function(j, i, x, y, width, height, fill) {
         if(small_mat[i, j] > 0)
             grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
+})
+```
+
+You can split the heatmap without doing anything extra to `cell_fun`:
+
+```{r}
+Heatmap(small_mat, name = "mat", col = col_fun,
+    row_km = 2, column_km = 2,
+    cell_fun = function(j, i, x, y, width, height, fill) {
+        grid.text(sprintf("%.1f", mat[i, j]), x, y, gp = gpar(fontsize = 10))
 })
 ```
 
@@ -963,8 +1042,8 @@ Heatmap(cor_mat, name = "correlation", col = col_fun, rect_gp = gpar(type = "non
     show_row_names = FALSE, show_column_names = FALSE)
 ```
 
-As you may see, when setting the non-standard parameter `rect_gp = gpar(type = "none")`, the clustering
-is performed but nothing is drawn on the heatmap body.
+As you may see in previous plot, when setting the non-standard parameter `rect_gp = gpar(type =
+"none")`, the clustering is performed but nothing is drawn on the heatmap body.
 
 Similar as `cell_fun`, `layer_fun` also needs seven arguments, but they are all in vector form:
 
@@ -974,6 +1053,9 @@ Heatmap(..., layer_fun = function(j, i, x, y, w, h, fill) {...})
 # on you can capitalize the arguments to mark they are vectors
 Heatmap(..., layer_fun = function(J, I, X, Y, W, H, F) {...})
 ```
+
+``j`` and ``i`` are the column and row indices after column/row reordering. If the heatmap is split,
+``j`` and ``i`` correspond to the indices in the current heatmap slice.
 
 Since `j` and `i` are vectors, to get corresponding values in the matrix, we cannot use the form as
 `mat[j, i]` because it gives you a sub-matrix with `length(i)` rows and `length(j)` columns, instead we
@@ -1006,6 +1088,16 @@ Heatmap(small_mat, name = "mat", col = col_fun,
         v = pindex(mat, i, j)
         l = v > 0
         grid.text(sprintf("%.1f", v[l]), x[l], y[l], gp = gpar(fontsize = 10))
+})
+```
+
+When the heatmap is split, `layer_fun` is applied in every slice.
+
+```{r}
+Heatmap(small_mat, name = "mat", col = col_fun,
+    row_km = 2, column_km = 2,
+    layer_fun = function(j, i, x, y, width, height, fill) {
+        grid.text(sprintf("%.1f", pindex(mat, i, j)), x, y, gp = gpar(fontsize = 10))
 })
 ```
 
@@ -1062,7 +1154,7 @@ go_mat[1:4, 1:4]
 
 Black and white stones are put based on the values in the matrix:
 
-```{r, fig.width = 8, fig.height = 8}
+```{r, fig.width = 6, fig.height = 6}
 Heatmap(go_mat, name = "go", rect_gp = gpar(type = "none"),
     cell_fun = function(j, i, x, y, w, h, col) {
         grid.rect(x, y, w, h, gp = gpar(fill = "#dcb35c", col = NA))
@@ -1109,19 +1201,35 @@ width or the height of the heatmap body fill the rest area of the final plotting
 if you draw it in an interactive graphic window and you change the size of the window by draging it,
 the size of the heatmap body is automatically adjusted.
 
-`heatmap_width` and `heatmap_height` control the width/height of the complete heatmap while `width`
-and `height` only control the width/height of the heamtap body. All these four arguments
-can be set as absolute units.
+`heatmap_width` and `heatmap_height` control the width/height of the complete heatmap including all
+heatmap components while `width` and `height` only control the width/height of the heamtap body. All
+these four arguments can be set as absolute units.
 
 ```{r}
-Heatmap(mat, name = "mat", width = unit(10, "cm"), height = unit(10, "cm"))
-Heatmap(mat, name = "mat", heatmap_width = unit(10, "cm"), heatmap_height = unit(10, "cm"))
+Heatmap(mat, name = "mat", width = unit(8, "cm"), height = unit(8, "cm"))
+Heatmap(mat, name = "mat", heatmap_width = unit(8, "cm"), heatmap_height = unit(8, "cm"))
 ```
-
-There will be message showing the size of the whole plot.
 
 These four arguments are more important when adjust the size in a list of heatmaps (see Section
 \@ref(size-of-heatmaps)).
+
+When the size of the heatmap is set as absolute units, it is possible that the size of the figure
+is larger than the size of the plot, which gives blank areas around the plot. The size of the heatmap
+can be retrieved by `width()` and `height()` functions.
+
+```{r, echo = 2:10}
+pdf(NULL)
+ht = Heatmap(mat, name = "mat", width = unit(8, "cm"), height = unit(8, "cm"))
+ht = draw(ht)
+ComplexHeatmap:::width(ht)
+ComplexHeatmap:::height(ht)
+
+ht = Heatmap(mat, name = "mat", heatmap_width = unit(8, "cm"), heatmap_height = unit(8, "cm"))
+ht = draw(ht)
+ComplexHeatmap:::width(ht)
+ComplexHeatmap:::height(ht)
+dev.off()
+```
 
 ## Plot the heatmap {#plot-the-heatmap}
 
@@ -1173,17 +1281,18 @@ row_order(ht2)
 invisible(dev.off())
 ```
 
-As explained in previous section, `Heatmap()` function does not perform clustering, thus, when directly apply
-`row_order()` on `ht1`, clustering will be performed. Later when making the heatmap by `draw(ht1)`,
-the clustering will be applied again. This might be a problem that if you set k-means clustering in
-the heatmap. Since the clustering is applied twice, k-means might give you different clustering,
-which means, you might have different results from `row_order()` and you might have different
-heatmap.
+As explained in previous section, `Heatmap()` function does not perform clustering, thus, when
+directly apply `row_order()` on `ht1`, clustering will be first performed. Later when making the
+heatmap by `draw(ht1)`, the clustering will be applied again. This might be a problem that if you
+set k-means clustering in the heatmap. Since the clustering is applied twice, k-means might give you
+different clustering, which means, you might have different results from `row_order()` and you might
+have different heatmap.
 
-In following chunk of code, `o1`, `o2` and `o3` might be different because each time, k-means clustering
-is performed.
+In following chunk of code, `o1`, `o2` and `o3` might be different because each time, k-means
+clustering is performed.
 
 ```{r, eval = FALSE}
+# code only for demonstration
 ht1 = Heatmap(small_mat, row_km = 2)
 o1 = row_order(ht1)
 o2 = row_order(ht1)
@@ -1192,7 +1301,7 @@ o3 = row_order(ht2)
 o4 = row_order(ht2)
 ```
 
-`draw()` function returns the heatmap (or more precisely, the heatmap list) which has been
+`draw()` function returns the heatmap (or more precisely, the heatmap list) which has already been
 reordered, and applying `row_order()` just extracts the row order from the object, which ensures the
 row order is exactly the same as the one shown in the heatmap. In above code, `o3` is always
 identical to `o4`.

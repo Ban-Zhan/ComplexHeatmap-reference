@@ -347,7 +347,7 @@ column_order(ht_list)
 
 Same logic for vertical ... which we will not show here
 
-## Change graphic parameters simultaneously
+## Change graphic parameters simultaneously {#change-parameters-simultaneously}
 
 `ht_opt()` can set graphic parameters for dimension names and titles as global settings.
 

@@ -1,5 +1,5 @@
 
-# More Examples of Making Complex Heatmaps
+# More Examples {#more-examples}
 
 
 In the supplementaries of [the ComplexHeatmap paper](http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract), there are four comprehensive examples which are applied
