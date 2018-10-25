@@ -204,7 +204,7 @@ oncoPrint(mat, get_type = get_type_fun,
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-10-1.png" width="384" style="display: block; margin: auto;" />
 
-## Background {#oncoprint-background}
+### Background {#oncoprint-background}
 
 If `alter_fun` is specified as a list, the order of the elements controls the order of adding
 graphics. There is a special element called `background` which defines how to draw background and it

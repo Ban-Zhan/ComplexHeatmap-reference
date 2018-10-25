@@ -1,17 +1,17 @@
 
 ```{r, echo = FALSE}
 annotation_width = function(ha) {
-    if(identical(width(ha), unit(1, "npc"))) {
+    if(identical(ComplexHeatmap:::width(ha), unit(1, "npc"))) {
         6
     } else {
-        convertWidth(width(ha) + unit(4, "mm"), "inch", valueOnly = TRUE)
+        convertWidth(ComplexHeatmap:::width(ha) + unit(4, "mm"), "inch", valueOnly = TRUE)
     }
 }
 annotation_height = function(ha) {
-    if(identical(height(ha), unit(1, "npc"))) {
+    if(identical(ComplexHeatmap:::height(ha), unit(1, "npc"))) {
         6
     } else {
-        convertHeight(height(ha) + unit(4, "mm"), "inch", valueOnly = TRUE)
+        convertHeight(ComplexHeatmap:::height(ha) + unit(4, "mm"), "inch", valueOnly = TRUE)
     }
 }
 ```
@@ -692,7 +692,7 @@ One thing that might be useful is you can control the rotation of the axis label
 ```{r}
 ha = rowAnnotation(foo = anno_points(runif(10), 
     axis_param = list(
-        side = "right",
+        side = "bottom",
         at = c(0, 0.5, 1), 
         labels = c("zero", "half", "one"),
         labels_rot = 45
@@ -1111,6 +1111,65 @@ ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.n
 Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha)
 ```
 
+
+## Summary annotation {#summary-annotation}
+
+There is one special annotation `anno_summary()` which is only for one-column heatmap or one-row
+heatmap (we can say the heatmap only contains a vector). It shows summary statistics for the vector
+in the heatmap. If the corresponding vector is discrete, the summary annotation is presented as
+barplots and if the vector is continuous, the summary annotation is boxplot. `anno_summary()` is
+always used when the heatmap is split so that statistics can be compared between heatmap slices.
+
+The first example shows the summary annotation for discrete heatmap. The barplot shows the
+proportion of each level in each slice. The absolute values can already be seen by the height of the
+heatmap slice.
+
+The color schema for the barplots is extracted from the heatmap.
+
+```{r}
+ha = HeatmapAnnotation(summary = anno_summary(height = unit(4, "cm")))
+v = sample(letters[1:2], 50, replace = TRUE)
+split = sample(letters[1:2], 50, replace = TRUE)
+
+Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"), 
+    row_split = split)
+```
+
+The second example shows the summary annotation for continuous heatmap. The graphic parameters should
+be set by `gp`.
+
+```{r}
+ha = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:3), 
+    height = unit(4, "cm")))
+v = rnorm(50)
+Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"), 
+    row_split = split)
+```
+
+Normally we don't draw this one-column heatmap along. It is always combined with other "main
+heatmaps". E.g. A gene expression matrix with a one-column heatmap which shows whether the gene is a
+protein coding gene or a linc-RNA gene.
+
+In following, we show a simple example of a "main heatmap" with two one-column heatmaps. The
+functionality of heatmap concatenation will be introduced in Chapter \@ref(a-list-of-heatmaps).
+
+```{r}
+m = matrix(rnorm(50*10), nrow = 50)
+ht_list = Heatmap(m)
+
+ha = HeatmapAnnotation(summary = anno_summary(height = unit(4, "cm")))
+v = sample(letters[1:2], 50, replace = TRUE)
+ht_list = ht_list + Heatmap(v, name = "mat1", top_annotation = ha, width = unit(2, "cm"))
+
+ha = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:3), 
+    height = unit(4, "cm")))
+v = rnorm(50)
+ht_list = ht_list + Heatmap(v, name = "mat2", top_annotation = ha, width = unit(2, "cm"))
+
+split = sample(letters[1:2], 50, replace = TRUE)
+draw(ht_list, row_split = split, ht_gap = unit(5, "mm"))
+```
+
 ## Multiple annotations
 
 As mentioned before, to put multiple annotations in `HeatmapAnnotation()`, they just need to be
@@ -1176,64 +1235,6 @@ height/width and the final height/width for the whole heatmap annotation is the 
 Resetting these values will involve complicated adjustment depending on whether it is a simple
 annotation or complex annotation. Please refer to the documentation of
 `resize,HeatmapAnnotation-method` for the details of the resizing of annotations.
-
-## Summary annotation {#summary-annotation}
-
-There is one special annotation `anno_summary()` which is only for one-column heatmap or one-row
-heatmap (we can say the heatmap only contains a vector). It shows summary statistics for the vector
-in the heatmap. If the corresponding vector is discrete, the summary annotation is presented as
-barplots and if the vector is continuous, the summary annotation is boxplot. `anno_summary()` is
-always used when the heatmap is split so that statistics can be compared between heatmap slices.
-
-The first example shows the summary annotation for discrete heatmap. The barplot shows the
-proportion of each level in each slice. The absolute values can already be seen by the height of the
-heatmap slice.
-
-The color schema for the barplots is extracted from the heatmap.
-
-```{r}
-ha = HeatmapAnnotation(summary = anno_summary(height = unit(4, "cm")))
-v = sample(letters[1:2], 50, replace = TRUE)
-split = sample(letters[1:2], 50, replace = TRUE)
-
-Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"), 
-    row_split = split)
-```
-
-The second example shows the summary annotation for continuous heatmap. The graphic parameters should
-be set by `gp`.
-
-```{r}
-ha = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:3), 
-    height = unit(4, "cm")))
-v = rnorm(50)
-Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"), 
-    row_split = split)
-```
-
-Normally we don't draw this one-column heatmap along. It is always combined with other "main
-heatmaps". E.g. A gene expression matrix with a one-column heatmap which shows whether the gene is a
-protein coding gene or a linc-RNA gene.
-
-In following, we show a simple example of a "main heatmap" with two one-column heatmaps. The
-functionality of heatmap concatenation will be introduced in Chapter \@ref(a-list-of-heatmaps).
-
-```{r}
-m = matrix(rnorm(50*10), nrow = 50)
-ht_list = Heatmap(m)
-
-ha = HeatmapAnnotation(summary = anno_summary(height = unit(4, "cm")))
-v = sample(letters[1:2], 50, replace = TRUE)
-ht_list = ht_list + Heatmap(v, name = "mat1", top_annotation = ha, width = unit(2, "cm"))
-
-ha = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:3), 
-    height = unit(4, "cm")))
-v = rnorm(50)
-ht_list = ht_list + Heatmap(v, name = "mat2", top_annotation = ha, width = unit(2, "cm"))
-
-split = sample(letters[1:2], 50, replace = TRUE)
-draw(ht_list, row_split = split, ht_gap = unit(5, "mm"))
-```
 
 ## Utility functions {#heatmap-annotation-utility-function}
 

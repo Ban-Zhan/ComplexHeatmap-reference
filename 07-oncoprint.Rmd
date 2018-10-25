@@ -145,7 +145,7 @@ oncoPrint(mat, get_type = get_type_fun,
     }, col = col)
 ```
 
-## Background {#oncoprint-background}
+### Background {#oncoprint-background}
 
 If `alter_fun` is specified as a list, the order of the elements controls the order of adding
 graphics. There is a special element called `background` which defines how to draw background and it

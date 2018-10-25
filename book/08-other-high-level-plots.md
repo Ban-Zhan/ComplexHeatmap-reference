@@ -45,11 +45,6 @@ ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
 densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 ```
 
-```
-## Warning in if (grepl("row", names(arg_list))) {: the condition has length >
-## 1 and only the first element will be used
-```
-
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
 
@@ -93,12 +88,12 @@ state_col = c("#FF0000", "#008000", "#C2E105", "#8A91D0", "#CD5C5C", "#808080", 
 
 
 ```r
-anno_width = unit(4, "cm")
+anno_width = unit(3, "cm")
 ht_list = rowAnnotation(text = anno_text(label, location = unit(1, "npc"), gp = gpar(fontsize = 12)))
 
 ht_list = ht_list + Heatmap(mean_meth, name = "mean_meth", col = meth_col_fun, 
 	cluster_rows = FALSE, column_title = "", cluster_columns = FALSE, show_row_names = FALSE,
-	heatmap_legend_param = list(title = "Methylation"), width = ncol(mean_meth)*unit(6, "mm")) +
+	heatmap_legend_param = list(title = "Methylation"), width = ncol(mean_meth)*unit(4, "mm")) +
 rowAnnotation("n_gr" = anno_barplot(n_gr, bar_width = 1, width = anno_width), 
 	show_annotation_name = FALSE) +
 rowAnnotation("n_corr" = anno_barplot(n_corr, bar_width = 1, gp = gpar(fill = corr_col), 
@@ -110,13 +105,13 @@ rowAnnotation("gene_anno" = anno_barplot(gene_anno, bar_width = 1, gp = gpar(fil
 rowAnnotation("cgi_anno" = anno_barplot(cgi_anno, bar_width = 1, gp = gpar(fill = cgi_anno_col), 
 	width = anno_width), show_annotation_name = FALSE) +
 Heatmap(mat_enrich_gf, name = "enrich_gf", col = z_score_col_fun, cluster_columns = FALSE,
-	width = unit(ncol(mat_enrich_gf)*6, "mm"), column_title = "",
+	width = unit(ncol(mat_enrich_gf)*4, "mm"), column_title = "",
 	heatmap_legend_param = list(title = "Z-score")) +
 rowAnnotation("pct_st" = anno_barplot(mat_pct_st, bar_width = 1, gp = gpar(fill = state_col), 
 	width = anno_width), show_annotation_name = FALSE) +
 Heatmap(mat_enrich_st, name = "enrich_st", col = z_score_col_fun, cluster_columns = FALSE, 
 	width = unit(ncol(mat_enrich_st)*6, "mm"), column_title = "", show_heatmap_legend = FALSE,
-	column_names_gp = gpar(col = state_col))
+	column_names_gp = gpar(col = state_col), show_row_names = FALSE)
 ```
 
 
@@ -136,7 +131,7 @@ draw(ht_list, padding = unit(c(1, 1, 2, 1), "cm"), row_split = gsub("\\d+$", "",
 ```
 
 ```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 477mm
+## Since all heatmaps/annotations have absolute units, the total width of the plot is 380mm
 ```
 
 ```r

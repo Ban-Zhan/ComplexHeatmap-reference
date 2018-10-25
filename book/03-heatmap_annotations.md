@@ -419,7 +419,6 @@ add `*` for p-values less than 0.01.
 
 
 
-
 ```r
 set.seed(123)
 pvalue = 10^-runif(10, min = 0, max = 3)
@@ -441,7 +440,7 @@ lgd_sig = Legend(pch = "*", type = "points", labels = "< 0.01")
 draw(ht, annotation_legend_list = list(lgd_pvalue, lgd_sig))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-50-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-49-1.png" width="480" style="display: block; margin: auto;" />
 
 The height of the simple annotation can be controled by `height` argument or `anno_simple_size` (or
 `width` if it is a row annotation) **inside `anno_simple()`**. `anno_simple_size` controls the size for
@@ -453,14 +452,14 @@ If `height`/`width` is set, `anno_simple_size` is ignored.
 ha = HeatmapAnnotation(foo = anno_simple(1:10, height = unit(2, "cm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-52-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-51-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
 ha = HeatmapAnnotation(foo = anno_simple(cbind(1:10, 10:1), anno_simple_size = unit(2, "cm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-54-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-53-1.png" width="576" style="display: block; margin: auto;" />
 
 **For all the annotation functions we introduce later, the height or the width for individual
 annotations should all be set inside the `anno_*()` functions.**
@@ -486,7 +485,7 @@ Again, the `width`, `height`, `annotation_width` and `annotation_height` argumen
 ha = HeatmapAnnotation(foo = anno_empty(border = TRUE))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-57-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-56-1.png" width="576" style="display: block; margin: auto;" />
 
 In Chapter \@ref(heatmap-decoration), we will introduce the use of the decoration functions, but
 here we give a quick example. In gene expression expression analysis, there are senarios that we
@@ -522,7 +521,7 @@ for(i in 1:4) {
 }
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-58-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-57-1.png" width="480" style="display: block; margin: auto;" />
 
 A second use of the empty annotation is to add complex annotation graphics where the empty
 annotation pretends to be a virtual plotting region. You can construct an annotation function
@@ -556,7 +555,7 @@ decorate_annotation("foo", {
 })
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-59-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-58-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Block annotation {#block-annotation}
 
@@ -570,7 +569,7 @@ Heatmap(matrix(rnorm(100), 10),
     column_km = 3)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-60-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-59-1.png" width="480" style="display: block; margin: auto;" />
 
 Labels can be added to each block.
 
@@ -585,7 +584,7 @@ Heatmap(matrix(rnorm(100), 10),
     row_km = 3)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-61-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-60-1.png" width="480" style="display: block; margin: auto;" />
 
 Note the length of `labels` or graphic parameters should have same length as number of slices.
 
@@ -612,7 +611,7 @@ image_pdf = sample(dir("~/Downloads/IcoMoon-Free-master/PDF/", full.names = TRUE
 ha = HeatmapAnnotation(foo = anno_image(image_png))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-63-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-62-1.png" width="576" style="display: block; margin: auto;" />
 
 Different image formats can be mixed in the input vector.
 
@@ -631,7 +630,7 @@ ha = HeatmapAnnotation(foo = anno_image(image_png,
     gp = gpar(fill = 1:10, col = "black")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-66-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-65-1.png" width="576" style="display: block; margin: auto;" />
 
 `border` controls the border of the whole annotation.
 
@@ -648,7 +647,7 @@ Padding or space around the images is set by `space`.
 ha = HeatmapAnnotation(foo = anno_image(image_png, space = unit(3, "mm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-69-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-68-1.png" width="576" style="display: block; margin: auto;" />
 
 If only some of the images need to be drawn, the other elements in the `image`
 vector can be set to `''` or `NA`.
@@ -659,7 +658,7 @@ image_png[1:2] = ""
 ha = HeatmapAnnotation(foo = anno_image(image_png))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-71-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-70-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Points annotation {#points-annotation}
 
@@ -672,7 +671,7 @@ such as `pch`, `size` and `gp` can correpspond to matrix columns.
 ha = HeatmapAnnotation(foo = anno_points(runif(10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-73-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-72-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
@@ -680,7 +679,7 @@ ha = HeatmapAnnotation(foo = anno_points(matrix(runif(20), nc = 2),
     pch = 1:2, gp = gpar(col = 2:3)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-75-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-74-1.png" width="576" style="display: block; margin: auto;" />
 
 `ylim` controls the range on "y-axis" or the "data axis" (if it is a row
 annotation, the data axis is horizontal), `extend` controls the extended space
@@ -727,7 +726,23 @@ ha = HeatmapAnnotation(foo = anno_points(runif(10),
 )
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-78-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-77-1.png" width="576" style="display: block; margin: auto;" />
+
+One thing that might be useful is you can control the rotation of the axis labels.
+
+
+```r
+ha = rowAnnotation(foo = anno_points(runif(10), 
+    axis_param = list(
+        side = "bottom",
+        at = c(0, 0.5, 1), 
+        labels = c("zero", "half", "one"),
+        labels_rot = 45
+    ))
+)
+```
+
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-79-1.png" width="52.9133858267716" style="display: block; margin: auto;" />
 
 The configuration of axis is same for other annotation functions which have axes.
 
@@ -741,7 +756,7 @@ the data variable can be a numeric vector:
 ha = HeatmapAnnotation(foo = anno_lines(runif(10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-80-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-81-1.png" width="576" style="display: block; margin: auto;" />
 
 Or a matrix:
 
@@ -751,7 +766,7 @@ ha = HeatmapAnnotation(foo = anno_lines(cbind(c(1:5, 1:5), c(5:1, 5:1)),
     gp = gpar(col = 2:3), add_points = TRUE, pt_gp = gpar(col = 5:6), pch = c(1, 16)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-82-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-83-1.png" width="576" style="display: block; margin: auto;" />
 
 Smoothed lines (by `loess()`) can be added instead of the original lines by
 setting `smooth = TRUE`, but it should be used with caution because the order of
@@ -768,7 +783,7 @@ If `smooth` is `TRUE`, `add_points` is set to `TRUE` by default.
 ha = HeatmapAnnotation(foo = anno_lines(runif(10), smooth = TRUE))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-84-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-85-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Barplot annotation {#barplot_annotation}
 
@@ -780,7 +795,7 @@ The data points can be represented as barplots. Some of the arguments in `anno_b
 ha = HeatmapAnnotation(foo = anno_barplot(1:10))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-86-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-87-1.png" width="576" style="display: block; margin: auto;" />
 
 The width of bars is controlled by `bar_width`. It is a relative value to the 
 width of the cell in the heatmap.
@@ -790,7 +805,7 @@ width of the cell in the heatmap.
 ha = HeatmapAnnotation(foo = anno_barplot(1:10, bar_width = 1))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-88-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-89-1.png" width="576" style="display: block; margin: auto;" />
 
 Graphic parameters are controlled by `gp`.
 
@@ -799,7 +814,7 @@ Graphic parameters are controlled by `gp`.
 ha = HeatmapAnnotation(foo = anno_barplot(1:10, gp = gpar(fill = 1:10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-90-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-91-1.png" width="576" style="display: block; margin: auto;" />
 
 You can choose the baseline of bars by `baseline`.
 
@@ -808,14 +823,14 @@ You can choose the baseline of bars by `baseline`.
 ha = HeatmapAnnotation(foo = anno_barplot(seq(-5, 5), baseline = "min"))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-92-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-93-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ```r
 ha = HeatmapAnnotation(foo = anno_barplot(seq(-5, 5), baseline = 0))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-94-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-95-1.png" width="576" style="display: block; margin: auto;" />
 
 If the input value is a matrix, it will be represented as stacked barplots.
 
@@ -824,7 +839,7 @@ If the input value is a matrix, it will be represented as stacked barplots.
 ha = HeatmapAnnotation(foo = anno_barplot(matrix(nc = 2, c(1:10, 10:1))))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-96-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-97-1.png" width="576" style="display: block; margin: auto;" />
 
 And length of parameters in `gp` can be the number of the columns in the matrix:
 
@@ -834,7 +849,7 @@ ha = HeatmapAnnotation(foo = anno_barplot(cbind(1:10, 10:1),
     gp = gpar(fill = 2:3, col = 2:3)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-98-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-99-1.png" width="576" style="display: block; margin: auto;" />
 
 Following example shows a barplot annotation which visualizes a proportion
 matrix (for which row sums are 1).
@@ -847,7 +862,7 @@ ha = HeatmapAnnotation(foo = anno_barplot(m, gp = gpar(fill = 2:5),
     bar_width = 1, height = unit(6, "cm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-100-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-101-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Boxplot annotation {#box-annotation}
 
@@ -866,7 +881,7 @@ m = matrix(rnorm(100), 10)
 ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-102-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-103-1.png" width="576" style="display: block; margin: auto;" />
 
 Graphic parameters are controlled by `gp`.
 
@@ -876,7 +891,7 @@ ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm"),
     gp = gpar(fill = 1:10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-104-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-105-1.png" width="576" style="display: block; margin: auto;" />
 
 Width of the boxes are controlled by `box_width`. `outline` controls whether to
 show outlier points.
@@ -887,7 +902,7 @@ ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm"),
     box_width = 0.9, outline = FALSE))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-106-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-107-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Histogram annotation {#histogram-annotation}
 
@@ -900,7 +915,7 @@ m = matrix(rnorm(1000), nc = 100)
 ha = rowAnnotation(foo = anno_histogram(m)) # apply `m` on rows
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-108-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-109-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Number of breaks for histograms is controlled by `n_breaks`.
 
@@ -909,7 +924,7 @@ Number of breaks for histograms is controlled by `n_breaks`.
 ha = rowAnnotation(foo = anno_histogram(m, n_breaks = 20))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-110-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-111-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Colors are controlled by `gp`.
 
@@ -918,7 +933,7 @@ Colors are controlled by `gp`.
 ha = rowAnnotation(foo = anno_histogram(m, gp = gpar(fill = 1:10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-112-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-113-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 ## Density annotation {#density-annotation}
 
@@ -930,7 +945,7 @@ as a fitted curve.
 ha = rowAnnotation(foo = anno_density(m))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-114-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-115-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 The height of the density lines can be controlled to make the distribution
 look like a "joyplot".
@@ -941,7 +956,7 @@ ha = rowAnnotation(foo = anno_density(m, joyplot_scale = 2,
     gp = gpar(fill = "#CCCCCC80")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-116-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-117-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Or visualize the distribution as violin plot.
 
@@ -951,7 +966,7 @@ ha = rowAnnotation(foo = anno_density(m, type = "violin",
     gp = gpar(fill = 1:10)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-118-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-119-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 When there are too many rows in the input variable, the space for normal density peaks might be too
 small. In this case, we can visualize the distribution by heatmaps.
@@ -962,7 +977,7 @@ m2 = matrix(rnorm(50*10), nrow = 50)
 ha = rowAnnotation(foo = anno_density(m2, type = "heatmap", width = unit(6, "cm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-120-1.png" width="181.417322834646" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-121-1.png" width="241.889763779528" style="display: block; margin: auto;" />
 
 THe color schema for heatmap distribution is controlled by `heatmap_colors`.
 
@@ -972,7 +987,7 @@ ha = rowAnnotation(foo = anno_density(m2, type = "heatmap", width = unit(6, "cm"
     heatmap_colors = c("white", "orange")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-122-1.png" width="181.417322834646" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-123-1.png" width="241.889763779528" style="display: block; margin: auto;" />
 
 In **ComplexHeatmap** package, there is a `densityHeatmap()` function which visualizes
 distribution as a heatmap (not as an annotation. It will be introduced in Section \@{density-heatmap}).
@@ -989,7 +1004,7 @@ ha = rowAnnotation(foo = anno_joyplot(lt, width = unit(4, "cm"),
     gp = gpar(fill = 1:10), transparency = 0.75))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-124-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-125-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Or only show the lines.
 
@@ -1001,7 +1016,7 @@ ha = rowAnnotation(foo = anno_joyplot(lt, width = unit(4, "cm"), gp = gpar(fill 
     scale = 4))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-126-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-127-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 The format of the input variable is special. It can be one of the following two:
 
@@ -1023,7 +1038,7 @@ lt = lapply(1:20, function(x) cumprod(1 + runif(1000, -x/100, x/100)) - 1)
 ha = rowAnnotation(foo = anno_horizon(lt))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-128-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-129-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Values in each track are normalized by `x/max(abs(x))`.
 
@@ -1036,7 +1051,7 @@ ha = rowAnnotation(foo = anno_horizon(lt,
     gp = gpar(pos_fill = "orange", neg_fill = "darkgreen")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-130-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-131-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 `pos_fill` and `neg_fill` can be assigned as a vector.
 
@@ -1047,7 +1062,7 @@ ha = rowAnnotation(foo = anno_horizon(lt,
               neg_fill = rep(c("darkgreen", "blue"), each = 10))))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-132-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-133-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 Whether the peaks for negative values start from the bottom or from the top?
 
@@ -1056,7 +1071,7 @@ Whether the peaks for negative values start from the bottom or from the top?
 ha = rowAnnotation(foo = anno_horizon(lt, negative_from_top = TRUE))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-134-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-135-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 The space between every two neighbouring charts.
 
@@ -1065,7 +1080,7 @@ The space between every two neighbouring charts.
 ha = rowAnnotation(foo = anno_horizon(lt, gap = unit(1, "mm")))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-136-1.png" width="124.724409448819" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-137-1.png" width="166.299212598425" style="display: block; margin: auto;" />
 
 ## Text annotation {#text-annotation}
 
@@ -1077,7 +1092,7 @@ by `gp`.
 ha = rowAnnotation(foo = anno_text(month.name, gp = gpar(fontsize = 1:12+4)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-138-1.png" width="85.1305826771653" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-139-1.png" width="113.507443569554" style="display: block; margin: auto;" />
 
 Locationsn are controlled by `location` and `just`. Rotation is controlled by `rot`.
 
@@ -1087,7 +1102,7 @@ ha = rowAnnotation(foo = anno_text(month.name, location = 1, rot = 45,
     just = "right", gp = gpar(fontsize = 1:12+4)))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-140-1.png" width="66.0559196189427" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-141-1.png" width="88.0745594919237" style="display: block; margin: auto;" />
 
 You can put the text annotation as column annotation or row annotation.
 
@@ -1106,70 +1121,8 @@ ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.n
 Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-141-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-142-1.png" width="480" style="display: block; margin: auto;" />
 
-## Multiple annotations
-
-As mentioned before, to put multiple annotations in `HeatmapAnnotation()`, they just need to be
-specified as name-value pairs. In `HeatmapAnnotation()`, there are some arguments which controls
-multiple annotations. For these arguments, they are specified as a vector which has same length as
-number of the annotations, or a named vector with subset of the annotations.
-
-The simple annotations which are specified as vectors, matrices and data frames will automatically
-have legends on the heatmap. `show_legend` controls whether draw the legend for them. Note here if
-`show_legend` is a vector, **the length of `show_legend` should be the same as the simple
-annotations while not the number of all annotations.**
-
-`gp` controls graphic parameters (except `fill`) for the simple annotatios, such as the border of
-annotation grids.
-
-`border` controls the border of every single annotations. `show_annotation_name` controls whether
-show annotation names. As mentioned, the value can be a single value, a vector or a named vector.
-
-
-
-```r
-ha = HeatmapAnnotation(foo = 1:10, 
-    bar = cbind(1:10, 10:1),
-    pt = anno_points(1:10),
-    show_annotation_name = c(foo = FALSE) # only turn off `foo`
-)
-```
-
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-143-1.png" width="432" style="display: block; margin: auto;" />
-
-`annotation_name_gp`, `annotation_name_offset`, `annotation_name_side` and `annotation_name_rot`
-controls the style and positions of the annotation names.
-
-`gap` controls the space between every two neighbouring annotations. The value can be a single unit
-or a vector of units.
-
-
-```r
-ha = HeatmapAnnotation(foo = 1:10, 
-    bar = cbind(1:10, 10:1),
-    pt = anno_points(1:10),
-    gap = unit(2, "mm"))
-```
-
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-145-1.png" width="432" style="display: block; margin: auto;" />
-
-
-```r
-ha = HeatmapAnnotation(foo = 1:10, 
-    bar = cbind(1:10, 10:1),
-    pt = anno_points(1:10),
-    gap = unit(c(2, 10), "mm"))
-```
-
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-147-1.png" width="432" style="display: block; margin: auto;" />
-
-`height`, `width`, `annotation_height` and `annotation_width` control the height or width of the
-heatmap annotations. Normally you don't need to set them because all the single annotations have fixed
-height/width and the final height/width for the whole heatmap annotation is the sum of them.
-Resetting these values will involve complicated adjustment depending on whether it is a simple
-annotation or complex annotation. Please refer to the documentation of
-`resize,HeatmapAnnotation-method` for the details of the resizing of annotations.
 
 ## Summary annotation {#summary-annotation}
 
@@ -1195,7 +1148,7 @@ Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"),
     row_split = split)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-148-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-143-1.png" width="480" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 42mm
@@ -1213,7 +1166,7 @@ Heatmap(v, name = "mat", top_annotation = ha, width = unit(2, "cm"),
     row_split = split)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-149-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-144-1.png" width="480" style="display: block; margin: auto;" />
 
 ```
 ## Since all heatmaps/annotations have absolute units, the total width of the plot is 55mm
@@ -1244,7 +1197,70 @@ split = sample(letters[1:2], 50, replace = TRUE)
 draw(ht_list, row_split = split, ht_gap = unit(5, "mm"))
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-150-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-145-1.png" width="480" style="display: block; margin: auto;" />
+
+## Multiple annotations
+
+As mentioned before, to put multiple annotations in `HeatmapAnnotation()`, they just need to be
+specified as name-value pairs. In `HeatmapAnnotation()`, there are some arguments which controls
+multiple annotations. For these arguments, they are specified as a vector which has same length as
+number of the annotations, or a named vector with subset of the annotations.
+
+The simple annotations which are specified as vectors, matrices and data frames will automatically
+have legends on the heatmap. `show_legend` controls whether draw the legend for them. Note here if
+`show_legend` is a vector, **the length of `show_legend` should be the same as the simple
+annotations while not the number of all annotations.**
+
+`gp` controls graphic parameters (except `fill`) for the simple annotatios, such as the border of
+annotation grids.
+
+`border` controls the border of every single annotations. `show_annotation_name` controls whether
+show annotation names. As mentioned, the value can be a single value, a vector or a named vector.
+
+
+
+```r
+ha = HeatmapAnnotation(foo = 1:10, 
+    bar = cbind(1:10, 10:1),
+    pt = anno_points(1:10),
+    show_annotation_name = c(foo = FALSE) # only turn off `foo`
+)
+```
+
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-147-1.png" width="576" style="display: block; margin: auto;" />
+
+`annotation_name_gp`, `annotation_name_offset`, `annotation_name_side` and `annotation_name_rot`
+controls the style and positions of the annotation names.
+
+`gap` controls the space between every two neighbouring annotations. The value can be a single unit
+or a vector of units.
+
+
+```r
+ha = HeatmapAnnotation(foo = 1:10, 
+    bar = cbind(1:10, 10:1),
+    pt = anno_points(1:10),
+    gap = unit(2, "mm"))
+```
+
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-149-1.png" width="576" style="display: block; margin: auto;" />
+
+
+```r
+ha = HeatmapAnnotation(foo = 1:10, 
+    bar = cbind(1:10, 10:1),
+    pt = anno_points(1:10),
+    gap = unit(c(2, 10), "mm"))
+```
+
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-151-1.png" width="576" style="display: block; margin: auto;" />
+
+`height`, `width`, `annotation_height` and `annotation_width` control the height or width of the
+heatmap annotations. Normally you don't need to set them because all the single annotations have fixed
+height/width and the final height/width for the whole heatmap annotation is the sum of them.
+Resetting these values will involve complicated adjustment depending on whether it is a simple
+annotation or complex annotation. Please refer to the documentation of
+`resize,HeatmapAnnotation-method` for the details of the resizing of annotations.
 
 ## Utility functions {#heatmap-annotation-utility-function}
 
@@ -1309,7 +1325,7 @@ names(ha)
 ## [1] "foo" "bar" "pt"  "FOO" "BAR" "PT"
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-154-1.png" width="432" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-155-1.png" width="576" style="display: block; margin: auto;" />
 
 ## Implement new annotation functions {#implement-new-annotation-functions}
 
@@ -1389,7 +1405,7 @@ Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1))
 Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1), column_km = 2)
 ```
 
-<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-157-1.png" width="360" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-158-1.png" width="480" style="display: block; margin: auto;" />
 
 The second way is to put all data variables inside the function and no need to import other variables.
 

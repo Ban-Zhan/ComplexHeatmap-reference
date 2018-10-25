@@ -40,8 +40,8 @@ lgd = Legend(col_fun = col_fun, title = "foo")
 ```
 
 ```{r, echo = FALSE}
-legend_width = function(lgd) convertWidth(width(lgd) + unit(4, "mm"), "inch", valueOnly = TRUE)
-legend_height = function(lgd) convertHeight(height(lgd) + unit(4, "mm"), "inch", valueOnly = TRUE)
+legend_width = function(lgd) convertWidth(ComplexHeatmap:::width(lgd) + unit(4, "mm"), "inch", valueOnly = TRUE)
+legend_height = function(lgd) convertHeight(ComplexHeatmap:::height(lgd) + unit(4, "mm"), "inch", valueOnly = TRUE)
 ```
 
 ```{r, echo = FALSE, fig.width = legend_width(lgd), fig.height = legend_height(lgd)}
@@ -52,10 +52,10 @@ draw(lgd, test = TRUE)
 and `height()` function.
 
 ```{r}
-width(lgd)
+ComplexHeatmap:::width(lgd)
 # the three values are the height of the title, the gap between title and legend, 
 # and the height of the legend. 
-height(lgd)
+ComplexHeatmap:::height(lgd)
 ```
 
 The legend is actually a packed graphic object composed of rectangles, lines, text. It can be
@@ -541,8 +541,8 @@ Simillar as single legend, you can draw the packed legends by `draw()` function.
 get the size of `pd` by `width()` and `height()`.
 
 ```{r}
-width(pd)
-height(pd)
+ComplexHeatmap:::width(pd)
+ComplexHeatmap:::height(pd)
 ```
 
 Horizontally arranging the legends simply by setting `direction = "horizontal"`.

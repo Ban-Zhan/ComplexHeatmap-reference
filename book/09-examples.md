@@ -615,3 +615,29 @@ decorate_annotation("chr7_gain", {
 ```
 
 <img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" />
+
+
+### Add multiple boxplot for a single row
+
+
+```r
+m1 = matrix(sort(rnorm(100)), 10, byrow = TRUE)
+m2 = matrix(sort(rnorm(100), decreasing = TRUE), 10, byrow = TRUE)
+
+ht_list = Heatmap(m1) + Heatmap(m2)
+
+rg = range(c(m1, m2))
+anno_multiple_boxplot = function(index) {
+    pushViewport(viewport(xscale = rg, yscale = c(0.5, 10.5)))
+    for(i in index) {
+        grid.boxplot(m1[i, ], pos = 10-i+1 + 0.2, box_width = 0.3, gp = gpar(fill = "red"), direction = "horizontal")
+        grid.boxplot(m2[i, ], pos = 10-i+1 - 0.2, box_width = 0.3, gp = gpar(fill = "green"), direction = "horizontal")
+    }
+    popViewport()
+}
+
+ht_list = ht_list + rowAnnotation(boxplot = anno_multiple_boxplot, width = unit(4, "cm"), show_annotation_name = FALSE)
+ht_list
+```
+
+<img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />

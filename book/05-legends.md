@@ -50,7 +50,7 @@ and `height()` function.
 
 
 ```r
-width(lgd)
+ComplexHeatmap:::width(lgd)
 ```
 
 ```
@@ -60,7 +60,7 @@ width(lgd)
 ```r
 # the three values are the height of the title, the gap between title and legend, 
 # and the height of the legend. 
-height(lgd)
+ComplexHeatmap:::height(lgd)
 ```
 
 ```
@@ -514,7 +514,7 @@ get the size of `pd` by `width()` and `height()`.
 
 
 ```r
-width(pd)
+ComplexHeatmap:::width(pd)
 ```
 
 ```
@@ -522,7 +522,7 @@ width(pd)
 ```
 
 ```r
-height(pd)
+ComplexHeatmap:::height(pd)
 ```
 
 ```
