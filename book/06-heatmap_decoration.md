@@ -149,13 +149,6 @@ split = c(rep("group1", 400), rep("group2", nrow(bed) - 400))
 ht = Heatmap(prop, name = "prop", col = col_fun, width = unit(2, "cm"),
     top_annotation = HeatmapAnnotation(barplot = anno_empty(height = unit(4, "cm"))))
 ht = draw(ht, row_split = split)
-```
-
-```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 55mm
-```
-
-```r
 ro = row_order(ht)
 w = bed[, 3] - bed[, 2]
 p = sapply(ro, function(index) {

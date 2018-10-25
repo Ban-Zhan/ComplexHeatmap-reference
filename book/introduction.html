@@ -6,20 +6,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ComplexHeatmap Complete Reference</title>
-  <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge.">
+  <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="ComplexHeatmap Complete Reference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-reference/book" />
   <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
-  <meta property="og:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta property="og:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="github-repo" content="jokergoo/ComplexHeatmap-reference" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
   
-  <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
 
 <meta name="author" content="Zuguang Gu">
@@ -116,7 +116,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.3" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#render-dendrograms"><i class="fa fa-check"></i><b>2.3.3</b> Render dendrograms</a></li>
 <li class="chapter" data-level="2.3.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#reorder-dendrograms"><i class="fa fa-check"></i><b>2.3.4</b> Reorder dendrograms</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#row-and_column_orders"><i class="fa fa-check"></i><b>2.4</b> Row and column orders</a></li>
+<li class="chapter" data-level="2.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#row-and_column_orders"><i class="fa fa-check"></i><b>2.4</b> Set row and column orders</a></li>
 <li class="chapter" data-level="2.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-seriation"><i class="fa fa-check"></i><b>2.5</b> Seriation</a></li>
 <li class="chapter" data-level="2.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#dimension-names"><i class="fa fa-check"></i><b>2.6</b> Dimension names</a></li>
 <li class="chapter" data-level="2.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-split"><i class="fa fa-check"></i><b>2.7</b> Heatmap split</a><ul>
@@ -167,7 +167,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.8" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#only-annotations"><i class="fa fa-check"></i><b>4.8</b> Only annotations</a></li>
 <li class="chapter" data-level="4.9" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#vertical-align"><i class="fa fa-check"></i><b>4.9</b> vertical align</a></li>
 <li class="chapter" data-level="4.10" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#retrieve-orders-and-dendrograms"><i class="fa fa-check"></i><b>4.10</b> Retrieve orders and dendrograms</a></li>
-<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-graphic-parameters-simultaneously"><i class="fa fa-check"></i><b>4.11</b> Change graphic parameters simultaneously</a></li>
+<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-parameters-simultaneously"><i class="fa fa-check"></i><b>4.11</b> Change graphic parameters simultaneously</a></li>
 <li class="chapter" data-level="4.12" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#adjust-white-space-caused-by-annotations"><i class="fa fa-check"></i><b>4.12</b> Adjust white space caused by annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="legends.html"><a href="legends.html"><i class="fa fa-check"></i><b>5</b> Legends</a><ul>
@@ -202,13 +202,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#density-heatmap"><i class="fa fa-check"></i><b>8.1</b> Density heatmap</a></li>
 <li class="chapter" data-level="8.2" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#stacked-summary-plot"><i class="fa fa-check"></i><b>8.2</b> Stacked summary plot</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>9</b> More Examples of Making Complex Heatmaps</a><ul>
-<li class="chapter" data-level="9.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
-<li class="chapter" data-level="9.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.1</b> The measles vaccine heatmap</a></li>
-<li class="chapter" data-level="9.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.2</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
-<li class="chapter" data-level="9.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.3</b> Correlations between methylation, expression and other genomic features</a></li>
-<li class="chapter" data-level="9.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.4</b> Visualize Methylation Profile with Complex Annotations</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.4.1</b> Add multiple boxplot for a single row</a></li>
+<li class="chapter" data-level="9" data-path="more-examples.html"><a href="more-examples.html"><i class="fa fa-check"></i><b>9</b> More Examples</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="more-examples.html"><a href="more-examples.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="9.1" data-path="more-examples.html"><a href="more-examples.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.1</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="9.2" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.2</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
+<li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.3</b> Correlations between methylation, expression and other genomic features</a></li>
+<li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.4</b> Visualize Methylation Profile with Complex Annotations</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.4.1</b> Add multiple boxplot for a single row</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -233,15 +233,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the <strong>ComplexHeatmap</strong> package provides a highly flexible way to arrange multiple heatmaps and supports self-defined annotation graphics.</p>
+<p>Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the <strong>ComplexHeatmap</strong> package provides a highly flexible way to arrange multiple heatmaps and supports self-defined annotation graphics.</p>
 <div id="general-design" class="section level2">
 <h2><span class="header-section-number">1.1</span> General design</h2>
-<p>A single heatmap is composed of the heatmap body and the heatmap components. The heatmap body can be split by rows and columns. The heatmap components are titles, dendrograms, matrix names and annotations, which are put on the four sides of the heamap body.</p>
+<p>A single heatmap is composed of the heatmap body and the heatmap components. The heatmap body can be split by rows and columns. The heatmap components are titles, dendrograms, matrix names and heatmap annotations, which are put on the four sides of the heamap body.</p>
 <p><img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A heatmap list is concatenation of a list of heatmaps and heatmap annotations. Surrounding the heatmap list, there are global-level titles and legends.</p>
 <p>One of the important things for the heatmap list is that rows for all heatmaps and annotations (it is row annotation if the heatmap list is horizontal.) are all adusted so that the same row in all heatmaps and annotations corresponds to a same feature.</p>
 <p><img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>The heatmaps and annotations can also be arranged vertically.</p>
+<p>The heatmaps and annotations (now it is column annotation) can also be arranged vertically.</p>
 <p><img src="01-introduction_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>The <strong>ComplexHeatmap</strong> package is implemented in an object-oriented way. To describe a heatmap list, there are following classes:</p>
 <ul>
@@ -251,45 +251,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>There are also several internal classes:</p>
 <ul>
-<li><code>SingleAnnotation</code> class: defines a single row annotation or column annotation.</li>
-<li><code>ColorMapping</code> class: mapping from values to colors.</li>
-<li><code>AnnotationFunction</code> class: construct user-defined annotations.</li>
+<li><code>SingleAnnotation</code> class: defines a single row annotation or column annotation. The <code>HeatmapAnnotation</code> object contains a list of <code>SingleAnnotation</code> objects.</li>
+<li><code>ColorMapping</code> class: mapping from values to colors. The color mappings of the main matrix and the annotations are controlled by <code>ColorMapping</code> class.</li>
+<li><code>AnnotationFunction</code> class: constructs user-defined annotations. This is the base of creating user-defined annotation graphics.</li>
 </ul>
 <p><strong>ComplexHeatmap</strong> is implemented under <strong>grid</strong> system, so users need to know basic <strong>grid</strong> functionality to get full use of the package.</p>
 </div>
 <div id="a-brief-description-of-following-chapters" class="section level2">
 <h2><span class="header-section-number">1.2</span> A brief description of following chapters</h2>
-<ol style="list-style-type: decimal">
+<ul>
 <li><a href="a-single-heatmap.html"><strong>A Single Heatmap</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes the configurations of a single heatmap.</p>
-<ol start="2" style="list-style-type: decimal">
+<ul>
 <li><a href="#heatmap-annotations.html"><strong>Heatmap Annotations</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes the concept of the heatmap annotation and demonstrates how to make simple annotations as well as complex annotations. Also, the chapter explains the difference between column annotations and row annotations.</p>
-<ol start="3" style="list-style-type: decimal">
+<ul>
 <li><a href="a-list-of-heatmaps.html"><strong>A List of Heatmaps</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes how to concatenate a list of heatmaps and annotations and how adjustment is applied to keep the correspondence of the heatmaps.</p>
-<ol start="4" style="list-style-type: decimal">
+<ul>
 <li><a href="legends.html"><strong>Legends</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes how to configurate the heatmap legends and annotation legends, also how to create self-defined legends.</p>
-<ol start="5" style="list-style-type: decimal">
+<ul>
 <li><a href="heatmap-decoration.html"><strong>Heatmap Decoration</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes methods to add more self-defined graphics to the heatmaps after the heatmaps are generated.</p>
-<ol start="6" style="list-style-type: decimal">
+<ul>
 <li><a href="oncoprint.html"><strong>OncoPrint</strong></a></li>
-</ol>
-<p>This chapter describes how to make oncoPrints and how to integrate other functionalities from <strong>ComplexHeatmap</strong> to oncoPrints.</p>
-<ol start="7" style="list-style-type: decimal">
+</ul>
+<p>This chapter describes how to make oncoPrints and how to integrate other functionalities from <strong>ComplexHeatmap</strong> for oncoPrints.</p>
+<ul>
 <li><a href="other-high-level-plots.html"><strong>Other High-level Plots</strong></a></li>
-</ol>
+</ul>
 <p>This chapter describes functions implemented in <strong>ComplexHeatmap</strong> for specific use, e.g. visualizing distributions.</p>
-<ol start="8" style="list-style-type: decimal">
+<ul>
 <li><a href="more-examples.html"><strong>More Examples</strong></a></li>
-</ol>
+</ul>
 <p>More simulated and real-world examples are shown in this chapter.</p>
 
 </div>

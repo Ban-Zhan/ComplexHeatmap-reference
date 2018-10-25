@@ -1,6 +1,6 @@
 
 
-# More Examples of Making Complex Heatmaps
+# More Examples {#more-examples}
 
 
 In the supplementaries of [the ComplexHeatmap paper](http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract), there are four comprehensive examples which are applied
@@ -629,15 +629,24 @@ ht_list = Heatmap(m1) + Heatmap(m2)
 rg = range(c(m1, m2))
 anno_multiple_boxplot = function(index) {
     pushViewport(viewport(xscale = rg, yscale = c(0.5, 10.5)))
-    for(i in index) {
-        grid.boxplot(m1[i, ], pos = 10-i+1 + 0.2, box_width = 0.3, gp = gpar(fill = "red"), direction = "horizontal")
-        grid.boxplot(m2[i, ], pos = 10-i+1 - 0.2, box_width = 0.3, gp = gpar(fill = "green"), direction = "horizontal")
+    for(i in seq_along(index)) {
+        grid.rect(y = 10-i+1, height = 1, default.units = "native")
+    grid.boxplot(m1[ index[i], ], pos = 10-i+1 + 0.2, box_width = 0.3, 
+    gp = gpar(fill = "red"), direction = "horizontal")
+        grid.boxplot(m2[ index[i], ], pos = 10-i+1 - 0.2, box_width = 0.3, 
+        gp = gpar(fill = "green"), direction = "horizontal")
     }
+    grid.xaxis()
     popViewport()
 }
 
-ht_list = ht_list + rowAnnotation(boxplot = anno_multiple_boxplot, width = unit(4, "cm"), show_annotation_name = FALSE)
-ht_list
+ht_list = ht_list + rowAnnotation(boxplot = anno_multiple_boxplot, width = unit(4, "cm"), 
+show_annotation_name = FALSE)
+draw(ht_list, padding = unit(c(20, 2, 2, 2), "mm"))
 ```
 
 <img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
+
+```r
+​
+```

@@ -38,6 +38,14 @@ densityHeatmap(m, col = topo.colors(10))
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" />
 
 
+```r
+densityHeatmap(m, cluster_columns = TRUE, clustering_distance_columns = "ks", 
+	show_column_dend = FALSE)
+```
+
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
+
+
 
 ```r
 ha1 = HeatmapAnnotation(dist = c(rep("rnorm", 10), rep("runif", 10)))
@@ -45,7 +53,7 @@ ha2 = HeatmapAnnotation(foo = anno_points(rnorm(20)))
 densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -53,7 +61,7 @@ densityHeatmap(m) %v%
 Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Stacked summary plot {#stacked-summary-plot}
 
@@ -128,13 +136,6 @@ lgd_list = list(
 ```r
 draw(ht_list, padding = unit(c(1, 1, 2, 1), "cm"), row_split = gsub("\\d+$", "", label), 
 	annotation_legend_list = lgd_list)
-```
-
-```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 380mm
-```
-
-```r
 anno_title = c("n_gr" = "Number of\nDMRs", "n_corr" = "Significantly\ncorrelated genes",
 	"gene_anno" = "Gene annotation", "dist_tss" = "Distance to TSS",
 	"cgi_anno" = "CGI annotation", "pct_st" = "Overlap to\nChromatin states")
@@ -152,5 +153,5 @@ for(an in names(ht_title)) {
 }
 ```
 
-<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-12-1.png" width="1344" style="display: block; margin: auto;" />
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-13-1.png" width="1344" style="display: block; margin: auto;" />
 

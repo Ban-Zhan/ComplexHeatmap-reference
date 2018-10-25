@@ -88,13 +88,13 @@ Heatmap(abs(mat), name = "mat", col = col_fun)
 
 ```{r, echo = FALSE, fig.width = 10, fig.height = 10/3}
 pushViewport(viewport(x = 0, width = 1/3))
-Heatmap(mat, name = "mat", col = col_fun, column_title = "mat", newpage = FALSE)
+draw(Heatmap(mat, name = "mat", col = col_fun, column_title = "mat"), newpage = FALSE)
 popViewport()
 pushViewport(viewport(x = 1/3, width = 1/3))
-Heatmap(mat/4, name = "mat", col = col_fun, column_title = "mat/4", newpage = FALSE)
+draw(Heatmap(mat/4, name = "mat", col = col_fun, column_title = "mat/4"), newpage = FALSE)
 popViewport()
 pushViewport(viewport(x = 2/3, width = 1/3))
-eatmap(abs(mat), name = "mat", col = col_fun, column_title = "abs(mat)", newpage = FALSE)
+draw(Heatmap(abs(mat), name = "mat", col = col_fun, column_title = "abs(mat)"), newpage = FALSE)
 popViewport()
 ```
 
@@ -453,10 +453,10 @@ row_dend = color_branches(row_dend, k = 2) # `color_branches()` returns a dendro
 Heatmap(mat, name = "mat", cluster_rows = row_dend)
 ```
 
-Note graphic settings `row_dend` will be overwritten by `row_dend_param`.
+Note graphic settings `row_dend` will be overwritten by `row_dend_gp`.
 
 ```{r}
-Heatmap(mat, name = "mat", cluster_rows = row_dend, row_dend_param = gpar(col = "red"))
+Heatmap(mat, name = "mat", cluster_rows = row_dend, row_dend_gp = gpar(col = "red"))
 ```
 
 ### Reorder dendrograms {#reorder-dendrograms}
@@ -519,7 +519,7 @@ dend = dendsort(hclust(dist(mat)))
 pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
 draw(Heatmap(mat, name = "mat", cluster_rows = dend, 
     column_title = "reordering by dendsort"), newpage = FALSE)
-upViewport(2)
+popViewport()
 ```
 
 ## Set row and column orders {#row-and_column_orders}

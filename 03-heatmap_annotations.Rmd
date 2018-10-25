@@ -1492,7 +1492,7 @@ columns of the heatmap.
 m = rbind(1:10, 11:20)
 Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1))
 Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1), 
-    column_split = rep(c("A", "B"), times = 5))
+    column_split = rep(c("A", "B"), each = 5))
 ```
 
 ```{r, echo = FALSE}
@@ -1501,7 +1501,8 @@ pushViewport(viewport(y = 1, height = 0.5, just = "top"))
 draw(Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1)), newpage = FALSE)
 upViewport()
 pushViewport(viewport(y = 0.5, height = 0.5, just = "top"))
-draw(Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1), column_km = 2), newpage = FALSE)
+draw(Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1), 
+    column_split = rep(c("A", "B"), each = 5)), newpage = FALSE)
 upViewport()
 ```
 
@@ -1554,7 +1555,7 @@ quickly add self-defined annotation graphics. E.g. we can re-implement previous 
 
 ```{r, fig.height = 5/2}
 ht = Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno_empty(height = unit(2, "cm"))), 
-    column_split = rep(c("A", "B"), times = 5))
+    column_split = rep(c("A", "B"), each = 5))
 ht = draw(ht)
 co = column_order(ht)
 decorate_annotation("foo", slice = 1, {

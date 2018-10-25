@@ -3,7 +3,7 @@
 # Introduction {#introduction}
 
 Complex heatmaps are efficient to visualize associations between different sources of data sets and
-reveal potential structures. Here the **ComplexHeatmap** package provides a highly flexible way to
+reveal potential patterns. Here the **ComplexHeatmap** package provides a highly flexible way to
 arrange multiple heatmaps and supports self-defined annotation graphics.
 
 ## General design {#general-design}
@@ -12,7 +12,7 @@ arrange multiple heatmaps and supports self-defined annotation graphics.
 
 A single heatmap is composed of the heatmap body and the heatmap components. The heatmap body can
 be split by rows and columns. The heatmap components are titles, dendrograms, matrix names and 
-annotations, which are put on the four sides of the heamap body.
+heatmap annotations, which are put on the four sides of the heamap body.
 
 <img src="01-introduction_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
 
@@ -25,7 +25,7 @@ heatmaps and annotations corresponds to a same feature.
 
 <img src="01-introduction_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" />
 
-The heatmaps and annotations can also be arranged vertically.
+The heatmaps and annotations (now it is column annotation) can also be arranged vertically.
 
 <img src="01-introduction_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" />
 
@@ -40,9 +40,12 @@ there are following classes:
 
 There are also several internal classes:
 
-- `SingleAnnotation` class: defines a single row annotation or column annotation.
-- `ColorMapping` class: mapping from values to colors.
-- `AnnotationFunction` class: construct user-defined annotations.
+- `SingleAnnotation` class: defines a single row annotation or column annotation. The `HeatmapAnnotation`
+  object contains a list of `SingleAnnotation` objects.
+- `ColorMapping` class: mapping from values to colors. The color mappings of the main matrix and the 
+   annotations are controlled by `ColorMapping` class.
+- `AnnotationFunction` class: constructs user-defined annotations. This is the base of creating 
+   user-defined annotation graphics.
 
 **ComplexHeatmap** is implemented under **grid** system, so users need to know basic **grid**
 functionality to get full use of the package.
@@ -50,41 +53,41 @@ functionality to get full use of the package.
 
 ## A brief description of following chapters {#a-brief-description-of-following-chapters}
 
-1. [**A Single Heatmap**](a-single-heatmap.html)
+- [**A Single Heatmap**](a-single-heatmap.html)
 
 This chapter describes the configurations of a single heatmap. 
 
-2. [**Heatmap Annotations**](#heatmap-annotations.html)
+- [**Heatmap Annotations**](#heatmap-annotations.html)
 
 This chapter describes the concept of the heatmap annotation and demonstrates how to make simple
 annotations as well as complex annotations. Also, the chapter explains the difference between column
 annotations and row annotations.
 
-3. [**A List of Heatmaps**](a-list-of-heatmaps.html)
+- [**A List of Heatmaps**](a-list-of-heatmaps.html)
 
 This chapter describes how to concatenate a list of heatmaps and annotations and how adjustment is
 applied to keep the correspondence of the heatmaps.
 
-4. [**Legends**](legends.html)
+- [**Legends**](legends.html)
 
 This chapter describes how to configurate the heatmap legends and annotation legends, also how to
 create self-defined legends.
 
-5. [**Heatmap Decoration**](heatmap-decoration.html)
+- [**Heatmap Decoration**](heatmap-decoration.html)
 
 This chapter describes methods to add more self-defined graphics to the heatmaps after the heatmaps
 are generated.
 
-6. [**OncoPrint**](oncoprint.html)
+- [**OncoPrint**](oncoprint.html)
 
 This chapter describes how to make oncoPrints and how to integrate other functionalities from
-**ComplexHeatmap** to oncoPrints.
+**ComplexHeatmap** for oncoPrints.
 
-7. [**Other High-level Plots**](other-high-level-plots.html)
+- [**Other High-level Plots**](other-high-level-plots.html)
 
 This chapter describes functions implemented in **ComplexHeatmap** for specific use, e.g.
 visualizing distributions.
 
-8. [**More Examples**](more-examples.html)
+- [**More Examples**](more-examples.html)
 
 More simulated and real-world examples are shown in this chapter.

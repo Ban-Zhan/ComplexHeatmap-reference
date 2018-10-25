@@ -6,20 +6,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ComplexHeatmap Complete Reference</title>
-  <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge.">
+  <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="ComplexHeatmap Complete Reference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-reference/book" />
   <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
-  <meta property="og:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta property="og:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="github-repo" content="jokergoo/ComplexHeatmap-reference" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
   
-  <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential structures. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is a complete reference to ComplexHeatmap pacakge." />
+  <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
 
 <meta name="author" content="Zuguang Gu">
@@ -116,7 +116,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.3.3" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#render-dendrograms"><i class="fa fa-check"></i><b>2.3.3</b> Render dendrograms</a></li>
 <li class="chapter" data-level="2.3.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#reorder-dendrograms"><i class="fa fa-check"></i><b>2.3.4</b> Reorder dendrograms</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#row-and_column_orders"><i class="fa fa-check"></i><b>2.4</b> Row and column orders</a></li>
+<li class="chapter" data-level="2.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#row-and_column_orders"><i class="fa fa-check"></i><b>2.4</b> Set row and column orders</a></li>
 <li class="chapter" data-level="2.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-seriation"><i class="fa fa-check"></i><b>2.5</b> Seriation</a></li>
 <li class="chapter" data-level="2.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#dimension-names"><i class="fa fa-check"></i><b>2.6</b> Dimension names</a></li>
 <li class="chapter" data-level="2.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-split"><i class="fa fa-check"></i><b>2.7</b> Heatmap split</a><ul>
@@ -167,7 +167,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.8" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#only-annotations"><i class="fa fa-check"></i><b>4.8</b> Only annotations</a></li>
 <li class="chapter" data-level="4.9" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#vertical-align"><i class="fa fa-check"></i><b>4.9</b> vertical align</a></li>
 <li class="chapter" data-level="4.10" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#retrieve-orders-and-dendrograms"><i class="fa fa-check"></i><b>4.10</b> Retrieve orders and dendrograms</a></li>
-<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-graphic-parameters-simultaneously"><i class="fa fa-check"></i><b>4.11</b> Change graphic parameters simultaneously</a></li>
+<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-parameters-simultaneously"><i class="fa fa-check"></i><b>4.11</b> Change graphic parameters simultaneously</a></li>
 <li class="chapter" data-level="4.12" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#adjust-white-space-caused-by-annotations"><i class="fa fa-check"></i><b>4.12</b> Adjust white space caused by annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="legends.html"><a href="legends.html"><i class="fa fa-check"></i><b>5</b> Legends</a><ul>
@@ -202,13 +202,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.1" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#density-heatmap"><i class="fa fa-check"></i><b>8.1</b> Density heatmap</a></li>
 <li class="chapter" data-level="8.2" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#stacked-summary-plot"><i class="fa fa-check"></i><b>8.2</b> Stacked summary plot</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html"><i class="fa fa-check"></i><b>9</b> More Examples of Making Complex Heatmaps</a><ul>
-<li class="chapter" data-level="9.0.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
-<li class="chapter" data-level="9.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.1</b> The measles vaccine heatmap</a></li>
-<li class="chapter" data-level="9.2" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.2</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
-<li class="chapter" data-level="9.3" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.3</b> Correlations between methylation, expression and other genomic features</a></li>
-<li class="chapter" data-level="9.4" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.4</b> Visualize Methylation Profile with Complex Annotations</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="more-examples-of-making-complex-heatmaps.html"><a href="more-examples-of-making-complex-heatmaps.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.4.1</b> Add multiple boxplot for a single row</a></li>
+<li class="chapter" data-level="9" data-path="more-examples.html"><a href="more-examples.html"><i class="fa fa-check"></i><b>9</b> More Examples</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="more-examples.html"><a href="more-examples.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="9.1" data-path="more-examples.html"><a href="more-examples.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.1</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="9.2" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.2</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
+<li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.3</b> Correlations between methylation, expression and other genomic features</a></li>
+<li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.4</b> Visualize Methylation Profile with Complex Annotations</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.4.1</b> Add multiple boxplot for a single row</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -234,12 +234,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">ComplexHeatmap Complete Reference</h1>
 <h4 class="author"><em>Zuguang Gu</em></h4>
-<h4 class="date"><em>last revised on 2018-10-24</em></h4>
+<h4 class="date"><em>last revised on 2018-10-25</em></h4>
 </div>
 <div id="about" class="section level1 unnumbered">
 <h1>About</h1>
 <p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.0.</p>
-<p><strong>Please note, this documentation is not completely compatible with older versions (&lt; 1.99.0, before Oct, 2018), the major functionality keeps the same.</strong></p>
+<p><strong>Please note, this documentation is not completely compatible with older versions (&lt; 1.99.0, before Oct, 2018), but the major functionality keeps the same.</strong></p>
 <p>If you use <strong>ComplexHeatmap</strong> in your publications, I am appreciated if you can cite:</p>
 <p>Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. DOI: <a href="https://doi.org/10.1093/bioinformatics/btw313">10.1093/bioinformatics/btw313</a></p>
 <p><img src="complexheatmap-cover.jpg" style="width:500px;border:2px solid black;" /></p>

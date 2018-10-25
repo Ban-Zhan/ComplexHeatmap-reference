@@ -139,10 +139,6 @@ ht1 + ht2 + ht3
 
 <img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_relative_size-1.png" width="960" style="display: block; margin: auto;" />
 
-```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 151mm
-```
-
 
 ```r
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm,
@@ -363,20 +359,12 @@ rowAnnotation(foo = 1:12) +
 
 <img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
 
-```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 62mm
-```
-
 
 ```r
 rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) + NULL
 ```
 
 <img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" />
-
-```
-## Since all heatmaps/annotations have absolute units, the total width of the plot is 44mm
-```
 
 ## vertical align
 
@@ -444,7 +432,7 @@ row_order(ht_list)
 ```
 
 ```
-##  [1]  8  6 10 11  5  7  9  2 12  4  1  3
+##  [1]  9  2 10  8  6 11  5  7 12  4  1  3
 ```
 
 ```r
@@ -453,10 +441,10 @@ column_order(ht_list)
 
 ```
 ## $rnorm
-##  [1]  2  7  5  6 10  1  9  8  4  3
+##  [1]  5  2  7  6 10  1  9  8  4  3
 ## 
 ## $runif
-##  [1]  1  3  8  7  6  9  4 10  2  5
+##  [1]  4 10  2  5  7  6  1  3  8  9
 ```
 
 
@@ -478,7 +466,7 @@ row_order(ht_list)
 ## [1] 12  4  1  3
 ## 
 ## $`2`
-## [1]  8  6 10 11  5  7  9  2
+## [1]  9  2 10  8  6 11  5  7
 ```
 
 ```r
@@ -488,12 +476,12 @@ column_order(ht_list)
 ```
 ## $rnorm
 ## $rnorm[[1]]
-##  [1]  2  7  5  6 10  1  9  8  4  3
+##  [1]  5  2  7  6 10  1  9  8  4  3
 ## 
 ## 
 ## $runif
 ## $runif$`1`
-## [1] 1 3 8 7 6 9
+## [1] 7 6 1 3 8 9
 ## 
 ## $runif$`2`
 ## [1]  4 10  2  5
@@ -501,7 +489,7 @@ column_order(ht_list)
 
 Same logic for vertical ... which we will not show here
 
-## Change graphic parameters simultaneously
+## Change graphic parameters simultaneously {#change-parameters-simultaneously}
 
 `ht_opt()` can set graphic parameters for dimension names and titles as global settings.
 
@@ -525,6 +513,7 @@ ht_opt
 ##           heatmap_border  NULL
 ##        annotation_border  NULL
 ##              fast_hclust FALSE
+##    show_parent_dend_line  TRUE
 ##                  verbose FALSE
 ##                  show_vp FALSE
 ##         anno_simple_size   5mm
