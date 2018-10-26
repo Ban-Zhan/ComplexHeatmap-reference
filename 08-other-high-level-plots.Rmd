@@ -117,3 +117,22 @@ for(an in names(ht_title)) {
 }
 ```
 
+```{r}
+prop = c(
+	runif(10, min = 0.1, max = 0.5),
+	runif(10, min = 0.2, max = 0.4),
+	runif(10, min = 0.3, max = 0.6),
+	runif(10, min = 0.4, max = 0.8)
+)
+median_length = c(
+	runif(10, min = 5000, max = 10000),
+	runif(10, min = 6000, max = 20000),
+	runif(10, min = 7000, max = 15000),
+	runif(10, min = 6000, max = 30000)
+)
+group = rep(letters[1:4], each = 10)
+
+HeatmapAnnotation(prop = anno_barplot(prop, height = unit(4, "cm"))) %v%
+HeatmapAnnotation(median_length = anno_barplot(median_length, height = unit(4, "cm"))) %v%
+HeatmapAnnotation(group = group)
+```

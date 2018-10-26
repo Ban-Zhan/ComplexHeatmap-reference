@@ -1224,8 +1224,8 @@ show annotation names. As mentioned, the value can be a single value, a vector o
 ha = HeatmapAnnotation(foo = 1:10, 
     bar = cbind(1:10, 10:1),
     pt = anno_points(1:10),
-    show_annotation_name = c(bar = FALSE), # only turn off `foo`
-    border = c(foo = TRUE)
+    show_annotation_name = c(bar = FALSE), # only turn off `bar`
+    border = c(foo = TRUE) # turn on foo
 )
 ```
 
@@ -1273,6 +1273,7 @@ demonstrate some scenarios for the resizing adjustment.
 First the default height of `ha`:
 
 ```{r}
+# foo: 1cm, bar: 5mm, pt: 1cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10))
@@ -1287,6 +1288,7 @@ annotations are adjusted. If there are multiple complex annotations, they are ad
 to the ratio of their original size.
 
 ```{r}
+# foo: 1cm, bar: 5mm, pt: 4.5cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1300,10 +1302,11 @@ draw(ha, test = TRUE)
 `anno_simple_size` controls the height of all simple annotations.
 
 ```{r}
+# foo: 2cm, bar:1cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
-    anno_simple_size = unit(0.5, "cm"), height = unit(6, "cm"))
+    anno_simple_size = unit(1, "cm"), height = unit(6, "cm"))
 ```
 
 ```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
@@ -1314,6 +1317,7 @@ If `annotation_height` is set as a vector of absolute units, the height of all t
 are adjusted accordingly.
 
 ```{r}
+# foo: 1cm, bar: 2cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1330,6 +1334,7 @@ by the ratios. This the only case `annotation_height` can be length of 1.
 
 
 ```{r}
+# foo: 2cm, bar: 2cm, pt: 2cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1341,6 +1346,7 @@ draw(ha, test = TRUE)
 ```
 
 ```{r}
+# foo: 1cm, bar: 2cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1355,6 +1361,7 @@ draw(ha, test = TRUE)
 
 
 ```{r}
+# foo: 1.5cm, bar: 1.5cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1367,10 +1374,11 @@ draw(ha, test = TRUE)
 ```
 
 ```{r}
+# foo: 2cm, bar: 1cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
-    annotation_height = unit(c(2, 2, 3), c("cm", "null", "cm")), height = unit(6, "cm")
+    annotation_height = unit(c(2, 1, 3), c("cm", "null", "cm")), height = unit(6, "cm")
 )
 ```
 
@@ -1381,6 +1389,7 @@ draw(ha, test = TRUE)
 If there is only simple annotation, simply setting `height` won't change the height.
 
 ```{r}
+# foo: 1cm, bar: 5mm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     height = unit(6, "cm"))

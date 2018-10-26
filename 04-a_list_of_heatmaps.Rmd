@@ -2,24 +2,23 @@
 # A List of Heatmaps {#a-list-of-heatmaps}
 
 The main feature of **ComplexHeatmap** package is it supports to concatenate a list of 
-heatmaps/annotations horizontally or vertically so that it makes it possible to visualize
+heatmaps and annotations horizontally or vertically so that it makes it possible to visualize
 the associations from various sources of information. In this chapter, we mainly introduce
 the horizontal concatenation because this is the major case we will use in the analysis. In
 the end we show some examples of vertical concatenation. The concept behind basically is similar.
 
-For the horizontal concatenation, the number of rows for all heatmaps/annotations should be the same.
+For the horizontal concatenation, the number of rows for all heatmaps and annotations should be the same.
 In following we first introduce the concatenation of heatmaps and later we will show how to concatenate
 heatmaps with annotations.
 
 In following example, there are three matrices where the third heatmap is a vector and it will
 be transformed as a one-column matrix. The one-column heatmap is sometimes useful when you
 concatenate a list of heatmaps that it can show e.g. annotations for each row or some scores
-of each row. e.g. if rows are genes, the the whether genes are protein coding gene can be 
-represented ..., or p-values or foldchange from differnetial...
+of each row. E.g. if rows are genes, the type of the genes (i.e. protein coding or not) can be 
+represented as a one-column character matrix, and the p-value or the fold change from differential
+expression analysis can be represented as a one-column numeric matrix.
 
-To concatenate heatmaps, simply use `+` operator.
-
-```{r heatmap_list_default, fig.width = 10}
+```{r}
 set.seed(123)
 mat1 = matrix(rnorm(80, 2), 8, 10)
 mat1 = rbind(mat1, matrix(rnorm(40, -2), 4, 10))
@@ -38,7 +37,11 @@ ind = sample(12, 12)
 mat1 = mat1[ind, ]
 mat2 = mat2[ind, ]
 le = le[ind]
+```
 
+To concatenate heatmaps, simply use `+` operator.
+
+```{r, fig.width = 10}
 ht1 = Heatmap(mat1, name = "rnorm")
 ht2 = Heatmap(mat2, name = "runif")
 ht3 = Heatmap(le, name = "letters")
@@ -46,14 +49,12 @@ ht3 = Heatmap(le, name = "letters")
 ht1 + ht2 + ht3
 ```
 
-Under default mode, dendrograms from the second heatmap will be removed and
-row orders will be same as the first one. also row names which are put on the right
-side of the heatmap for hte first two heatmaps are removed as well.
+Under default mode, dendrograms from the second heatmap will be removed and row orders will be same
+as the first one. Also row names for the first two heatmaps are removed as well.
 
-The returned value of addition of two heatmaps is a `HeatmapList` object.
-Directly calling `ht_list` object will call `draw()` method with default
-settings. With explicitly calling `draw()` method, you can have more controls
-e.g. on the legend and titles.
+The returned value of the concatenation is a `HeatmapList` object. Similar as explained in
+Section \@ref(plot-the-heatmap), directly printing `ht_list` will call `draw()` method with default
+settings. With explicitly calling `draw()` method, you can have more controls on the heatmap list.
 
 ```{r}
 ht_list = ht1 + ht2 + ht3
@@ -63,6 +64,7 @@ class(ht_list)
 You can append any number of heatmaps to the heatmap list. Also you can append a heatmap list to a heatmap list.
 
 ```{r, eval = FALSE}
+# code only for demonstration
 ht1 + ht_list
 ht_list + ht1
 ht_list + ht_list
@@ -71,15 +73,19 @@ ht_list + ht_list
 `NULL` can be added to the heatmap list. It would be convinient when users want to construct a heatmap list through a `for` loop.
 
 ```{r, eval = FALSE}
+# code only for demonstration
 ht_list = NULL  ## Heatmap(...) + NULL gives you a HeatmapList object
 for(s in sth) {
     ht_list = ht_list + Heatmap(...)
 }
 ```
 
-## Titles
+## Titles #{heatmap-list-titles}
 
-A heatmap list also has titles which are independent to the heatmap titles.
+A heatmap list also has title which is like a global title covering all heatmaps. `row_title` and `column_title`
+should be set in the `draw()` function.
+
+From following example, we set the colors for each heatmap to make them distinguishable.
 
 ```{r heatmap_list_title, fig.width = 10}
 col_rnorm = colorRamp2(c(-3, 0, 3), c("green", "white", "red"))
@@ -96,10 +102,9 @@ draw(ht_list, row_title = "Three heatmaps, row title", row_title_gp = gpar(col =
     column_title = "Three heatmaps, column title", column_title_gp = gpar(fontsize = 16))
 ```
 
+## Size of heatmaps {#size-of-heatmaps}
 
-## Size of heatmaps
-
-The width for some (not all) heatmaps can be set to a fixed width.
+The width for some heatmaps can be set to absolute units. Note `width` controls the width of the heatmap body.
 
 ```{r heatmap_list_size, fig.width = 10, fig.keep = "all"}
 ht2 = Heatmap(mat2, name = "runif", col = col_runif, width = unit(4, "cm"))
@@ -107,76 +112,80 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(5, "mm"))
 ht1 + ht2 + ht3
 ```
 
-or the width can be set as relative values. Please not in this case, `width` for all heatmaps
-should be set (relative width and fixed width can be mixed).
+The width of all heatmaps can be set as absolute units.
 
-```{r heatmap_list_relative_size, fig.width = 10, fig.keep = "all"}
+```{r heatmap_list_relative_size, fig.width = 10}
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, width = unit(4, "cm"))
 ht2 = Heatmap(mat2, name = "runif", col = col_runif, width = unit(6, "cm"))
 ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(1, "cm"))
 ht1 + ht2 + ht3
 ```
 
-```{r, fig.width = 10, fig.keep = "all"}
-ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm,
-    show_row_names = FALSE, width = 6)
-ht2 = Heatmap(mat2, name = "runif", col = col_runif,
-    show_row_names = FALSE, width = 4)
+If `width` is numeric, it is converted as a `null` unit.
+
+```{r, fig.width = 10}
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, width = 6)
+ht2 = Heatmap(mat2, name = "runif", col = col_runif, width = 4)
 ht3 = Heatmap(le, name = "letters", col = col_letters, width = 1)
 ht1 + ht2 + ht3
 ```
 
-## Gap between heatmaps
+## Gap between heatmaps {#gap-between-heatmaps}
 
+`ht_gap` controls the space between heatmaps. The value can be a single unit or a vector of units.
 
-```{r heatmap_list_gap, fig.width = 10, fig.keep = "all"}
+```{r heatmap_list_gap, fig.width = 10}
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm)
 ht2 = Heatmap(mat2, name = "runif", col = col_runif)
 ht3 = Heatmap(le, name = "letters", col = col_letters)
+ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(1, "cm"))
 draw(ht_list, ht_gap = unit(c(3, 10), "mm"))
 ```
 
-## Auto adjustment to the main heatmap
+## Automatic adjustment to the main heatmap {#automatic-adjustment-to-the-main-heatmap}
 
-There are some automatic adjustment if more than one heatmaps are plotted. There should be a main
-heatmap which by default is the first one. Some settings for the remaining heatmaps will be modified
-to the settings in the main heatmap. The adjustment are:
+There is always a main heatmap in the heatmap list that controls the global row ordering.
+All the other heatmaps are automatically adjusted according to the settings in the main heatmap.
+For these non-main heatmaps, the adjustments are:
 
-- row clusters are removed.
-- row titles are removed.
-- if the main heatmap is split by rows, all remaining heatmaps will also be split by same levels as
-  the main one.
+- No row clustering is performed and they all take the row ordering of the main heatmap.
+- Row titles are removed.
+- If the main heatmap is split by rows, all other heatmaps will also be split by same levels as
+  the main heatmap.
+- The height of the main heatmap are taken as the height of all heatmaps.
+
+By default, the first heatmap is taken as the main heatmap.
+
+```{r heatmap_list_auto_adjust, fig.width = 10, fig.keep = "all"}
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2)
+ht2 = Heatmap(mat2, name = "runif", col = col_runif)
+ht3 = Heatmap(le, name = "letters", col = col_letters)
+ht2 + ht1 + ht3 # ht2 is the main heatmap and row_km in ht1 is ignored
+```
 
 The main heatmap can be specified by `main_heatmap` argument. The value can be a numeric index or
 the name of the heatmap (of course, you need to set the heatmap name when you create the `Heatmap`
-object).
+object). In following example, although `ht1` is the second heatmap, we can set it as the main
+heatmap.
 
-```{r heatmap_list_auto_adjust, fig.width = 10, fig.keep = "all"}
-ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, km = 2)
-ht2 = Heatmap(mat2, name = "runif", col = col_runif)
-ht3 = Heatmap(le, name = "letters", col = col_letters)
-```
-
-
-```{r}
-ht2 + ht1 + ht3
-```
-
-here although `ht1` is the second heatmap, we specify `ht1` to be
-the main heatmap by explicitely setting `main_heatmap` argument
-
-```{r}
+```{r, fig.width = 10}
 ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm")
 ```
 
-```{r}
+By default, the dendrogram and the row title are plotted just beside the main heatmap, just to
+emphasize the clustering or the splitting is calculated from the main heatmap while not other
+heatmaps. However, the position of the dendrogram and row title of the main heatmap can be
+controlled by `row_dend_side` and `row_sub_title_side`.
+
+```{r, fig.width = 10}
 ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm", row_dend_side = "right", row_sub_title_side = "left")
 ```
 
-If there is no row clustering in the main heatmap, all other heatmaps have no row clustering neither.
+Similarly, if there is no row clustering in the main heatmap, all other heatmaps have no row
+clustering neither.
 
 ```{r heatmap_list_auto_adjust_no_row_cluster, fig.width = 10}
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, cluster_rows = FALSE)
@@ -185,36 +194,65 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-## control row ... in draw() function
+As you may have observed, all the row names between heatmaps are removed from the plot. You can show
+them by setting `auto_adjust = FALSE`.
 
-
-Since the main heamtap controls the row order of all heatmaps, the parameters which co...
-
-
-- cluster_rows
-- clustering_distance_rows
-- clustering_method_rows 
-- row_dend_width
-- show_row_dend
-- row_dend_reorder
-- row_dend_gp
-- row_order 
-
-And for splitting rows 
-
-- row_gap
-- row_km
-- row_split
-
-```{r}
-ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2)
+```{r, fig.width = 10}
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm)
 ht2 = Heatmap(mat2, name = "runif", col = col_runif)
 ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht_list = ht1 + ht2 + ht3
-draw(ht_list, row_km = 1, row_split = le, cluster_rows = FALSE)
+draw(ht_list, auto_adjust = FALSE)
 ```
 
-## Annotation as components are adjusted
+## Control main heatmap in draw() function {#control-main-heatmap-in-draw-function}
+
+Settings of the main heatmap can be controlled in the main `Heatmap()` function. To make
+it convinient, settings that affect heatmap rows can also be directly set in `draw()`. If
+some of these settings are set, corresponding settings in the main `Heatmap()` will be overwritten.
+
+In `draw()` function, following main heatmap settings controls row orders of all heatmaps.
+
+- `cluster_rows`
+- `clustering_distance_rows`
+- `clustering_method_rows`
+- `row_dend_width`
+- `show_row_dend`
+- `row_dend_reorder`
+- `row_dend_gp`
+- `row_order`
+
+Following settings controls the row slices. 
+
+- `row_gap`
+- `row_km`
+- `row_split`
+
+Following settings controls the heatmap height.
+
+- `height`
+- `heatmap_height`
+
+In following example, `row_km = 2, cluster_rows = FALSE` for `ht1` is overwritten in `draw()`.
+
+```{r, fig.width = 10}
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2, cluster_rows = FALSE)
+ht2 = Heatmap(mat2, name = "runif", col = col_runif)
+ht3 = Heatmap(le, name = "letters", col = col_letters)
+ht_list = ht1 + ht2 + ht3
+draw(ht_list, row_km = 1, row_split = le, cluster_rows = TRUE)
+```
+
+## Annotations as components are adjusted {#annotations-as-components-are-adjusted}
+
+If some of the heatmaps in the heatmap list have annotations, in most of the cases, the heights
+of the heatmap annotations are different for different heatmaps. There are automatic adjustment
+for heatmap annotations, and this adjustment will also involve adjustment of dendrograms.
+
+Normally, the size of simple annotations will not change in the adjustment. In following example,
+the dendrogram for the second heatmap is adjusted. Note you still can change the size of simple
+annotation by setting `anno_simple_size` in `HeatmapAnnotation()` or globally set
+`ht_opt$anno_simple_size`.
 
 ```{r}
 ha1 = HeatmapAnnotation(foo1 = 1:10, annotation_name_side = "left")
@@ -223,6 +261,10 @@ ht2 = Heatmap(mat2, name = "runif", col = col_runif)
 ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
+
+If the first two heatmaps all have annotations, since the size of simple annotations keep unchanged,
+the size of complex annotations will be adjusted to make the total heights of the two heatmap annotations
+the same.
 
 ```{r}
 ha1 = HeatmapAnnotation(foo1 = 1:10, bar1 = anno_points(1:10), annotation_name_side = "left")
@@ -234,6 +276,8 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
+Similarly, if the first heatmap conly contains simple annotatins, dendrogram will be adjusted.
+
 ```{r}
 ha1 = HeatmapAnnotation(foo1 = 1:10, annotation_name_side = "left")
 ha2 = HeatmapAnnotation(bar2 = anno_barplot(1:10))
@@ -243,6 +287,9 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
+
+If the second heatmap has no bottom annotation, column names for the second heamtap are adjusted
+to be put directly below the heatmap body.
 
 ```{r}
 ha1 = HeatmapAnnotation(foo1 = 1:10, bar1 = anno_points(1:10), annotation_name_side = "left")
@@ -253,10 +300,10 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list)
 ```
 
+## Concatenate with annotations {#concatenate-with-annotations}
 
-## concatenate with annotations
-
-For horizontal concatenation with the annotaions.
+Row annotations can be concatenated to the horizontal heatmap list, while not a component of the
+heatmap. See following examples. They are very straightforward.
 
 
 ```{r}
@@ -271,26 +318,51 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-```{r}
+```{r, fig.width = 10}
 Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) + 
     rowAnnotation(foo = 1:12) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) +
     Heatmap(mat2, name = "runif", col = col_runif)
 ```
 
+## Concatenate only the annotations {#concatenate-only-the-annotations}
 
-## Only annotations
+The concatenation can be done without any heatmap.
 
 ```{r}
 rowAnnotation(foo = 1:12) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
+If there is only one `HeatmapAnnotation` object, you must concatenated with `NULL`.
+
 ```{r}
 rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) + NULL
 ```
 
-## vertical align
+The annotation list is actually also a `HeatmapList` object.
+
+```{r}
+anno_list = rowAnnotation(foo = 1:12) +
+    rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
+class(anno_list)
+```
+
+So you can use some functionality of the `draw()` function for the annotation list, such as row
+splitting.
+
+```{r}
+draw(anno_list, row_split = rep(c("A", "B"), each = 6))
+```
+
+In Section \@ref(stacked-summary-plot), we will show how to use a list of annotations to visualize
+multiple summary statistics.
+
+## Vertical concatenation {#vertical-concatenation}
+
+Heatmaps and annotations (now it is column annotation) can be concatenated vertically by the `%v%`
+operator. All the relatated settings and adjustments are very similar as the horizontal
+concatenation. Please check following examples.
 
 ```{r}
 mat1t = t(mat1)
@@ -312,7 +384,6 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-
 ```{r}
 ht1 = Heatmap(mat1t, name = "rnorm", col = col_rnorm, row_km = 2)
 ht2 = Heatmap(mat2t, name = "runif", col = col_runif, row_km = 2)
@@ -322,38 +393,108 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-## Retrieve orders and dendrograms
+## Get orders and dendrograms
 
-`row_order`, `column_order`, `row_dend` and `column_dend` can be used to retrieve corresponding information from
-the heatmaps. The usage is straightforward by following example:
+`row_order`, `column_order`, `row_dend` and `column_dend` can be used to retrieve corresponding
+information from the heatmap list. The usage is straightforward by following examples.
 
-```{r}
+```{r, echo = 2:7}
+pdf(NULL)
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm)
 ht2 = Heatmap(mat2, name = "runif", col = col_runif)
 ht_list = ht1 + ht2
 ht_list = draw(ht_list)
 row_order(ht_list)
 column_order(ht_list)
+dev.off()
 ```
 
-```{r}
+If rows or columns are split, the returned values will also be a list.
+
+```{r, echo = 2:8}
+pdf(NULL)
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm)
 ht2 = Heatmap(mat2, name = "runif", col = col_runif, column_km = 2)
 ht_list = ht1 + ht2
 ht_list = draw(ht_list, row_km = 2)
 row_order(ht_list)
 column_order(ht_list)
+dev.off()
 ```
 
-Same logic for vertical ... which we will not show here
+You can specify a certain heatmap for the column order.
 
-## Change graphic parameters simultaneously {#change-parameters-simultaneously}
+```{r}
+column_order(ht_list, name = "runif")
+```
 
-`ht_opt()` can set graphic parameters for dimension names and titles as global settings.
+The logic is the same for extracting dendrograms and for vertical heatmap list, so we don't show
+more plots here.
+
+## Change parameters globally {#change-parameters-globally}
+
+`ht_opt()` is an option function which controls some parameters globally. You can set some
+parameters for all heatmaps/annotations simultaneously by this global function. Pleast note you
+should put it before your heatmap code and reset all option values after drawing the heatmaps to get
+rid of affecting next heatmap.
 
 ```{r}
 ht_opt
 ```
+
+There are following parameters to control all heatmaps:
+
+- `heatmap_row_names_gp`: set `row_names_gp` in all `Heatmap()`.
+- `heatmap_column_names_gp`: set `column_names_gp` in all `Heatmap()`.
+- `heatmap_row_title_gp`: set `row_title_gp` in all `Heatmap()`.
+- `heatmap_column_title_gp`: set `column_title_gp` in all `Heatmap()`.
+- `heatmap_border`: set `border` in all `Heatmap()`.
+
+Following parameters control the legends: 
+
+- `legend_title_gp`: set `title_gp` in all heatmap legends and annotation legends.
+- `legend_title_position`: set `title_position` in all heatmap legends and annotation legends.
+- `legend_labels_gp`: set `labels_gp` in all heatmap legends and annotation legends.
+- `legend_grid_width`: set `grid_width` in all heatmap legends and annotation legends.
+- `legend_grid_height`: set `grid_height` in all heatmap legends and annotation legends.
+- `legend_border`: set `border` in all heatmap legends and annotation legends.
+
+Following parameters control heatmap annotations:
+
+- `annotation_border`: set `border` in all `HeatmapAnnotation()`.
+- `anno_simple_size`: set size for the simple annotation.
+
+Following parameters control the space between heatmap components:
+
+- `DENDROGRAM_PADDING`: space bewteen dendrograms and heatmap body.
+- `DIMNAME_PADDING`: space between row/column names and heatmap body.
+- `TITLE_PADDING`: space between row/column titles and heatmap body.
+- `COLUMN_ANNO_PADDING`: space between column annotations and heatmap body.
+- `ROW_ANNO_PADDING`: space between row annotations and heatmap body.
+
+Other parameters:
+
+- `fast_hclust`: whether use `fastcluster::hclust()` to speed up clustering?
+- `show_parent_dend_line`: when heatmap is split, whether to add a dashed line to mark parent dendrogram and children dendrograms?
+
+You can get or set option values by the traditional way (like `base::options()`) or by `$` operator:
+
+```{r, eval = FALSE}
+ht_opt("heatmap_row_names_gp")
+ht_opt$heatmap_row_names_gp
+
+# to set option values
+ht_opt("heatmap_row_names_gp" = gpar(fontsize = 8))
+ht_opt$heatmap_row_names_gp = gpar(fontsize = 8)
+```
+
+Reset to the default values by:
+
+```{r}
+ht_opt(RESET = TRUE)
+```
+
+Following example shows to control some graphic parameters globally.
 
 ```{r, fig.width = 10}
 ht_opt(heatmap_column_names_gp = gpar(fontface = "italic"), 
@@ -370,42 +511,73 @@ ht1 + ht2
 ht_opt(RESET = TRUE)
 ```
 
-Following are global settings supported by `ht_global_opt()`. By this function, you can also control settings
-for the legends.
+Some of the global parameters can also be set in the `draw()` function to temporarily change the
+global parameters, and they are reset back after the plot is made. Please check the help page of 
+`draw,Heatmaplist-method`.
 
-## Adjust white space caused by annotations
+## Adjust blank space caused by annotations
 
+Heatmap annotations may have annotation names and axes, for which the spaces are also taken into
+account when arranging heatmap components in the final layout. Sometimes, this adjustment is not
+smart that you may see blank areas in the plot that are not necessary.
+
+One scenario is for a matrix with no row names, the space to the right of the heatmap is determined
+by the width of annotation name, which results in blank space between the heatmap and the legend.
+Also the heatmap list level row title is plotted to the left of the annotation axis, which gives 
+blank area if there is not row dendrogram.
+
+`adjust_annotation_extension` controls whether to take account of the space of annotation names and
+axes for the layout. Compare following two plots.
 
 ```{r, eval = FALSE}
 m = matrix(rnorm(100), 10)
-ht = Heatmap(m,
+ht = Heatmap(m, name = "mat",
     top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
     show_row_dend = FALSE)
-draw(ht, row_title = "fooooooooooo", column_title = "adjust_annotation_extension = FALSE")
-draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,  # default
     column_title = "adjust_annotation_extension = TRUE")
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = FALSE,
+    column_title = "adjust_annotation_extension = FALSE")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.width = 10}
 m = matrix(rnorm(100), 10)
-ht = Heatmap(m, 
+ht = Heatmap(m, name = "mat",
     top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
     show_row_dend = FALSE)
-pushViewport(viewport(x = 0, width = 0.5, just = "left"))
-draw(ht, row_title = "fooooooooooo", column_title = "adjust_annotation_extension = FALSE", newpage = FALSE)
-popViewport()
+grid.newpage()
 pushViewport(viewport(x = 0, width = 0.5, just = "left"))
 draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
     column_title = "adjust_annotation_extension = TRUE", newpage = FALSE)
 popViewport()
+pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
+draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = FALSE,
+    column_title = "adjust_annotation_extension = FALSE", newpage = FALSE)
+popViewport()
 ```
 
+Another way to partially solve the space problem is to move the annotation name
+to the left and use heamtap-level row title.
+
+```{r}
+Heatmap(m, name = "mat",
+    top_annotation = HeatmapAnnotation(foo = anno_points(1:10),
+        annotation_name_side = "left"),
+    row_title = "fooooooooooo",
+    show_row_dend = FALSE)
+```
+
+However, this adjustment for annotations sometimes is also necessary, e.g. when the heatmap is
+short:
+
 ```{r, fig.height = 2}
-ht = Heatmap(m, 
+ht = Heatmap(m, name = "mat",
     top_annotation = HeatmapAnnotation(foo = anno_points(1:10)),
     show_row_dend = FALSE)
 draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
     column_title = "adjust_annotation_extension = TRUE")
 ```
 
+Therefore, we set `TRUE` as the default of `adjust_annotation_extension` and users can configure
+it based on specific scenarios.
 
