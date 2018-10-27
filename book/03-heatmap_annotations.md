@@ -1248,8 +1248,8 @@ show annotation names. As mentioned, the value can be a single value, a vector o
 ha = HeatmapAnnotation(foo = 1:10, 
     bar = cbind(1:10, 10:1),
     pt = anno_points(1:10),
-    show_annotation_name = c(bar = FALSE), # only turn off `foo`
-    border = c(foo = TRUE)
+    show_annotation_name = c(bar = FALSE), # only turn off `bar`
+    border = c(foo = TRUE) # turn on foo
 )
 ```
 
@@ -1294,6 +1294,7 @@ First the default height of `ha`:
 
 
 ```r
+# foo: 1cm, bar: 5mm, pt: 1cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10))
@@ -1307,6 +1308,7 @@ to the ratio of their original size.
 
 
 ```r
+# foo: 1cm, bar: 5mm, pt: 4.5cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1319,10 +1321,11 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 
 
 ```r
+# foo: 2cm, bar:1cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
-    anno_simple_size = unit(0.5, "cm"), height = unit(6, "cm"))
+    anno_simple_size = unit(1, "cm"), height = unit(6, "cm"))
 ```
 
 <img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-160-1.png" width="576" style="display: block; margin: auto;" />
@@ -1332,6 +1335,7 @@ are adjusted accordingly.
 
 
 ```r
+# foo: 1cm, bar: 2cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1347,6 +1351,7 @@ by the ratios. This the only case `annotation_height` can be length of 1.
 
 
 ```r
+# foo: 2cm, bar: 2cm, pt: 2cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1357,6 +1362,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 
 
 ```r
+# foo: 1cm, bar: 2cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1370,6 +1376,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 
 
 ```r
+# foo: 1.5cm, bar: 1.5cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
@@ -1381,10 +1388,11 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 
 
 ```r
+# foo: 2cm, bar: 1cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     pt = anno_points(1:10),
-    annotation_height = unit(c(2, 2, 3), c("cm", "null", "cm")), height = unit(6, "cm")
+    annotation_height = unit(c(2, 1, 3), c("cm", "null", "cm")), height = unit(6, "cm")
 )
 ```
 
@@ -1394,6 +1402,7 @@ If there is only simple annotation, simply setting `height` won't change the hei
 
 
 ```r
+# foo: 1cm, bar: 5mm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,
     height = unit(6, "cm"))
@@ -1543,7 +1552,7 @@ columns of the heatmap.
 m = rbind(1:10, 11:20)
 Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1))
 Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1), 
-    column_split = rep(c("A", "B"), times = 5))
+    column_split = rep(c("A", "B"), each = 5))
 ```
 
 <img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-179-1.png" width="480" style="display: block; margin: auto;" />
@@ -1614,7 +1623,7 @@ quickly add self-defined annotation graphics. E.g. we can re-implement previous 
 
 ```r
 ht = Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno_empty(height = unit(2, "cm"))), 
-    column_split = rep(c("A", "B"), times = 5))
+    column_split = rep(c("A", "B"), each = 5))
 ht = draw(ht)
 co = column_order(ht)
 decorate_annotation("foo", slice = 1, {

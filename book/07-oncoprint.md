@@ -322,7 +322,7 @@ Also colors for different alterations which will be used for barplots.
 
 
 ```r
-col = c("MUT" = "#008000", "AMP" = "red", "HOMDEL" = "blue")
+col = c("HOMDEL" = "blue", "AMP" = "red", "MUT" = "#008000")
 ```
 
 Make the oncoPrint.
@@ -332,8 +332,8 @@ Make the oncoPrint.
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation")))
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation")))
 ```
 
 ```
@@ -358,8 +358,8 @@ oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation")))
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation")))
 ```
 
 ```
@@ -384,8 +384,8 @@ oncoPrint(mat, get_type = get_type_fun,
 	row_order = 1:nrow(mat), column_order = sample_order,
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation")))
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation")))
 ```
 
 ```
@@ -409,8 +409,8 @@ oncoPrint(mat, get_type = get_type_fun,
 			axis_param = list(side = "top", labels_rot = 0))),
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation")))
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation")))
 ```
 
 ```
@@ -431,8 +431,8 @@ Following example splits the heatmap into two halves and add a new heatmap to th
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation"))) +
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation"))) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 ```
 
@@ -453,8 +453,8 @@ or add it vertically
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation"))) %v%
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation"))) %v%
 Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, "cm"))
 ```
 
@@ -475,8 +475,8 @@ You can also split the heatmap list:
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation"))) +
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation"))) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 ```
 
@@ -499,8 +499,8 @@ ht = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("AMP", "HOMDEL", "MUT"), 
-		labels = c("Amplification", "Deep deletion", "Mutation")))
+	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation")))
 ```
 
 ```

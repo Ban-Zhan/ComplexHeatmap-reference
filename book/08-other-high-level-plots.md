@@ -1,8 +1,15 @@
 
+
 # Other High-level Plots {#other-high-level-plots}
 
 ## Density heatmap {#density-heatmap}
 
+To visualize data distribution in a matrix or in a list, we normally use boxplot or violin plot. We
+can also use colors to map the density values and visualize distribution through a
+heatmap. It is useful if you have huge number of columns in data to visualize.
+
+In following examples, we use matrix as input data where the density is calculate
+by columns. The input data can also be a list.
 
 
 ```r
@@ -15,6 +22,11 @@ densityHeatmap(m)
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" />
 
+On the heatmap, there are also lines representing five quantiles and mean values.
+
+Data range is controlled by `ylim`. Title is controlled by `title` or `column_title`. Title on y-axis
+is controlled by `ylab`. 
+
 
 ```r
 densityHeatmap(m, ylim = c(-2, 2), title = "Distribution as heatmap", ylab = "some values")
@@ -22,12 +34,16 @@ densityHeatmap(m, ylim = c(-2, 2), title = "Distribution as heatmap", ylab = "so
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" />
 
+Column order is controlled by `column_order`.
+
 
 ```r
 densityHeatmap(m, column_order = sample(20, 20))
 ```
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" />
+
+The color for the density values is controlled by `col` which is a vector of colors.
 
 
 
@@ -37,6 +53,11 @@ densityHeatmap(m, col = topo.colors(10))
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" />
 
+Internally, the density for all columns are stored as a matrix where rows correspond to the same bins.
+Since it is a matrix, clustering can be applied on it. There is a special distance method `ks` for
+measuring similarity between distributions which is the Kolmogorov-Smirnov statistic between two
+distributions.
+
 
 ```r
 densityHeatmap(m, cluster_columns = TRUE, clustering_distance_columns = "ks", 
@@ -45,6 +66,7 @@ densityHeatmap(m, cluster_columns = TRUE, clustering_distance_columns = "ks",
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
+Column annotations can be added as top annotation and bottom annotation.
 
 
 ```r
@@ -55,15 +77,20 @@ densityHeatmap(m, top_annotation = ha1, bottom_annotation = ha2)
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" />
 
+Heatmaps and column annotations can only be concatenated to the density heatmap vertically.
+
 
 ```r
 densityHeatmap(m) %v%
+HeatmapAnnotation(foo = anno_barplot(1:10)) %v%
 Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
 ```
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Stacked summary plot {#stacked-summary-plot}
+
+Multiple annotations and heatmaps 
 
 
 ```r
@@ -155,3 +182,25 @@ for(an in names(ht_title)) {
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-13-1.png" width="1344" style="display: block; margin: auto;" />
 
+
+```r
+prop = c(
+	runif(10, min = 0.1, max = 0.5),
+	runif(10, min = 0.2, max = 0.4),
+	runif(10, min = 0.3, max = 0.6),
+	runif(10, min = 0.4, max = 0.8)
+)
+median_length = c(
+	runif(10, min = 5000, max = 10000),
+	runif(10, min = 6000, max = 20000),
+	runif(10, min = 7000, max = 15000),
+	runif(10, min = 6000, max = 30000)
+)
+group = rep(letters[1:4], each = 10)
+
+HeatmapAnnotation(prop = anno_barplot(prop, height = unit(4, "cm"))) %v%
+HeatmapAnnotation(median_length = anno_barplot(median_length, height = unit(4, "cm"))) %v%
+HeatmapAnnotation(group = group)
+```
+
+<img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;" />

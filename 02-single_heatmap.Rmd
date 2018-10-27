@@ -533,6 +533,13 @@ Heatmap(mat, name = "mat", row_order = order(rownames(mat)),
     column_order = order(colnames(mat)))
 ```
 
+The orders can be character vectors if they are just shuffles of the matrix row names or column names.
+
+```{r}
+Heatmap(mat, name = "mat", row_order = sort(rownames(mat)), 
+    column_order = sort(colnames(mat)))
+```
+
 Note `row_dend_reorder` and `row_order` are two different things. `row_dend_reorder` is applied on
 the dendrogram. For any node in the dendrogram, rotating its two branches actually gives an
 identical dendrogram, thus, reordering the dendrogram by automatically rotating sub-dendrogram at

@@ -178,8 +178,8 @@ decorate_annotation("barplot", {
 Row annotations can be concatenated to the heatmap list. Sometimes we need a title for the row annotation.
 `HeatmapAnnotation()` only supports axis labels, but it is easy to implement it by decorations.
 
-```{r}
-ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat") +
+```{r, fig.width = 8}
+ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat", show_column_dend = FALSE) +
     rowAnnotation(foo = anno_barplot(1:10, width = unit(4, "cm"))) +
     rowAnnotation(bar = anno_boxplot(matrix(rnorm(100), 10)), width = unit(4, "cm"))
 draw(ht_list, padding = unit(c(2, 2, 10, 2), "mm"))
