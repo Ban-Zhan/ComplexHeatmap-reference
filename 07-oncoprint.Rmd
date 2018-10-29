@@ -268,14 +268,16 @@ alter_fun = list(
 )
 ```
 
-Make the oncoPrint.
+Make the oncoPrint. We save `column_title` and `heatmap_legend_param` as varaibles because they are used multiple
+times in following sections.
 
 ```{r, fig.width = 12, fig.height = 8}
+column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling"
+heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation"))
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 As you see, the genes and samples are reordered automatically. Rows are sorted based on the frequency
@@ -292,9 +294,7 @@ By default, if samples or genes have no alterations, they will still remain in t
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 The number of rows and columns may be reduced after empty rows and columns are removed. When the oncoPrint
@@ -317,9 +317,7 @@ oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	row_order = 1:nrow(mat), column_order = sample_order,
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ### OncoPrint annotations
@@ -339,14 +337,41 @@ oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	top_annotation = HeatmapAnnotation(column_barplot = anno_oncoprint_barplot("MUT", height = unit(4, "cm"))),
 	right_annotation = rowAnnotation(row_barplot = anno_oncoprint_barplot(c("AMP", "HOMDEL"),
-		height = unit(4, "cm"), axis_param = list(side = "top", labels_rot = 0))),
+		height = unit(4, "cm"), axis_param = list(side = "bottom", labels_rot = 90))),
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
-...
+The percent values and row names are internally constructed as text annotations. You can set `show_pct` and
+`show_row_names` to turn them on or off. `pct_side` and `row_names_side` controls the sides where they are put.
+
+```{r, fig.width = 12, fig.height = 8}
+oncoPrint(mat, get_type = get_type_fun,
+	alter_fun = alter_fun, col = col, 
+	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
+	pct_side = "right", row_names_side = "left",
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
+```
+
+The barplot annotation for oncoPrint essentially normal annotations, you can add more annotations in `HeatmapAnnotation()`
+or `rowAnnotation()`:
+
+```{r, fig.width = 12, fig.height = 8}
+oncoPrint(mat, get_type = get_type_fun,
+	alter_fun = alter_fun, col = col, 
+	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
+	top_annotation = HeatmapAnnotation(cbar = anno_oncoprint_barplot(),
+		foo1 = 1:172,
+		bar1 = anno_points(1:172)),
+	left_annotation = rowAnnotation(foo2 = 1:26),
+	right_annotation = rowAnnotation(bar2 = anno_barplot(1:26)),
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
+```
+
+As you see, the percent annotation, the row name annotation and the oncoPrint
+annotation are appended to the user-specified annotation by default. Also annotations
+are automatically adjusted if `remove_empty_columns` and `remove_empty_rows` are set to `TRUE`.
+
 
 ### oncoPrint as a Heatmap {#oncoprint-as-a-heatmap}
 
@@ -358,9 +383,7 @@ Following example adds a heatmap horizontally. Remember you can also add row ann
 ```{r, fig.width = 12, fig.height = 8}
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) +
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 draw(ht_list)
 ```
@@ -370,9 +393,7 @@ or add it vertically:
 ```{r, fig.width = 12, fig.height = 8}
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) %v%
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) %v%
 Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, "cm"))
 draw(ht_list)
 ```
@@ -382,9 +403,7 @@ Similar as normal heatmap list, you can also split the heatmap list:
 ```{r, fig.width = 12, fig.height = 8}
 ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) +
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 draw(ht_list, row_split = sample(c("a", "b"), nrow(mat), replace = TRUE))
 ```
@@ -396,9 +415,7 @@ are not the original number. If the original matrix has row names and column nam
 ht = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 dim(ht)
 rownames(ht@matrix)
 colnames(ht@matrix)
