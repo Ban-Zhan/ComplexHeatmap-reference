@@ -80,7 +80,7 @@ for(s in sth) {
 }
 ```
 
-## Titles #{heatmap-list-titles}
+## Titles {#heatmap-list-titles}
 
 A heatmap list also has title which is like a global title covering all heatmaps. `row_title` and `column_title`
 should be set in the `draw()` function.
@@ -393,7 +393,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-## Get orders and dendrograms
+## Get orders and dendrograms {get-orders-and-dendrograms-from-a-list-of-heatmaps}
 
 `row_order`, `column_order`, `row_dend` and `column_dend` can be used to retrieve corresponding
 information from the heatmap list. The usage is straightforward by following examples.
@@ -515,7 +515,7 @@ Some of the global parameters can also be set in the `draw()` function to tempor
 global parameters, and they are reset back after the plot is made. Please check the help page of 
 `draw,Heatmaplist-method`.
 
-## Adjust blank space caused by annotations
+## Adjust blank space caused by annotations {#adjust-blank-space-caused-by-annotations}
 
 Heatmap annotations may have annotation names and axes, for which the spaces are also taken into
 account when arranging heatmap components in the final layout. Sometimes, this adjustment is not
@@ -580,4 +580,41 @@ draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
 
 Therefore, we set `TRUE` as the default of `adjust_annotation_extension` and users can configure
 it based on specific scenarios.
+
+
+## Manually increase space around the plot {#manually-increase-space-around-the-plot}
+
+The layout of the **ComplexHeatmap** is not perfect that it is still possible some of the text are
+drawn out of the plotting region. In this case, you can set the `padding` argument in `draw()` function
+to increase the blank areas around the final plot.
+
+The value of `padding` should be a unit vector with length 4. The four values correspond to the space at
+the bottom, left, top and right sides.
+
+The following example is not a perfect example because the maximal width for row names can be controlled
+by `max_row_name_width` argument, but we can still use it to demonstrate the use of `padding`.
+
+```{r, eval = FALSE}
+m2 = m
+rownames(m2) = paste0("R", 1:10)
+rownames(m2)[1] = "a long long long long long row name"
+ht = Heatmap(m2, name = "mat", row_names_side = "left", show_row_dend = FALSE)
+draw(ht, padding = unit(c(2, 20, 2, 2), "mm"))
+```
+
+
+```{r, echo = FALSE, fig.width = 10}
+m2 = m
+rownames(m2) = paste0("R", 1:10)
+rownames(m2)[1] = "a long long long long long row name"
+ht = Heatmap(m2, name = "mat", row_names_side = "left", show_row_dend = FALSE)
+pushViewport(viewport(x = 0, w = 0.5, just = "left"))
+draw(ht)
+popViewport()
+
+pushViewport(viewport(x = 0, w = 0.5, just = "left"))
+draw(ht, padding = unit(c(2, 20, 2, 2), "mm"), column_title = "`padding` is adjusted")
+popViewport()
+```
+
 

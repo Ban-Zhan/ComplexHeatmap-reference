@@ -9,7 +9,7 @@ on real-world high-throughput datasets. [The examples can be found here.](http:/
 Also [my blog](http://jokergoo.github.io/blog.html) has some examples and tips for making better complex heatmaps.
 
 
-### Add more information for gene expression matrix
+## Add more information for gene expression matrix
 
 Heatmaps are very popular to visualize gene expression matrix. 
 Rows in the matrix correspond to genes and more information on these genes can be attached after the expression
@@ -617,7 +617,7 @@ decorate_annotation("chr7_gain", {
 <img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" />
 
 
-### Add multiple boxplot for a single row
+## Add multiple boxplot for a single row
 
 
 ```r
@@ -646,7 +646,3 @@ draw(ht_list, padding = unit(c(20, 2, 2, 2), "mm"))
 ```
 
 <img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
-
-```r
-​
-```

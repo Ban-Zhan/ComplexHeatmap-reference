@@ -204,13 +204,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.2" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#stacked-summary-plot"><i class="fa fa-check"></i><b>8.2</b> Stacked summary plot</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="more-examples.html"><a href="more-examples.html"><i class="fa fa-check"></i><b>9</b> More Examples</a><ul>
-<li class="chapter" data-level="9.0.1" data-path="more-examples.html"><a href="more-examples.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.0.1</b> Add more information for gene expression matrix</a></li>
-<li class="chapter" data-level="9.1" data-path="more-examples.html"><a href="more-examples.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.1</b> The measles vaccine heatmap</a></li>
-<li class="chapter" data-level="9.2" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.2</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
-<li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.3</b> Correlations between methylation, expression and other genomic features</a></li>
-<li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.4</b> Visualize Methylation Profile with Complex Annotations</a><ul>
-<li class="chapter" data-level="9.4.1" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.4.1</b> Add multiple boxplot for a single row</a></li>
-</ul></li>
+<li class="chapter" data-level="9.1" data-path="more-examples.html"><a href="more-examples.html#add-more-information-for-gene-expression-matrix"><i class="fa fa-check"></i><b>9.1</b> Add more information for gene expression matrix</a></li>
+<li class="chapter" data-level="9.2" data-path="more-examples.html"><a href="more-examples.html#the-measles-vaccine-heatmap"><i class="fa fa-check"></i><b>9.2</b> The measles vaccine heatmap</a></li>
+<li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.3</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
+<li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.4</b> Correlations between methylation, expression and other genomic features</a></li>
+<li class="chapter" data-level="9.5" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.5</b> Visualize Methylation Profile with Complex Annotations</a></li>
+<li class="chapter" data-level="9.6" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.6</b> Add multiple boxplot for a single row</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -236,8 +235,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 9</span> More Examples</h1>
 <p>In the supplementaries of <a href="http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract">the ComplexHeatmap paper</a>, there are four comprehensive examples which are applied on real-world high-throughput datasets. <a href="http://jokergoo.github.io/supplementary/ComplexHeatmap-supplementary1-4/index.html">The examples can be found here.</a></p>
 <p>Also <a href="http://jokergoo.github.io/blog.html">my blog</a> has some examples and tips for making better complex heatmaps.</p>
-<div id="add-more-information-for-gene-expression-matrix" class="section level3">
-<h3><span class="header-section-number">9.0.1</span> Add more information for gene expression matrix</h3>
+<div id="add-more-information-for-gene-expression-matrix" class="section level2">
+<h2><span class="header-section-number">9.1</span> Add more information for gene expression matrix</h2>
 <p>Heatmaps are very popular to visualize gene expression matrix. Rows in the matrix correspond to genes and more information on these genes can be attached after the expression heatmap.</p>
 <p>In following example, the big heatmap visualize relative expression for genes, then the next is the absolute expression. Also gene length and gene type (i.e. protein coding or lincRNA) are visualized.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ComplexHeatmap)
@@ -272,7 +271,7 @@ ht_list =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span cl
 <p><img src="09-examples_files/figure-html/expression_example-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-measles-vaccine-heatmap" class="section level2">
-<h2><span class="header-section-number">9.1</span> The measles vaccine heatmap</h2>
+<h2><span class="header-section-number">9.2</span> The measles vaccine heatmap</h2>
 <p>Following code reproduces the heatmap introduced <a href="https://biomickwatson.wordpress.com/2015/04/09/recreating-a-famous-visualisation/">here</a> and <a href="https://benjaminlmoore.wordpress.com/2015/04/09/recreating-the-vaccination-heatmaps-in-r/">here</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat =<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;measles.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;ComplexHeatmap&quot;</span>))
 ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(
@@ -314,7 +313,7 @@ col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class
 <p><img src="09-examples_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="visualize-cell-heterogeneity-from-single-cell-rnaseq" class="section level2">
-<h2><span class="header-section-number">9.2</span> Visualize Cell Heterogeneity from Single Cell RNASeq</h2>
+<h2><span class="header-section-number">9.3</span> Visualize Cell Heterogeneity from Single Cell RNASeq</h2>
 <p>In this supplementary, single cell RNA-Seq data for mouse T-cells is visualized to show the heterogeneity of cells. The data (<code>mouse_scRNAseq_corrected.txt</code>) is from <a href="http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html">Buettner et al., 2015</a>, supplementary data 1, sheet “<strong>Cell-cycle corrected gene expr</strong>”.</p>
 <p>In following code, duplicated genes are removed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expr =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/mouse_scRNAseq_corrected.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
@@ -407,7 +406,7 @@ ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list, <span cl
 <p>The heatmap clearly reveals that the cells are separated into two sub-populations. The population on the left in the first heatmap exhibits high expression of a subset of cell cycle genes (cell cycle genes are indicated in “<strong>cell_cycle</strong>” heatmap). However, the overall expression level for these genes is relatively low (see “<strong>base_expr</strong>” heatmap). The population on the right has higher expression in the other signature genes. Interestingly, the signature genes which are higher expressed in this subpopulation are enriched for genes coding for ribonucleoproteins (see “<strong>ribonucleoprotein</strong>” heatmap). A subset of the ribonucleoprotein genes shows strong coexpression (see correlation heatmap) and overall high expression levels (“<strong>base_expr</strong>” heatmap).</p>
 </div>
 <div id="correlations-between-methylation-expression-and-other-genomic-features" class="section level2">
-<h2><span class="header-section-number">9.3</span> Correlations between methylation, expression and other genomic features</h2>
+<h2><span class="header-section-number">9.4</span> Correlations between methylation, expression and other genomic features</h2>
 <p>In the following example, data is randomly generated based on patterns found in an unpublished analysis. The code for generating the random data can be found at the end of this supplementary.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_list =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/meth.rds&quot;</span>)
 type =<span class="st"> </span>res_list<span class="op">$</span>type
@@ -484,7 +483,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat_meth, <spa
 <p>The complex heatmaps reveal that highly methylated DMRs are enriched in intergenic and intragenic regions and rarely overlap with enhancers. In contrast, lowly methylated DMRs are enriched for transcription start sites (TSS) and enhancers.</p>
 </div>
 <div id="visualize-methylation-profile-with-complex-annotations" class="section level2">
-<h2><span class="header-section-number">9.4</span> Visualize Methylation Profile with Complex Annotations</h2>
+<h2><span class="header-section-number">9.5</span> Visualize Methylation Profile with Complex Annotations</h2>
 <p>In this supplementary, Figure 1 in <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Strum et al., 2012</a> is re-implemented with some adjustments.</p>
 <p><strong>Note that ~ 3GB of memory are required to run this example.</strong></p>
 <p>Load packages.</p>
@@ -653,8 +652,9 @@ annotation_titles =<span class="st"> </span><span class="kw">c</span>(<span clas
     <span class="kw">grid.lines</span>(<span class="kw">unit</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="dv">0</span>), <span class="st">&quot;mm&quot;</span>), <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="st">&quot;npc&quot;</span>))
 })</code></pre></div>
 <p><img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<div id="add-multiple-boxplot-for-a-single-row" class="section level3">
-<h3><span class="header-section-number">9.4.1</span> Add multiple boxplot for a single row</h3>
+</div>
+<div id="add-multiple-boxplot-for-a-single-row" class="section level2">
+<h2><span class="header-section-number">9.6</span> Add multiple boxplot for a single row</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sort</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)), <span class="dv">10</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 m2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sort</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">10</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 
@@ -678,9 +678,7 @@ ht_list =<span class="st"> </span>ht_list <span class="op">+</span><span class="
 <span class="dt">show_annotation_name =</span> <span class="ot">FALSE</span>)
 <span class="kw">draw</span>(ht_list, <span class="dt">padding =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>))</code></pre></div>
 <p><img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">​</code></pre></div>
 
-</div>
 </div>
 </div>
             </section>

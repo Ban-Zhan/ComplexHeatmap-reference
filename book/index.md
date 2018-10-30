@@ -2,7 +2,7 @@
 --- 
 title: "ComplexHeatmap Complete Reference"
 author: "Zuguang Gu"
-date: "last revised on 2018-10-29"
+date: "last revised on 2018-10-30"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -21,7 +21,7 @@ This is the documentation of the
 [**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
 are generated under version 1.99.0.
 
-**Please note, this documentation is not completely compatible with older versions (< 1.99.0, before
+**Please note, this documentation is not completely compatible with older versions (1.*.*, before
 Oct, 2018), but the major functionality keeps the same.**
 
 If you use **ComplexHeatmap** in your publications, I am appreciated if you can cite:

@@ -2,7 +2,7 @@
 
 # A single Heatmap {#a-single-heatmap}
 
-A single heatmap is the most used way for visualizing the data. Although "the shining point" of the
+A single heatmap is the most used approach for visualizing the data. Although "the shining point" of the
 **ComplexHeatmap** package is it can visualize a list of heatmaps in parallel, as the basic unit of
 the heatmap list, it is still very important to have the single heatmap nicely configured.
 
@@ -43,7 +43,7 @@ Heatmap(mat)
 <img src="02-single_heatmap_files/figure-html/default-1.png" width="480" style="display: block; margin: auto;" />
 
 The title for the legend is taken from the "name" of the heatmap by default. Each heatmap has a name
-which is like a unique identifier for the heatmap, which is important when you have a list of
+which is like a unique identifier for the heatmap and it is important when you have a list of
 heatmaps. In later chapters, you will find the heatmap name is used for setting the "main heatmap"
 and is used for decoration of heatmaps. If the name is not assigned, an internal name is assigned to
 the heatmap in a form of `matrix_%d`. In following examples in this chapter, we give the name `mat`
@@ -149,7 +149,7 @@ Heatmap(discrete_mat, name = "mat", col = colors)
 
 As you see in the two examples above, for the numeric matrix (no matter the color is continuous
 mapping or discrete mapping), by default clustering is applied on both dimensions while for
-character matrix, clustering is turned off (but you can still clustering a character matrix if you
+character matrix, clustering is turned off (but you can still cluster a character matrix if you
 provide a proper distance metric for two character vectors, see example in Section
 \@ref(distance-methods)).
 
@@ -280,7 +280,8 @@ If the graphic elements are texts, they can be set as mathematical formulas.
 
 
 ```r
-Heatmap(mat, name = "mat", column_title = expression(hat(beta) == (X^t * X)^{-1} * X^t * y)) 
+Heatmap(mat, name = "mat", 
+    column_title = expression(hat(beta) == (X^t * X)^{-1} * X^t * y)) 
 ```
 
 <img src="02-single_heatmap_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;" />
