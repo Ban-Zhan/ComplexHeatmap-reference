@@ -190,11 +190,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1.1" data-path="oncoprint.html"><a href="oncoprint.html#input-data-format"><i class="fa fa-check"></i><b>7.1.1</b> Input data format</a></li>
 <li class="chapter" data-level="7.1.2" data-path="oncoprint.html"><a href="oncoprint.html#define-the-alter-fun"><i class="fa fa-check"></i><b>7.1.2</b> Define the alter_fun()</a></li>
 <li class="chapter" data-level="7.1.3" data-path="oncoprint.html"><a href="oncoprint.html#oncoprint-background"><i class="fa fa-check"></i><b>7.1.3</b> Background</a></li>
+<li class="chapter" data-level="7.1.4" data-path="oncoprint.html"><a href="oncoprint.html#other-heatmap-related-settings"><i class="fa fa-check"></i><b>7.1.4</b> Other heatmap-related settings</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>7.2</b> Apply to cBioPortal dataset</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="oncoprint.html"><a href="oncoprint.html#remove-empty-rows-and-columns"><i class="fa fa-check"></i><b>7.2.1</b> Remove empty rows and columns</a></li>
-<li class="chapter" data-level="7.2.2" data-path="oncoprint.html"><a href="oncoprint.html#order-of-the-oncoprint"><i class="fa fa-check"></i><b>7.2.2</b> Order of the oncoPrint</a></li>
-<li class="chapter" data-level="7.2.3" data-path="oncoprint.html"><a href="oncoprint.html#barplots-annotations"><i class="fa fa-check"></i><b>7.2.3</b> Barplots annotations</a></li>
+<li class="chapter" data-level="7.2.2" data-path="oncoprint.html"><a href="oncoprint.html#reorder-the-oncoprint"><i class="fa fa-check"></i><b>7.2.2</b> Reorder the oncoPrint</a></li>
+<li class="chapter" data-level="7.2.3" data-path="oncoprint.html"><a href="oncoprint.html#oncoprint-annotations"><i class="fa fa-check"></i><b>7.2.3</b> OncoPrint annotations</a></li>
 <li class="chapter" data-level="7.2.4" data-path="oncoprint.html"><a href="oncoprint.html#oncoprint-as-a-heatmap"><i class="fa fa-check"></i><b>7.2.4</b> oncoPrint as a Heatmap</a></li>
 </ul></li>
 </ul></li>
@@ -249,7 +250,7 @@ lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">co
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ComplexHeatmap<span class="op">:::</span><span class="kw">width</span>(lgd)</code></pre></div>
 <pre><code>## [1] 9.90361111111111mm</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ComplexHeatmap<span class="op">:::</span><span class="kw">height</span>(lgd)</code></pre></div>
-<pre><code>## [1] 2.53294444444445mm+1.5mm+24mm</code></pre>
+<pre><code>## [1] 28.0329444444444mm</code></pre>
 <p>The legend is actually a packed graphic object composed of rectangles, lines and texts. It can be added to the plot by <code>draw()</code> function. In <strong>ComplexHeatmap</strong> pacakge, you don’t need to use <code>draw()</code> directly on legend objects, but it might be useful if you use the legend objects in other places.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">width =</span> <span class="fl">0.9</span>, <span class="dt">height =</span> <span class="fl">0.9</span>))
 <span class="kw">grid.rect</span>()  <span class="co"># border</span>

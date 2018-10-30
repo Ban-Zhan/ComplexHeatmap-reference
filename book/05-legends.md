@@ -63,7 +63,7 @@ ComplexHeatmap:::height(lgd)
 ```
 
 ```
-## [1] 2.53294444444445mm+1.5mm+24mm
+## [1] 28.0329444444444mm
 ```
 
 The legend is actually a packed graphic object composed of rectangles, lines and texts. It can be

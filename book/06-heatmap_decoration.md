@@ -175,7 +175,7 @@ Row annotations can be concatenated to the heatmap list. Sometimes we need a tit
 
 
 ```r
-ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat") +
+ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat", show_column_dend = FALSE) +
     rowAnnotation(foo = anno_barplot(1:10, width = unit(4, "cm"))) +
     rowAnnotation(bar = anno_boxplot(matrix(rnorm(100), 10)), width = unit(4, "cm"))
 draw(ht_list, padding = unit(c(2, 2, 10, 2), "mm"))
@@ -190,7 +190,7 @@ decorate_heatmap_body("mat", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;" />
 
 This is basically the way we use in Section \@ref(stacked-summary-plot).
 

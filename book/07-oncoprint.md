@@ -4,13 +4,15 @@
 
 <a href="http://www.cbioportal.org/faq.jsp#what-are-oncoprints">OncoPrint</a> is a way to visualize
 multiple genomic alteration events by heatmap. Here the **ComplexHeatmap** package provides a
-`oncoPrint()` function. Besides the default style which is provided by <a href="http://www.cbioportal.org/index.do">cBioPortal</a>, there are additional barplots at both
+`oncoPrint()` function which makes oncoPrints. Besides the default style which is provided by <a
+href="http://www.cbioportal.org/index.do">cBioPortal</a>, there are additional barplots at both
 sides of the heatmap which show numbers of different alterations for each sample and for each gene.
-Also with the functionality of **ComplexHeatmap**, you can control oncoPrint with more
-flexibilities.
+Also with the functionality of **ComplexHeatmap**, you can concatenate oncoPrints with additional
+heatmaps and annotations to correspond more types of information.
+
+
 
 ## General settings {#oncoprint-general-settings}
-
 
 
 ### Input data format {#input-data-format}
@@ -38,7 +40,7 @@ mat
 ```
 
 In this case, we need to define a function to extract different alteration types from these long strings. 
-The definition of the function is always simple, it accepts the complicated string and returns a vector
+The definition of such function is always simple, it accepts the complicated string and returns a vector
 of alteration types.
 
 For `mat`, we can define the function as:
@@ -61,21 +63,21 @@ get_type_fun(mat[1, 2])
 ## [1] "snv"
 ```
 
-If the alterations are encoded as `snv|indel`, you can define the function as `function(x) strsplit(x, "|")[[1]]`.
-
-This self-defined function is assigned to the `get_type` argument in `oncoPrint()`.
+So, if the alterations are encoded as `snv|indel`, you can define the function as `function(x)
+strsplit(x, "|")[[1]]`. This self-defined function is assigned to the `get_type` argument in
+`oncoPrint()`.
 
 For one gene in one sample, since different alteration types may be drawn into one same grid in the
 heatmap, we need to define how to add the graphics by providing a list of self-defined functions to
 `alter_fun` argument. Here if the graphics have no transparency, orders of how to add graphics
 matters. In following example, snv are first drawn and then the indel. You can see rectangles for
-indels are actually smaller than that for snvs so that you can visualiza both snvs and indels if
-they are in a same grid. Names in the list of functions should correspond to the alteration types
-(here, `snv` and `indel`).
+indels are actually smaller (`0.4*h`) than that for snvs (`0.9*h`) so that you can visualiza both
+snvs and indels if they are in a same grid. Names in the list of functions should correspond to the
+alteration types (here, `snv` and `indel`).
 
-For the self-defined graphic function, there should be four arguments which are positions of the
-grids on the heatmap (`x` and `y`), and widths and heights of the grids (`w` and `h`, which is
-measured in `npc` unit).
+For the self-defined graphic function (the functions in `alter_fun`, there should be four arguments
+which are positions of the grids on the heatmap (`x` and `y`), and widths and heights of the grids
+(`w` and `h`, which is measured in `npc` unit).
 
 Colors for different alterations are defined in `col`. It should be a named vector for which names
 correspond to alteration types. It is used to generate the barplots and the legends.
@@ -97,6 +99,8 @@ oncoPrint(mat, get_type = get_type_fun,
 ```
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" />
+
+You can see the order in barplots also correspond to the order defined in `alter_fun`.
 
 If you are confused of how to generated the matrix, there is a second way. The second type of input
 data is a list of matrix for which each matrix contains binary value representing whether the
@@ -170,9 +174,9 @@ Let's assume in a grid there is only snv event, then `v` for this grid is:
 ```r
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = function(x, y, w, h, v) {
-		if(v["snv"]) grid.rect(x, y, w*0.9, h*0.9, 
+		if(v["snv"]) grid.rect(x, y, w*0.9, h*0.9, # v["snv"] is a logical value
 			gp = gpar(fill = col["snv"], col = NA))
-		if(v["indel"]) grid.rect(x, y, w*0.9, h*0.4, 
+		if(v["indel"]) grid.rect(x, y, w*0.9, h*0.4, # v["indel"] is a logical value
 			gp = gpar(fill = col["indel"], col = NA))
 	}, col = col)
 ```
@@ -190,7 +194,7 @@ the blue rectangles can have different height in different grid.
 ```r
 oncoPrint(mat, get_type = get_type_fun,
     alter_fun = function(x, y, w, h, v) {
-		n = sum(v)
+		n = sum(v)  # how many alterations for current gene in current sample
 		h = h*0.9
 		# use `names(which(v))` to correctly map between `v` and `col`
 		if(n) grid.rect(x, y - h*0.5 + 1:n/n*h, w*0.9, 1/n*h, 
@@ -251,6 +255,33 @@ oncoPrint(mat, get_type = get_type_fun,
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-12-1.png" width="384" style="display: block; margin: auto;" />
 
 
+### Other heatmap-related settings {#other-heatmap-related-settings}
+
+Column names are by default not drawn in the plot. It is can be turned on by setting `show_column_names = TRUE`.
+
+
+```r
+oncoPrint(mat, get_type = get_type_fun,
+	alter_fun = list(
+		snv = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.9, 
+			gp = gpar(fill = col["snv"], col = NA)),
+		indel = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.4, 
+			gp = gpar(fill = col["indel"], col = NA))
+	), col = col, show_column_names = TRUE)
+```
+
+```
+## All mutation types: snv, indel
+```
+
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-13-1.png" width="384" style="display: block; margin: auto;" />
+
+OncoPrints essentially are heatmaps, thus, there are many arguments set in `Heatmap()` can also be
+set in `oncoPrint()`. In following sections, we use a real-world dataset to demonstrate more use of
+`oncoPrint()` function.
+
+
+
 
 ## Apply to cBioPortal dataset {#apply-to-cbioportal-dataset}
 
@@ -298,6 +329,7 @@ define how to add graphics which correspond to different alterations.
 
 
 ```r
+col = c("HOMDEL" = "blue", "AMP" = "red", "MUT" = "#008000")
 alter_fun = list(
 	background = function(x, y, w, h) {
 		grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
@@ -305,35 +337,30 @@ alter_fun = list(
 	},
 	HOMDEL = function(x, y, w, h) {
 		grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
-			gp = gpar(fill = "blue", col = NA))
+			gp = gpar(fill = col["HOMDEL"], col = NA))
 	},
 	AMP = function(x, y, w, h) {
 		grid.rect(x, y, w-unit(0.5, "mm"), h-unit(0.5, "mm"), 
-			gp = gpar(fill = "red", col = NA))
+			gp = gpar(fill = col["AMP"], col = NA))
 	},
 	MUT = function(x, y, w, h) {
 		grid.rect(x, y, w-unit(0.5, "mm"), h*0.33, 
-			gp = gpar(fill = "#008000", col = NA))
+			gp = gpar(fill = col["MUT"], col = NA))
 	}
 )
 ```
 
-Also colors for different alterations which will be used for barplots.
+Make the oncoPrint. We save `column_title` and `heatmap_legend_param` as varaibles because they are used multiple
+times in following sections.
 
 
 ```r
-col = c("HOMDEL" = "blue", "AMP" = "red", "MUT" = "#008000")
-```
-
-Make the oncoPrint.
-
-
-```r
+column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling"
+heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
+		labels = c("Deep deletion", "Amplification", "Mutation"))
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ```
@@ -342,9 +369,9 @@ oncoPrint(mat, get_type = get_type_fun,
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-17-1.png" width="1152" style="display: block; margin: auto;" />
 
-As you see, the genes and samples are sorted automatically. Rows are sorted based on the frequency
-of the alterations in all samples and columns are sorted to visualize the mutual exclusivity across
-genes based on the "memo sort" method which is kindly provided by [B. Arman
+As you see, the genes and samples are reordered automatically. Rows are sorted based on the frequency
+of the alterations in all samples and columns are reordered to visualize the mutual exclusivity between
+samples. The column reordering is based on the "memo sort" method, provided by [B. Arman
 Aksoy](https://gist.github.com/armish/564a65ab874a770e2c26).
 
 ### Remove empty rows and columns {#remove-empty-rows-and-columns}
@@ -357,9 +384,7 @@ By default, if samples or genes have no alterations, they will still remain in t
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ```
@@ -368,7 +393,13 @@ oncoPrint(mat, get_type = get_type_fun,
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-18-1.png" width="1152" style="display: block; margin: auto;" />
 
-### Order of the oncoPrint {#order-of-the-oncoprint}
+The number of rows and columns may be reduced after empty rows and columns are removed. When the oncoPrint
+is concatenated with other heatmaps and annotations, this may cause a problem that the number of rows
+or columns are not all identical in the heatmap list. So, if you put oncoPrint into a heatmap list
+and you don't want to see empty rows or columns, you need to remove them manually before sending to 
+`oncoPrint()` function (this preprocess should be very easy for you!).
+
+### Reorder the oncoPrint {#reorder-the-oncoprint}
 
 As the normal `Heatmap()` function, `row_order` or `column_order` can be assigned with a vector of
 orders (either numeric or character). In following example, the order of samples are gathered from
@@ -383,9 +414,7 @@ oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	row_order = 1:nrow(mat), column_order = sample_order,
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ```
@@ -394,23 +423,28 @@ oncoPrint(mat, get_type = get_type_fun,
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-19-1.png" width="1152" style="display: block; margin: auto;" />
 
-### Barplots annotations
+### OncoPrint annotations
+
+The oncoPrint has several pre-defined annotatios.
 
 On top and right of the oncoPrint, there are barplots showing the number of different alterations for
-each gene or for each sample. They are implemented by `anno_oncoprint_barplot()` where you can set the 
-size of the annotation there. Also you can select subset of alteration put on barplots by :
+each gene or for each sample, and on the left of the oncoPrint is a text annotation showing the percent
+of samples that have alterations for every gene.
+
+The barplot annotation is implemented by `anno_oncoprint_barplot()` where you can set the 
+size of the annotation there. Barplots by default draws for all alteration types, but you can also
+select subset of alterations to put on barplots by setting in `anno_oncoprint_barplot()`.
 
 
 ```r
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	top_annotation = HeatmapAnnotation(column_barplot = anno_oncoprint_barplot("MUT")),
+	top_annotation = HeatmapAnnotation(column_barplot = anno_oncoprint_barplot("MUT", border = TRUE,
+		height = unit(4, "cm"))),
 	right_annotation = rowAnnotation(row_barplot = anno_oncoprint_barplot(c("AMP", "HOMDEL"),
-			axis_param = list(side = "top", labels_rot = 0))),
+		border = TRUE, height = unit(4, "cm"), axis_param = list(side = "bottom", labels_rot = 90))),
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ```
@@ -419,20 +453,63 @@ oncoPrint(mat, get_type = get_type_fun,
 
 <img src="07-oncoprint_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;" />
 
-### oncoPrint as a Heatmap {#oncoprint-as-a-heatmap}
-
-`oncoPrint()` actually returns a `Heatmap` object, so you can add more Heatmaps or annotations horizontally
-or vertically to visualize more complicated information.
-
-Following example splits the heatmap into two halves and add a new heatmap to the right.
+The percent values and row names are internally constructed as text annotations. You can set `show_pct` and
+`show_row_names` to turn them on or off. `pct_side` and `row_names_side` controls the sides where they are put.
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) +
+	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
+	pct_side = "right", row_names_side = "left",
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
+```
+
+```
+## All mutation types: MUT, AMP, HOMDEL
+```
+
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-21-1.png" width="1152" style="display: block; margin: auto;" />
+
+The barplot annotation for oncoPrint essentially normal annotations, you can add more annotations in `HeatmapAnnotation()`
+or `rowAnnotation()`:
+
+
+```r
+oncoPrint(mat, get_type = get_type_fun,
+	alter_fun = alter_fun, col = col, 
+	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
+	top_annotation = HeatmapAnnotation(cbar = anno_oncoprint_barplot(),
+		foo1 = 1:172,
+		bar1 = anno_points(1:172)),
+	left_annotation = rowAnnotation(foo2 = 1:26),
+	right_annotation = rowAnnotation(bar2 = anno_barplot(1:26)),
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
+```
+
+```
+## All mutation types: MUT, AMP, HOMDEL
+```
+
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-22-1.png" width="1152" style="display: block; margin: auto;" />
+
+As you see, the percent annotation, the row name annotation and the oncoPrint
+annotation are appended to the user-specified annotation by default. Also annotations
+are automatically adjusted if `remove_empty_columns` and `remove_empty_rows` are set to `TRUE`.
+
+
+### oncoPrint as a Heatmap {#oncoprint-as-a-heatmap}
+
+`oncoPrint()` actually returns a `Heatmap` object, so you can add more Heatmaps or annotations horizontally
+or vertically to visualize more complicated associations.
+
+Following example adds a heatmap horizontally. Remember you can also add row annotations to the heatmap list.
+
+
+```r
+ht_list = oncoPrint(mat, get_type = get_type_fun,
+	alter_fun = alter_fun, col = col, 
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 ```
 
@@ -444,17 +521,15 @@ Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "
 draw(ht_list)
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-21-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;" />
 
-or add it vertically
+or add it vertically:
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht_list = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) %v%
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) %v%
 Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, "cm"))
 ```
 
@@ -466,17 +541,15 @@ Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, 
 draw(ht_list)
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-22-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-24-1.png" width="1152" style="display: block; margin: auto;" />
 
-You can also split the heatmap list:
+Similar as normal heatmap list, you can also split the heatmap list:
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht_list = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation"))) +
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
 ```
 
@@ -488,19 +561,17 @@ Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "
 draw(ht_list, row_split = sample(c("a", "b"), nrow(mat), replace = TRUE))
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-html/unnamed-chunk-25-1.png" width="1152" style="display: block; margin: auto;" />
 
 When `remove_empty_columns` or `remove_empty_rows` is set to TRUE, the number of genes or the samples
 are not the original number. If the original matrix has row names and column names...
 
 
 ```r
-ht = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
-	column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling",
-	heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
-		labels = c("Deep deletion", "Amplification", "Mutation")))
+	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
 
 ```

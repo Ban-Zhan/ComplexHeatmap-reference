@@ -335,9 +335,10 @@ select subset of alterations to put on barplots by setting in `anno_oncoprint_ba
 ```{r, fig.width = 12, fig.height = 8}
 oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
-	top_annotation = HeatmapAnnotation(column_barplot = anno_oncoprint_barplot("MUT", height = unit(4, "cm"))),
+	top_annotation = HeatmapAnnotation(column_barplot = anno_oncoprint_barplot("MUT", border = TRUE,
+		height = unit(4, "cm"))),
 	right_annotation = rowAnnotation(row_barplot = anno_oncoprint_barplot(c("AMP", "HOMDEL"),
-		height = unit(4, "cm"), axis_param = list(side = "bottom", labels_rot = 90))),
+		border = TRUE, height = unit(4, "cm"), axis_param = list(side = "bottom", labels_rot = 90))),
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
@@ -381,7 +382,7 @@ or vertically to visualize more complicated associations.
 Following example adds a heatmap horizontally. Remember you can also add row annotations to the heatmap list.
 
 ```{r, fig.width = 12, fig.height = 8}
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht_list = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
@@ -391,7 +392,7 @@ draw(ht_list)
 or add it vertically:
 
 ```{r, fig.width = 12, fig.height = 8}
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht_list = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) %v%
 Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, "cm"))
@@ -401,7 +402,7 @@ draw(ht_list)
 Similar as normal heatmap list, you can also split the heatmap list:
 
 ```{r, fig.width = 12, fig.height = 8}
-ht_list = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht_list = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
@@ -412,7 +413,7 @@ When `remove_empty_columns` or `remove_empty_rows` is set to TRUE, the number of
 are not the original number. If the original matrix has row names and column names...
 
 ```{r}
-ht = oncoPrint(mat, get_type = function(x) strsplit(x, ";")[[1]],
+ht = oncoPrint(mat, get_type = get_type_fun,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param)

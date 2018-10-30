@@ -70,7 +70,7 @@ column_ha
 ##   position: column 
 ##   items: 10 
 ##   width: 1npc 
-##   height: 15mm 
+##   height: 15.3514598035146mm 
 ##   this object is subsetable
 ##   5.92288888888889mm extension on the left 
 ##   9.4709mm extension on the right 
@@ -89,10 +89,10 @@ row_ha
 ##   name: heatmap_annotation_1 
 ##   position: row 
 ##   items: 10 
-##   width: 15mm 
+##   width: 15.3514598035146mm 
 ##   height: 1npc 
 ##   this object is subsetable
-##   9.96242222222223mm extension on the bottom 
+##   9.4709mm extension on the bottom 
 ## 
 ##  name   annotation_type color_mapping width
 ##  foo2 continuous vector        random   5mm
