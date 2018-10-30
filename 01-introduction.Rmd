@@ -88,7 +88,7 @@ are generated.
 - [**OncoPrint**](oncoprint.html)
 
 This chapter describes how to make oncoPrints and how to integrate other functionalities from
-**ComplexHeatmap** for oncoPrints.
+**ComplexHeatmap** to oncoPrints.
 
 - [**Other High-level Plots**](other-high-level-plots.html)
 
@@ -97,4 +97,4 @@ visualizing distributions.
 
 - [**More Examples**](more-examples.html)
 
-More simulated and real-world examples are shown in this chapter.
+More simulated and real-world examples are demonstrated in this chapter.

@@ -20,7 +20,7 @@ This is the documentation of the
 [**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
 are generated under version `r installed.packages()["ComplexHeatmap", "Version"]`.
 
-**Please note, this documentation is not completely compatible with older versions (< 1.99.0, before
+**Please note, this documentation is not completely compatible with older versions (1.*.*, before
 Oct, 2018), but the major functionality keeps the same.**
 
 If you use **ComplexHeatmap** in your publications, I am appreciated if you can cite:
