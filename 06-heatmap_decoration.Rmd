@@ -130,7 +130,7 @@ For annotations which are created by `anno_points()`, `anno_barplot()` and `anno
 
 ## Examples {#decoration-examples}
 
-### Barplot for single column heatmap {#barplot-for-single-column-heatmap}
+### Barplot for single-column heatmap {#barplot-for-single-column-heatmap}
 
 In Section \@ref(summary-annotation), we introduced adding barplots as annotations for single-column
 heatmap. In that case the heatmap contains discrete values. In following, we show another scenario
@@ -141,10 +141,10 @@ and we have a single-column heatmap which shows the overlap to e.g. genes (measu
 of a DMR covered by genes, value between 0 and 1). If we denote the width of DMRs as $w$ and the
 fraction as $p$, on top of the fraction heatmap, we want to add barplots to show, on
 average, how much of the DMRs are covered by genes. In this case, we need to calcualte the mean
-fraction weighted by the width of DMRs ($\sum{w \dot p}/\sum{w}$).
+fraction weighted by the width of DMRs ($\sum{w \cdot p}/\sum{w}$).
 
 In following code, we randomly generated a fraction vector and split it into two groups. We first
-use `anno_empty()` to allocate some empty plotting regions on top of the heatmap and later we use
+use `anno_empty()` to allocate empty plotting region on top of the heatmap and later we use
 `decorate_annotation()` to add the barplots into it.
 
 ```{r}
@@ -176,7 +176,7 @@ decorate_annotation("barplot", {
 ### Add titles for row annotations {#add-titles-for-row-annotations}
 
 Row annotations can be concatenated to the heatmap list. Sometimes we need a title for the row annotation.
-`HeatmapAnnotation()` only supports axis labels, but it is easy to implement it by decorations.
+It is easy to implement it by decorations.
 
 ```{r, fig.width = 8}
 ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat", show_column_dend = FALSE) +
@@ -190,7 +190,7 @@ decorate_annotation("bar", {
     grid.text("title for boxplot", y = unit(1, "npc") + unit(2, "mm"), just = "bottom") 
 })
 decorate_heatmap_body("mat", {
-    grid.text("title for the heatmap", y = unit(1, "npc") + unit(2, "mm"), just = "bottom")  
+    grid.text("title for the heatmap", y = unit(1, "npc") + unit(2, "mm"), just = "bottom")
 })
 ```
 
@@ -198,7 +198,8 @@ This is basically the way we use in Section \@ref(stacked-summary-plot).
 
 ### Other possible use of decorations {#other-possible-use-of-decorations}
 
-There are some other scenarios where decoration is helpful:
+There are some other examples where decoration is helpful:
 
-- When you have many annotations, you can add lines to separate them. See example in Section \@ref().
-
+- The quantile lines are added in `densityHeatmap()`, Section \@ref(density-heatmap).
+- Heatmap annotations are grouped by lines, Section \@ref(visualize-methylation-profile-with-complex-annotations).
+- Texts are added to heatmaps, Section \@ref(the-measles-vaccine-heatmap).
