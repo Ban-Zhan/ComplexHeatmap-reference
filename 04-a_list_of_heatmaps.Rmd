@@ -415,6 +415,27 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
+## Subset the heatmap list {#subset-heatmap-list}
+
+Similar as subsetting the `Heatmap` object (Section \@ref(subset-a-heatmap)), the heatmap list can
+also be subsetted by providing row index and column index. For horizontal heatmap list,
+row index correspond to rows in all heatmaps and annotations, while column index only corresponds to 
+a subset of heatmaps and annotations. For vertical heatmap list, it's the other way around.
+
+In following we use horizontal heatmap list as example.
+
+```{r}
+ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, 
+    left_annotation = rowAnnotation(foo1 = 1:12, bar1 = anno_points(1:12)))
+ht2 = Heatmap(mat2, name = "runif", col = col_runif)
+ha = rowAnnotation(foo2 = anno_barplot(1:12), bar2 = 12:1)
+ht_list = ht1 + ht2 + ha
+names(ht_list)
+ht_list[1:6, c("rnorm", "bar2")]
+```
+
+`foo1` and `bar` are components of heatmap `rnorm`, so they can not be selected in the subset function,
+which `foo2` and `bar2` are independent row annotations and they can selected to take subset of them.
 
 ## Plot the heatmap list {#plot-the-heamtap-list}
 
@@ -644,11 +665,11 @@ rownames(m2) = paste0("R", 1:10)
 rownames(m2)[1] = "a long long long long long row name"
 ht = Heatmap(m2, name = "mat", row_names_side = "left", show_row_dend = FALSE)
 pushViewport(viewport(x = 0, w = 0.5, just = "left"))
-draw(ht)
+draw(ht, newpage = FALSE)
 popViewport()
 
 pushViewport(viewport(x = 0, w = 0.5, just = "left"))
-draw(ht, padding = unit(c(2, 20, 2, 2), "mm"), column_title = "`padding` is adjusted")
+draw(ht, padding = unit(c(2, 20, 2, 2), "mm"), column_title = "`padding` is adjusted", newpage = FALSE)
 popViewport()
 ```
 

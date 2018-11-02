@@ -55,7 +55,7 @@ draw(ht_list, ht_gap = unit(5, "mm"))
 <img src="09-examples_files/figure-html/expression_example-1.png" width="960" style="display: block; margin: auto;" />
 
 
-## The measles vaccine heatmap
+## The measles vaccine heatmap {#the-measles-vaccine-heatmap}
 
 Following code reproduces the heatmap introduced [here](https://biomickwatson.wordpress.com/2015/04/09/recreating-a-famous-visualisation/) and [here](https://benjaminlmoore.wordpress.com/2015/04/09/recreating-the-vaccination-heatmaps-in-r/).
 
@@ -365,7 +365,7 @@ ht_opt(RESET = TRUE)
 
 The complex heatmaps reveal that highly methylated DMRs are enriched in intergenic and intragenic regions and rarely overlap with enhancers. In contrast, lowly methylated DMRs are enriched for transcription start sites (TSS) and enhancers.
 
-## Visualize Methylation Profile with Complex Annotations
+## Visualize Methylation Profile with Complex Annotations {#visualize-methylation-profile-with-complex-annotations}
 
 
 In this supplementary, Figure 1 in [Strum et al., 2012](http://dx.doi.org/10.1016/j.ccr.2012.08.024)

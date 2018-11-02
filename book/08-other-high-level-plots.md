@@ -8,7 +8,7 @@ To visualize data distribution in a matrix or in a list, we normally use boxplot
 can also use colors to map the density values and visualize distribution through a
 heatmap. It is useful if you have huge number of columns in data to visualize.
 
-In following examples, we use matrix as input data where the density is calculate
+In following examples, we use matrix as input data where the density is calculated
 by columns. The input data can also be a list.
 
 
@@ -66,7 +66,7 @@ densityHeatmap(m, cluster_columns = TRUE, clustering_distance_columns = "ks",
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" />
 
-Column annotations can be added as top annotation and bottom annotation.
+Column annotations can be added as top annotation or bottom annotation.
 
 
 ```r
@@ -83,7 +83,7 @@ Heatmaps and column annotations can only be concatenated to the density heatmap 
 ```r
 densityHeatmap(m) %v%
 HeatmapAnnotation(foo = anno_barplot(1:10)) %v%
-Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
+Heatmap(matrix(rnorm(20*20), ncol = 20), name = "mat", height = unit(6, "cm"))
 ```
 
 <img src="08-other-high-level-plots_files/figure-html/unnamed-chunk-8-1.png" width="480" style="display: block; margin: auto;" />
@@ -91,8 +91,8 @@ Heatmap(matrix(rnorm(20*20), ncol = 20), height = unit(6, "cm"))
 ## Stacked summary plot {#stacked-summary-plot}
 
 Multiple annotations and heatmaps can be used to visualize multiple summary statistics for a same
-set of features. In following example, there list multiple statistics for differential methylated
-regions (DMRs) for four different subgroups.
+set of features. In following example, there are multiple statistics for differential methylated
+regions (DMRs) from four different subgroups.
 
 
 ```r
@@ -106,9 +106,10 @@ names(lt)
 ##  [9] "mat_pct_st"    "mat_enrich_st"
 ```
 
+These statistics for DMRs are:
+
 - `label`: The labels for the sets of DMRs. There are DMRs for four subgroups and for each subgroup,
-  DMRs are separated into hyper-methylated DMRs and hypo-methylated DMRs. The comparison is
-  performed between tumor samples and normal samples.
+  DMRs are separated into hyper-methylated DMRs and hypo-methylated DMRs.
 - `mean_meth`: The mean methylation in DMRs in tumor samples and in normal samples.
 - `n_gr` Number of DMRs in each set.
 - `n_corr`: Percent of DMRs that show significant correlation to nearby genes. The positive
@@ -129,7 +130,7 @@ attach(lt)
 ```
 
 Since we have many statistics to visualize, we first define the colors. We define color mapping
-functions to the statistics which we want to visualize as heatmaps and color vectors for those we
+functions for the statistics which we want to visualize as heatmaps and color vectors for those we
 want to visualize as barplots.
 
 
@@ -176,8 +177,8 @@ Heatmap(mat_enrich_st, name = "enrich_st", col = z_score_col_fun, cluster_column
 	column_names_gp = gpar(col = state_col), show_row_names = FALSE)
 ```
 
-Since annotation barplots do not generate legends automaticall, we manually construct these legends
-by `Legend()` function.
+Since annotation barplots do not generate legends, we manually construct these legends
+with `Legend()` function.
 
 
 ```r
@@ -195,7 +196,7 @@ lgd_list = list(
 
 When drawing the heatmap list, the rows of all heatmaps and annotations are split into two major
 groups. Note in the first `Heatmap()` which corresponds to the mean methylation matrix, we set
-`row_title = NULL` to remove the row titles which is caused by row splitting.
+`row_title = NULL` to remove the row titles which is from row splitting.
 
 Since later we will add titles for the annotations, we allocate white space on top of the whole
 plotting region by `padding` argument. Also we concatenate the self-defined legend list to the
@@ -226,7 +227,7 @@ for(an in names(ht_title)) {
 
 Similarlly, the multiple statistics can also be arranged vertically.
 In following example, we visualize several statistics for a list of genomic regions in 40 samples,
-in four subgroups. The statistics are:
+from four subgroups. The statistics are:
 
 - `prop`: The proportion in the genome.
 - `median_length`: The median length of regions in each sample.
@@ -254,7 +255,8 @@ Note in following example, there is no heatmap in the list.
 
 ```r
 ht_list = HeatmapAnnotation(prop = anno_barplot(prop, height = unit(4, "cm"),
-		axis_param = list(at = c(0, 0.2, 0.4, 0.6, 0.8), labels = c("0", "20%", "40%", "60%", "80%"))),
+		axis_param = list(at = c(0, 0.2, 0.4, 0.6, 0.8), 
+			labels = c("0", "20%", "40%", "60%", "80%"))),
 	annotation_name_rot = 90) %v%
 HeatmapAnnotation(median_length = anno_barplot(median_length, height = unit(4, "cm"),
 		axis_param = list(at = c(0, 10000, 20000), labels = c("0kb", "10kb", "20kb"))),
