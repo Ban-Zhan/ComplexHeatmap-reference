@@ -1,22 +1,21 @@
 
 # More Examples {#more-examples}
 
-
-In the supplementaries of [the ComplexHeatmap paper](http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract), there are four comprehensive examples which are applied
-on real-world high-throughput datasets. [The examples can be found here.](http://jokergoo.github.io/supplementary/ComplexHeatmap-supplementary1-4/index.html)
-
-Also [my blog](http://jokergoo.github.io/blog.html) has some examples and tips for making better complex heatmaps.
-
-
 ## Add more information for gene expression matrix
 
 Heatmaps are very popular to visualize gene expression matrix. 
 Rows in the matrix correspond to genes and more information on these genes can be attached after the expression
 heatmap.
 
-In following example, the big heatmap visualize relative expression for genes, then the next is the absolute expression.
-Also gene length and gene type (i.e. protein coding or lincRNA) are visualized.
+In following example, the big heatmap visualizes relative expression for genes (expression for each
+gene is scaled). On the right we put the absolute expression level of genes as a single-column
+heatmap. The gene length and gene type (i.e. protein coding or lincRNA) are also put as heatmap
+annotations or heatmaps.
 
+On the very left of the heatmaps, there are colored rectangles drawn by `anno_block()` to identify
+the five clusters from k-means clustering. On top of the "base mean" and "gene type" heatmaps, there
+are summary plots (barplots and boxplots) showing the statistics or distributions of the data points
+in the five clusters.
 
 ```{r expression_example, fig.width = 10, fig.height = 8}
 library(ComplexHeatmap)
@@ -34,28 +33,29 @@ ht_list = Heatmap(mat_scaled, name = "expression", row_km = 5,
     col = colorRamp2(c(-2, 0, 2), c("green", "white", "red")),
     top_annotation = ha, 
     show_column_names = FALSE, row_title = NULL, show_row_dend = FALSE) +
-Heatmap(base_mean, name = "base_mean", 
+Heatmap(base_mean, name = "base mean", 
     top_annotation = HeatmapAnnotation(summary = anno_summary(gp = gpar(fill = 2:6), 
         height = unit(2, "cm"))),
     width = unit(15, "mm")) +
 rowAnnotation(length = anno_points(expr$length, pch = 16, size = unit(1, "mm"), 
-    axis_param = list(at = c(0, 2e5, 4e5, 6e5), labels = c("0kb", "200kb", "400kb", "600kb")),
+    axis_param = list(at = c(0, 2e5, 4e5, 6e5), 
+        labels = c("0kb", "200kb", "400kb", "600kb")),
     width = unit(2, "cm"))) +
 Heatmap(expr$type, name = "gene type", 
     top_annotation = HeatmapAnnotation(summary = anno_summary(height = unit(2, "cm"))),
     width = unit(15, "mm"))
 
-ht_list = rowAnnotation(block = anno_block(gp = gpar(fill = 2:6, col = NA)), width = unit(2, "mm")) + ht_list
+ht_list = rowAnnotation(block = anno_block(gp = gpar(fill = 2:6, col = NA)), 
+    width = unit(2, "mm")) + ht_list
 
 draw(ht_list, ht_gap = unit(5, "mm"))
 ```
-
 
 ## The measles vaccine heatmap {#the-measles-vaccine-heatmap}
 
 Following code reproduces the heatmap introduced [here](https://biomickwatson.wordpress.com/2015/04/09/recreating-a-famous-visualisation/) and [here](https://benjaminlmoore.wordpress.com/2015/04/09/recreating-the-vaccination-heatmaps-in-r/).
 
-```{r, fig.width = 10, fig.height = 12}
+```{r, fig.width = 10, fig.height = 10}
 mat = readRDS(system.file("extdata", "measles.rds", package = "ComplexHeatmap"))
 ha1 = HeatmapAnnotation(
     dist1 = anno_barplot(
@@ -63,6 +63,8 @@ ha1 = HeatmapAnnotation(
         bar_width = 1, 
         gp = gpar(col = "white", fill = "#FFE200"), 
         border = FALSE,
+        axis_param = list(at = c(0, 2e5, 4e5, 6e5, 8e5),
+            labels = c("0", "200k", "400k", "600k", "800k")),
         height = unit(2, "cm")
     ), show_annotation_name = FALSE)
 ha2 = rowAnnotation(
@@ -70,7 +72,9 @@ ha2 = rowAnnotation(
         rowSums(mat), 
         bar_width = 1, 
         gp = gpar(col = "white", fill = "#FFE200"), 
-        border = FALSE, 
+        border = FALSE,
+        axis_param = list(at = c(0, 5e5, 1e6, 1.5e6),
+            labels = c("0", "500k", "1m", "1.5m")),
         width = unit(2, "cm")
     ), show_annotation_name = FALSE)
 year_text = as.numeric(colnames(mat))
@@ -79,14 +83,15 @@ ha_column = HeatmapAnnotation(
     year = anno_text(year_text, rot = 0, location = unit(1, "npc"), just = "top")
 )
 col_fun = colorRamp2(c(0, 800, 1000, 127000), c("white", "cornflowerblue", "yellow", "red"))
-Heatmap(mat, name = "cases", col = col_fun,
-    cluster_columns = FALSE, show_row_dend = FALSE, rect_gp = gpar(col= "white"), show_column_names = FALSE,
-    row_names_side = "left", row_names_gp = gpar(fontsize = 10),
+ht_list = Heatmap(mat, name = "cases", col = col_fun,
+    cluster_columns = FALSE, show_row_dend = FALSE, rect_gp = gpar(col= "white"), 
+    show_column_names = FALSE,
+    row_names_side = "left", row_names_gp = gpar(fontsize = 8),
     column_title = 'Measles cases in US states 1930-2001\nVaccine introduced 1961',
-    top_annotation = ha1,
-    bottom_annotation = ha_column,
-    right_annotation = ha2)
-
+    top_annotation = ha1, bottom_annotation = ha_column,
+    heatmap_legend_param = list(at = c(0, 5e4, 1e5, 1.5e5), 
+        labels = c("0", "50k", "100k", "150k"))) + ha2
+draw(ht_list, ht_gap = unit(3, "mm"))
 decorate_heatmap_body("cases", {
     i = which(colnames(mat) == "1961")
     x = i/ncol(mat)
@@ -98,9 +103,10 @@ decorate_heatmap_body("cases", {
 ## Visualize Cell Heterogeneity from Single Cell RNASeq
 
 
-In this supplementary, single cell RNA-Seq data for mouse T-cells is visualized to
-show the heterogeneity of cells. The data (`mouse_scRNAseq_corrected.txt`) is from [Buettner et al., 2015](http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html),
-supplementary data 1, sheet "**Cell-cycle corrected gene expr**".
+In this example, single cell RNA-Seq data for mouse T-cells is visualized to show the heterogeneity
+of cells. The data (`mouse_scRNAseq_corrected.txt`) is from [Buettner et al.,
+2015](http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html), supplementary data 1, sheet
+"**Cell-cycle corrected gene expr**". You can get `mouse_scRNAseq_corrected.txt` [here](https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_scRNAseq_corrected).
 
 In following code, duplicated genes are removed.
 
@@ -118,8 +124,8 @@ Genes that are not expressed in more than half of the cells are filtered out.
 expr = expr[apply(expr, 1, function(x) sum(x > 0)/length(x) > 0.5), , drop = FALSE]
 ```
 
-The `get_correlated_variable_rows()` function is defined here. It extracts signature
-genes that are variably expressed between cells and correlate to other genes. 
+The `get_correlated_variable_rows()` function is defined here. It extracts signature genes that are
+variably expressed between cells and correlate to other genes.
 
 ```{r}
 get_correlated_variable_genes = function(mat, n = nrow(mat), cor_cutoff = 0, n_cutoff = 0) {
@@ -142,12 +148,12 @@ get_correlated_variable_genes = function(mat, n = nrow(mat), cor_cutoff = 0, n_c
 }
 ```
 
-Signature genes are defined as a list of genes where each gene correlates
-to more than 20 genes with an absolute correlation larger than 0.5. 
+Signature genes are defined as a list of genes where each gene correlates to more than 20 genes with
+an absolute correlation larger than 0.5.
 
-`mat2` contains expression values scaled per gene, which means it contains relative expression across cells for every gene. 
-Since single cell RNASeq data is highly variable and outliers are frequent,
-gene expression is only scaled within the 10th and 90th quantiles.
+`mat2` contains expression values scaled per gene, which means it contains relative expression
+across cells for every gene. Since single cell RNASeq data is highly variable and outliers are
+frequent, gene expression is only scaled within the 10th and 90th quantiles.
 
 ```{r}
 mat = get_correlated_variable_genes(expr, cor_cutoff = 0.5, n_cutoff = 20)
@@ -161,11 +167,13 @@ mat2 = t(apply(mat, 1, function(x) {
 colnames(mat2) = colnames(mat)
 ```
 
-Load cell cycle genes and ribonucleoprotein genes. The cell cycle gene list is from 
-[Buettner et al., 2015](http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html),
-supplementary table 1, sheet "**Union of Cyclebase and GO genes**". Ribonucleoprotein
-genes are from [GO:0030529](http://amigo.geneontology.org/amigo/term/GO:0030529). Gene list
-are stored in `mouse_cell_cycle_gene.rds` and `mouse_ribonucleoprotein.rds`.
+Load cell cycle genes and ribonucleoprotein genes. The cell cycle gene list is from [Buettner et
+al., 2015](http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html), supplementary table 1,
+sheet "**Union of Cyclebase and GO genes**". Ribonucleoprotein genes are from
+[GO:0030529](http://amigo.geneontology.org/amigo/term/GO:0030529). Gene list are stored in
+`mouse_cell_cycle_gene.rds` and `mouse_ribonucleoprotein.rds`. The two files can be found
+[here](https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_cell_cycle_gene.rds) and 
+[here](https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_ribonucleoprotein.rds).
 
 ```{r}
 cc = readRDS("data/mouse_cell_cycle_gene.rds")
@@ -176,8 +184,9 @@ rp = readRDS("data/mouse_ribonucleoprotein.rds")
 rpl = rownames(mat) %in% rp
 ```
 
-Since with scaling the expression values per gene the expression level of a gene relative to other genes has been lost,
-we calculate the base mean as the mean expression of a gene throughout all samples. The base mean can be used to compare expression levels between genes.
+Since with scaling the expression values per gene the expression level of a gene relative to other
+genes has been lost, we calculate the base mean as the mean expression of a gene throughout all
+samples. The base mean can be used to compare expression levels between genes.
 
 ```{r}
 base_mean = rowMeans(mat)
@@ -191,13 +200,15 @@ Now the following information is available:
 4. whether genes are cell cycle genes, `ccl`,
 5. symbols for cell cycle genes, `cc_gene`,
 
-In the next step, we can put the information together and visualize it as a list of heatmaps.
-A gene-gene correlation heatmap is added at the end and defined to be the main_heatmap, meaning that the row order of all
-heatmaps/row annotations are based on the clustering of this correlation matrix.
+In the next step, we can put the information together and visualize it as a list of heatmaps. A
+gene-gene correlation heatmap is added at the end and defined to be the main_heatmap, meaning that
+the row order of all heatmaps/row annotations are based on the clustering of this correlation
+matrix.
 
-For cell cycle genes with relatively high expression levels (larger than the 25% quantile of all genes), the gene name is
-indicated as text labels. In the first heatmap, the column dendrogram is underlaid with two different colours based in the two main groups derived by hierarchical clustering to highlight
-the two subpopulations.
+For cell cycle genes with relatively high expression levels (larger than the 25% quantile of all
+genes), the gene name is indicated as text labels. In the first heatmap, the column dendrogram is
+underlaid with two different colours based in the two main groups derived by hierarchical clustering
+to highlight the two subpopulations.
 
 ```{r, fig.width = 12, fig.height = 8}
 library(GetoptLong)
@@ -214,7 +225,8 @@ ht_list = Heatmap(mat2, col = colorRamp2(c(-1.5, 0, 1.5), c("blue", "white", "re
     rowAnnotation(link = anno_mark(at = which(ccl & base_mean > quantile(base_mean, 0.25)), 
         labels = rownames(mat)[ccl & base_mean > quantile(base_mean, 0.25)], 
         labels_gp = gpar(fontsize = 10), padding = 0.5)) +
-    Heatmap(cor(t(mat2)), name = "cor", col = colorRamp2(c(-1, 0, 1), c("green", "white", "red")), 
+    Heatmap(cor(t(mat2)), name = "cor", 
+        col = colorRamp2(c(-1, 0, 1), c("green", "white", "red")), 
         show_row_names = FALSE, show_column_names = FALSE, row_dend_side = "right", 
         show_column_dend = FALSE, column_title = "pairwise correlation between genes",
         heatmap_legend_param = list(title = "Correlation"))
@@ -232,16 +244,21 @@ decorate_column_dend("scaled_expr", {
 })
 ```
 
-The heatmap clearly reveals that the cells are separated into two sub-populations. The population on the left in the first heatmap exhibits high expression of a subset of cell cycle genes
-(cell cycle genes are indicated in "**cell_cycle**" heatmap). However, the overall expression level for these genes is relatively low (see "**base_expr**" heatmap). The population on the right
-has higher expression in the other signature genes. Interestingly, the signature genes which are higher expressed in this subpopulation are enriched for genes coding for ribonucleoproteins (see "**ribonucleoprotein**" heatmap). A subset of the ribonucleoprotein genes shows strong coexpression (see correlation heatmap) and overall high expression levels ("**base_expr**" heatmap).
+The heatmap clearly reveals that the cells are separated into two sub-populations. The population on
+the left in the first heatmap exhibits high expression of a subset of cell cycle genes (cell cycle
+genes are indicated in "**cell_cycle**" heatmap). However, the overall expression level for these
+genes is relatively low (see "**base_expr**" heatmap). The population on the right has higher
+expression in the other signature genes. Interestingly, the signature genes which are higher
+expressed in this subpopulation are enriched for genes coding for ribonucleoproteins (see
+"**ribonucleoprotein**" heatmap). A subset of the ribonucleoprotein genes shows strong coexpression
+(see correlation heatmap) and overall high expression levels ("**base_expr**" heatmap).
 
 
 ## Correlations between methylation, expression and other genomic features
 
 
 In the following example, data is randomly generated based on patterns found in an unpublished analysis.
-The code for generating the random data can be found at the end of this supplementary.
+First we load the data. `meth.rds` can be found [here](https://jokergoo.github.io/ComplexHeatmap-reference/data/meth.rds).
 
 ```{r}
 res_list = readRDS("data/meth.rds")
@@ -259,21 +276,25 @@ anno_enhancer = res_list$anno_enhancer
 The different sources of information and corresponding variables are:
 
 1. `type`: the label which shows whether the sample is tumor or normal.
-2. `mat_meth`: a matrix in which rows correspond to differetially methylated regions (DMRs).
-    The value in the matrix is the mean methylation level in the DMR in every sample.
-3. `mat_expr`: a matrix in which rows correspond to genes which are associated to the DMRs (i.e. the nearest gene to the DMR).
-    The value in the matrix is the expression level for each gene in each sample. Expression is scaled for every gene across samples.
-4. `direction`: direction of the methylation change (hyper meaning higher methylation in tumor samples, hypo means lower methylation in tumor samples).
-5. `cor_pvalue`: p-value for the correlation test between methylation and expression of the associated gene.
+2. `mat_meth`: a matrix in which rows correspond to differetially methylated regions (DMRs). The
+   value in the matrix is the mean methylation level in the DMR in every sample.
+3. `mat_expr`: a matrix in which rows correspond to genes which are associated to the DMRs (i.e. the
+   nearest gene to the DMR). The value in the matrix is the expression level for each gene in each
+   sample. Expression is scaled for every gene across samples.
+4. `direction`: direction of the methylation change (hyper meaning higher methylation in tumor
+   samples, hypo means lower methylation in tumor samples).
+5. `cor_pvalue`: p-value for the correlation test between methylation and expression of the
+   associated gene.
 6. `gene_type`: type of the genes (e.g. protein coding genes or lincRNAs).
 7. `anno_gene`: annotation to the gene models (intergenic, intragenic or TSS).
 8. `dist`: distance from DMRs to TSS of the assiciated genes.
 9. `anno_enhancer`: fraction of the DMR that overlaps enhancers.
 
-The data only includes DMRs for which methylation and expression of the associated gene are negatively correlated. 
+The data only includes DMRs for which methylation and expression of the associated gene are
+negatively correlated.
 
-The clustering of columns for the methylation matrix are calculated first 
-so that columns in the expression matrix can be adjusted to have the same column order as in the methylation matrix.
+The clustering of columns for the methylation matrix are calculated first so that columns in the
+expression matrix can be adjusted to have the same column order as in the methylation matrix.
 
 ```{r}
 column_tree = hclust(dist(t(mat_meth)))
@@ -286,8 +307,10 @@ meth_col_fun = colorRamp2(c(0, 0.5, 1), c("blue", "white", "red"))
 direction_col = c("hyper" = "red", "hypo" = "blue")
 expr_col_fun = colorRamp2(c(-2, 0, 2), c("green", "white", "red"))
 pvalue_col_fun = colorRamp2(c(0, 2, 4), c("white", "white", "red"))
-gene_type_col = structure(brewer.pal(length(unique(gene_type)), "Set3"), names = unique(gene_type))
-anno_gene_col = structure(brewer.pal(length(unique(anno_gene)), "Set1"), names = unique(anno_gene))
+gene_type_col = structure(brewer.pal(length(unique(gene_type)), "Set3"), 
+    names = unique(gene_type))
+anno_gene_col = structure(brewer.pal(length(unique(anno_gene)), "Set1"), 
+    names = unique(anno_gene))
 dist_col_fun = colorRamp2(c(0, 10000), c("black", "white"))
 enhancer_col_fun = colorRamp2(c(0, 1), c("white", "orange"))
 ```
@@ -332,32 +355,26 @@ draw(ht_list, row_km = 2, row_split = direction,
 ht_opt(RESET = TRUE)
 ```
 
-The complex heatmaps reveal that highly methylated DMRs are enriched in intergenic and intragenic regions and rarely overlap with enhancers. In contrast, lowly methylated DMRs are enriched for transcription start sites (TSS) and enhancers.
+The complex heatmaps reveal that highly methylated DMRs are enriched in intergenic and intragenic
+regions and rarely overlap with enhancers. In contrast, lowly methylated DMRs are enriched for
+transcription start sites (TSS) and enhancers.
 
-## Visualize Methylation Profile with Complex Annotations {#visualize-methylation-profile-with-complex-annotations}
+## Visualize Methylation Profile with Complex Annotations 
 
-
-In this supplementary, Figure 1 in [Strum et al., 2012](http://dx.doi.org/10.1016/j.ccr.2012.08.024)
+In this example, Figure 1 in [Strum et al., 2012](http://dx.doi.org/10.1016/j.ccr.2012.08.024)
 is re-implemented with some adjustments.
 
-**Note that ~ 3GB of memory are required to run this example.**
-
-Load packages.
+Some packages need to be loaded firstly.
 
 ```{r}
-library(ComplexHeatmap)
 library(matrixStats)
-library(circlize)
-library(RColorBrewer)
-library(GetoptLong)
 library(GenomicRanges)
 ```
 
-The methylation profiles have been measured by Illumina HumanMethylation450 BeadChip arrays.
-First,  load probe data via the **IlluminaHumanMethylation450kanno.ilmn12.hg19** package.
-
-Methylation profiles can be download from [GEO database](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36278).
-The [**GEOquery** package](http://bioconductor.org/packages/release/bioc/html/GEOquery.html) is used to retrieve expression data from GEO.
+Methylation profiles can be download from [GEO
+database](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36278). The [**GEOquery**
+package](http://bioconductor.org/packages/release/bioc/html/GEOquery.html) is used to retrieve
+data from GEO.
 
 ```{r, eval = FALSE}
 library(GEOquery)
@@ -369,6 +386,9 @@ library(GEOquery)
 #save(gset, file = "GSE36278_450K.RData")
 load("data/GSE36278_450K.RData")
 ```
+
+The methylation profiles have been measured by Illumina HumanMethylation450 BeadChip arrays.
+We load probe data via the **IlluminaHumanMethylation450kanno.ilmn12.hg19** package.
 
 Adjust row names in the matrix to be the same as the probes. 
 
@@ -387,8 +407,7 @@ with SNPs. Here we remove probes that are on sex chromosomes and probes that ove
 ```{r}
 data(SNPs.137CommonSingle)
 data(Islands.UCSC)
-l = Locations$chr %in% paste0("chr", 1:22) & 
-    is.na(SNPs.137CommonSingle$Probe_rs)
+l = Locations$chr %in% paste0("chr", 1:22) & is.na(SNPs.137CommonSingle$Probe_rs)
 mat = mat[l, ]
 ```
 
@@ -399,9 +418,9 @@ cgi = Islands.UCSC$Relation_to_Island[l]
 loc = Locations[l, ]
 ```
 
-Separate the matrix into a matrix for tumor samples and a matrix for normal samples.
-Also modify column names for the tumor samples to be consistent with the phenotype data 
-which we will read later.
+Separate the matrix into a matrix for tumor samples and a matrix for normal samples. Also modify
+column names for the tumor samples to be consistent with the phenotype data which we will read
+later.
 
 ```{r}
 mat1 = as.matrix(mat[, grep("GBM", colnames(mat))])   # tumor samples
@@ -410,13 +429,13 @@ colnames(mat1) = gsub("GBM", "dkfz", colnames(mat1))
 ```
 
 Phenotype data is from [Sturm et al., 2012](http://dx.doi.org/10.1016/j.ccr.2012.08.024),
-supplementary table S1.
+supplementary table S1 and can be found [here](https://jokergoo.github.io/ComplexHeatmap-reference/data/450K_annotation.txt).
 
 The rows of phenotype data are adjusted to be the same as the columns of the methylation matrix.
 
 ```{r}
-phenotype = read.table("data/450K_annotation.txt", header = TRUE, sep = "\t", row.names = 1, 
-    check.names = FALSE, comment.char = "", stringsAsFactors = FALSE)
+phenotype = read.table("data/450K_annotation.txt", header = TRUE, sep = "\t", 
+    row.names = 1, check.names = FALSE, comment.char = "", stringsAsFactors = FALSE)
 phenotype = phenotype[colnames(mat1), ]
 ```
 
@@ -474,8 +493,10 @@ The following annotations will be added to the columns of the methylation matrix
 In following code we define the column annotation in the `ha` variable. Also we customize colors, legends and height of the annotations.
 
 ```{r}
-mutation_col = structure(names = c("MUT", "WT", "G34R", "G34V", "K27M"), c("black", "white", "#4DAF4A", "#4DAF4A", "#377EB8"))
-cnv_col = c("gain" = "#E41A1C", "loss" = "#377EB8", "amp" = "#E41A1C", "del" = "#377EB8", "normal" = "white")
+mutation_col = structure(names = c("MUT", "WT", "G34R", "G34V", "K27M"), 
+    c("black", "white", "#4DAF4A", "#4DAF4A", "#377EB8"))
+cnv_col = c("gain" = "#E41A1C", "loss" = "#377EB8", "amp" = "#E41A1C", 
+    "del" = "#377EB8", "normal" = "white")
 ha = HeatmapAnnotation(
     age = anno_points(phenotype[[13]], 
         gp = gpar(col = ifelse(phenotype[[13]] > 20, "black", "red")), 
@@ -491,9 +512,12 @@ ha = HeatmapAnnotation(
     CDKN2A_del = ifelse(phenotype[[9]] == 1, "del", "normal"),
     EGFR_amp = ifelse(phenotype[[10]] == 1, "amp", "normal"),
     PDGFRA_amp = ifelse(phenotype[[11]] == 1, "amp", "normal"),
-    col = list(dkfz_cluster = structure(names = c("IDH", "K27", "G34", "RTK I PDGFRA", "Mesenchymal", "RTK II Classic"), brewer.pal(6, "Set1")),
-        tcga_cluster = structure(names = c("G-CIMP+", "Cluster #2", "Cluster #3"), brewer.pal(3, "Set1")),
-        tcga_expr = structure(names = c("Proneural", "Classical", "Mesenchymal"), c("#377EB8", "#FFFF33", "#FF7F00")),
+    col = list(dkfz_cluster = structure(names = c("IDH", "K27", "G34", "RTK I PDGFRA", 
+            "Mesenchymal", "RTK II Classic"), brewer.pal(6, "Set1")),
+        tcga_cluster = structure(names = c("G-CIMP+", "Cluster #2", "Cluster #3"), 
+            brewer.pal(3, "Set1")),
+        tcga_expr = structure(names = c("Proneural", "Classical", "Mesenchymal"), 
+            c("#377EB8", "#FFFF33", "#FF7F00")),
         IDH1 = mutation_col,
         H3F3A = mutation_col,
         TP53 = mutation_col,
@@ -523,7 +547,8 @@ In the final plot, there are four heatmaps added. From left to right, there are
 
 The heatmaps are split by rows according to CGI annotations. 
 
-After the heatmaps are plotted, additional graphics such as labels for annotations are added by `decorate_*()` functions.
+After the heatmaps are plotted, additional graphics such as labels for annotations are added by
+`decorate_*()` functions.
 
 ```{r, fig.width = 12, fig.height = 10}
 col_fun = colorRamp2(c(0, 0.5, 1), c("#377EB8", "white", "#E41A1C"))
@@ -563,7 +588,7 @@ for(an in names(annotation_titles)) {
     })
 }
 decorate_annotation("age", {
-    grid.text("Age", unit(-12, "mm"), just = "right")
+    grid.text("Age", unit(8, "mm"), just = "right")
     grid.rect(gp = gpar(fill = NA, col = "black"))
     grid.lines(unit(c(0, 1), "npc"), unit(c(20, 20), "native"), gp = gpar(lty = 2))
 })
@@ -577,29 +602,43 @@ decorate_annotation("chr7_gain", {
 ```
 
 
-## Add multiple boxplot for a single row
+## Add multiple boxplots for single row {#add-multiple-boxplots-for-single-row}
+
+The annotation function `anno_boxplot()` only draws one boxplot for a single row. When multiple
+heatmaps are concatenated, or the groups for columns have already been defined, for each row, we
+want to compare between heatmaps or column groups, thus, multiple boxplots need to be drawn for 
+each single row. 
+
+In following example, we demonstrate how to implement an annotation function which draws multiple
+boxplots for single rows. The `grid.boxplot()` function is from **ComplexHeatmap** package which
+makes it easy to draw boxplot under **grid** system.
 
 ```{r}
 m1 = matrix(sort(rnorm(100)), 10, byrow = TRUE)
 m2 = matrix(sort(rnorm(100), decreasing = TRUE), 10, byrow = TRUE)
+nr = nrow(m1)
 
-ht_list = Heatmap(m1) + Heatmap(m2)
+ht_list = Heatmap(m1, name = "m1") + Heatmap(m2, name = "m2")
 
 rg = range(c(m1, m2))
+rg[1] = rg[1] - (rg[2] - rg[1])* 0.02
+rg[2] = rg[2] + (rg[2] - rg[1])* 0.02
 anno_multiple_boxplot = function(index) {
-    pushViewport(viewport(xscale = rg, yscale = c(0.5, 10.5)))
+    pushViewport(viewport(xscale = rg, yscale = c(0.5, nr + 0.5)))
     for(i in seq_along(index)) {
-        grid.rect(y = 10-i+1, height = 1, default.units = "native")
-    grid.boxplot(m1[ index[i], ], pos = 10-i+1 + 0.2, box_width = 0.3, 
-    gp = gpar(fill = "red"), direction = "horizontal")
-        grid.boxplot(m2[ index[i], ], pos = 10-i+1 - 0.2, box_width = 0.3, 
-        gp = gpar(fill = "green"), direction = "horizontal")
+        grid.rect(y = nr-i+1, height = 1, default.units = "native")
+        grid.boxplot(m1[ index[i], ], pos = nr-i+1 + 0.2, box_width = 0.3, 
+            gp = gpar(fill = "red"), direction = "horizontal")
+        grid.boxplot(m2[ index[i], ], pos = nr-i+1 - 0.2, box_width = 0.3, 
+            gp = gpar(fill = "green"), direction = "horizontal")
     }
     grid.xaxis()
     popViewport()
 }
 
 ht_list = ht_list + rowAnnotation(boxplot = anno_multiple_boxplot, width = unit(4, "cm"), 
-show_annotation_name = FALSE)
-draw(ht_list, padding = unit(c(20, 2, 2, 2), "mm"))
+    show_annotation_name = FALSE)
+lgd = Legend(labels = c("m1", "m2"), title = "boxplots",
+    legend_gp = gpar(fill = c("red", "green")))
+draw(ht_list, padding = unit(c(20, 2, 2, 2), "mm"), heatmap_legend_list = list(lgd))
 ```

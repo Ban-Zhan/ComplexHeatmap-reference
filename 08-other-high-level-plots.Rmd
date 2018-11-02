@@ -218,7 +218,7 @@ Note in following example, there is no heatmap in the list.
 ```{r, fig.height = 4}
 ht_list = HeatmapAnnotation(prop = anno_barplot(prop, height = unit(4, "cm"),
 		axis_param = list(at = c(0, 0.2, 0.4, 0.6, 0.8), 
-			labels = c("0", "20%", "40%", "60%", "80%"))),
+			labels = c("0%", "20%", "40%", "60%", "80%"))),
 	annotation_name_rot = 90) %v%
 HeatmapAnnotation(median_length = anno_barplot(median_length, height = unit(4, "cm"),
 		axis_param = list(at = c(0, 10000, 20000), labels = c("0kb", "10kb", "20kb"))),
@@ -234,7 +234,8 @@ For concatenation of multiple annotations, individual annotations can also be pu
 # code only for demonstration
 HeatmapAnnotation(
 	prop = anno_barplot(prop, height = unit(4, "cm"),
-		axis_param = list(at = c(0, 0.2, 0.4, 0.6, 0.8), labels = c("0", "20%", "40%", "60%", "80%"))),
+		axis_param = list(at = c(0, 0.2, 0.4, 0.6, 0.8), 
+			labels = c("0%", "20%", "40%", "60%", "80%"))),
 	median_length = anno_barplot(median_length, height = unit(4, "cm"),
 		axis_param = list(at = c(0, 10000, 20000), labels = c("0kb", "10kb", "20kb"))),
 	group = group,
