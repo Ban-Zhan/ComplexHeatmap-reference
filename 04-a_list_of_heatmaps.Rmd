@@ -655,7 +655,7 @@ m2 = m
 rownames(m2) = paste0("R", 1:10)
 rownames(m2)[1] = "a long long long long long row name"
 ht = Heatmap(m2, name = "mat", row_names_side = "left", show_row_dend = FALSE)
-draw(ht, padding = unit(c(2, 20, 2, 2), "mm"))
+draw(ht, padding = unit(c(2, 20, 2, 2), "mm")) ## see right heatmap in following
 ```
 
 
@@ -668,7 +668,7 @@ pushViewport(viewport(x = 0, w = 0.5, just = "left"))
 draw(ht, newpage = FALSE)
 popViewport()
 
-pushViewport(viewport(x = 0, w = 0.5, just = "left"))
+pushViewport(viewport(x = 0.5, w = 0.5, just = "left"))
 draw(ht, padding = unit(c(2, 20, 2, 2), "mm"), column_title = "`padding` is adjusted", newpage = FALSE)
 popViewport()
 ```

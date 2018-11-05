@@ -99,7 +99,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Circular Visualization in R</a></li>
+<li><a href="./">ComplexHeatmap Complete Reference</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
@@ -166,11 +166,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.7" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#concatenate-with-annotations"><i class="fa fa-check"></i><b>4.7</b> Concatenate with annotations</a></li>
 <li class="chapter" data-level="4.8" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#concatenate-only-the-annotations"><i class="fa fa-check"></i><b>4.8</b> Concatenate only the annotations</a></li>
 <li class="chapter" data-level="4.9" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#vertical-concatenation"><i class="fa fa-check"></i><b>4.9</b> Vertical concatenation</a></li>
-<li class="chapter" data-level="4.10" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#plot-the-heamtap-list"><i class="fa fa-check"></i><b>4.10</b> Plot the heatmap list</a></li>
-<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#get-orders-and-dendrograms-from-a-list-of-heatmaps"><i class="fa fa-check"></i><b>4.11</b> Get orders and dendrograms</a></li>
-<li class="chapter" data-level="4.12" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-parameters-globally"><i class="fa fa-check"></i><b>4.12</b> Change parameters globally</a></li>
-<li class="chapter" data-level="4.13" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#adjust-blank-space-caused-by-annotations"><i class="fa fa-check"></i><b>4.13</b> Adjust blank space caused by annotations</a></li>
-<li class="chapter" data-level="4.14" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#manually-increase-space-around-the-plot"><i class="fa fa-check"></i><b>4.14</b> Manually increase space around the plot</a></li>
+<li class="chapter" data-level="4.10" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#subset-heatmap-list"><i class="fa fa-check"></i><b>4.10</b> Subset the heatmap list</a></li>
+<li class="chapter" data-level="4.11" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#plot-the-heamtap-list"><i class="fa fa-check"></i><b>4.11</b> Plot the heatmap list</a></li>
+<li class="chapter" data-level="4.12" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#get-orders-and-dendrograms-from-a-list-of-heatmaps"><i class="fa fa-check"></i><b>4.12</b> Get orders and dendrograms</a></li>
+<li class="chapter" data-level="4.13" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#change-parameters-globally"><i class="fa fa-check"></i><b>4.13</b> Change parameters globally</a></li>
+<li class="chapter" data-level="4.14" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#adjust-blank-space-caused-by-annotations"><i class="fa fa-check"></i><b>4.14</b> Adjust blank space caused by annotations</a></li>
+<li class="chapter" data-level="4.15" data-path="a-list-of-heatmaps.html"><a href="a-list-of-heatmaps.html#manually-increase-space-around-the-plot"><i class="fa fa-check"></i><b>4.15</b> Manually increase space around the plot</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="legends.html"><a href="legends.html"><i class="fa fa-check"></i><b>5</b> Legends</a><ul>
 <li class="chapter" data-level="5.1" data-path="legends.html"><a href="legends.html#continuous-legends"><i class="fa fa-check"></i><b>5.1</b> Continuous legends</a></li>
@@ -373,7 +374,7 @@ ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cla
     <span class="dt">anno_simple_size =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>)
 )</code></pre></div>
 <p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-32-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>When you have multiple heatmaps and it is better to keep the size of simple annotations on all heatmaps with the same size. <code>ht_opt$anno_simple_size</code> can be set to control the simple annotation size globally (It will be introduced in Section <a href="a-list-of-heatmaps.html#change-parameters-globally">4.12</a>).</p>
+<p>When you have multiple heatmaps and it is better to keep the size of simple annotations on all heatmaps with the same size. <code>ht_opt$anno_simple_size</code> can be set to control the simple annotation size globally (It will be introduced in Section <a href="a-list-of-heatmaps.html#change-parameters-globally">4.13</a>).</p>
 </div>
 <div id="simple-annotation-as-an-annotation-function" class="section level2">
 <h2><span class="header-section-number">3.2</span> Simple annotation as an annotation function</h2>
@@ -985,7 +986,7 @@ anno1</code></pre></div>
 ##   position: column 
 ##   items: 10 
 ##   width: 1npc 
-##   height: 20mm 
+##   height: 2cm 
 ##   imported variable: x 
 ##   this object is subsetable</code></pre>
 <p>Then we can assign <code>anno1</code> in <code>HeatmapAnnotation()</code> function. Since <code>anno1</code> is subsettable, you can split columns of the heatmap.</p>
@@ -1025,11 +1026,11 @@ anno3 =<span class="st"> </span><span class="kw">AnnotationFunction</span>(
 ##   position: column 
 ##   items: 10 
 ##   width: 1npc 
-##   height: 10mm 
+##   height: 1cm 
 ##   imported variable: data_scale, axis_param, border, size, value, axis, gp, axis_grob, pch 
 ##   subsetable variable: gp, value, size, pch 
 ##   this object is subsetable
-##   5.13917100694444mm extension on the left</code></pre>
+##   5.13831111111111mm extension on the left</code></pre>
 <p>In most cases, you don’t need to manually construct your <code>AnnotationFunction</code> objects. The annotation function <code>anno_*()</code> implemented in <strong>ComplexHeatmap</strong> are already enough for most of the analysis tasks. On the other hand, users can also use <code>anno_empty()</code> + <code>decorate_annotation()</code> to quickly add self-defined annotation graphics. E.g. we can re-implement previous heatmap as:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">anno_empty</span>(<span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>))), 
     <span class="dt">column_split =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">5</span>))
@@ -1088,10 +1089,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jokergoo/circlize_book/edit/master/03-heatmap_annotations.Rmd",
+"link": "https://github.com/jokergoo/ComplexHeatmap-reference/edit/master/03-heatmap_annotations.Rmd",
 "text": "Edit"
 },
-"download": ["ComplexHeatmap-reference.pdf", "ComplexHeatmap-reference.epub"],
+"download": ["ComplexHeatmap-reference.epub"],
 "toc": {
 "collapse": "subsection"
 }
