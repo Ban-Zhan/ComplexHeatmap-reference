@@ -427,8 +427,8 @@ while for `cluster_columns`, `m` is the transpose of `mat`.
 
 ```{r, eval = FALSE}
 # code only for demonstration
-Heatmap(mat, name = "mat", cluster_rows = fastcluster::hclust, 
-    cluster_columns = fastcluster::hclust)
+fh = function(x) fastcluster::hclust(dist(x))
+Heatmap(mat, name = "mat", cluster_rows = fh, cluster_columns = fh)
 ```
 
 To make it more convinient to use the faster version of `hclust()` (assuming you have many heatmaps
