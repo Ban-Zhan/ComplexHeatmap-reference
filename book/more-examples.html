@@ -123,10 +123,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7.1" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-by-kmeans-clustering"><i class="fa fa-check"></i><b>2.7.1</b> Split by k-means clustering</a></li>
 <li class="chapter" data-level="2.7.2" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-by-categorical-variables"><i class="fa fa-check"></i><b>2.7.2</b> Split by categorical variables</a></li>
 <li class="chapter" data-level="2.7.3" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#spilt-by-dendrogram"><i class="fa fa-check"></i><b>2.7.3</b> Split by dendrogram</a></li>
-<li class="chapter" data-level="2.7.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>2.7.4</b> Titles for splitting</a></li>
-<li class="chapter" data-level="2.7.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>2.7.5</b> Graphic parameters for splitting</a></li>
-<li class="chapter" data-level="2.7.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>2.7.6</b> Gaps between slices</a></li>
-<li class="chapter" data-level="2.7.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-heatmap-annotations"><i class="fa fa-check"></i><b>2.7.7</b> Split heatmap annotations</a></li>
+<li class="chapter" data-level="2.7.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#order-of-slices"><i class="fa fa-check"></i><b>2.7.4</b> Order of slices</a></li>
+<li class="chapter" data-level="2.7.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>2.7.5</b> Titles for splitting</a></li>
+<li class="chapter" data-level="2.7.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>2.7.6</b> Graphic parameters for splitting</a></li>
+<li class="chapter" data-level="2.7.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>2.7.7</b> Gaps between slices</a></li>
+<li class="chapter" data-level="2.7.8" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-heatmap-annotations"><i class="fa fa-check"></i><b>2.7.8</b> Split heatmap annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-as-raster-image"><i class="fa fa-check"></i><b>2.8</b> Heatmap as raster image</a></li>
 <li class="chapter" data-level="2.9" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#customize-the-heatmap-body"><i class="fa fa-check"></i><b>2.9</b> Customize the heatmap body</a></li>
@@ -212,7 +213,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.3</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
 <li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.4</b> Correlations between methylation, expression and other genomic features</a></li>
 <li class="chapter" data-level="9.5" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.5</b> Visualize Methylation Profile with Complex Annotations</a></li>
-<li class="chapter" data-level="9.6" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.6</b> Add multiple boxplot for a single row</a></li>
+<li class="chapter" data-level="9.6" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplots-for-single-row"><i class="fa fa-check"></i><b>9.6</b> Add multiple boxplots for single row</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -236,12 +237,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="more-examples" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> More Examples</h1>
-<p>In the supplementaries of <a href="http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract">the ComplexHeatmap paper</a>, there are four comprehensive examples which are applied on real-world high-throughput datasets. <a href="http://jokergoo.github.io/supplementary/ComplexHeatmap-supplementary1-4/index.html">The examples can be found here.</a></p>
-<p>Also <a href="http://jokergoo.github.io/blog.html">my blog</a> has some examples and tips for making better complex heatmaps.</p>
 <div id="add-more-information-for-gene-expression-matrix" class="section level2">
 <h2><span class="header-section-number">9.1</span> Add more information for gene expression matrix</h2>
 <p>Heatmaps are very popular to visualize gene expression matrix. Rows in the matrix correspond to genes and more information on these genes can be attached after the expression heatmap.</p>
-<p>In following example, the big heatmap visualize relative expression for genes, then the next is the absolute expression. Also gene length and gene type (i.e. protein coding or lincRNA) are visualized.</p>
+<p>In following example, the big heatmap visualizes relative expression for genes (expression for each gene is scaled). On the right we put the absolute expression level of genes as a single-column heatmap. The gene length and gene type (i.e. protein coding or lincRNA) are also put as heatmap annotations or heatmaps.</p>
+<p>On the very left of the heatmaps, there are colored rectangles drawn by <code>anno_block()</code> to identify the five clusters from k-means clustering. On top of the “base mean” and “gene type” heatmaps, there are summary plots (barplots and boxplots) showing the statistics or distributions of the data points in the five clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ComplexHeatmap)
 <span class="kw">library</span>(circlize)
 
@@ -257,18 +257,20 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat_scaled, <s
     <span class="dt">col =</span> <span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>)),
     <span class="dt">top_annotation =</span> ha, 
     <span class="dt">show_column_names =</span> <span class="ot">FALSE</span>, <span class="dt">row_title =</span> <span class="ot">NULL</span>, <span class="dt">show_row_dend =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="kw">Heatmap</span>(base_mean, <span class="dt">name =</span> <span class="st">&quot;base_mean&quot;</span>, 
+<span class="kw">Heatmap</span>(base_mean, <span class="dt">name =</span> <span class="st">&quot;base mean&quot;</span>, 
     <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">summary =</span> <span class="kw">anno_summary</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>), 
         <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>))),
     <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">15</span>, <span class="st">&quot;mm&quot;</span>)) <span class="op">+</span>
 <span class="kw">rowAnnotation</span>(<span class="dt">length =</span> <span class="kw">anno_points</span>(expr<span class="op">$</span>length, <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">size =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;mm&quot;</span>), 
-    <span class="dt">axis_param =</span> <span class="kw">list</span>(<span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">2e5</span>, <span class="fl">4e5</span>, <span class="fl">6e5</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0kb&quot;</span>, <span class="st">&quot;200kb&quot;</span>, <span class="st">&quot;400kb&quot;</span>, <span class="st">&quot;600kb&quot;</span>)),
+    <span class="dt">axis_param =</span> <span class="kw">list</span>(<span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">2e5</span>, <span class="fl">4e5</span>, <span class="fl">6e5</span>), 
+        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0kb&quot;</span>, <span class="st">&quot;200kb&quot;</span>, <span class="st">&quot;400kb&quot;</span>, <span class="st">&quot;600kb&quot;</span>)),
     <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
 <span class="kw">Heatmap</span>(expr<span class="op">$</span>type, <span class="dt">name =</span> <span class="st">&quot;gene type&quot;</span>, 
     <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">summary =</span> <span class="kw">anno_summary</span>(<span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>))),
     <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">15</span>, <span class="st">&quot;mm&quot;</span>))
 
-ht_list =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">block =</span> <span class="kw">anno_block</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">col =</span> <span class="ot">NA</span>)), <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;mm&quot;</span>)) <span class="op">+</span><span class="st"> </span>ht_list
+ht_list =<span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">block =</span> <span class="kw">anno_block</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">col =</span> <span class="ot">NA</span>)), 
+    <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;mm&quot;</span>)) <span class="op">+</span><span class="st"> </span>ht_list
 
 <span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>))</code></pre></div>
 <p><img src="09-examples_files/figure-html/expression_example-1.png" width="960" style="display: block; margin: auto;" /></p>
@@ -283,6 +285,8 @@ ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(
         <span class="dt">bar_width =</span> <span class="dv">1</span>, 
         <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;#FFE200&quot;</span>), 
         <span class="dt">border =</span> <span class="ot">FALSE</span>,
+        <span class="dt">axis_param =</span> <span class="kw">list</span>(<span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">2e5</span>, <span class="fl">4e5</span>, <span class="fl">6e5</span>, <span class="fl">8e5</span>),
+            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;200k&quot;</span>, <span class="st">&quot;400k&quot;</span>, <span class="st">&quot;600k&quot;</span>, <span class="st">&quot;800k&quot;</span>)),
         <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)
     ), <span class="dt">show_annotation_name =</span> <span class="ot">FALSE</span>)
 ha2 =<span class="st"> </span><span class="kw">rowAnnotation</span>(
@@ -290,7 +294,9 @@ ha2 =<span class="st"> </span><span class="kw">rowAnnotation</span>(
         <span class="kw">rowSums</span>(mat), 
         <span class="dt">bar_width =</span> <span class="dv">1</span>, 
         <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;#FFE200&quot;</span>), 
-        <span class="dt">border =</span> <span class="ot">FALSE</span>, 
+        <span class="dt">border =</span> <span class="ot">FALSE</span>,
+        <span class="dt">axis_param =</span> <span class="kw">list</span>(<span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">5e5</span>, <span class="fl">1e6</span>, <span class="fl">1.5e6</span>),
+            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;500k&quot;</span>, <span class="st">&quot;1m&quot;</span>, <span class="st">&quot;1.5m&quot;</span>)),
         <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">2</span>, <span class="st">&quot;cm&quot;</span>)
     ), <span class="dt">show_annotation_name =</span> <span class="ot">FALSE</span>)
 year_text =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">colnames</span>(mat))
@@ -299,14 +305,15 @@ ha_column =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(
     <span class="dt">year =</span> <span class="kw">anno_text</span>(year_text, <span class="dt">rot =</span> <span class="dv">0</span>, <span class="dt">location =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>), <span class="dt">just =</span> <span class="st">&quot;top&quot;</span>)
 )
 col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">1000</span>, <span class="dv">127000</span>), <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;cornflowerblue&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>))
-<span class="kw">Heatmap</span>(mat, <span class="dt">name =</span> <span class="st">&quot;cases&quot;</span>, <span class="dt">col =</span> col_fun,
-    <span class="dt">cluster_columns =</span> <span class="ot">FALSE</span>, <span class="dt">show_row_dend =</span> <span class="ot">FALSE</span>, <span class="dt">rect_gp =</span> <span class="kw">gpar</span>(<span class="dt">col=</span> <span class="st">&quot;white&quot;</span>), <span class="dt">show_column_names =</span> <span class="ot">FALSE</span>,
-    <span class="dt">row_names_side =</span> <span class="st">&quot;left&quot;</span>, <span class="dt">row_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">10</span>),
+ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat, <span class="dt">name =</span> <span class="st">&quot;cases&quot;</span>, <span class="dt">col =</span> col_fun,
+    <span class="dt">cluster_columns =</span> <span class="ot">FALSE</span>, <span class="dt">show_row_dend =</span> <span class="ot">FALSE</span>, <span class="dt">rect_gp =</span> <span class="kw">gpar</span>(<span class="dt">col=</span> <span class="st">&quot;white&quot;</span>), 
+    <span class="dt">show_column_names =</span> <span class="ot">FALSE</span>,
+    <span class="dt">row_names_side =</span> <span class="st">&quot;left&quot;</span>, <span class="dt">row_names_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">8</span>),
     <span class="dt">column_title =</span> <span class="st">&#39;Measles cases in US states 1930-2001</span><span class="ch">\n</span><span class="st">Vaccine introduced 1961&#39;</span>,
-    <span class="dt">top_annotation =</span> ha1,
-    <span class="dt">bottom_annotation =</span> ha_column,
-    <span class="dt">right_annotation =</span> ha2)
-
+    <span class="dt">top_annotation =</span> ha1, <span class="dt">bottom_annotation =</span> ha_column,
+    <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(<span class="dt">at =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">5e4</span>, <span class="fl">1e5</span>, <span class="fl">1.5e5</span>), 
+        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;50k&quot;</span>, <span class="st">&quot;100k&quot;</span>, <span class="st">&quot;150k&quot;</span>))) <span class="op">+</span><span class="st"> </span>ha2
+<span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="dv">3</span>, <span class="st">&quot;mm&quot;</span>))
 <span class="kw">decorate_heatmap_body</span>(<span class="st">&quot;cases&quot;</span>, {
     i =<span class="st"> </span><span class="kw">which</span>(<span class="kw">colnames</span>(mat) <span class="op">==</span><span class="st"> &quot;1961&quot;</span>)
     x =<span class="st"> </span>i<span class="op">/</span><span class="kw">ncol</span>(mat)
@@ -317,7 +324,7 @@ col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class
 </div>
 <div id="visualize-cell-heterogeneity-from-single-cell-rnaseq" class="section level2">
 <h2><span class="header-section-number">9.3</span> Visualize Cell Heterogeneity from Single Cell RNASeq</h2>
-<p>In this supplementary, single cell RNA-Seq data for mouse T-cells is visualized to show the heterogeneity of cells. The data (<code>mouse_scRNAseq_corrected.txt</code>) is from <a href="http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html">Buettner et al., 2015</a>, supplementary data 1, sheet “<strong>Cell-cycle corrected gene expr</strong>”.</p>
+<p>In this example, single cell RNA-Seq data for mouse T-cells is visualized to show the heterogeneity of cells. The data (<code>mouse_scRNAseq_corrected.txt</code>) is from <a href="http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html">Buettner et al., 2015</a>, supplementary data 1, sheet “<strong>Cell-cycle corrected gene expr</strong>”. You can get <code>mouse_scRNAseq_corrected.txt</code> <a href="https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_scRNAseq_corrected">here</a>.</p>
 <p>In following code, duplicated genes are removed.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">expr =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/mouse_scRNAseq_corrected.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 expr =<span class="st"> </span>expr[<span class="op">!</span><span class="kw">duplicated</span>(expr[[<span class="dv">1</span>]]), ]
@@ -356,7 +363,7 @@ mat2 =<span class="st"> </span><span class="kw">t</span>(<span class="kw">apply<
     <span class="kw">scale</span>(x)
 }))
 <span class="kw">colnames</span>(mat2) =<span class="st"> </span><span class="kw">colnames</span>(mat)</code></pre></div>
-<p>Load cell cycle genes and ribonucleoprotein genes. The cell cycle gene list is from <a href="http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html">Buettner et al., 2015</a>, supplementary table 1, sheet “<strong>Union of Cyclebase and GO genes</strong>”. Ribonucleoprotein genes are from <a href="http://amigo.geneontology.org/amigo/term/GO:0030529">GO:0030529</a>. Gene list are stored in <code>mouse_cell_cycle_gene.rds</code> and <code>mouse_ribonucleoprotein.rds</code>.</p>
+<p>Load cell cycle genes and ribonucleoprotein genes. The cell cycle gene list is from <a href="http://www.nature.com/nbt/journal/v33/n2/full/nbt.3102.html">Buettner et al., 2015</a>, supplementary table 1, sheet “<strong>Union of Cyclebase and GO genes</strong>”. Ribonucleoprotein genes are from <a href="http://amigo.geneontology.org/amigo/term/GO:0030529">GO:0030529</a>. Gene list are stored in <code>mouse_cell_cycle_gene.rds</code> and <code>mouse_ribonucleoprotein.rds</code>. The two files can be found <a href="https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_cell_cycle_gene.rds">here</a> and <a href="https://jokergoo.github.io/ComplexHeatmap-reference/data/mouse_ribonucleoprotein.rds">here</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cc =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/mouse_cell_cycle_gene.rds&quot;</span>)
 ccl =<span class="st"> </span><span class="kw">rownames</span>(mat) <span class="op">%in%</span><span class="st"> </span>cc
 cc_gene =<span class="st"> </span><span class="kw">rownames</span>(mat)[ccl]
@@ -389,7 +396,8 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat2, <span cl
 <span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">link =</span> <span class="kw">anno_mark</span>(<span class="dt">at =</span> <span class="kw">which</span>(ccl <span class="op">&amp;</span><span class="st"> </span>base_mean <span class="op">&gt;</span><span class="st"> </span><span class="kw">quantile</span>(base_mean, <span class="fl">0.25</span>)), 
         <span class="dt">labels =</span> <span class="kw">rownames</span>(mat)[ccl <span class="op">&amp;</span><span class="st"> </span>base_mean <span class="op">&gt;</span><span class="st"> </span><span class="kw">quantile</span>(base_mean, <span class="fl">0.25</span>)], 
         <span class="dt">labels_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">10</span>), <span class="dt">padding =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">Heatmap</span>(<span class="kw">cor</span>(<span class="kw">t</span>(mat2)), <span class="dt">name =</span> <span class="st">&quot;cor&quot;</span>, <span class="dt">col =</span> <span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>)), 
+<span class="st">    </span><span class="kw">Heatmap</span>(<span class="kw">cor</span>(<span class="kw">t</span>(mat2)), <span class="dt">name =</span> <span class="st">&quot;cor&quot;</span>, 
+        <span class="dt">col =</span> <span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>)), 
         <span class="dt">show_row_names =</span> <span class="ot">FALSE</span>, <span class="dt">show_column_names =</span> <span class="ot">FALSE</span>, <span class="dt">row_dend_side =</span> <span class="st">&quot;right&quot;</span>, 
         <span class="dt">show_column_dend =</span> <span class="ot">FALSE</span>, <span class="dt">column_title =</span> <span class="st">&quot;pairwise correlation between genes&quot;</span>,
         <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(<span class="dt">title =</span> <span class="st">&quot;Correlation&quot;</span>))
@@ -410,7 +418,7 @@ ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list, <span cl
 </div>
 <div id="correlations-between-methylation-expression-and-other-genomic-features" class="section level2">
 <h2><span class="header-section-number">9.4</span> Correlations between methylation, expression and other genomic features</h2>
-<p>In the following example, data is randomly generated based on patterns found in an unpublished analysis. The code for generating the random data can be found at the end of this supplementary.</p>
+<p>In the following example, data is randomly generated based on patterns found in an unpublished analysis. First we load the data. <code>meth.rds</code> can be found <a href="https://jokergoo.github.io/ComplexHeatmap-reference/data/meth.rds">here</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res_list =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;data/meth.rds&quot;</span>)
 type =<span class="st"> </span>res_list<span class="op">$</span>type
 mat_meth =<span class="st"> </span>res_list<span class="op">$</span>mat_meth
@@ -442,8 +450,10 @@ meth_col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span 
 direction_col =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;hyper&quot;</span> =<span class="st"> &quot;red&quot;</span>, <span class="st">&quot;hypo&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
 expr_col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="st">&quot;green&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))
 pvalue_col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))
-gene_type_col =<span class="st"> </span><span class="kw">structure</span>(<span class="kw">brewer.pal</span>(<span class="kw">length</span>(<span class="kw">unique</span>(gene_type)), <span class="st">&quot;Set3&quot;</span>), <span class="dt">names =</span> <span class="kw">unique</span>(gene_type))
-anno_gene_col =<span class="st"> </span><span class="kw">structure</span>(<span class="kw">brewer.pal</span>(<span class="kw">length</span>(<span class="kw">unique</span>(anno_gene)), <span class="st">&quot;Set1&quot;</span>), <span class="dt">names =</span> <span class="kw">unique</span>(anno_gene))
+gene_type_col =<span class="st"> </span><span class="kw">structure</span>(<span class="kw">brewer.pal</span>(<span class="kw">length</span>(<span class="kw">unique</span>(gene_type)), <span class="st">&quot;Set3&quot;</span>), 
+    <span class="dt">names =</span> <span class="kw">unique</span>(gene_type))
+anno_gene_col =<span class="st"> </span><span class="kw">structure</span>(<span class="kw">brewer.pal</span>(<span class="kw">length</span>(<span class="kw">unique</span>(anno_gene)), <span class="st">&quot;Set1&quot;</span>), 
+    <span class="dt">names =</span> <span class="kw">unique</span>(anno_gene))
 dist_col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10000</span>), <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>))
 enhancer_col_fun =<span class="st"> </span><span class="kw">colorRamp2</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;orange&quot;</span>))</code></pre></div>
 <p>We first define two column annotations and then make the complex heatmaps.</p>
@@ -475,9 +485,9 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat_meth, <spa
 <span class="st">    </span><span class="kw">Heatmap</span>(anno_gene, <span class="dt">name =</span> <span class="st">&quot;anno_gene&quot;</span>, <span class="dt">col =</span> anno_gene_col) <span class="op">+</span>
 <span class="st">    </span><span class="kw">Heatmap</span>(dist, <span class="dt">name =</span> <span class="st">&quot;dist_tss&quot;</span>, <span class="dt">col =</span> dist_col_fun) <span class="op">+</span>
 <span class="st">    </span><span class="kw">Heatmap</span>(anno_enhancer, <span class="dt">name =</span> <span class="st">&quot;anno_enhancer&quot;</span>, <span class="dt">col =</span> enhancer_col_fun, 
-        <span class="dt">cluster_columns =</span> <span class="ot">FALSE</span>, <span class="dt">column_title =</span> <span class="st">&quot;Enhancer&quot;</span>)</code></pre></div>
-<pre><code>## Warning: The input is a data frame, convert it to the matrix.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">row_km =</span> <span class="dv">2</span>, <span class="dt">row_split =</span> direction,
+        <span class="dt">cluster_columns =</span> <span class="ot">FALSE</span>, <span class="dt">column_title =</span> <span class="st">&quot;Enhancer&quot;</span>)
+
+<span class="kw">draw</span>(ht_list, <span class="dt">row_km =</span> <span class="dv">2</span>, <span class="dt">row_split =</span> direction,
     <span class="dt">column_title =</span> <span class="st">&quot;Comprehensive correspondence between methylation, expression and other genomic features&quot;</span>, 
     <span class="dt">column_title_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">12</span>, <span class="dt">fontface =</span> <span class="st">&quot;bold&quot;</span>), 
     <span class="dt">merge_legends =</span> <span class="ot">TRUE</span>, <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
@@ -487,19 +497,14 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat_meth, <spa
 </div>
 <div id="visualize-methylation-profile-with-complex-annotations" class="section level2">
 <h2><span class="header-section-number">9.5</span> Visualize Methylation Profile with Complex Annotations</h2>
-<p>In this supplementary, Figure 1 in <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Strum et al., 2012</a> is re-implemented with some adjustments.</p>
-<p><strong>Note that ~ 3GB of memory are required to run this example.</strong></p>
-<p>Load packages.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ComplexHeatmap)
-<span class="kw">library</span>(matrixStats)
-<span class="kw">library</span>(circlize)
-<span class="kw">library</span>(RColorBrewer)
-<span class="kw">library</span>(GetoptLong)
+<p>In this example, Figure 1 in <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Strum et al., 2012</a> is re-implemented with some adjustments.</p>
+<p>Some packages need to be loaded firstly.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(matrixStats)
 <span class="kw">library</span>(GenomicRanges)</code></pre></div>
-<p>The methylation profiles have been measured by Illumina HumanMethylation450 BeadChip arrays. First, load probe data via the <strong>IlluminaHumanMethylation450kanno.ilmn12.hg19</strong> package.</p>
-<p>Methylation profiles can be download from <a href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36278">GEO database</a>. The <a href="http://bioconductor.org/packages/release/bioc/html/GEOquery.html"><strong>GEOquery</strong> package</a> is used to retrieve expression data from GEO.</p>
+<p>Methylation profiles can be download from <a href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE36278">GEO database</a>. The <a href="http://bioconductor.org/packages/release/bioc/html/GEOquery.html"><strong>GEOquery</strong> package</a> is used to retrieve data from GEO.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GEOquery)
 gset =<span class="st"> </span><span class="kw">getGEO</span>(<span class="st">&quot;GSE36278&quot;</span>)</code></pre></div>
+<p>The methylation profiles have been measured by Illumina HumanMethylation450 BeadChip arrays. We load probe data via the <strong>IlluminaHumanMethylation450kanno.ilmn12.hg19</strong> package.</p>
 <p>Adjust row names in the matrix to be the same as the probes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;IlluminaHumanMethylation450kanno.ilmn12.hg19&quot;</span>)
 <span class="kw">data</span>(Locations)
@@ -510,8 +515,7 @@ mat =<span class="st"> </span>mat[<span class="kw">rownames</span>(Locations), ]
 <p><code>probe</code> contains locations of probes and also information whether the CpG sites overlap with SNPs. Here we remove probes that are on sex chromosomes and probes that overlap with SNPs.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(SNPs.137CommonSingle)
 <span class="kw">data</span>(Islands.UCSC)
-l =<span class="st"> </span>Locations<span class="op">$</span>chr <span class="op">%in%</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">22</span>) <span class="op">&amp;</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">is.na</span>(SNPs.137CommonSingle<span class="op">$</span>Probe_rs)
+l =<span class="st"> </span>Locations<span class="op">$</span>chr <span class="op">%in%</span><span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;chr&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">22</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(SNPs.137CommonSingle<span class="op">$</span>Probe_rs)
 mat =<span class="st"> </span>mat[l, ]</code></pre></div>
 <p>Get subsets for locations of probes and the annotation to CpG Islands accordingly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cgi =<span class="st"> </span>Islands.UCSC<span class="op">$</span>Relation_to_Island[l]
@@ -520,10 +524,10 @@ loc =<span class="st"> </span>Locations[l, ]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat1 =<span class="st"> </span><span class="kw">as.matrix</span>(mat[, <span class="kw">grep</span>(<span class="st">&quot;GBM&quot;</span>, <span class="kw">colnames</span>(mat))])   <span class="co"># tumor samples</span>
 mat2 =<span class="st"> </span><span class="kw">as.matrix</span>(mat[, <span class="kw">grep</span>(<span class="st">&quot;CTRL&quot;</span>, <span class="kw">colnames</span>(mat))])  <span class="co"># normal samples</span>
 <span class="kw">colnames</span>(mat1) =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;GBM&quot;</span>, <span class="st">&quot;dkfz&quot;</span>, <span class="kw">colnames</span>(mat1))</code></pre></div>
-<p>Phenotype data is from <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Sturm et al., 2012</a>, supplementary table S1.</p>
+<p>Phenotype data is from <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Sturm et al., 2012</a>, supplementary table S1 and can be found <a href="https://jokergoo.github.io/ComplexHeatmap-reference/data/450K_annotation.txt">here</a>.</p>
 <p>The rows of phenotype data are adjusted to be the same as the columns of the methylation matrix.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phenotype =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/450K_annotation.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names =</span> <span class="dv">1</span>, 
-    <span class="dt">check.names =</span> <span class="ot">FALSE</span>, <span class="dt">comment.char =</span> <span class="st">&quot;&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phenotype =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/450K_annotation.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, 
+    <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>, <span class="dt">comment.char =</span> <span class="st">&quot;&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
 phenotype =<span class="st"> </span>phenotype[<span class="kw">colnames</span>(mat1), ]</code></pre></div>
 <p>Please note that we only use the 136 samples which are from DKFZ, while in <a href="http://dx.doi.org/10.1016/j.ccr.2012.08.024">Sturm et al., 2012</a>, additional 74 TCGA samples have been used.</p>
 <p>Extract the top 8000 probes with most variable methylation in the tumor samples, and also subset other information correspondingly.</p>
@@ -560,8 +564,10 @@ m2[<span class="kw">is.na</span>(m2)] =<span class="st"> </span><span class="fl"
 <li>PDGFRA amplification</li>
 </ol>
 <p>In following code we define the column annotation in the <code>ha</code> variable. Also we customize colors, legends and height of the annotations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mutation_col =<span class="st"> </span><span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;MUT&quot;</span>, <span class="st">&quot;WT&quot;</span>, <span class="st">&quot;G34R&quot;</span>, <span class="st">&quot;G34V&quot;</span>, <span class="st">&quot;K27M&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#4DAF4A&quot;</span>, <span class="st">&quot;#4DAF4A&quot;</span>, <span class="st">&quot;#377EB8&quot;</span>))
-cnv_col =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;gain&quot;</span> =<span class="st"> &quot;#E41A1C&quot;</span>, <span class="st">&quot;loss&quot;</span> =<span class="st"> &quot;#377EB8&quot;</span>, <span class="st">&quot;amp&quot;</span> =<span class="st"> &quot;#E41A1C&quot;</span>, <span class="st">&quot;del&quot;</span> =<span class="st"> &quot;#377EB8&quot;</span>, <span class="st">&quot;normal&quot;</span> =<span class="st"> &quot;white&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mutation_col =<span class="st"> </span><span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;MUT&quot;</span>, <span class="st">&quot;WT&quot;</span>, <span class="st">&quot;G34R&quot;</span>, <span class="st">&quot;G34V&quot;</span>, <span class="st">&quot;K27M&quot;</span>), 
+    <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#4DAF4A&quot;</span>, <span class="st">&quot;#4DAF4A&quot;</span>, <span class="st">&quot;#377EB8&quot;</span>))
+cnv_col =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;gain&quot;</span> =<span class="st"> &quot;#E41A1C&quot;</span>, <span class="st">&quot;loss&quot;</span> =<span class="st"> &quot;#377EB8&quot;</span>, <span class="st">&quot;amp&quot;</span> =<span class="st"> &quot;#E41A1C&quot;</span>, 
+    <span class="st">&quot;del&quot;</span> =<span class="st"> &quot;#377EB8&quot;</span>, <span class="st">&quot;normal&quot;</span> =<span class="st"> &quot;white&quot;</span>)
 ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(
     <span class="dt">age =</span> <span class="kw">anno_points</span>(phenotype[[<span class="dv">13</span>]], 
         <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="kw">ifelse</span>(phenotype[[<span class="dv">13</span>]] <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>)), 
@@ -577,9 +583,12 @@ ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(
     <span class="dt">CDKN2A_del =</span> <span class="kw">ifelse</span>(phenotype[[<span class="dv">9</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;del&quot;</span>, <span class="st">&quot;normal&quot;</span>),
     <span class="dt">EGFR_amp =</span> <span class="kw">ifelse</span>(phenotype[[<span class="dv">10</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;amp&quot;</span>, <span class="st">&quot;normal&quot;</span>),
     <span class="dt">PDGFRA_amp =</span> <span class="kw">ifelse</span>(phenotype[[<span class="dv">11</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;amp&quot;</span>, <span class="st">&quot;normal&quot;</span>),
-    <span class="dt">col =</span> <span class="kw">list</span>(<span class="dt">dkfz_cluster =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;IDH&quot;</span>, <span class="st">&quot;K27&quot;</span>, <span class="st">&quot;G34&quot;</span>, <span class="st">&quot;RTK I PDGFRA&quot;</span>, <span class="st">&quot;Mesenchymal&quot;</span>, <span class="st">&quot;RTK II Classic&quot;</span>), <span class="kw">brewer.pal</span>(<span class="dv">6</span>, <span class="st">&quot;Set1&quot;</span>)),
-        <span class="dt">tcga_cluster =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;G-CIMP+&quot;</span>, <span class="st">&quot;Cluster #2&quot;</span>, <span class="st">&quot;Cluster #3&quot;</span>), <span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Set1&quot;</span>)),
-        <span class="dt">tcga_expr =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Proneural&quot;</span>, <span class="st">&quot;Classical&quot;</span>, <span class="st">&quot;Mesenchymal&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;#377EB8&quot;</span>, <span class="st">&quot;#FFFF33&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>)),
+    <span class="dt">col =</span> <span class="kw">list</span>(<span class="dt">dkfz_cluster =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;IDH&quot;</span>, <span class="st">&quot;K27&quot;</span>, <span class="st">&quot;G34&quot;</span>, <span class="st">&quot;RTK I PDGFRA&quot;</span>, 
+            <span class="st">&quot;Mesenchymal&quot;</span>, <span class="st">&quot;RTK II Classic&quot;</span>), <span class="kw">brewer.pal</span>(<span class="dv">6</span>, <span class="st">&quot;Set1&quot;</span>)),
+        <span class="dt">tcga_cluster =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;G-CIMP+&quot;</span>, <span class="st">&quot;Cluster #2&quot;</span>, <span class="st">&quot;Cluster #3&quot;</span>), 
+            <span class="kw">brewer.pal</span>(<span class="dv">3</span>, <span class="st">&quot;Set1&quot;</span>)),
+        <span class="dt">tcga_expr =</span> <span class="kw">structure</span>(<span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Proneural&quot;</span>, <span class="st">&quot;Classical&quot;</span>, <span class="st">&quot;Mesenchymal&quot;</span>), 
+            <span class="kw">c</span>(<span class="st">&quot;#377EB8&quot;</span>, <span class="st">&quot;#FFFF33&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>)),
         <span class="dt">IDH1 =</span> mutation_col,
         <span class="dt">H3F3A =</span> mutation_col,
         <span class="dt">TP53 =</span> mutation_col,
@@ -644,7 +653,7 @@ annotation_titles =<span class="st"> </span><span class="kw">c</span>(<span clas
     })
 }
 <span class="kw">decorate_annotation</span>(<span class="st">&quot;age&quot;</span>, {
-    <span class="kw">grid.text</span>(<span class="st">&quot;Age&quot;</span>, <span class="kw">unit</span>(<span class="op">-</span><span class="dv">12</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">just =</span> <span class="st">&quot;right&quot;</span>)
+    <span class="kw">grid.text</span>(<span class="st">&quot;Age&quot;</span>, <span class="kw">unit</span>(<span class="dv">8</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">just =</span> <span class="st">&quot;right&quot;</span>)
     <span class="kw">grid.rect</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>))
     <span class="kw">grid.lines</span>(<span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="st">&quot;npc&quot;</span>), <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">20</span>), <span class="st">&quot;native&quot;</span>), <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">lty =</span> <span class="dv">2</span>))
 })
@@ -656,30 +665,37 @@ annotation_titles =<span class="st"> </span><span class="kw">c</span>(<span clas
 })</code></pre></div>
 <p><img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
-<div id="add-multiple-boxplot-for-a-single-row" class="section level2">
-<h2><span class="header-section-number">9.6</span> Add multiple boxplot for a single row</h2>
+<div id="add-multiple-boxplots-for-single-row" class="section level2">
+<h2><span class="header-section-number">9.6</span> Add multiple boxplots for single row</h2>
+<p>The annotation function <code>anno_boxplot()</code> only draws one boxplot for a single row. When multiple heatmaps are concatenated, or the groups for columns have already been defined, for each row, we want to compare between heatmaps or column groups, thus, multiple boxplots need to be drawn for each single row.</p>
+<p>In following example, we demonstrate how to implement an annotation function which draws multiple boxplots for single rows. The <code>grid.boxplot()</code> function is from <strong>ComplexHeatmap</strong> package which makes it easy to draw boxplot under <strong>grid</strong> system.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sort</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)), <span class="dv">10</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
 m2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sort</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), <span class="dv">10</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+nr =<span class="st"> </span><span class="kw">nrow</span>(m1)
 
-ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m1) <span class="op">+</span><span class="st"> </span><span class="kw">Heatmap</span>(m2)
+ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m1, <span class="dt">name =</span> <span class="st">&quot;m1&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">Heatmap</span>(m2, <span class="dt">name =</span> <span class="st">&quot;m2&quot;</span>)
 
 rg =<span class="st"> </span><span class="kw">range</span>(<span class="kw">c</span>(m1, m2))
+rg[<span class="dv">1</span>] =<span class="st"> </span>rg[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>(rg[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>rg[<span class="dv">1</span>])<span class="op">*</span><span class="st"> </span><span class="fl">0.02</span>
+rg[<span class="dv">2</span>] =<span class="st"> </span>rg[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>(rg[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>rg[<span class="dv">1</span>])<span class="op">*</span><span class="st"> </span><span class="fl">0.02</span>
 anno_multiple_boxplot =<span class="st"> </span><span class="cf">function</span>(index) {
-    <span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">xscale =</span> rg, <span class="dt">yscale =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">10.5</span>)))
+    <span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">xscale =</span> rg, <span class="dt">yscale =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, nr <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span>)))
     <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_along</span>(index)) {
-        <span class="kw">grid.rect</span>(<span class="dt">y =</span> <span class="dv">10</span><span class="op">-</span>i<span class="op">+</span><span class="dv">1</span>, <span class="dt">height =</span> <span class="dv">1</span>, <span class="dt">default.units =</span> <span class="st">&quot;native&quot;</span>)
-    <span class="kw">grid.boxplot</span>(m1[ index[i], ], <span class="dt">pos =</span> <span class="dv">10</span><span class="op">-</span>i<span class="op">+</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>, <span class="dt">box_width =</span> <span class="fl">0.3</span>, 
-    <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
-        <span class="kw">grid.boxplot</span>(m2[ index[i], ], <span class="dt">pos =</span> <span class="dv">10</span><span class="op">-</span>i<span class="op">+</span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>, <span class="dt">box_width =</span> <span class="fl">0.3</span>, 
-        <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
+        <span class="kw">grid.rect</span>(<span class="dt">y =</span> nr<span class="op">-</span>i<span class="op">+</span><span class="dv">1</span>, <span class="dt">height =</span> <span class="dv">1</span>, <span class="dt">default.units =</span> <span class="st">&quot;native&quot;</span>)
+        <span class="kw">grid.boxplot</span>(m1[ index[i], ], <span class="dt">pos =</span> nr<span class="op">-</span>i<span class="op">+</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span>, <span class="dt">box_width =</span> <span class="fl">0.3</span>, 
+            <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
+        <span class="kw">grid.boxplot</span>(m2[ index[i], ], <span class="dt">pos =</span> nr<span class="op">-</span>i<span class="op">+</span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span>, <span class="dt">box_width =</span> <span class="fl">0.3</span>, 
+            <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>), <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
     }
     <span class="kw">grid.xaxis</span>()
     <span class="kw">popViewport</span>()
 }
 
 ht_list =<span class="st"> </span>ht_list <span class="op">+</span><span class="st"> </span><span class="kw">rowAnnotation</span>(<span class="dt">boxplot =</span> anno_multiple_boxplot, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>), 
-<span class="dt">show_annotation_name =</span> <span class="ot">FALSE</span>)
-<span class="kw">draw</span>(ht_list, <span class="dt">padding =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>))</code></pre></div>
+    <span class="dt">show_annotation_name =</span> <span class="ot">FALSE</span>)
+lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>), <span class="dt">title =</span> <span class="st">&quot;boxplots&quot;</span>,
+    <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)))
+<span class="kw">draw</span>(ht_list, <span class="dt">padding =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>), <span class="dt">heatmap_legend_list =</span> <span class="kw">list</span>(lgd))</code></pre></div>
 <p><img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
 
 </div>

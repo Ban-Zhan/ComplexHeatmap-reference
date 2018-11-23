@@ -912,6 +912,10 @@ ha = HeatmapAnnotation(foo = anno_boxplot(m, height = unit(4, "cm"),
 
 <img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-107-1.png" style="display: block; margin: auto;" />
 
+`anno_boxplot()` only draws one boxplot for one single row. Section
+\@ref(add-multiple-boxplots-for-single-row) demonstrates how to define a annotation function which
+draws multiple boxplots for a single row.
+
 ## Histogram annotation {#histogram-annotation}
 
 Annotations as histograms are more suitable to put as row annotations. The setting

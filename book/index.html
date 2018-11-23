@@ -123,10 +123,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7.1" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-by-kmeans-clustering"><i class="fa fa-check"></i><b>2.7.1</b> Split by k-means clustering</a></li>
 <li class="chapter" data-level="2.7.2" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-by-categorical-variables"><i class="fa fa-check"></i><b>2.7.2</b> Split by categorical variables</a></li>
 <li class="chapter" data-level="2.7.3" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#spilt-by-dendrogram"><i class="fa fa-check"></i><b>2.7.3</b> Split by dendrogram</a></li>
-<li class="chapter" data-level="2.7.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>2.7.4</b> Titles for splitting</a></li>
-<li class="chapter" data-level="2.7.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>2.7.5</b> Graphic parameters for splitting</a></li>
-<li class="chapter" data-level="2.7.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>2.7.6</b> Gaps between slices</a></li>
-<li class="chapter" data-level="2.7.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-heatmap-annotations"><i class="fa fa-check"></i><b>2.7.7</b> Split heatmap annotations</a></li>
+<li class="chapter" data-level="2.7.4" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#order-of-slices"><i class="fa fa-check"></i><b>2.7.4</b> Order of slices</a></li>
+<li class="chapter" data-level="2.7.5" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#titles-for-splitting"><i class="fa fa-check"></i><b>2.7.5</b> Titles for splitting</a></li>
+<li class="chapter" data-level="2.7.6" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#graphic-parameters-for-splitting"><i class="fa fa-check"></i><b>2.7.6</b> Graphic parameters for splitting</a></li>
+<li class="chapter" data-level="2.7.7" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#gaps-between-slices"><i class="fa fa-check"></i><b>2.7.7</b> Gaps between slices</a></li>
+<li class="chapter" data-level="2.7.8" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#split-heatmap-annotations"><i class="fa fa-check"></i><b>2.7.8</b> Split heatmap annotations</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#heatmap-as-raster-image"><i class="fa fa-check"></i><b>2.8</b> Heatmap as raster image</a></li>
 <li class="chapter" data-level="2.9" data-path="a-single-heatmap.html"><a href="a-single-heatmap.html#customize-the-heatmap-body"><i class="fa fa-check"></i><b>2.9</b> Customize the heatmap body</a></li>
@@ -212,7 +213,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.3" data-path="more-examples.html"><a href="more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq"><i class="fa fa-check"></i><b>9.3</b> Visualize Cell Heterogeneity from Single Cell RNASeq</a></li>
 <li class="chapter" data-level="9.4" data-path="more-examples.html"><a href="more-examples.html#correlations-between-methylation-expression-and-other-genomic-features"><i class="fa fa-check"></i><b>9.4</b> Correlations between methylation, expression and other genomic features</a></li>
 <li class="chapter" data-level="9.5" data-path="more-examples.html"><a href="more-examples.html#visualize-methylation-profile-with-complex-annotations"><i class="fa fa-check"></i><b>9.5</b> Visualize Methylation Profile with Complex Annotations</a></li>
-<li class="chapter" data-level="9.6" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplot-for-a-single-row"><i class="fa fa-check"></i><b>9.6</b> Add multiple boxplot for a single row</a></li>
+<li class="chapter" data-level="9.6" data-path="more-examples.html"><a href="more-examples.html#add-multiple-boxplots-for-single-row"><i class="fa fa-check"></i><b>9.6</b> Add multiple boxplots for single row</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -237,11 +238,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">ComplexHeatmap Complete Reference</h1>
 <h4 class="author"><em>Zuguang Gu</em></h4>
-<h4 class="date"><em>last revised on 2018-11-05</em></h4>
+<h4 class="date"><em>last revised on 2018-11-23</em></h4>
 </div>
 <div id="about" class="section level1 unnumbered">
 <h1>About</h1>
-<p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.0.</p>
+<p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.1.</p>
 <p><strong>Please note, this documentation is not completely compatible with older versions (1.<em>.</em>, before Oct, 2018), but the major functionality keeps the same.</strong></p>
 <p>If you use <strong>ComplexHeatmap</strong> in your publications, I am appreciated if you can cite:</p>
 <p>Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. DOI: <a href="https://doi.org/10.1093/bioinformatics/btw313">10.1093/bioinformatics/btw313</a></p>

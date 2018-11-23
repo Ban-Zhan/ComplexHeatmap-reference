@@ -479,8 +479,8 @@ while for `cluster_columns`, `m` is the transpose of `mat`.
 
 ```r
 # code only for demonstration
-Heatmap(mat, name = "mat", cluster_rows = fastcluster::hclust, 
-    cluster_columns = fastcluster::hclust)
+fh = function(x) fastcluster::hclust(dist(x))
+Heatmap(mat, name = "mat", cluster_rows = fh, cluster_columns = fh)
 ```
 
 To make it more convinient to use the faster version of `hclust()` (assuming you have many heatmaps
@@ -831,10 +831,8 @@ Heatmap(mat, name = "mat", row_km = 2, column_km = 3)
 ### Split by categorical variables {#split-by-categorical-variables}
 
 More generally, `row_split` or `column_split` can be set to a categorical vector or a data frame
-where different combinations of levels split the rows/columns in the heatmap. The order of each
-slice can be controlled by `levels` of each variable in `split` (in this case, each variable should
-be a factor). If all variables are characters, the default order is `unique(row_split)` or
-`unique(column_split)`.
+where different combinations of levels split the rows/columns in the heatmap. How to control
+the order of the slices is introduced in Section \@ref(order-of-slices).
 
 
 ```r
@@ -854,9 +852,9 @@ Heatmap(mat, name = "mat",
 <img src="02-single_heatmap_files/figure-epub3/split-2.png" style="display: block; margin: auto;" />
 
 ```r
-# split on both dimensions and control the order of slices
-Heatmap(mat, name = "mat", row_split = factor(rep(c("A", "B"), 9), levels = c("B", "A")),
-    column_split = factor(rep(c("C", "D"), 12), levels = c("D", "C")))
+# split on both dimensions
+Heatmap(mat, name = "mat", row_split = factor(rep(c("A", "B"), 9)),
+    column_split = factor(rep(c("C", "D"), 12)))
 ```
 
 <img src="02-single_heatmap_files/figure-epub3/split-3.png" style="display: block; margin: auto;" />
@@ -968,6 +966,51 @@ split = data.frame(cutree(hclust(dist(mat)), k = 2), rep(c("A", "B"), 9))
 Heatmap(mat, name = "mat", row_split = split)
 ```
 
+### Order of slices {#order-of-slices}
+
+When `row_split`/`column_split` is set as categorical variable (a vector or a data frame) or
+`row_km`/`column_km` is set, by default, there is an additional clustering applied to the mean of
+slices to show the hierarchy in the slice level. Under this scenario, you cannot precisely control
+the order of slices because it is controlled by the clustering of slices.
+
+Nevertheless, you can set `cluster_row_slices` or `cluster_column_slices` to `FALSE` to turn off the
+clustering on slices, and now you can precisely control the order of slices.
+
+When there is no slice clustering, the order of each slice can be controlled by `levels` of each
+variable in `row_split`/`column_split` (in this case, each variable should be a factor). If all
+variables are characters, the default order is `unique(row_split)` or `unique(column_split)`.
+Compare following heatmaps:
+
+
+```r
+Heatmap(mat, name = "mat", 
+  row_split = rep(LETTERS[1:3], 6),
+    column_split = rep(letters[1:6], 4))
+```
+
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
+
+```r
+# clustering is similar as previous heatmap with branches in some nodes in the dendrogram flipped
+Heatmap(mat, name = "mat", 
+  row_split = factor(rep(LETTERS[1:3], 6), levels = LETTERS[3:1]),
+    column_split = factor(rep(letters[1:6], 4), levels = letters[6:1]))
+```
+
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-42-2.png" style="display: block; margin: auto;" />
+
+```r
+# now the order is exactly what we set
+Heatmap(mat, name = "mat", 
+  row_split = factor(rep(LETTERS[1:3], 6), levels = LETTERS[3:1]),
+    column_split = factor(rep(letters[1:6], 4), levels = letters[6:1]),
+    cluster_row_slices = FALSE, 
+    cluster_column_slices = FALSE)
+```
+
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-42-3.png" style="display: block; margin: auto;" />
+
+
 ### Titles for splitting {#titles-for-splitting} 
 
 When `row_split`/`column_split` is set as a single number, there is only one categorical variable,
@@ -987,7 +1030,7 @@ split = data.frame(rep(c("A", "B"), 9), rep(c("C", "D"), each = 9))
 Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s")
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-42-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-43-1.png" style="display: block; margin: auto;" />
 
 For the `sprintf()` template, you can only put the levels which are `A,B,C,D` in the title, and
 `C,D` is always after `A,B`. However, when making the heatmap, you might want to put more meaningful
@@ -1011,7 +1054,7 @@ Heatmap(mat, name = "mat", row_split = split, row_title = "@{map[ x[1] ]}|@{map[
 Heatmap(mat, name = "mat", row_split = split, row_title = "{map[ x[1] ]}|{map[ x[2] ]}")
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-44-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-45-1.png" style="display: block; margin: auto;" />
 
 The row title is rotated by default, you can set `row_title_rot = 0` to make it horizontal:
 
@@ -1020,7 +1063,7 @@ The row title is rotated by default, you can set `row_title_rot = 0` to make it 
 Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s", row_title_rot = 0)
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-45-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-46-1.png" style="display: block; margin: auto;" />
 
 When `row_split`/`column_split` is set as a number, you can also use template to adjust the titles
 for slices.
@@ -1030,7 +1073,7 @@ for slices.
 Heatmap(mat, name = "mat", row_split = 2, row_title = "cluster_%s")
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-46-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-47-1.png" style="display: block; margin: auto;" />
 
 If you know the final number of row slices, you can directly set a vector of titles to
 `row_title`. Be careful the number of row slices is not always identical to `nlevel_1*nlevel_2*...`.
@@ -1042,7 +1085,7 @@ Heatmap(mat, name = "mat", row_split = split,
     row_title_rot = 0)
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-47-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
 
 If the length of `row_title` is specified as a single string, it will be like a single title for all
 slices.
@@ -1053,7 +1096,7 @@ slices.
 Heatmap(mat, name = "mat", row_split = split, row_title = "there are four slices")
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-48-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
 
 If you still want titles for each slice, but also a global title, you can do as follows.
 
@@ -1063,7 +1106,7 @@ ht = Heatmap(mat, name = "mat", row_split = split, row_title = "%s|%s")
 draw(ht, row_title = "I am a row title")
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-49-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
 
 Actually the `row_title` used in `draw()` function is the row title of the heatmap list, although in
 the example there is only one heatmap. The `draw()` function and the heatmap list will be
@@ -1076,7 +1119,7 @@ If `row_title` is set to `NULL`, no row title will be drawn.
 Heatmap(mat, name = "mat", row_split = split, row_title = NULL)
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-50-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
 
 All these rules also work for column titles for slices.
 
@@ -1128,7 +1171,7 @@ When heatmap border is added by setting `border = TRUE`, the border of every sli
 Heatmap(mat, name = "mat", row_km = 2, column_km = 3, border = TRUE)
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-51-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-52-1.png" style="display: block; margin: auto;" />
 
 If you set gap size to zero, the heatmap will look like it is partitioned by vertical and horizontal lines.
 
@@ -1138,7 +1181,7 @@ Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
     row_gap = unit(0, "mm"), column_gap = unit(0, "mm"), border = TRUE)
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-52-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
 
 ### Split heatmap annotations {#split-heatmap-annotations}
 
@@ -1153,7 +1196,7 @@ Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
 )
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-53-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-54-1.png" style="display: block; margin: auto;" />
 
 ## Heatmap as raster image {#heatmap-as-raster-image}
 
@@ -1282,7 +1325,7 @@ Heatmap(small_mat, name = "mat", col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-58-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-59-1.png" style="display: block; margin: auto;" />
 
 and we can also choose only to add text for the cells with positive values:
 
@@ -1295,7 +1338,7 @@ Heatmap(small_mat, name = "mat",  col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-59-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-60-1.png" style="display: block; margin: auto;" />
 
 You can split the heatmap without doing anything extra to `cell_fun`:
 
@@ -1308,7 +1351,7 @@ Heatmap(small_mat, name = "mat", col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-60-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-61-1.png" style="display: block; margin: auto;" />
 
 In following example, we make a heatmap which shows correlation matrix similar as the **corrplot** package:
 
@@ -1393,7 +1436,7 @@ Heatmap(small_mat, name = "mat", col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-63-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-64-1.png" style="display: block; margin: auto;" />
 
 And only add text to cells with positive values:
 
@@ -1407,7 +1450,7 @@ Heatmap(small_mat, name = "mat", col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-64-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-65-1.png" style="display: block; margin: auto;" />
 
 When the heatmap is split, `layer_fun` is applied in every slice.
 
@@ -1424,7 +1467,7 @@ Heatmap(small_mat, name = "mat", col = col_fun,
 })
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-65-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-66-1.png" style="display: block; margin: auto;" />
 
 One last example is to visualize a [GO game](https://en.wikipedia.org/wiki/Go_%28game%29). The input
 data takes records of moves in the game.
@@ -1529,7 +1572,7 @@ Heatmap(go_mat, name = "go", rect_gp = gpar(type = "none"),
 )
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-68-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-69-1.png" style="display: block; margin: auto;" />
 
 ## Size of the heatmap {#size-of-the-heatmap}
 
@@ -1548,13 +1591,13 @@ of the heamtap body. All these four arguments can be set as absolute units.
 Heatmap(mat, name = "mat", width = unit(8, "cm"), height = unit(8, "cm"))
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-69-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-70-1.png" style="display: block; margin: auto;" />
 
 ```r
 Heatmap(mat, name = "mat", heatmap_width = unit(8, "cm"), heatmap_height = unit(8, "cm"))
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-69-2.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-70-2.png" style="display: block; margin: auto;" />
 
 These four arguments are more important when adjust the size in a list of heatmaps (see Section
 \@ref(size-of-heatmaps)).
@@ -1779,7 +1822,7 @@ dim(ht)
 ht[1:10, 1:10]
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-78-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-79-1.png" style="display: block; margin: auto;" />
 
 The annotations are subsetted accordingly as well.
 
@@ -1793,7 +1836,7 @@ ht = Heatmap(mat, name = "mat", row_km = 2, column_km = 3,
 ht[1:9*2 - 1, 1:12*2] # odd rows, even columns
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-79-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-80-1.png" style="display: block; margin: auto;" />
 
 The heatmap components are subsetted if they are vector-like. Some configurations in the
 heatmap keep the same when subsetting, e.g. if `row_km` is set in the original heatmap, the
@@ -1807,7 +1850,7 @@ ht2 = ht[1:10, 1:10]
 ht2
 ```
 
-<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-80-1.png" style="display: block; margin: auto;" />
+<img src="02-single_heatmap_files/figure-epub3/unnamed-chunk-81-1.png" style="display: block; margin: auto;" />
 
 **The implementation of subsetting heatmaps is very experimental.** It is not always working, e.g.
 if `cell_fun` is defined and uses an external matrix, or clustering objects are assigned to
