@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ComplexHeatmap Complete Reference</title>
+  <title>Chapter 7 OncoPrint | ComplexHeatmap Complete Reference</title>
   <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="ComplexHeatmap Complete Reference" />
+  <meta property="og:title" content="Chapter 7 OncoPrint | ComplexHeatmap Complete Reference />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-reference/book" />
   <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jokergoo/ComplexHeatmap-reference" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
+  <meta name="twitter:title" content="Chapter 7 OncoPrint | ComplexHeatmap Complete Reference />
   
   <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -35,6 +35,7 @@
 <link rel="next" href="other-high-level-plots.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -263,11 +264,12 @@ mat</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_type_fun</span>(mat[<span class="dv">1</span>, <span class="dv">2</span>])</code></pre></div>
 <pre><code>## [1] &quot;snv&quot;</code></pre>
 <p>So, if the alterations are encoded as <code>snv|indel</code>, you can define the function as <code>function(x) strsplit(x, &quot;|&quot;)[[1]]</code>. This self-defined function is assigned to the <code>get_type</code> argument in <code>oncoPrint()</code>.</p>
+<p><strong>Since in most cases, the separators are only single characters, If the separators are in <code>;:,|</code>, <code>oncoPrint()</code> automatically spit the alteration strings so that you don’t need to explicitely specify <code>get_type</code> in <code>oncoPrint()</code> function.</strong></p>
 <p>For one gene in one sample, since different alteration types may be drawn into one same grid in the heatmap, we need to define how to add the graphics by providing a list of self-defined functions to <code>alter_fun</code> argument. Here if the graphics have no transparency, order of adding graphics matters. In following example, snv are first drawn and then the indel. You can see rectangles for indels are actually smaller (<code>0.4*h</code>) than that for snvs (<code>0.9*h</code>) so that you can visualize both snvs and indels if they are in a same grid. Names of the function list should correspond to the alteration types (here, <code>snv</code> and <code>indel</code>).</p>
 <p>For the self-defined graphic function (the functions in <code>alter_fun</code>, there should be four arguments which are positions of the grids on the oncoPrint (<code>x</code> and <code>y</code>), and widths and heights of the grids (<code>w</code> and <code>h</code>, which is measured in <code>npc</code> unit).</p>
 <p>Colors for different alterations are defined in <code>col</code>. It should be a named vector for which names correspond to alteration types. It is used to generate the barplots and the legends.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">col =<span class="st"> </span><span class="kw">c</span>(<span class="dt">snv =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">indel =</span> <span class="st">&quot;blue&quot;</span>)
-<span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="kw">list</span>(
         <span class="dt">snv =</span> <span class="cf">function</span>(x, y, w, h) <span class="kw">grid.rect</span>(x, y, w<span class="op">*</span><span class="fl">0.9</span>, h<span class="op">*</span><span class="fl">0.9</span>, 
             <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> col[<span class="st">&quot;snv&quot;</span>], <span class="dt">col =</span> <span class="ot">NA</span>)),
@@ -306,7 +308,7 @@ mat_list</code></pre></div>
     ), <span class="dt">col =</span> col)</code></pre></div>
 <pre><code>## All mutation types: snv, indel</code></pre>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-7-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>In following parts of this chapter, we still use <code>mat</code> and <code>get_type</code> to specify the input data.</p>
+<p>In following parts of this chapter, we still use <code>mat</code> to specify the input data.</p>
 </div>
 <div id="define-the-alter-fun" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> Define the alter_fun()</h3>
@@ -314,7 +316,7 @@ mat_list</code></pre></div>
 <p>Let’s assume in a grid there is only snv event, then <code>v</code> for this grid is:</p>
 <pre><code>##   snv indel 
 ##  TRUE FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="cf">function</span>(x, y, w, h, v) {
         <span class="cf">if</span>(v[<span class="st">&quot;snv&quot;</span>]) <span class="kw">grid.rect</span>(x, y, w<span class="op">*</span><span class="fl">0.9</span>, h<span class="op">*</span><span class="fl">0.9</span>, <span class="co"># v[&quot;snv&quot;] is a logical value</span>
             <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> col[<span class="st">&quot;snv&quot;</span>], <span class="dt">col =</span> <span class="ot">NA</span>))
@@ -324,7 +326,7 @@ mat_list</code></pre></div>
 <pre><code>## All mutation types: snv, indel</code></pre>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-9-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>If <code>alter_fun</code> is set as a single function, customization can be more flexible. In following example, the blue rectangles can have different height in different grid.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="cf">function</span>(x, y, w, h, v) {
         n =<span class="st"> </span><span class="kw">sum</span>(v)  <span class="co"># how many alterations for current gene in current sample</span>
         h =<span class="st"> </span>h<span class="op">*</span><span class="fl">0.9</span>
@@ -338,7 +340,7 @@ mat_list</code></pre></div>
 <div id="oncoprint-background" class="section level3">
 <h3><span class="header-section-number">7.1.3</span> Background</h3>
 <p>If <code>alter_fun</code> is specified as a list, the order of the elements controls the order of adding graphics. There is a special element called <code>background</code> which defines how to draw background and it should be always put as the first element in the <code>alter_fun</code> list. In following example, backgrond color is changed to light green with borders.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="kw">list</span>(
         <span class="dt">background =</span> <span class="cf">function</span>(x, y, w, h) <span class="kw">grid.rect</span>(x, y, w, h, 
             <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="st">&quot;#00FF0020&quot;</span>)),
@@ -350,7 +352,7 @@ mat_list</code></pre></div>
 <pre><code>## All mutation types: snv, indel</code></pre>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-11-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Or just remove the background (don’t set it to <code>NULL</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="kw">list</span>(
         <span class="dt">background =</span> <span class="cf">function</span>(...) <span class="ot">NULL</span>,
         <span class="dt">snv =</span> <span class="cf">function</span>(x, y, w, h) <span class="kw">grid.rect</span>(x, y, w<span class="op">*</span><span class="fl">0.9</span>, h<span class="op">*</span><span class="fl">0.9</span>, 
@@ -364,7 +366,7 @@ mat_list</code></pre></div>
 <div id="other-heatmap-related-settings" class="section level3">
 <h3><span class="header-section-number">7.1.4</span> Other heatmap-related settings</h3>
 <p>Column names are by default not drawn in the plot. It is can be turned on by setting <code>show_column_names = TRUE</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> <span class="kw">list</span>(
         <span class="dt">snv =</span> <span class="cf">function</span>(x, y, w, h) <span class="kw">grid.rect</span>(x, y, w<span class="op">*</span><span class="fl">0.9</span>, h<span class="op">*</span><span class="fl">0.9</span>, 
             <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> col[<span class="st">&quot;snv&quot;</span>], <span class="dt">col =</span> <span class="ot">NA</span>)),
@@ -431,7 +433,7 @@ alter_fun =<span class="st"> </span><span class="kw">list</span>(
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">column_title =<span class="st"> &quot;OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling&quot;</span>
 heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<span class="dt">title =</span> <span class="st">&quot;Alternations&quot;</span>, <span class="dt">at =</span> <span class="kw">c</span>(<span class="st">&quot;HOMDEL&quot;</span>, <span class="st">&quot;AMP&quot;</span>, <span class="st">&quot;MUT&quot;</span>), 
         <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Deep deletion&quot;</span>, <span class="st">&quot;Amplification&quot;</span>, <span class="st">&quot;Mutation&quot;</span>))
-<span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param)</code></pre></div>
 <pre><code>## All mutation types: MUT, AMP, HOMDEL</code></pre>
@@ -440,7 +442,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <div id="remove-empty-rows-and-columns" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Remove empty rows and columns</h3>
 <p>By default, if samples or genes have no alterations, they will still remain in the heatmap, but you can set <code>remove_empty_columns</code> and <code>remove_empty_rows</code> to <code>TRUE</code> to remove them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param)</code></pre></div>
@@ -453,7 +455,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <p>As the normal <code>Heatmap()</code> function, <code>row_order</code> or <code>column_order</code> can be assigned with a vector of orders (either numeric or character). In following example, the order of samples are gathered from cBio as well. You can see the difference for the sample order between ‘memo sort’ and the method used by cBio.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_order =<span class="st"> </span><span class="kw">scan</span>(<span class="kw">paste0</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;ComplexHeatmap&quot;</span>), 
     <span class="st">&quot;/sample_order.txt&quot;</span>), <span class="dt">what =</span> <span class="st">&quot;character&quot;</span>)
-<span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">row_order =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(mat), <span class="dt">column_order =</span> sample_order,
     <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
@@ -467,7 +469,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <p>The oncoPrint has several pre-defined annotations.</p>
 <p>On top and right of the oncoPrint, there are barplots showing the number of different alterations for each gene or for each sample, and on the left of the oncoPrint is a text annotation showing the percent of samples that have alterations for every gene.</p>
 <p>The barplot annotation is implemented by <code>anno_oncoprint_barplot()</code> where you can set the the annotation there. Barplots by default draw for all alteration types, but you can also select subset of alterations to put on barplots by setting in <code>anno_oncoprint_barplot()</code>. See following example:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(
         <span class="dt">column_barplot =</span> <span class="kw">anno_oncoprint_barplot</span>(<span class="st">&quot;MUT&quot;</span>, <span class="dt">border =</span> <span class="ot">TRUE</span>, <span class="co"># only MUT</span>
@@ -481,7 +483,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <pre><code>## All mutation types: MUT, AMP, HOMDEL</code></pre>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-20-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>The percent values and row names are internally constructed as text annotations. You can set <code>show_pct</code> and <code>show_row_names</code> to turn them on or off. <code>pct_side</code> and <code>row_names_side</code> controls the sides where they are put.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
     <span class="dt">pct_side =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">row_names_side =</span> <span class="st">&quot;left&quot;</span>,
@@ -489,7 +491,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <pre><code>## All mutation types: MUT, AMP, HOMDEL</code></pre>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-21-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>The barplot annotation for oncoPrint are essentially normal annotations, you can add more annotations in <code>HeatmapAnnotation()</code> or <code>rowAnnotation()</code> in the normal way:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
     <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">cbar =</span> <span class="kw">anno_oncoprint_barplot</span>(),
@@ -506,7 +508,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <h3><span class="header-section-number">7.2.4</span> oncoPrint as a Heatmap</h3>
 <p><code>oncoPrint()</code> actually returns a <code>Heatmap</code> object, so you can add more heatmaps and annotations horizontally or vertically to visualize more complicated associations.</p>
 <p>Following example adds a heatmap horizontally. Remember you can always add row annotations to the heatmap list.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param) <span class="op">+</span>
 <span class="kw">Heatmap</span>(<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="kw">nrow</span>(mat)<span class="op">*</span><span class="dv">10</span>), <span class="dt">ncol =</span> <span class="dv">10</span>), <span class="dt">name =</span> <span class="st">&quot;expr&quot;</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
@@ -514,7 +516,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list)</code></pre></div>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>or add it vertically:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param) <span class="op">%v%</span>
 <span class="kw">Heatmap</span>(<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="kw">ncol</span>(mat)<span class="op">*</span><span class="dv">10</span>), <span class="dt">nrow =</span> <span class="dv">10</span>), <span class="dt">name =</span> <span class="st">&quot;expr&quot;</span>, <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
@@ -522,7 +524,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list)</code></pre></div>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-24-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>Similar as normal heatmap list, you can split the heatmap list:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht_list =<span class="st"> </span><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param) <span class="op">+</span>
 <span class="kw">Heatmap</span>(<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="kw">nrow</span>(mat)<span class="op">*</span><span class="dv">10</span>), <span class="dt">ncol =</span> <span class="dv">10</span>), <span class="dt">name =</span> <span class="st">&quot;expr&quot;</span>, <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
@@ -530,7 +532,7 @@ heatmap_legend_param =<span class="st"> </span><span class="kw">list</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">draw</span>(ht_list, <span class="dt">row_split =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="kw">nrow</span>(mat), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <p><img src="07-oncoprint_files/figure-html/unnamed-chunk-25-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>When <code>remove_empty_columns</code> or <code>remove_empty_rows</code> is set to <code>TRUE</code>, the number of genes or the samples may not be the original number. If the original matrix has row names and column names. The subset of rows and columns can be get as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht =<span class="st"> </span><span class="kw">oncoPrint</span>(mat, <span class="dt">get_type =</span> get_type_fun,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ht =<span class="st"> </span><span class="kw">oncoPrint</span>(mat,
     <span class="dt">alter_fun =</span> alter_fun, <span class="dt">col =</span> col, 
     <span class="dt">remove_empty_columns =</span> <span class="ot">TRUE</span>, <span class="dt">remove_empty_rows =</span> <span class="ot">TRUE</span>,
     <span class="dt">column_title =</span> column_title, <span class="dt">heatmap_legend_param =</span> heatmap_legend_param)</code></pre></div>
@@ -612,7 +614,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -624,6 +626,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jokergoo/ComplexHeatmap-reference/edit/master/07-oncoprint.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["ComplexHeatmap-reference.epub"],
 "toc": {
@@ -639,7 +645,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

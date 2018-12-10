@@ -1374,22 +1374,9 @@ draw(ha, test = TRUE)
 
 If `annotation_height` is set as pure numbers which is treated as relative ratios for annotations,
 `height` should also be set as an absolute unit and the size of every single annotation is adjusted
-by the ratios. This the only case `annotation_height` can be length of 1.
+by the ratios. 
 
-
-```{r}
-# foo: 2cm, bar: 2cm, pt: 2cm
-ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
-    bar = 1:10,
-    pt = anno_points(1:10),
-    annotation_height = 1, height = unit(6, "cm"))
-```
-
-```{r, echo = FALSE, fig.width = annotation_width(ha), fig.height = annotation_height(ha)}
-draw(ha, test = TRUE)
-```
-
-```{r}
+```{r test}
 # foo: 1cm, bar: 2cm, pt: 3cm
 ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
     bar = 1:10,

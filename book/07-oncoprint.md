@@ -67,6 +67,10 @@ So, if the alterations are encoded as `snv|indel`, you can define the function a
 strsplit(x, "|")[[1]]`. This self-defined function is assigned to the `get_type` argument in
 `oncoPrint()`.
 
+**Since in most cases, the separators are only single characters, If the separators are
+in `;:,|`, `oncoPrint()` automatically spit the alteration strings so that you don't need
+to explicitely specify `get_type` in `oncoPrint()` function.** 
+
 For one gene in one sample, since different alteration types may be drawn into one same grid in the
 heatmap, we need to define how to add the graphics by providing a list of self-defined functions to
 `alter_fun` argument. Here if the graphics have no transparency, order of adding graphics
@@ -85,7 +89,7 @@ correspond to alteration types. It is used to generate the barplots and the lege
 
 ```r
 col = c(snv = "red", indel = "blue")
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = list(
 		snv = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.9, 
 			gp = gpar(fill = col["snv"], col = NA)),
@@ -152,7 +156,7 @@ oncoPrint(mat_list,
 
 <img src="07-oncoprint_files/figure-epub3/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-In following parts of this chapter, we still use `mat` and `get_type` to specify the input data.
+In following parts of this chapter, we still use `mat` to specify the input data.
 
 ### Define the alter_fun() {#define-the-alter-fun}
 
@@ -172,7 +176,7 @@ Let's assume in a grid there is only snv event, then `v` for this grid is:
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = function(x, y, w, h, v) {
 		if(v["snv"]) grid.rect(x, y, w*0.9, h*0.9, # v["snv"] is a logical value
 			gp = gpar(fill = col["snv"], col = NA))
@@ -192,7 +196,7 @@ the blue rectangles can have different height in different grid.
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
     alter_fun = function(x, y, w, h, v) {
 		n = sum(v)  # how many alterations for current gene in current sample
 		h = h*0.9
@@ -217,7 +221,7 @@ color is changed to light green with borders.
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = list(
 		background = function(x, y, w, h) grid.rect(x, y, w, h, 
 			gp = gpar(fill = "#00FF0020")),
@@ -238,7 +242,7 @@ Or just remove the background (don't set it to `NULL`):
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = list(
 		background = function(...) NULL,
 		snv = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.9, 
@@ -261,7 +265,7 @@ Column names are by default not drawn in the plot. It is can be turned on by set
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = list(
 		snv = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.9, 
 			gp = gpar(fill = col["snv"], col = NA)),
@@ -359,7 +363,7 @@ as varaibles because they are used multiple times in following sections.
 column_title = "OncoPrint for TCGA Lung Adenocarcinoma, genes in Ras Raf MEK JNK signalling"
 heatmap_legend_param = list(title = "Alternations", at = c("HOMDEL", "AMP", "MUT"), 
 		labels = c("Deep deletion", "Amplification", "Mutation"))
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
 ```
@@ -382,7 +386,7 @@ By default, if samples or genes have no alterations, they will still remain in t
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param)
@@ -412,7 +416,7 @@ used by cBio.
 ```r
 sample_order = scan(paste0(system.file("extdata", package = "ComplexHeatmap"), 
     "/sample_order.txt"), what = "character")
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	row_order = 1:nrow(mat), column_order = sample_order,
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
@@ -443,7 +447,7 @@ example:
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	top_annotation = HeatmapAnnotation(
 		column_barplot = anno_oncoprint_barplot("MUT", border = TRUE, # only MUT
@@ -467,7 +471,7 @@ The percent values and row names are internally constructed as text annotations.
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	pct_side = "right", row_names_side = "left",
@@ -485,7 +489,7 @@ The barplot annotation for oncoPrint are essentially normal annotations, you can
 
 
 ```r
-oncoPrint(mat, get_type = get_type_fun,
+oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	top_annotation = HeatmapAnnotation(cbar = anno_oncoprint_barplot(),
@@ -516,7 +520,7 @@ heatmap list.
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = get_type_fun,
+ht_list = oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
@@ -536,7 +540,7 @@ or add it vertically:
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = get_type_fun,
+ht_list = oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) %v%
 Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, "cm"))
@@ -556,7 +560,7 @@ Similar as normal heatmap list, you can split the heatmap list:
 
 
 ```r
-ht_list = oncoPrint(mat, get_type = get_type_fun,
+ht_list = oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param) +
 Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "cm"))
@@ -578,7 +582,7 @@ rows and columns can be get as follows:
 
 
 ```r
-ht = oncoPrint(mat, get_type = get_type_fun,
+ht = oncoPrint(mat,
 	alter_fun = alter_fun, col = col, 
 	remove_empty_columns = TRUE, remove_empty_rows = TRUE,
 	column_title = column_title, heatmap_legend_param = heatmap_legend_param)

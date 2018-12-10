@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ComplexHeatmap Complete Reference</title>
+  <title>Chapter 3 Heatmap Annotations | ComplexHeatmap Complete Reference</title>
   <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="ComplexHeatmap Complete Reference" />
+  <meta property="og:title" content="Chapter 3 Heatmap Annotations | ComplexHeatmap Complete Reference />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-reference/book" />
   <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jokergoo/ComplexHeatmap-reference" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ComplexHeatmap Complete Reference" />
+  <meta name="twitter:title" content="Chapter 3 Heatmap Annotations | ComplexHeatmap Complete Reference />
   
   <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -35,6 +35,7 @@
 <link rel="next" href="a-list-of-heatmaps.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -879,19 +880,13 @@ ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cla
     <span class="dt">pt =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
     <span class="dt">annotation_height =</span> <span class="kw">unit</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
 <p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-164-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>If <code>annotation_height</code> is set as pure numbers which is treated as relative ratios for annotations, <code>height</code> should also be set as an absolute unit and the size of every single annotation is adjusted by the ratios. This the only case <code>annotation_height</code> can be length of 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># foo: 2cm, bar: 2cm, pt: 2cm</span>
-ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">1</span>), 
-    <span class="dt">bar =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
-    <span class="dt">pt =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
-    <span class="dt">annotation_height =</span> <span class="dv">1</span>, <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-166-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>If <code>annotation_height</code> is set as pure numbers which is treated as relative ratios for annotations, <code>height</code> should also be set as an absolute unit and the size of every single annotation is adjusted by the ratios.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># foo: 1cm, bar: 2cm, pt: 3cm</span>
 ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">1</span>), 
     <span class="dt">bar =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
     <span class="dt">pt =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
     <span class="dt">annotation_height =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-168-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-165-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><code>annotation_height</code> can be mixed with relative units (in <code>null</code> unit) and absolute units.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># foo: 1.5cm, bar: 1.5cm, pt: 3cm</span>
 ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">1</span>), 
@@ -899,20 +894,20 @@ ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cla
     <span class="dt">pt =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
     <span class="dt">annotation_height =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="st">&quot;null&quot;</span>, <span class="st">&quot;null&quot;</span>, <span class="st">&quot;cm&quot;</span>)), <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>)
 )</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-170-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-167-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># foo: 2cm, bar: 1cm, pt: 3cm</span>
 ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">1</span>), 
     <span class="dt">bar =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
     <span class="dt">pt =</span> <span class="kw">anno_points</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>),
     <span class="dt">annotation_height =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="st">&quot;cm&quot;</span>, <span class="st">&quot;null&quot;</span>, <span class="st">&quot;cm&quot;</span>)), <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>)
 )</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-172-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-169-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>If there are only simple annotations, simply setting <code>height</code> won’t change the height.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># foo: 1cm, bar: 5mm</span>
 ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">cbind</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">1</span>), 
     <span class="dt">bar =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
     <span class="dt">height =</span> <span class="kw">unit</span>(<span class="dv">6</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-174-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-171-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="heatmap-annotation-utility-function" class="section level2">
 <h2><span class="header-section-number">3.18</span> Utility functions</h2>
@@ -940,12 +935,12 @@ ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cl
 ha =<span class="st"> </span><span class="kw">c</span>(ha1, ha2)
 <span class="kw">names</span>(ha)</code></pre></div>
 <pre><code>## [1] &quot;foo&quot; &quot;bar&quot; &quot;pt&quot;  &quot;FOO&quot; &quot;BAR&quot; &quot;PT&quot;</code></pre>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-178-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-175-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><code>HeatmapAnnoation</code> object sometimes is subsettable. The row index corresponds to observations in the annotation and column index corresponds to the annotations. If the annotations are all simple annotations or the complex annotation created by <code>anno_*()</code> functions in <strong>ComplexHeatmap</strong> package, the <code>HeatmapAnnotation</code> object is always subsettable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha_subset =<span class="st"> </span>ha[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="kw">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;PT&quot;</span>)]
 ha_subset</code></pre></div>
 <pre><code>## A HeatmapAnnotation object with 2 annotations
-##   name: heatmap_annotation_92 
+##   name: heatmap_annotation_91 
 ##   position: column 
 ##   items: 5 
 ##   width: 1npc 
@@ -957,7 +952,7 @@ ha_subset</code></pre></div>
 ##  name   annotation_type color_mapping height
 ##   foo continuous vector        random    5mm
 ##    PT     anno_points()                 10mm</code></pre>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-180-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-177-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="implement-new-annotation-functions" class="section level2">
 <h2><span class="header-section-number">3.19</span> Implement new annotation functions</h2>
@@ -996,7 +991,7 @@ anno1</code></pre></div>
 <span class="kw">Heatmap</span>(m, <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> anno1))
 <span class="kw">Heatmap</span>(m, <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> anno1), 
     <span class="dt">column_split =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="dt">each =</span> <span class="dv">5</span>))</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-183-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-180-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>The second way is to put all data variables inside the function and no need to import other variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># code only for demonstration</span>
 anno2 =<span class="st"> </span><span class="kw">AnnotationFunction</span>(
@@ -1051,7 +1046,7 @@ co =<span class="st"> </span><span class="kw">column_order</span>(ht)
     <span class="kw">grid.points</span>(<span class="kw">seq_along</span>(od), x[od])
     <span class="kw">popViewport</span>()
 })</code></pre></div>
-<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-187-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="03-heatmap_annotations_files/figure-html/unnamed-chunk-184-1.png" width="480" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -1081,7 +1076,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -1093,6 +1088,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jokergoo/ComplexHeatmap-reference/edit/master/03-heatmap_annotations.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["ComplexHeatmap-reference.epub"],
 "toc": {
@@ -1108,7 +1107,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ComplexHeatmap Complete Reference</title>
   <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content="ComplexHeatmap Complete Reference" />
   <meta property="og:type" content="book" />
@@ -35,6 +35,7 @@
 <link rel="next" href="introduction.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -237,12 +238,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">ComplexHeatmap Complete Reference</h1>
-<h4 class="author"><em>Zuguang Gu</em></h4>
-<h4 class="date"><em>last revised on 2018-11-23</em></h4>
+<p class="author"><em>Zuguang Gu</em></p>
+<p class="date"><em>last revised on 2018-12-10</em></p>
 </div>
 <div id="about" class="section level1 unnumbered">
 <h1>About</h1>
-<p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.1.</p>
+<p>This is the documentation of the <a href="http://bioconductor.org/packages/ComplexHeatmap/"><strong>ComplexHeatmap</strong></a> package. Examples in the book are generated under version 1.99.4.</p>
 <p><strong>Please note, this documentation is not completely compatible with older versions (1.<em>.</em>, before Oct, 2018), but the major functionality keeps the same.</strong></p>
 <p>If you use <strong>ComplexHeatmap</strong> in your publications, I am appreciated if you can cite:</p>
 <p>Gu, Z. (2016) Complex heatmaps reveal patterns and correlations in multidimensional genomic data. DOI: <a href="https://doi.org/10.1093/bioinformatics/btw313">10.1093/bioinformatics/btw313</a></p>
@@ -275,7 +276,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -287,6 +288,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/jokergoo/ComplexHeatmap-reference/edit/master/index.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["ComplexHeatmap-reference.epub"],
 "toc": {
@@ -302,7 +307,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
     script.src = src;

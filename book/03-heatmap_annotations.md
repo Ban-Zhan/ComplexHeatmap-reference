@@ -1377,19 +1377,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 
 If `annotation_height` is set as pure numbers which is treated as relative ratios for annotations,
 `height` should also be set as an absolute unit and the size of every single annotation is adjusted
-by the ratios. This the only case `annotation_height` can be length of 1.
-
-
-
-```r
-# foo: 2cm, bar: 2cm, pt: 2cm
-ha = HeatmapAnnotation(foo = cbind(1:10, 10:1), 
-    bar = 1:10,
-    pt = anno_points(1:10),
-    annotation_height = 1, height = unit(6, "cm"))
-```
-
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-166-1.png" style="display: block; margin: auto;" />
+by the ratios. 
 
 
 ```r
@@ -1400,7 +1388,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
     annotation_height = 1:3, height = unit(6, "cm"))
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-168-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-165-1.png" style="display: block; margin: auto;" />
 
 `annotation_height` can be mixed with relative units (in `null` unit) and absolute units.
 
@@ -1415,7 +1403,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 )
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-170-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-167-1.png" style="display: block; margin: auto;" />
 
 
 ```r
@@ -1427,7 +1415,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
 )
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-172-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-169-1.png" style="display: block; margin: auto;" />
 
 If there are only simple annotations, simply setting `height` won't change the height.
 
@@ -1439,7 +1427,7 @@ ha = HeatmapAnnotation(foo = cbind(1:10, 10:1),
     height = unit(6, "cm"))
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-174-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-171-1.png" style="display: block; margin: auto;" />
 
 ## Utility functions {#heatmap-annotation-utility-function}
 
@@ -1504,7 +1492,7 @@ names(ha)
 ## [1] "foo" "bar" "pt"  "FOO" "BAR" "PT"
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-178-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-175-1.png" style="display: block; margin: auto;" />
 
 `HeatmapAnnoation` object sometimes is subsettable. The row index corresponds to observations in 
 the annotation and column index corresponds to the annotations. If the annotations are all simple
@@ -1519,7 +1507,7 @@ ha_subset
 
 ```
 ## A HeatmapAnnotation object with 2 annotations
-##   name: heatmap_annotation_92 
+##   name: heatmap_annotation_91 
 ##   position: column 
 ##   items: 5 
 ##   width: 1npc 
@@ -1533,7 +1521,7 @@ ha_subset
 ##    PT     anno_points()                 10mm
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-180-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-177-1.png" style="display: block; margin: auto;" />
 
 ## Implement new annotation functions {#implement-new-annotation-functions}
 
@@ -1615,7 +1603,7 @@ Heatmap(m, top_annotation = HeatmapAnnotation(foo = anno1),
     column_split = rep(c("A", "B"), each = 5))
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-183-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-180-1.png" style="display: block; margin: auto;" />
 
 The second way is to put all data variables inside the function and no need to import other variables.
 
@@ -1699,4 +1687,4 @@ decorate_annotation("foo", slice = 2, {
 })
 ```
 
-<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-187-1.png" style="display: block; margin: auto;" />
+<img src="03-heatmap_annotations_files/figure-epub3/unnamed-chunk-184-1.png" style="display: block; margin: auto;" />
