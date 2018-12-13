@@ -1123,40 +1123,6 @@ ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.n
 Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha)
 ```
 
-`anno_mark()` might not work well when heatmap is split and there are many labels correspond to a
-small slice. A simple workaround is to set `extend` argument to increase the regions for the labels.
-
-```{r, eval = FALSE}
-ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.name[1:10]))
-Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha,
-    split = ifelse(1:100 %in% c(1:4, 20, 60, 97:100), "a", "b"))
-
-ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.name[1:10],
-    extend = unit(c(3, 0), "cm")))
-Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha,
-    split = ifelse(1:100 %in% c(1:4, 20, 60, 97:100), "a", "b"))
-```
-
-```{r, echo = FALSE, fig.width = 10}
-pushViewport(viewport(x = 0, width = 0.5, just = "left"))
-ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.name[1:10]))
-draw(Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha,
-    split = ifelse(1:100 %in% c(1:4, 20, 60, 97:100), "a", "b")), newpage = FALSE,
-    column_title = "no extend")
-popViewport()
-pushViewport(viewport(x = 0.5, width = 0.5, just = "left"))
-ha = rowAnnotation(foo = anno_mark(at = c(1:4, 20, 60, 97:100), labels = month.name[1:10],
-    extend = unit(c(3, 0), "cm")))
-draw(Heatmap(m, name = "mat", cluster_rows = FALSE, right_annotation = ha,
-    split = ifelse(1:100 %in% c(1:4, 20, 60, 97:100), "a", "b")), newpage = FALSE,
-    column_title = "extend = unit(c(3, 0), 'cm'")
-popViewport()
-```
-
-Setting `extend` will not completely solve the problem of positioning of labels. Labels from the
-second heatmap slice still have the chance to overlap to the first slice. I will try to solve it in
-future versions.
-
 ## Summary annotation {#summary-annotation}
 
 There is one special annotation `anno_summary()` which only works with one-column heatmap or one-row
@@ -1217,6 +1183,50 @@ lgd_boxplot = Legend(labels = c("group a", "group b"), title = "group",
 draw(ht_list, row_split = split, ht_gap = unit(5, "mm"), 
     heatmap_legend_list = list(lgd_boxplot))
 ```
+
+## Zoom annotation {#zoom-annotation}
+
+It is very common scenario that we want to annotate subsets of rows/columns in the heatmap.
+`anno_zoom()` helps to create plotting regions that correspond to the original subsets of rows/columns
+in the heatmap. Since the height/width are usually different from that from the orignal subsets in the heatmap,
+these plotting regions created by `anno_zoom()` can be thought as "zoomings" of the original heatmap.
+
+Let's see following example where we make boxplot for each row group.
+
+```{r}
+set.seed(123)
+m = matrix(rnorm(100*10), nrow = 100)
+subgroup = sample(letters[1:3], 100, replace = TRUE, prob = c(1, 5, 10))
+rg = range(m)
+panel_fun = function(index, nm) {
+    pushViewport(viewport(xscale = rg, yscale = c(0, 2)))
+    grid.rect()
+    grid.xaxis(gp = gpar(fontsize = 8))
+    grid.boxplot(m[index, ], pos = 1, direction = "horizontal")
+    popViewport()
+}
+anno = anno_zoom(align_to = subgroup, which = "row", panel_fun = panel_fun, 
+    size = unit(2, "cm"), gap = unit(1, "cm"), width = unit(4, "cm"))
+Heatmap(m, name = "mat", right_annotation = rowAnnotation(foo = anno), row_split = subgroup)
+```
+
+The important arguments for `anno_zoom()` are:
+
+1. `align_to`: It defines how the plotting regions (or the boxes) correspond to the rows or the columns in the heatmap. If the
+   value is a list of indices, each box corresponds to the rows or columns with indices in one
+   vector in the list. If the value is a categorical variable (e.g. a factor or a character vector)
+   that has the same length as the rows or columns in the heatmap, each box corresponds to the
+   rows/columns in each level in the categorical variable.
+2. `panel_fun`: A self-defined function that defines how to draw graphics in the box. The function
+   must have a `index` argument which is the indices for the rows/columns that the box corresponds
+   to. It can have a second argument `nm` which is the "name" of the selected part in the heatmap.
+   The corresponding value for `nm` comes from `align_to` if it is specified as a categorical
+   variable or a list with names.
+3. `size`: The size of boxes. It can be pure numeric that they are treated as relative fractions of
+   the total height/width of the heatmap. The value of `size` can also be absolute units.
+4. `gap`: Gaps between boxes. It should be a `unit` object.
+
+`anno_zoom()` also works for column annotations.
 
 ## Multiple annotations {#multiple-annotations}
 
