@@ -2,7 +2,7 @@
 --- 
 title: "ComplexHeatmap Complete Reference"
 author: "Zuguang Gu"
-date: "last revised on 2018-12-13"
+date: "last revised on 2018-12-30"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -19,7 +19,7 @@ description: "Complex heatmaps are efficient to visualize associations between d
 
 This is the documentation of the
 [**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
-are generated under version 1.99.4.
+are generated under version 1.99.5.
 
 **Please note, this documentation is not completely compatible with older versions (1.*.*, before
 Oct, 2018), but the major functionality keeps the same.**
