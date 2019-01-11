@@ -267,7 +267,7 @@ If the first two heatmaps all have annotations, since the size of simple annotat
 the size of complex annotations will be adjusted to make the total heights of the two heatmap annotations
 the same.
 
-```{r, fig.height = 9}
+```{r, fig.width = 9}
 ha1 = HeatmapAnnotation(foo1 = 1:10, bar1 = anno_points(1:10), 
     annotation_name_side = "left")
 ha2 = HeatmapAnnotation(bar2 = anno_barplot(1:10))
@@ -280,7 +280,7 @@ draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 
 Similarly, if the first heatmap conly contains simple annotatins, dendrogram will be adjusted.
 
-```{r, fig.height = 9}
+```{r, fig.width = 9}
 ha1 = HeatmapAnnotation(foo1 = 1:10, annotation_name_side = "left")
 ha2 = HeatmapAnnotation(bar2 = anno_barplot(1:10))
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, top_annotation = ha1)
@@ -293,7 +293,7 @@ draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 If the second heatmap has no bottom annotation, column names for the second heamtap are adjusted
 to be put directly below the heatmap body.
 
-```{r, fig.height = 9}
+```{r, fig.width = 9}
 ha1 = HeatmapAnnotation(foo1 = 1:10, bar1 = anno_points(1:10), annotation_name_side = "left")
 ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, bottom_annotation = ha1)
 ht2 = Heatmap(mat2, name = "runif", col = col_runif)

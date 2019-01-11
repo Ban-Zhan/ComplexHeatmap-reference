@@ -791,3 +791,54 @@ draw(ht_list, ht_gap = unit(7, "mm"), row_km = 2, annotation_legend_list = lgd_l
 ```
 
 <img src="05-legends_files/figure-epub3/unnamed-chunk-107-1.png" style="display: block; margin: auto;" />
+
+## The side of legends
+
+By default, the heatmap legends and annotation legends are put on the right of the plot.
+The side relative to the heatmaps of the two types of legends can be controlled by 
+`heatmap_legend_side` and `annotation_legend_side` arguments in `draw()` function.
+The values that can be set for the two arguments are `left`, `right`, `bottom` and `top`.
+
+
+```r
+m = matrix(rnorm(100), 10)
+ha1 = HeatmapAnnotation(foo1 = runif(10), bar1 = sample(c("f", "m"), 10, replace = TRUE))
+ha2 = HeatmapAnnotation(foo2 = runif(10), bar2 = sample(c("f", "m"), 10, replace = TRUE))
+ht_list = Heatmap(m, name = "mat1", top_annotation = ha1) +
+    rowAnnotation(sth = runif(10)) +
+    Heatmap(m, name = "mat2", top_annotation = ha2)
+draw(ht_list, heatmap_legend_side = "left", annotation_legend_side = "bottom")
+```
+
+<img src="05-legends_files/figure-epub3/unnamed-chunk-108-1.png" style="display: block; margin: auto;" />
+
+When the legends are put at the bottom or on the top, the legends are arranged horizontally.
+We might also want to set every single legend as horizontal legend, this needs to be set
+via the `heatmap_legend_param` and `annotation_legend_param` arguments in `Heatmap()` and `HeatmapAnnotation()`
+functions:
+
+
+
+```r
+ha1 = HeatmapAnnotation(foo1 = runif(10), bar1 = sample(c("f", "m"), 10, replace = TRUE),
+    annotation_legend_param = list(
+        foo1 = list(direction = "horizontal"),
+        bar1 = list(nrow = 1)))
+ha2 = HeatmapAnnotation(foo2 = runif(10), bar2 = sample(c("f", "m"), 10, replace = TRUE),
+    annotation_legend_param = list(
+        foo2 = list(direction = "horizontal"),
+        bar2 = list(nrow = 1)))
+ht_list = Heatmap(m, name = "mat1", top_annotation = ha1, 
+        heatmap_legend_param = list(direction = "horizontal")) +
+    rowAnnotation(sth = runif(10), 
+        annotation_legend_param = list(sth = list(direction = "horizontal"))) +
+    Heatmap(m, name = "mat2", top_annotation = ha2,
+        heatmap_legend_param = list(direction = "horizontal"))
+draw(ht_list, merge_legend = TRUE, heatmap_legend_side = "bottom", 
+    annotation_legend_side = "bottom")
+```
+
+<img src="05-legends_files/figure-epub3/unnamed-chunk-109-1.png" style="display: block; margin: auto;" />
+
+
+
