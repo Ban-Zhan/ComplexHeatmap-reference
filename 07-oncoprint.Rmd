@@ -225,17 +225,17 @@ example, we may have alteration types of "intronic snv", "exonic snv", "intronic
 indel". Actually we can classify them into two classes where "snv/indel" is more important and they
 belong to the primary class, and "intronic/exonic" is less important and they belong to the
 secondary class. Reflecting on the oncoPrint, for the "intronic snv" and "exonic snv", we want to
-use similar graphics because they are snvs and we want them visually similar, while we add
+use similar graphics because they are snvs and we want them visually similar, and we add
 slightly different symbols to represent "intronic" and "exonic", E.g. we can use red rectangle for
 snv and above the red rectangles, we use dots to represent "intronic" and cross lines to represent
-"exonic". On the barplots which summarize the number of different alteration types, we don't want to
+"exonic". On the barplot annotations which summarize the number of different alteration types, we don't want to
 separate "intronic snv" and "exonic snv" while we prefer to simply get the total number of snv to get
 rid of too many categories in the barplots.
 
 Let's demonstrate this scenario by following simulated data. To simplify the example, we assume for
 a single gene in a single sample, it only has either snv or indel and it can only be either intronic
-or exonic. If there is no "intronic" or "exonic" attached for the gene, it basically means we don't
-have this gene-related information (maybe it is a intergenic snv/indel).
+or exonic. If there is no "intronic" or "exonic" attached to the gene, it basically means we don't
+have this gene-related information (maybe it is an intergenic snv/indel).
 
 ```{r}
 set.seed(123)
@@ -281,13 +281,14 @@ secondary class (`intronic` and `exonic`), we only use simple symbols (dots for 
 crossed diagonal lines for `exonic`). Since there is no color corresponding to `intronic` and
 `exonic`, we don't need to define colors for these two types, and on the barplot annotation for
 genes and samples, only `snv` and `indel` are visualized (so the height for `snv` in the barplot
-means the number of intronic snv plus exonic snv).
+corresponds the number of intronic snv plus exonic snv).
 
 In following code which draws the oncoPrint, we add another legend for the `intronic`/`exonic`
 types. note a `pch` value of 16 corresponds to a dot and a value of 28 corresponds to crossed
 diagonal lines (see the last plot in Section \@ref(discrete-legends) for `pch` 26, 27, 28).
 
 ```{r, fig.width = 5.5}
+# we only define color for snv and indel, so barplot annotations only show snv and indel
 ht = oncoPrint(m, alter_fun = alter_fun, col = c(snv = "red", indel = "blue"))
 draw(ht, heatmap_legend_list = list(
 	Legend(labels = c("intronic", "exonic"), type = "points", pch = c(16, 28))

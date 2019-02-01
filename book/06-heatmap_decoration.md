@@ -53,7 +53,7 @@ list_components()
 ## [37] "heatmap_legend"               "annotation_legend"
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/access_components-1.png" width="960" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-epub3/access_components-1.png" style="display: block; margin: auto;" />
 
 Basically the red regions in above plot can be revisited by `decorate_*()` functions.
 
@@ -115,7 +115,7 @@ decorate_annotation("points", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/components-1.png" width="960" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-epub3/components-1.png" style="display: block; margin: auto;" />
 
 For annotations which are created by `anno_points()`, `anno_barplot()` and `anno_boxplot()`,
 "native" unit can be used in the decoration code.
@@ -166,7 +166,7 @@ decorate_annotation("barplot", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-epub3/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ### Add titles for row annotations {#add-titles-for-row-annotations}
 
@@ -190,7 +190,7 @@ decorate_heatmap_body("mat", {
 })
 ```
 
-<img src="06-heatmap_decoration_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;" />
+<img src="06-heatmap_decoration_files/figure-epub3/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 This is basically the way we use in Section \@ref(stacked-summary-plot).
 

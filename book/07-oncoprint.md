@@ -102,7 +102,7 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 You can see the order in barplots also correspond to the order defined in `alter_fun`.
 
@@ -154,7 +154,7 @@ oncoPrint(mat_list,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-7-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
 In following parts of this chapter, we still use `mat` to specify the input data.
 
@@ -189,7 +189,7 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-9-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
 If `alter_fun` is set as a single function, customization can be more flexible. In following example,
 the blue rectangles can have different height in different grid.
@@ -210,10 +210,10 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-10-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 In some cases, you might need to define `alter_fun` for many alteration types. If you are not sure about
-the visual affect of your `alter_fun`, you can use `test_alter_fun()` to test your `alter_fun`. In following
+the visual effect of your `alter_fun`, you can use `test_alter_fun()` to test your `alter_fun`. In following
 example, we defined seven alteration functions:
 
 
@@ -243,7 +243,9 @@ test_alter_fun(alter_fun)
 ##   mut1, mut2, mut3, mut4, mut5, mut6, mut7
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-11-1.png" width="288" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+
+For the combination of alteration types, `test_alter_fun()` randomly samples some of them.
 
 `test_alter_fun()` works both for `alter_fun` as a list and as a single function.
 
@@ -271,7 +273,7 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-12-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 Or just remove the background (don't set it to `NULL`):
 
@@ -291,21 +293,31 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-13-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
 
 ### Complex alteration types {#complex-alteration-types}
 
-In the examples we have shown till now, we define `col` for every alteration type so that barplots
-can be made for all alteration types for all genes and all samples. However, when there
-are many more alteration types, defining colors for all of them actually is not realistic (assuming
-you have ten different alteration types). On the other hand, you might have a secondary classes of
-alterations that you only want to visualize in the oncoPrint while not to separate them
-in the barplot annotations.
+It is very easy to have many more different alteration types when integrating information from
+multiple analysis results. It is sometimes difficult to design graphics and assign different colors
+for them (e.g. [see plot in this
+link](https://user-images.githubusercontent.com/13846735/51974483-fab20b00-24ba-11e9-91d3-3358e5f1017e.png).
+On the other hand, in these alteration types, there are primary classes of alteration types which is
+more important to distinguish, while there are secondary classes which is less important. For
+example, we may have alteration types of "intronic snv", "exonic snv", "intronic indel" and "exonic
+indel". Actually we can classify them into two classes where "snv/indel" is more important and they
+belong to the primary class, and "intronic/exonic" is less important and they belong to the
+secondary class. Reflecting on the oncoPrint, for the "intronic snv" and "exonic snv", we want to
+use similar graphics because they are snvs and we want them visually similar, and we add
+slightly different symbols to represent "intronic" and "exonic", E.g. we can use red rectangle for
+snv and above the red rectangles, we use dots to represent "intronic" and cross lines to represent
+"exonic". On the barplot annotations which summarize the number of different alteration types, we don't want to
+separate "intronic snv" and "exonic snv" while we prefer to simply get the total number of snv to get
+rid of too many categories in the barplots.
 
-Consider following example where there are intronic/exion snvs and indels. The different combinations
-of alterations are `snv`, `intronic snv`, `exonic snv`, `indel`, `intronic indel` and `exonic indel`.
-Definig `alter_fun` and colors for all of these six alteration types 
-
+Let's demonstrate this scenario by following simulated data. To simplify the example, we assume for
+a single gene in a single sample, it only has either snv or indel and it can only be either intronic
+or exonic. If there is no "intronic" or "exonic" attached to the gene, it basically means we don't
+have this gene-related information (maybe it is an intergenic snv/indel).
 
 
 ```r
@@ -334,6 +346,9 @@ m[1:4, 1:4]
 ## g4 "snv" "indel;exonic" "snv"          ""
 ```
 
+Now in `m`, there are four different alteration types: `snv`, `indel`, `intronic` and `exonic`. Next
+we define `alter_fun` for the four alterations.
+
 
 ```r
 alter_fun = list(
@@ -352,8 +367,21 @@ alter_fun = list(
 )
 ```
 
+For the alteration types in the primary class (`snv` and `indel`), we use colorred rectangles to
+represent them because the rectangles are visually obvious, while for the alteration types in the
+secondary class (`intronic` and `exonic`), we only use simple symbols (dots for `intronic` and
+crossed diagonal lines for `exonic`). Since there is no color corresponding to `intronic` and
+`exonic`, we don't need to define colors for these two types, and on the barplot annotation for
+genes and samples, only `snv` and `indel` are visualized (so the height for `snv` in the barplot
+corresponds the number of intronic snv plus exonic snv).
+
+In following code which draws the oncoPrint, we add another legend for the `intronic`/`exonic`
+types. note a `pch` value of 16 corresponds to a dot and a value of 28 corresponds to crossed
+diagonal lines (see the last plot in Section \@ref(discrete-legends) for `pch` 26, 27, 28).
+
 
 ```r
+# we only define color for snv and indel, so barplot annotations only show snv and indel
 ht = oncoPrint(m, alter_fun = alter_fun, col = c(snv = "red", indel = "blue"))
 ```
 
@@ -367,8 +395,7 @@ draw(ht, heatmap_legend_list = list(
 ))
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-16-1.png" width="528" style="display: block; margin: auto;" />
-
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 ### Other heatmap-related settings {#other-heatmap-related-settings}
 
@@ -389,7 +416,7 @@ oncoPrint(mat,
 ## All mutation types: snv, indel
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-17-1.png" width="384" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 OncoPrints essentially are heatmaps, thus, there are many arguments set in `Heatmap()` can also be
 set in `oncoPrint()`. In following sections, we use a real-world dataset to demonstrate more use of
@@ -483,7 +510,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-21-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 As you see, the genes and samples are reordered automatically. Rows are sorted based on the frequency
 of the alterations in all samples and columns are reordered to visualize the mutual exclusivity between
@@ -507,7 +534,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-22-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
 
 The number of rows and columns may be reduced after empty rows and columns are removed. All the
 components of the oncoPrint are adjusted accordingly. When the oncoPrint is concatenated with other
@@ -538,7 +565,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-23-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
 Again, `row_order` and `column_order` are automatically adjusted if `remove_empty_rows` and 
 `remove_empty_columns` are set to `TRUE`.
@@ -575,7 +602,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-24-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
 
 The percent values and row names are internally constructed as text annotations. You can set `show_pct` and
 `show_row_names` to turn them on or off. `pct_side` and `row_names_side` controls the sides where they are put.
@@ -593,7 +620,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-25-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
 The barplot annotation for oncoPrint are essentially normal annotations, you can add more annotations in
 `HeatmapAnnotation()` or `rowAnnotation()` in the normal way:
@@ -615,7 +642,7 @@ oncoPrint(mat,
 ## All mutation types: MUT, AMP, HOMDEL
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
 
 As you see, the percent annotation, the row name annotation and the oncoPrint
 annotation are appended to the user-specified annotation by default. Also annotations
@@ -645,7 +672,7 @@ Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "
 draw(ht_list)
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-27-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
 
 or add it vertically:
 
@@ -665,7 +692,7 @@ Heatmap(matrix(rnorm(ncol(mat)*10), nrow = 10), name = "expr", height = unit(4, 
 draw(ht_list)
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-28-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
 
 Similar as normal heatmap list, you can split the heatmap list:
 
@@ -685,7 +712,7 @@ Heatmap(matrix(rnorm(nrow(mat)*10), ncol = 10), name = "expr", width = unit(4, "
 draw(ht_list, row_split = sample(c("a", "b"), nrow(mat), replace = TRUE))
 ```
 
-<img src="07-oncoprint_files/figure-html/unnamed-chunk-29-1.png" width="1152" style="display: block; margin: auto;" />
+<img src="07-oncoprint_files/figure-epub3/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
 
 When `remove_empty_columns` or `remove_empty_rows` is set to `TRUE`, the number of genes or the samples
 may not be the original number. If the original matrix has row names and column names. The subset of 
