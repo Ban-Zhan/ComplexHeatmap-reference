@@ -153,6 +153,32 @@ oncoPrint(mat,
     }, col = col)
 ```
 
+In some cases, you might need to define `alter_fun` for many alteration types. If you are not sure about
+the visual affect of your `alter_fun`, you can use `test_alter_fun()` to test your `alter_fun`. In following
+example, we defined seven alteration functions:
+
+```{r, fig.width = 3, fig.height = 3}
+alter_fun = list(
+	mut1 = function(x, y, w, h) 
+		grid.rect(x, y, w, h, gp = gpar(fill = "red", col = NA)),
+	mut2 = function(x, y, w, h) 
+		grid.rect(x, y, w, h, gp = gpar(fill = "blue", col = NA)),
+	mut3 = function(x, y, w, h) 
+		grid.rect(x, y, w, h, gp = gpar(fill = "yellow", col = NA)),
+	mut4 = function(x, y, w, h) 
+		grid.rect(x, y, w, h, gp = gpar(fill = "purple", col = NA)),
+	mut5 = function(x, y, w, h) 
+		grid.rect(x, y, w, h, gp = gpar(fill = NA, lwd = 2)),
+	mut6 = function(x, y, w, h) 
+		grid.points(x, y, pch = 16),
+	mut7 = function(x, y, w, h) 
+		grid.segments(x - w*0.5, y - h*0.5, x + w*0.5, y + h*0.5, gp = gpar(lwd = 2))
+)
+test_alter_fun(alter_fun)
+```
+
+`test_alter_fun()` works both for `alter_fun` as a list and as a single function.
+
 ### Background {#oncoprint-background}
 
 If `alter_fun` is specified as a list, the order of the elements controls the order of adding
@@ -183,6 +209,71 @@ oncoPrint(mat,
 		indel = function(x, y, w, h) grid.rect(x, y, w*0.9, h*0.4, 
 			gp = gpar(fill = col["indel"], col = NA))
 	), col = col)
+```
+
+### Complex alteration types {#complex-alteration-types}
+
+In the examples we have shown till now, we define `col` for every alteration type so that barplots
+can be made for all alteration types for all genes and all samples. However, when there are many
+more alteration types, defining colors for all of them actually is not realistic (assuming you have
+ten different alteration types). On the other hand, you might have a secondary classes of
+alterations that you only want to visualize in the oncoPrint while not to separate by them in the
+barplot annotations.
+
+Consider following example where there are intronic/exion snvs and indels (let's assume one gene can
+only have either snvs or indels). The different combinations of alterations are `snv`, `intronic
+snv`, `exonic snv`, `indel`, `intronic indel` and `exonic indel`.
+
+```{r}
+set.seed(123)
+x1 = sample(c("", "snv"), 100, replace = TRUE, prob = c(8, 2))
+x2 = sample(c("", "indel"), 100, replace = TRUE, prob = c(8, 2))
+x2[x1 == "snv"] = ""
+x3 = sample(c("", "intronic"), 100, replace = TRUE, prob = c(5, 5))
+x4 = sample(c("", "exonic"), 100, replace = TRUE, prob = c(5, 5))
+x3[x1 == "" & x2 == ""] = ""
+x4[x1 == "" & x2 == ""] = ""
+x4[x3 == "intronic"] = ""
+x = apply(cbind(x1, x2, x3, x4), 1, function(x) {
+	x = x[x != ""]
+	paste(x, collapse = ";")
+})
+m = matrix(x, nrow = 10, ncol = 10, dimnames = list(paste0("g", 1:10), paste0("s", 1:10)))
+m[1:4, 1:4]
+```
+
+To distinguish `intronic snv` and `exonic snv`, we didn't encode them as alteration types such as
+`intronic_snv` and `exonic_snv`. The way we encode in `m` is to separate them into two different classes
+where `snv`/`indel` in the primary class and `intronic`/`exonic` is the secondary class. Now in `m`,
+there are four different alteration types: `snv`, `indel`, `intronic` and `exonic`. Next we define 
+`alter_fun` for the four alterations.
+
+```{r}
+alter_fun = list(
+	background = function(x, y, w, h) 
+		grid.rect(x, y, w*0.9, h*0.9, gp = gpar(fill = "#CCCCCC", col = NA)),
+	snv = function(x, y, w, h) 
+		grid.rect(x, y, w*0.9, h*0.9, gp = gpar(fill = "red", col = NA)),
+	indel = function(x, y, w, h) 
+		grid.rect(x, y, w*0.9, h*0.9, gp = gpar(fill = "blue", col = NA)),
+	intronic = function(x, y, w, h) 
+		grid.points(x, y, pch = 16),
+	exonic = function(x, y, w, h) {
+		grid.segments(x - w*0.4, y - h*0.4, x + w*0.4, y + h*0.4, gp = gpar(lwd = 2))
+		grid.segments(x + w*0.4, y - h*0.4, x - w*0.4, y + h*0.4, gp = gpar(lwd = 2))
+	}
+)
+```
+
+Note, for `intronic` and `exonic` which are the secondary class, we only draw simple symbols (dots
+for `intronic` and diagonal lines for `exonic`) with no specific colors. Thus, the number of genes
+or samples that have `intronic`/`exonic` events cannot be visualized in the barplot annotations.
+
+```{r, fig.width = 5.5}
+ht = oncoPrint(m, alter_fun = alter_fun, col = c(snv = "red", indel = "blue"))
+draw(ht, heatmap_legend_list = list(
+	Legend(labels = c("intronic", "exonic"), type = "points", pch = c(16, 28))
+))
 ```
 
 

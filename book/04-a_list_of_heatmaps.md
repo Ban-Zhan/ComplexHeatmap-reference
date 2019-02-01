@@ -54,7 +54,7 @@ ht3 = Heatmap(le, name = "letters")
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-3-1.png" width="864" style="display: block; margin: auto;" />
 
 Under default mode, dendrograms from the second heatmap will be removed and row orders will be same
 as the first one. Also row names for the first two heatmaps are removed as well.
@@ -119,7 +119,7 @@ draw(ht_list, row_title = "Three heatmaps, row title", row_title_gp = gpar(col =
     column_title = "Three heatmaps, column title", column_title_gp = gpar(fontsize = 16))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_title-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_title-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Size of heatmaps {#size-of-heatmaps}
 
@@ -132,7 +132,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(5, "mm"))
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_size-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_size-1.png" width="864" style="display: block; margin: auto;" />
 
 The width of all heatmaps can be set as absolute units.
 
@@ -144,7 +144,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = unit(1, "cm"))
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_relative_size-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_relative_size-1.png" width="864" style="display: block; margin: auto;" />
 
 If `width` is numeric, it is converted as a `null` unit.
 
@@ -156,7 +156,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters, width = 1)
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-7-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Gap between heatmaps {#gap-between-heatmaps}
 
@@ -171,13 +171,13 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(1, "cm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_gap-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_gap-1.png" width="864" style="display: block; margin: auto;" />
 
 ```r
 draw(ht_list, ht_gap = unit(c(3, 10), "mm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_gap-2.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_gap-2.png" width="864" style="display: block; margin: auto;" />
 
 ## Automatic adjustment to the main heatmap {#automatic-adjustment-to-the-main-heatmap}
 
@@ -201,7 +201,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht2 + ht1 + ht3 # ht2 is the main heatmap and row_km in ht1 is ignored
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_auto_adjust-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_auto_adjust-1.png" width="864" style="display: block; margin: auto;" />
 
 The main heatmap can be specified by `main_heatmap` argument. The value can be a numeric index or
 the name of the heatmap (of course, you need to set the heatmap name when you create the `Heatmap`
@@ -214,7 +214,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-8-1.png" width="864" style="display: block; margin: auto;" />
 
 By default, the dendrogram and the row title are plotted just beside the main heatmap, just to
 emphasize the clustering or the splitting is calculated from the main heatmap while not other
@@ -227,7 +227,7 @@ ht_list = ht2 + ht1 + ht3
 draw(ht_list, main_heatmap = "rnorm", row_dend_side = "right", row_sub_title_side = "left")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-9-1.png" width="864" style="display: block; margin: auto;" />
 
 Similarly, if there is no row clustering in the main heatmap, all other heatmaps are not clustered neither.
 
@@ -239,7 +239,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/heatmap_list_auto_adjust_no_row_cluster-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/heatmap_list_auto_adjust_no_row_cluster-1.png" width="864" style="display: block; margin: auto;" />
 
 As you may have observed, all the row names between heatmaps are removed from the plot. You can show
 them by setting `auto_adjust = FALSE`.
@@ -253,7 +253,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, auto_adjust = FALSE)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Control main heatmap in draw() function {#control-main-heatmap-in-draw-function}
 
@@ -294,7 +294,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, row_km = 1, row_split = le, cluster_rows = TRUE)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-11-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Annotations as components are adjusted {#annotations-as-components-are-adjusted}
 
@@ -316,7 +316,7 @@ ht3 = Heatmap(le, name = "letters", col = col_letters)
 ht1 + ht2 + ht3
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;" />
 
 If the first two heatmaps all have annotations, since the size of simple annotations keep unchanged,
 the size of complex annotations will be adjusted to make the total heights of the two heatmap annotations
@@ -334,7 +334,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-13-1.png" width="864" style="display: block; margin: auto;" />
 
 Similarly, if the first heatmap conly contains simple annotatins, dendrogram will be adjusted.
 
@@ -349,7 +349,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list, ht_gap = unit(c(6, 2), "mm"))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-14-1.png" width="864" style="display: block; margin: auto;" />
 
 If the second heatmap has no bottom annotation, column names for the second heamtap are adjusted
 to be put directly below the heatmap body.
@@ -364,7 +364,7 @@ ht_list = ht1 + ht2 + ht3
 draw(ht_list)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-15-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Concatenate with annotations {#concatenate-with-annotations}
 
@@ -379,7 +379,7 @@ ht1 = Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2)
 ht1 + ha1
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-16-1.png" width="480" style="display: block; margin: auto;" />
 
 The `foo` and `bar` annotations can be defined in two separated `rowAnnotation()` calls.
 
@@ -390,7 +390,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" />
 
 Basically heatmaps and row annotations can be concatenated arbitarily.
 
@@ -402,7 +402,7 @@ Heatmap(mat1, name = "rnorm", col = col_rnorm, row_km = 2) +
     Heatmap(mat2, name = "runif", col = col_runif)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;" />
 
 ## Concatenate only the annotations {#concatenate-only-the-annotations}
 
@@ -414,7 +414,7 @@ rowAnnotation(foo = 1:12) +
     rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm")))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;" />
 
 If there is only one `HeatmapAnnotation` object, you must concatenated with `NULL`.
 
@@ -423,7 +423,7 @@ If there is only one `HeatmapAnnotation` object, you must concatenated with `NUL
 rowAnnotation(bar = anno_barplot(1:12, width = unit(4, "cm"))) + NULL
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;" />
 
 The annotation list is actually also a `HeatmapList` object.
 
@@ -448,7 +448,7 @@ splitting.
 draw(anno_list, row_split = rep(c("A", "B"), each = 6))
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-22-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-22-1.png" width="480" style="display: block; margin: auto;" />
 
 In Section \@ref(stacked-summary-plot), we will show how to use a list of annotations to visualize
 multiple summary statistics.
@@ -470,13 +470,13 @@ ht_list = ht1 %v% ht2 %v% ht3
 draw(ht_list)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" />
 
 ```r
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-23-2.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-23-2.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -488,7 +488,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;" />
 
 
 ```r
@@ -500,7 +500,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" />
 
 For the vertical heatmap list, now row annotations should be the heatmap
 components (by `right_annotation` and `left_annotation`) and they are adjusted
@@ -519,7 +519,7 @@ ht_list = ht1 %v% ha %v% ht2 %v% ht3
 draw(ht_list, column_km = 2)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-26-1.png" width="480" style="display: block; margin: auto;" />
 
 ## Subset the heatmap list {#subset-heatmap-list}
 
@@ -548,7 +548,7 @@ names(ht_list)
 ht_list[1:6, c("rnorm", "bar2")]
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />
 
 `foo1` and `bar` are components of heatmap `rnorm`, so they can not be selected in the subset function,
 which `foo2` and `bar2` are independent row annotations and they can selected to take subset of them.
@@ -760,7 +760,7 @@ ht2 = Heatmap(mat2, name = "ht2", column_title = "Heatmap 2",
 ht1 + ht2
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-35-1.png" width="960" style="display: block; margin: auto;" />
 
 ```r
 ht_opt(RESET = TRUE)
@@ -796,7 +796,7 @@ draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = FALSE,
     column_title = "adjust_annotation_extension = FALSE")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-37-1.png" width="960" style="display: block; margin: auto;" />
 
 Another way to partially solve the space problem is to move the annotation name
 to the left and use heamtap-level row title.
@@ -810,7 +810,7 @@ Heatmap(m, name = "mat",
     show_row_dend = FALSE)
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-38-1.png" width="480" style="display: block; margin: auto;" />
 
 However, this adjustment for annotations sometimes is also necessary, e.g. when the heatmap is
 very short:
@@ -824,7 +824,7 @@ draw(ht, row_title = "fooooooooooo", adjust_annotation_extension = TRUE,
     column_title = "adjust_annotation_extension = TRUE")
 ```
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-39-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-39-1.png" width="480" style="display: block; margin: auto;" />
 
 Therefore, we set `TRUE` as the default of `adjust_annotation_extension` and users can configure
 it based on specific scenarios.
@@ -852,6 +852,6 @@ draw(ht, padding = unit(c(2, 20, 2, 2), "mm")) ## see right heatmap in following
 ```
 
 
-<img src="04-a_list_of_heatmaps_files/figure-epub3/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
+<img src="04-a_list_of_heatmaps_files/figure-html/unnamed-chunk-41-1.png" width="960" style="display: block; margin: auto;" />
 
 

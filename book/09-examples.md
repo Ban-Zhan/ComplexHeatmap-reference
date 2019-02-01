@@ -53,7 +53,7 @@ ht_list = rowAnnotation(block = anno_block(gp = gpar(fill = 2:6, col = NA)),
 draw(ht_list, ht_gap = unit(5, "mm"))
 ```
 
-<img src="09-examples_files/figure-epub3/expression_example-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/expression_example-1.png" width="960" style="display: block; margin: auto;" />
 
 ## The measles vaccine heatmap {#the-measles-vaccine-heatmap}
 
@@ -105,7 +105,7 @@ decorate_heatmap_body("cases", {
 })
 ```
 
-<img src="09-examples_files/figure-epub3/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" />
 
 ## Visualize Cell Heterogeneity from Single Cell RNASeq
 
@@ -258,7 +258,7 @@ decorate_column_dend("scaled_expr", {
 })
 ```
 
-<img src="09-examples_files/figure-epub3/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/unnamed-chunk-9-1.png" width="1152" style="display: block; margin: auto;" />
 
 The heatmap clearly reveals that the cells are separated into two sub-populations. The population on
 the left in the first heatmap exhibits high expression of a subset of cell cycle genes (cell cycle
@@ -374,7 +374,7 @@ draw(ht_list, row_km = 2, row_split = direction,
     merge_legends = TRUE, heatmap_legend_side = "bottom")
 ```
 
-<img src="09-examples_files/figure-epub3/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;" />
 
 ```r
 ht_opt(RESET = TRUE)
@@ -633,7 +633,7 @@ decorate_annotation("chr7_gain", {
 })
 ```
 
-<img src="09-examples_files/figure-epub3/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" />
 
 
 ## Add multiple boxplots for single row {#add-multiple-boxplots-for-single-row}
@@ -678,4 +678,4 @@ lgd = Legend(labels = c("m1", "m2"), title = "boxplots",
 draw(ht_list, padding = unit(c(20, 2, 2, 2), "mm"), heatmap_legend_list = list(lgd))
 ```
 
-<img src="09-examples_files/figure-epub3/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
+<img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" />

@@ -551,6 +551,17 @@ lgd = Legend(labels = month.name[1:6], title = "foo", type = "lines",
 draw(lgd, test = TRUE)
 ```
 
+When `pch` is an integer number, the number in `26:31` is not implemented in R, thus, `Legend()` function
+implements some non-standard `pch` symbols:
+
+```{r}
+lgd = Legend(labels = paste0("pch = ", 26:28), type = "points", pch = 26:28)
+```
+
+```{r, echo = FALSE, fig.width = legend_width(lgd), fig.height = legend_height(lgd)}
+draw(lgd, test = TRUE)
+```
+
 ## A list of legends {#a-list-of-legends}
 
 A list of legends can be constructed or packed as a `Legends` object where the individual

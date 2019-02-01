@@ -197,7 +197,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.1.1" data-path="oncoprint.html"><a href="oncoprint.html#input-data-format"><i class="fa fa-check"></i><b>7.1.1</b> Input data format</a></li>
 <li class="chapter" data-level="7.1.2" data-path="oncoprint.html"><a href="oncoprint.html#define-the-alter-fun"><i class="fa fa-check"></i><b>7.1.2</b> Define the alter_fun()</a></li>
 <li class="chapter" data-level="7.1.3" data-path="oncoprint.html"><a href="oncoprint.html#oncoprint-background"><i class="fa fa-check"></i><b>7.1.3</b> Background</a></li>
-<li class="chapter" data-level="7.1.4" data-path="oncoprint.html"><a href="oncoprint.html#other-heatmap-related-settings"><i class="fa fa-check"></i><b>7.1.4</b> Other heatmap-related settings</a></li>
+<li class="chapter" data-level="7.1.4" data-path="oncoprint.html"><a href="oncoprint.html#complex-alteration-types"><i class="fa fa-check"></i><b>7.1.4</b> Complex alteration types</a></li>
+<li class="chapter" data-level="7.1.5" data-path="oncoprint.html"><a href="oncoprint.html#other-heatmap-related-settings"><i class="fa fa-check"></i><b>7.1.5</b> Other heatmap-related settings</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="oncoprint.html"><a href="oncoprint.html#apply-to-cbioportal-dataset"><i class="fa fa-check"></i><b>7.2</b> Apply to cBioPortal dataset</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="oncoprint.html"><a href="oncoprint.html#remove-empty-rows-and-columns"><i class="fa fa-check"></i><b>7.2.1</b> Remove empty rows and columns</a></li>
@@ -434,6 +435,9 @@ lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> month.name[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">title =</span> <span class="st">&quot;foo&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;lines&quot;</span>, 
     <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">grid_width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
 <p><img src="05-legends_files/figure-html/unnamed-chunk-88-1.png" width="110.239580052493" style="display: block; margin: auto;" /></p>
+<p>When <code>pch</code> is an integer number, the number in <code>26:31</code> is not implemented in R, thus, <code>Legend()</code> function implements some non-standard <code>pch</code> symbols:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> <span class="kw">paste0</span>(<span class="st">&quot;pch = &quot;</span>, <span class="dv">26</span><span class="op">:</span><span class="dv">28</span>), <span class="dt">type =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">pch =</span> <span class="dv">26</span><span class="op">:</span><span class="dv">28</span>)</code></pre></div>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-90-1.png" width="85.5357480314961" style="display: block; margin: auto;" /></p>
 </div>
 <div id="a-list-of-legends" class="section level2">
 <h2><span class="header-section-number">5.3</span> A list of legends</h2>
@@ -445,7 +449,7 @@ lgd3 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">l
 pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3)
 <span class="co"># which is same as </span>
 pd =<span class="st"> </span><span class="kw">packLegend</span>(<span class="dt">list =</span> <span class="kw">list</span>(lgd1, lgd2, lgd3))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-90-1.png" width="87.5624146981627" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-92-1.png" width="87.5624146981627" style="display: block; margin: auto;" /></p>
 <p>Simillar as single legend, you can draw the packed legends by <code>draw()</code> function. Also you can get the size of <code>pd</code> by <code>ComplexHeatmap:::width()</code> and <code>ComplexHeatmap:::height()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ComplexHeatmap<span class="op">:::</span><span class="kw">width</span>(pd)</code></pre></div>
 <pre><code>## [1] 19.1675555555556mm</code></pre>
@@ -453,12 +457,12 @@ pd =<span class="st"> </span><span class="kw">packLegend</span>(<span class="dt"
 <pre><code>## [1] 72.0988333333333mm</code></pre>
 <p>Horizontally arranging the legends simply by setting <code>direction = &quot;horizontal&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-93-1.png" width="203.720524934383" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-95-1.png" width="203.720524934383" style="display: block; margin: auto;" /></p>
 <p>One feature of <code>packLegend()</code> is, e.g. if the packing is vertically and the sum of the packed legends exceeds the height specified by <code>max_height</code>, it will be rearragned as mutliple column layout. In following example, the maximum height is <code>10cm</code>.</p>
 <p>When all the legends are put into multiple columns, <code>column_gap</code> controls the space between two columns.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd3, lgd2, lgd3, lgd2, lgd1, <span class="dt">max_height =</span> <span class="kw">unit</span>(<span class="dv">10</span>, <span class="st">&quot;cm&quot;</span>), 
     <span class="dt">column_gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-95-1.png" width="197.801994750656" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-97-1.png" width="197.801994750656" style="display: block; margin: auto;" /></p>
 <p>Similar for horizontal packing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd1 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">title =</span> <span class="st">&quot;legend1&quot;</span>,
     <span class="dt">nr =</span> <span class="dv">1</span>)
@@ -467,14 +471,14 @@ lgd2 =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">c
 
 pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3, lgd1, lgd2, lgd3, <span class="dt">max_width =</span> <span class="kw">unit</span>(<span class="dv">10</span>, <span class="st">&quot;cm&quot;</span>), 
     <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>, <span class="dt">column_gap =</span> <span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">row_gap =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-97-1.png" width="357.556850393701" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-99-1.png" width="357.556850393701" style="display: block; margin: auto;" /></p>
 <p>The packed legends <code>pd</code> is also a <code>Legends</code> object, which means you can use <code>draw()</code> to draw it by specifying the positions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3, <span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>)
 <span class="kw">pushViewport</span>(<span class="kw">viewport</span>(<span class="dt">width =</span> <span class="fl">0.8</span>, <span class="dt">height =</span> <span class="fl">0.8</span>))
 <span class="kw">grid.rect</span>()
 <span class="kw">draw</span>(pd, <span class="dt">x =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">y =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>), <span class="dt">just =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))
 <span class="kw">popViewport</span>()</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-98-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-100-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>As you may have guessed, <code>packLegend()</code> is used internally to manage the list of heatmap and annotation legends.</p>
 </div>
 <div id="heatmap-and-annotation-legends" class="section level2">
@@ -488,7 +492,7 @@ pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3
     <span class="dt">legend_height =</span> <span class="kw">unit</span>(<span class="dv">4</span>, <span class="st">&quot;cm&quot;</span>),
     <span class="dt">title_position =</span> <span class="st">&quot;lefttop-rot&quot;</span>
 ))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-99-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-101-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><code>annotation_legend_param</code> controls legends for annotations. Since a <code>HeatmapAnnotation</code> may contain multiple annotations, the value of <code>annotation_legend_param</code> is a list of configurations of each annotation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
     <span class="dt">annotation_legend_param =</span> <span class="kw">list</span>(
@@ -504,14 +508,14 @@ pd =<span class="st"> </span><span class="kw">packLegend</span>(lgd1, lgd2, lgd3
             )
 ))
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat&quot;</span>, <span class="dt">top_annotation =</span> ha)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-100-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-102-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If the heatmaps are concatenated horizontally, all heatmap and row annotation legends are grouped and all column annotation legends ae grouped. The reason we assume the horizontal direction passes the main message of the plot, while the vertical direction provides secondary information.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
 ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo2 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar2 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha1) <span class="op">+</span>
 <span class="kw">rowAnnotation</span>(<span class="dt">sth =</span> <span class="kw">runif</span>(<span class="dv">10</span>)) <span class="op">+</span>
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">top_annotation =</span> ha2)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-101-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-103-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Similarlly, if the heatmaps are concatenated vertically, all heatmaps/column annotations are grouped and legends for all row annotations are grouped.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>), 
     <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
@@ -519,7 +523,7 @@ ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cl
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha1) <span class="op">%v%</span>
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">top_annotation =</span> ha2, 
     <span class="dt">right_annotation =</span> <span class="kw">rowAnnotation</span>(<span class="dt">sth =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-102-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-104-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><code>show_legend</code> in <code>HeatmapAnnotation()</code> and <code>show_heatmap_legend</code> in <code>Heatmap()</code> controls whether show the legends. Note <code>show_legend</code> can be a single logical value, a logical vector which has the same length as the number of simple annotations, or a named vector which controls subset of annotations.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
     <span class="dt">bar =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
@@ -527,7 +531,7 @@ ha2 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span cl
     <span class="dt">annotation_name_side =</span> <span class="st">&quot;left&quot;</span>)
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat1&quot;</span>, <span class="dt">top_annotation =</span> ha) <span class="op">+</span>
 <span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">show_heatmap_legend =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-103-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-105-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p><code>merge_legend</code> in <code>draw()</code> function controlls whether to merge all the legends into a single group. Normally, when there are many annotations and heatmaps, the number of legends is always big. In this case, the legends are automatically arranged into multiple columns (or multiple rows if they are put at the bottom of the heatmaps) to get rid of being out of the figure page. If a heatmap has heatmap annotations, the order of putting legends are: legends for the left annotations, legends for the top annotations, legend of the heatmap, legends for the bottom annotations and legends for the right annotations.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), 
     <span class="dt">bar1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
@@ -539,13 +543,13 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class
 <span class="st">    </span><span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">left_annotation =</span> ha2) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span>ha3
 <span class="kw">draw</span>(ht_list, <span class="dt">merge_legend =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-104-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-106-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>The last thing to mention is that a continuous color mapping can have a discrete legend, both work for heatmap legends and annotation legends.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat&quot;</span>, <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(<span class="dt">color_bar =</span> <span class="st">&quot;discrete&quot;</span>),
     <span class="dt">top_annotation =</span> <span class="kw">HeatmapAnnotation</span>(<span class="dt">foo =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
         <span class="dt">annotation_legend_param =</span> <span class="kw">list</span>(
             <span class="dt">foo =</span> <span class="kw">list</span>(<span class="dt">color_bar =</span> <span class="st">&quot;discrete&quot;</span>))))</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-105-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-107-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="add-customized-legends" class="section level2">
 <h2><span class="header-section-number">5.5</span> Add customized legends</h2>
@@ -564,7 +568,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class
                 <span class="dt">summary =</span> <span class="kw">anno_summary</span>(<span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))
           ), <span class="dt">width =</span> <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;cm&quot;</span>))
 <span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="dv">7</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">row_km =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-106-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-108-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Next we construct legends for the points, the lines and the boxplots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lgd_list =<span class="st"> </span><span class="kw">list</span>(
     <span class="kw">Legend</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="dt">title =</span> <span class="st">&quot;pt&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;points&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>, 
@@ -574,7 +578,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class
     <span class="kw">Legend</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;group1&quot;</span>, <span class="st">&quot;group2&quot;</span>), <span class="dt">title =</span> <span class="st">&quot;km&quot;</span>, <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))
 )
 <span class="kw">draw</span>(ht_list, <span class="dt">ht_gap =</span> <span class="kw">unit</span>(<span class="dv">7</span>, <span class="st">&quot;mm&quot;</span>), <span class="dt">row_km =</span> <span class="dv">2</span>, <span class="dt">annotation_legend_list =</span> lgd_list)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-107-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-109-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-side-of-legends" class="section level2">
 <h2><span class="header-section-number">5.6</span> The side of legends</h2>
@@ -586,7 +590,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class
 <span class="st">    </span><span class="kw">rowAnnotation</span>(<span class="dt">sth =</span> <span class="kw">runif</span>(<span class="dv">10</span>)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">Heatmap</span>(m, <span class="dt">name =</span> <span class="st">&quot;mat2&quot;</span>, <span class="dt">top_annotation =</span> ha2)
 <span class="kw">draw</span>(ht_list, <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;left&quot;</span>, <span class="dt">annotation_legend_side =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-108-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-110-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>When the legends are put at the bottom or on the top, the legends are arranged horizontally. We might also want to set every single legend as horizontal legend, this needs to be set via the <code>heatmap_legend_param</code> and <code>annotation_legend_param</code> arguments in <code>Heatmap()</code> and <code>HeatmapAnnotation()</code> functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ha1 =<span class="st"> </span><span class="kw">HeatmapAnnotation</span>(<span class="dt">foo1 =</span> <span class="kw">runif</span>(<span class="dv">10</span>), <span class="dt">bar1 =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>), <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
     <span class="dt">annotation_legend_param =</span> <span class="kw">list</span>(
@@ -604,7 +608,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(m, <span class
         <span class="dt">heatmap_legend_param =</span> <span class="kw">list</span>(<span class="dt">direction =</span> <span class="st">&quot;horizontal&quot;</span>))
 <span class="kw">draw</span>(ht_list, <span class="dt">merge_legend =</span> <span class="ot">TRUE</span>, <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;bottom&quot;</span>, 
     <span class="dt">annotation_legend_side =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
-<p><img src="05-legends_files/figure-html/unnamed-chunk-109-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="05-legends_files/figure-html/unnamed-chunk-111-1.png" width="768" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
