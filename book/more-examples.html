@@ -229,6 +229,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="10.1" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#density-heatmap"><i class="fa fa-check"></i><b>10.1</b> Density heatmap</a></li>
 <li class="chapter" data-level="10.2" data-path="other-high-level-plots.html"><a href="other-high-level-plots.html#stacked-summary-plot"><i class="fa fa-check"></i><b>10.2</b> Stacked summary plot</a></li>
 </ul></li>
+<li class="chapter" data-level="11" data-path="other-tricks.html"><a href="other-tricks.html"><i class="fa fa-check"></i><b>11</b> Other Tricks</a><ul>
+<li class="chapter" data-level="11.1" data-path="other-tricks.html"><a href="other-tricks.html#set-the-same-cell-size-for-different-heatmaps-with-different-dimensions"><i class="fa fa-check"></i><b>11.1</b> Set the same cell size for different heatmaps with different dimensions</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -334,7 +337,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat, <span cla
     <span class="kw">grid.lines</span>(<span class="kw">c</span>(x, x), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">2</span>))
     <span class="kw">grid.text</span>(<span class="st">&quot;Vaccine introduced&quot;</span>, x, <span class="kw">unit</span>(<span class="dv">1</span>, <span class="st">&quot;npc&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">unit</span>(<span class="dv">5</span>, <span class="st">&quot;mm&quot;</span>))
 })</code></pre></div>
-<p><img src="09-examples_files/figure-html/unnamed-chunk-2-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="09-examples_files/figure-html/unnamed-chunk-3-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="visualize-cell-heterogeneity-from-single-cell-rnaseq" class="section level2">
 <h2><span class="header-section-number">9.3</span> Visualize Cell Heterogeneity from Single Cell RNASeq</h2>
@@ -427,7 +430,7 @@ ht_list =<span class="st"> </span><span class="kw">draw</span>(ht_list, <span cl
     <span class="kw">grid.rect</span>(<span class="dt">x =</span> x1<span class="op">/</span><span class="kw">length</span>(ind), <span class="dt">width =</span> (x2 <span class="op">-</span><span class="st"> </span>x1)<span class="op">/</span><span class="kw">length</span>(ind), <span class="dt">just =</span> <span class="st">&quot;left&quot;</span>,
         <span class="dt">default.units =</span> <span class="st">&quot;npc&quot;</span>, <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;#FF000040&quot;</span>, <span class="st">&quot;#00FF0040&quot;</span>), <span class="dt">col =</span> <span class="ot">NA</span>))
 })</code></pre></div>
-<p><img src="09-examples_files/figure-html/unnamed-chunk-9-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="09-examples_files/figure-html/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>The heatmap clearly reveals that the cells are separated into two sub-populations. The population on the left in the first heatmap exhibits high expression of a subset of cell cycle genes (cell cycle genes are indicated in “<strong>cell_cycle</strong>” heatmap). However, the overall expression level for these genes is relatively low (see “<strong>base_expr</strong>” heatmap). The population on the right has higher expression in the other signature genes. Interestingly, the signature genes which are higher expressed in this subpopulation are enriched for genes coding for ribonucleoproteins (see “<strong>ribonucleoprotein</strong>” heatmap). A subset of the ribonucleoprotein genes shows strong coexpression (see correlation heatmap) and overall high expression levels (“<strong>base_expr</strong>” heatmap).</p>
 </div>
 <div id="correlations-between-methylation-expression-and-other-genomic-features" class="section level2">
@@ -505,7 +508,7 @@ ht_list =<span class="st"> </span><span class="kw">Heatmap</span>(mat_meth, <spa
     <span class="dt">column_title =</span> <span class="st">&quot;Comprehensive correspondence between methylation, expression and other genomic features&quot;</span>, 
     <span class="dt">column_title_gp =</span> <span class="kw">gpar</span>(<span class="dt">fontsize =</span> <span class="dv">12</span>, <span class="dt">fontface =</span> <span class="st">&quot;bold&quot;</span>), 
     <span class="dt">merge_legends =</span> <span class="ot">TRUE</span>, <span class="dt">heatmap_legend_side =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
-<p><img src="09-examples_files/figure-html/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="09-examples_files/figure-html/unnamed-chunk-14-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ht_opt</span>(<span class="dt">RESET =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>The complex heatmaps reveal that highly methylated DMRs are enriched in intergenic and intragenic regions and rarely overlap with enhancers. In contrast, lowly methylated DMRs are enriched for transcription start sites (TSS) and enhancers.</p>
 </div>
@@ -677,7 +680,7 @@ annotation_titles =<span class="st"> </span><span class="kw">c</span>(<span clas
 <span class="kw">decorate_annotation</span>(<span class="st">&quot;chr7_gain&quot;</span>, {
     <span class="kw">grid.lines</span>(<span class="kw">unit</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="dv">0</span>), <span class="st">&quot;mm&quot;</span>), <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="st">&quot;npc&quot;</span>))
 })</code></pre></div>
-<p><img src="09-examples_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="1152" style="display: block; margin: auto;" /></p>
 </div>
 <div id="add-multiple-boxplots-for-single-row" class="section level2">
 <h2><span class="header-section-number">9.6</span> Add multiple boxplots for single row</h2>
@@ -710,7 +713,7 @@ ht_list =<span class="st"> </span>ht_list <span class="op">+</span><span class="
 lgd =<span class="st"> </span><span class="kw">Legend</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;m1&quot;</span>, <span class="st">&quot;m2&quot;</span>), <span class="dt">title =</span> <span class="st">&quot;boxplots&quot;</span>,
     <span class="dt">legend_gp =</span> <span class="kw">gpar</span>(<span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>)))
 <span class="kw">draw</span>(ht_list, <span class="dt">padding =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>), <span class="dt">heatmap_legend_list =</span> <span class="kw">list</span>(lgd))</code></pre></div>
-<p><img src="09-examples_files/figure-html/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="09-examples_files/figure-html/unnamed-chunk-28-1.png" width="480" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
