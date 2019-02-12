@@ -1275,11 +1275,11 @@ sapply(fs, function(x) paste(round(x/1024), "KB"))
 
 ```
 ##                     heatmap.pdf       heatmap_raster_by_png.pdf 
-##                       "6653 KB"                        "379 KB" 
+##                       "6583 KB"                        "374 KB" 
 ##      heatmap_raster_by_jpeg.pdf      heatmap_raster_by_tiff.pdf 
-##                       "2910 KB"                        "379 KB" 
+##                       "2845 KB"                        "374 KB" 
 ##  heatmap_raster_by_CairoPNG.pdf heatmap_raster_by_CairoJPEG.pdf 
-##                        "310 KB"                       "3023 KB"
+##                        "307 KB"                       "2975 KB"
 ```
 
 

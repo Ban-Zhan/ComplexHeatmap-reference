@@ -17,7 +17,7 @@ description: "Complex heatmaps are efficient to visualize associations between d
 # About {-}
 
 This is the documentation of the
-[**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
+[**ComplexHeatmap**](http://bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html) package. Examples in the book
 are generated under version `r installed.packages()["ComplexHeatmap", "Version"]`.
 
 The **ComplexHeatmap** package is inspired from the [**pheatmap**](https://CRAN.R-project.org/package=pheatmap) package. You can find many arguments in **ComplexHeatmap** have the same names as in **pheatmap**. Also you

@@ -2,7 +2,7 @@
 --- 
 title: "ComplexHeatmap Complete Reference"
 author: "Zuguang Gu"
-date: "last revised on 2019-02-06"
+date: "last revised on 2019-02-12"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -18,7 +18,7 @@ description: "Complex heatmaps are efficient to visualize associations between d
 # About {-}
 
 This is the documentation of the
-[**ComplexHeatmap**](http://bioconductor.org/packages/ComplexHeatmap/) package. Examples in the book
+[**ComplexHeatmap**](http://bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html) package. Examples in the book
 are generated under version 1.99.5.
 
 The **ComplexHeatmap** package is inspired from the [**pheatmap**](https://CRAN.R-project.org/package=pheatmap) package. You can find many arguments in **ComplexHeatmap** have the same names as in **pheatmap**. Also you
