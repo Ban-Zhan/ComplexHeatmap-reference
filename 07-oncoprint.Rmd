@@ -1,7 +1,7 @@
 
 # OncoPrint {#oncoprint}
 
-<a href="http://www.cbioportal.org/faq.jsp#what-are-oncoprints">OncoPrint</a> is a way to visualize
+<a href="http://www.cbioportal.org/faq#what-are-oncoprints">OncoPrint</a> is a way to visualize
 multiple genomic alteration events by heatmap. Here the **ComplexHeatmap** package provides a
 `oncoPrint()` function which makes oncoPrints. Besides the default style which is provided by <a
 href="http://www.cbioportal.org/index.do">cBioPortal</a>, there are additional barplots at both
