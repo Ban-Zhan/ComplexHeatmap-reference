@@ -9,7 +9,7 @@
   <meta name="description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 8 UpSet plot | ComplexHeatmap Complete Reference />
+  <meta property="og:title" content="Chapter 8 UpSet plot | ComplexHeatmap Complete Reference" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jokergoo.github.io/ComplexHeatmap-reference/book" />
   <meta property="og:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="jokergoo/ComplexHeatmap-reference" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 UpSet plot | ComplexHeatmap Complete Reference />
+  <meta name="twitter:title" content="Chapter 8 UpSet plot | ComplexHeatmap Complete Reference" />
   
   <meta name="twitter:description" content="Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the ComplexHeatmap R package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics. This book is the complete reference to ComplexHeatmap pacakge." />
   <meta name="twitter:image" content="https://jokergoo.github.io/ComplexHeatmap-reference/bookcomplexheatmap-cover.jpg" />
@@ -317,7 +317,17 @@ m1</code></pre></div>
 <pre><code>## A combination matrix with 3 sets and 7 combinations.
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
-##   sets are on rows.</code></pre>
+##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - &#39;[&#39;: subset the combination matrix.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 =<span class="st"> </span><span class="kw">make_comb_mat</span>(<span class="dt">a =</span> lt<span class="op">$</span>a, <span class="dt">b =</span> lt<span class="op">$</span>b, <span class="dt">c =</span> lt<span class="op">$</span>c)
 m3 =<span class="st"> </span><span class="kw">make_comb_mat</span>(<span class="kw">list_to_matrix</span>(lt))</code></pre></div>
 <p><code>m1</code>, <code>m2</code> and <code>m3</code> are identical.</p>
@@ -335,7 +345,17 @@ m[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</
 <pre><code>## A combination matrix with 3 sets and 4 combinations.
 ##   ranges of #combination set: c(1, 5).
 ##   mode for the combination size: distinct.
-##   sets are on rows.</code></pre>
+##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - &#39;[&#39;: subset the combination matrix.</code></pre>
 </div>
 <div id="upset-utility-functions" class="section level2">
 <h2><span class="header-section-number">8.4</span> Utility functions</h2>
@@ -366,7 +386,17 @@ m[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</
 <pre><code>## A combination matrix with 3 sets and 7 combinations.
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
-##   sets are on columns</code></pre>
+##   sets are on columns
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - &#39;[&#39;: subset the combination matrix.</code></pre>
 <p>For using <code>extract_comb()</code>, the valid combination set name should be from <code>comb_name()</code>. Note the elements in the combination sets depends on the “mode” set in <code>make_comb_mat()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">extract_comb</span>(m, <span class="st">&quot;101&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;t&quot; &quot;u&quot; &quot;z&quot;</code></pre>
@@ -410,13 +440,33 @@ m[<span class="kw">comb_size</span>(m) <span class="op">&gt;=</span><span class=
 <pre><code>## A combination matrix with 3 sets and 3 combinations.
 ##   ranges of #combination set: c(4, 8).
 ##   mode for the combination size: distinct.
-##   sets are on rows.</code></pre>
+##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - &#39;[&#39;: subset the combination matrix.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combination set degree == 2</span>
 m[<span class="kw">comb_degree</span>(m) <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]</code></pre></div>
 <pre><code>## A combination matrix with 3 sets and 3 combinations.
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
-##   sets are on rows.</code></pre>
+##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - &#39;[&#39;: subset the combination matrix.</code></pre>
 </div>
 <div id="upset-making-the-plot" class="section level2">
 <h2><span class="header-section-number">8.5</span> Making the plot</h2>

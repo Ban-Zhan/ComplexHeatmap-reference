@@ -114,6 +114,16 @@ m1
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
 ##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - '[': subset the combination matrix.
 ```
 
 ```r
@@ -159,6 +169,16 @@ m[1:4]
 ##   ranges of #combination set: c(1, 5).
 ##   mode for the combination size: distinct.
 ##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - '[': subset the combination matrix.
 ```
 
 ## Utility functions {#upset-utility-functions}
@@ -233,6 +253,16 @@ t(m)
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
 ##   sets are on columns
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - '[': subset the combination matrix.
 ```
 
 For using `extract_comb()`, the valid combination set name should be from `comb_name()`. Note the
@@ -317,6 +347,16 @@ m[comb_size(m) >= 4]
 ##   ranges of #combination set: c(4, 8).
 ##   mode for the combination size: distinct.
 ##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - '[': subset the combination matrix.
 ```
 
 ```r
@@ -329,6 +369,16 @@ m[comb_degree(m) == 2]
 ##   ranges of #combination set: c(1, 8).
 ##   mode for the combination size: distinct.
 ##   sets are on rows.
+## 
+## Utility functions that can be applied:
+## - set_name(): name of the sets.
+## - set_size(): size of the sets.
+## - comb_name(): name of the combination sets.
+## - comb_size(): size of the combination sets.
+## - comb_degree(): degree of the combination sets.
+## - extract_comb(): extract elements in the specific combination sets.
+## - t(): transpose the combination matrix.
+## - '[': subset the combination matrix.
 ```
 
 ## Making the plot {#upset-making-the-plot}
